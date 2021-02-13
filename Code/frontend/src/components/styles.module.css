@@ -1,0 +1,13 @@
+.h1{
+    color: DodgerBlue;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: Arial;
+    margin-left: 1%;
+}
+
+.body {
+    font-family: Arial;
+    text-align: left;
+    margin-left: 1%;
+}
