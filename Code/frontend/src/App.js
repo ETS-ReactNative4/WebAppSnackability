@@ -36,33 +36,4 @@ class App extends Component {
   }
 }
 
-
-/* class App extends Component {
-  render() {
-    return (
-      <Router>
-        
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href = "/#" target="_blank">
-              <img src={logo} width="80" height="10%" alt="Snackability" />
-            </a>
-            <Link to="/" className="navbar-brand">Snackability</Link>
-            <div className="collpase navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                  <Link to="/snacks" className="nav-link">Snacks</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <br/>
-          <Route path ="/snacks" exact component = {SnackList} />
-          <Route path="/" exact component= {Snackability} />
-        </div>
-      </Router>
-    );
-  }
-} */
-
 export default App;
