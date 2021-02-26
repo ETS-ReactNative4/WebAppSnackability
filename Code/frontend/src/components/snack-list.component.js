@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import styles from "./styles.module.css";
+// eslint-disable-next-line
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
