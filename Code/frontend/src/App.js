@@ -22,10 +22,6 @@ class App extends Component {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/snacks">Snack List</Nav.Link>
             </Nav>
-            <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-info">Search</Button>
-              </Form>
           </Navbar>
         <br />
             <Route path ="/snacks" exact component = {SnackList} />

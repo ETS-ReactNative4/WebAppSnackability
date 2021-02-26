@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from "./styles.module.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { sort } from './sort.js';
 
 //<td>{props.snacks._id}</td>
 
