@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
 const snackRoutes = express.Router();
 const PORT = 4000;
 
@@ -67,8 +68,8 @@ snackRoutes.route('/update/:id').post(function(req,res){
     })
 })
 
-
 app.use('/snacks', snackRoutes);
+
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);

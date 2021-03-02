@@ -16,3 +16,7 @@ th {
     cursor: pointer
 }
 
+.input {
+    margin-left: 2%;
+    width: 20%;
+}
