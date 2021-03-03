@@ -3,9 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
 const snackRoutes = express.Router();
+const MongoClient = require('mongodb').MongoClient;
 const PORT = 4000;
+
 
 
 let Snacks = require('./snacks.model');
@@ -70,6 +71,21 @@ snackRoutes.route('/update/:id').post(function(req,res){
 
 app.use('/snacks', snackRoutes);
 
+app.post('/id', function(req, res) {
+    var input = "ito";
+    var regexInput = new RegExp(input);
+    
+    MongoClient.connect('mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority', function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("snackability_webapp");
+      var query = { brand_name: regexInput };
+      dbo.collection("snacks").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        db.close();
+      });
+    });    
+});
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
