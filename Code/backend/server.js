@@ -98,6 +98,6 @@ app.listen(PORT, function() {
 app.post('/search', (req,res) => {
     const searchWord = req.params.searchWord;
 
-    console.log("serach in back end");
+    console.log("search in back end");
     res.status(200).send({ msg: searchWord });
 });
