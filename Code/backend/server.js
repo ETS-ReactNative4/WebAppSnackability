@@ -101,3 +101,4 @@ app.post('/search', (req,res) => {
     console.log("search in back end");
     res.status(200).send({ msg: searchWord });
 });
+
