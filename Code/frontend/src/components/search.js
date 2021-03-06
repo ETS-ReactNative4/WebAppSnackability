@@ -6,15 +6,13 @@ export function storeInput() {
 
     let input = document.getElementById("a").value;
 
-    input = input.toLowerCase(); 
-
     console.log(input);   
 
-    Axios.post("http://localhost:4000/search", {
-    searchWord: input,
-  }).then((response) => {
-    console.log(response);
-  });
+    Axios.post("http://localhost:4000/id", {
+        searchWord: input,
+      }).then((response) => {
+        console.log(response);
+      });
 }
 
 
