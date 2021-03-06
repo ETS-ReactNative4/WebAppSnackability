@@ -90,3 +90,14 @@ app.post('/id', function(req, res) {
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
+
+
+
+
+app.post('/search', (req,res) => {
+    const searchWord = req.params.searchWord;
+  
+    console.log("serach in back end");
+    res.status(200).send({ msg: searchWord });
+});
+
