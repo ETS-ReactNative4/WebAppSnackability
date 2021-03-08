@@ -98,3 +98,14 @@ app.use('/id', function(req, res) {
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
+<<<<<<< HEAD
+=======
+
+app.post('/search', (req,res) => {
+    const searchWord = req.params.searchWord;
+
+    console.log("search in back end");
+    res.status(200).send({ msg: searchWord });
+});
+
+>>>>>>> 5798ddc52cf0cd7b688a0a4c88e20cffe4eea733
