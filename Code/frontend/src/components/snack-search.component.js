@@ -28,17 +28,18 @@ export default class SnackSearch extends Component {
         this.state = {snacks: []};
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:4000/search/')
-            .then(response => {
-                this.setState({ snacks: response.data });
+    getSearchResults = () => {
+        axios.get('/id')
+            .then((response) => {
+                const data = response.data;
+                console.log('Data results' + data);
             })
-            .catch(function (error){
-                console.log(error);
+            .catch(() => {
+                alert('Error');
             })
     }
 
-    SnackSearchList() {
+    SnackList() {
         return this.state.snacks.map(function(currentSnack, i){
             return <Snacks snacks={currentSnack} key={i} />;
         })
@@ -61,7 +62,7 @@ export default class SnackSearch extends Component {
                     <thead>
                         
                         <tr>
-                            <th onClick={this.sort}>Snack Name</th>
+                            <th>Snack Name</th>
                             <th>Product</th>
                             <th>Short Name</th>
                             <th>Serving Size</th>
@@ -76,7 +77,7 @@ export default class SnackSearch extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.SnackSearchList() }
+                        {this.SnackList()}
                     </tbody>
                 </table>
                 
@@ -87,3 +88,30 @@ export default class SnackSearch extends Component {
     }
 
 }
+
+/**
+ *     constructor(props) {
+        super(props);
+        this.state = {snacks: []};
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/id/')
+            .then(response => {
+                this.setState({ snacks: response.data });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
+
+    SnackSearchList() {
+        return this.state.snacks.map(function(currentSnack, i){
+            return <Snacks snacks={currentSnack} key={i} />;
+        })
+    }
+ */
+
+ /**
+  *                         { this.SnackSearchList() }
+  */

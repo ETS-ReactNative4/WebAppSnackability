@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 import axios from "axios";
 
 export function storeInput() {

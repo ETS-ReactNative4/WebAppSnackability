@@ -33,39 +33,6 @@ snackRoutes.route('/').get(function(req,res) {
     })
 })
 
-snackRoutes.route('/:id').get(function(req,res) {
-    let id = req.params.id;
-    Snacks.findById(id, function(err, snacks) {
-        res.json(snacks)
-    }) 
-})
-
-snackRoutes.route('/add').post(function(req,res) {
-    let snacks = new Snacks(req.body);
-    snacks.save()
-        .then(snacks => {
-            res.status(200).json({'snacks': 'snacks added successfully'})
-        })
-        .catch(err => {
-            res.status(400).send('adding new snacks failed');
-        })
-})
-
-snackRoutes.route('/update/:id').post(function(req,res){
-    Snacks.findById(req.params.id, function(err, snacks){
-        if (!snacks)
-            res.status(404).send('data is not found');
-        else    
-
-
-            snacks.save().then(snacks => {
-                res.json('Snacks updated');
-            })
-            .catch(err => {
-                res.status(400).send("Update is not possible");
-            })
-    })
-})
 
 app.use('/snacks', snackRoutes);
 
@@ -78,7 +45,7 @@ app.use('/id', function(req, res) {
     
     console.log(searchWord);
     var input = searchWord;
-    
+    result = "";
 
     MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
       if (err) throw err;
@@ -89,10 +56,11 @@ app.use('/id', function(req, res) {
         console.log(result);
         db.close();
 
-        return result
+        return result;
 
       });
     });    
+
 });
 
 app.listen(PORT, function() {
