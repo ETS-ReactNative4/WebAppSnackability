@@ -1,23 +1,19 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import React, { useState } from "react"; 
-  import axios from "axios";
+import axios from "axios";
 
-export function storeInput() {
+export function storeInput(input, callback) {
+  let result = [];
 
-    let input = document.getElementById("a").value;
-    let result = [];
+  if (!callback) return;
 
-    console.log(input);   
-
-    axios.post("http://localhost:4000/id", {
-        searchWord: input,
-      }).then((response) => {
-        result = response.data;
-        console.log(result);
-
-        return result;
-      });
+  axios.post("http://localhost:4000/id", {
+      searchWord: input,
+  }).then((response) => {
+      result = response.data;
+      // if result is of array type you are expecting
+      callback(result);
+      console.log(result);
+  });
 }
-
-
