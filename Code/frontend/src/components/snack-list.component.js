@@ -58,7 +58,7 @@ export default class SnackList extends Component {
                     <thead>
                         
                         <tr>
-                            <th onClick={this.sort}>Snack Name</th>
+                            <th>Snack Name</th>
                             <th>Product</th>
                             <th>Short Name</th>
                             <th>Serving Size</th>
