@@ -40,8 +40,6 @@ app.use('/id', function(req, res) {
     const url = "mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority"
 
     searchWord = req.body.searchWord;
-
-    search = res.status(200).send({ msg: searchWord });
     
     console.log(searchWord);
     var input = searchWord;
@@ -54,6 +52,7 @@ app.use('/id', function(req, res) {
       dbo.collection("snacks").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
+        res.send(result);
         db.close();
 
         return result;
