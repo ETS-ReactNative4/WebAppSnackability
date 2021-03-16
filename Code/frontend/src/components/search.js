@@ -13,7 +13,8 @@ export function storeInput(input, callback) {
   }).then((response) => {
       result = response.data;
       // if result is of array type you are expecting
-      callback(result);
       console.log(result);
+      callback(result);
+
   });
 }
