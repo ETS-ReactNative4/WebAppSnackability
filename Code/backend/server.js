@@ -95,10 +95,30 @@ app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
 
-app.post('/search', (req,res) => {
-    const searchWord = req.params.searchWord;
+app.post('/search', function(req,res) {
+    const url = "mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority"
 
-    console.log("search in back end");
-    res.status(200).send({ msg: searchWord });
+    searchWord = req.body.searchWord;
+
+    search = res.status(200).send({ msg: searchWord });
+    
+    console.log(searchWord);
+    var input = searchWord;
+    
+
+    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("snackability_webapp");
+      var query = { brand_name: {'$regex': input + '.*', '$options': 'i'} };
+      dbo.collection("snacks").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        db.close();
+
+        //return result
+
+      });
+    });    
 });
+
 
