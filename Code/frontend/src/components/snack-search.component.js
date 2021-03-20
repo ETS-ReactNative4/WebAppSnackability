@@ -3,6 +3,8 @@ import styles from "./styles.module.css";
 import {storeInput} from "./search.js";
 import axios from 'axios';
 
+console.log(window.localStorage.getItem('MySavedValue'));
+
 const Snacks = ({ snacks }) => (
     <tr>
       <td>{snacks.brand_name}</td>
@@ -20,18 +22,25 @@ const Snacks = ({ snacks }) => (
     </tr>
 );
 
+function testinValue(){    
+    window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
+    window.location.reload();
+}
+
 export default class SnackSearch extends Component {
+    
     constructor(props) {
         super(props);
-            this.state = { snacks: null };
+            this.state = { snacks: null };          
     }
     
     setSnackState(snacks = null) {
-        this.setState({ snacks });
+        this.setState({ snacks });        
     }
     
     componentDidMount() {
-        let input = document.getElementById("a").value;
+        //let input = document.getElementById("a").value;
+        let input = window.localStorage.getItem('MySavedValue');
         const callback = (snacks) => this.setSnackState(snacks);
         storeInput(input, callback);
     }
@@ -47,12 +56,16 @@ export default class SnackSearch extends Component {
     }
 
     render() {
+        
 
         return (
             <div className = "search">
 
-                <input className = {styles.input} type = "text" id="a" value = "" maxLength="50" placeholder = "Type your snack's brand name"></input>
-                <button type="button" onclick="">Submit</button>
+                <input className = {styles.input} type = "text" id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
+
+              </input>
+
+                <button type="button" onClick={testinValue}>Submit</button>
 
                  <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
