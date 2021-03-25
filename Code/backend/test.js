@@ -1,13 +1,14 @@
-var MongoClient = require('mongodb').MongoClient;
+const { MongoClient, ObjectID } = require('mongodb');
 
-var input = "itos";
-var regexInput = new RegExp(input);
+var input = "60207f84a8241d2bb8034231";
 
-MongoClient.connect('mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority', function(err, db) {
+const url = "mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority"
+
+MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
   if (err) throw err;
   var dbo = db.db("snackability_webapp");
-  var query = { brand_name: regexInput };
-  dbo.collection("snacks").find(query).toArray(function(err, result) {
+  var o_id = new ObjectID(input);
+  dbo.collection("snacks").find(o_id).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
     db.close();
