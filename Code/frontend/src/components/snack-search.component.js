@@ -67,7 +67,7 @@ export default class SnackSearch extends Component {
 
                 <button type="button" onClick={testinValue}>Submit</button>
 
-                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
+                 <table id = "myTable" className={styles.table} /*style={{ marginTop: 20 }}*/ >
                     <thead>
                         
                         <tr>
