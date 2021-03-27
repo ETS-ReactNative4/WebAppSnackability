@@ -97,7 +97,7 @@ export default class SnackSearch extends Component {
                             <th>Sugar</th>
                             <th>First Ingredient</th>
                             <th>Processed</th>
-                            <th>Operation</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody className={styles.tablebody}>
