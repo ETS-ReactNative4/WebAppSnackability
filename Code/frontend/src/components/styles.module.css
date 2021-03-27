@@ -126,3 +126,15 @@ input[type=search] {
     margin: 5px;
 }
 /*Button*/
+
+/*Home page Footer*/
+.footer {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px; 
+  text-align: center;
+}
+
