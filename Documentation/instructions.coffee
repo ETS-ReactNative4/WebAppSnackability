@@ -10,6 +10,9 @@ Default Shell for terminal
 FrontEnd:
 npm install --global yarn
 npm install react-scripts
+npm install react-native
+yarn add react-native-elements
+yarn add @babel/plugin-transform-react-jsx --dev
 
 
 BackEnd:
