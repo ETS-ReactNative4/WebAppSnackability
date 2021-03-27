@@ -1,75 +1,80 @@
-.h1{
+.h1 {
     color: DodgerBlue;
     padding-top: 1%;
     padding-bottom: 1%;
     font-family: Arial;
     margin-left: 1%;
 }
-
+  
 .body {
+      font-family: Arial;
+      text-align: left;
+      margin-left: 1%;
     font-family: Arial;
     text-align: left;
     margin-left: 1%;
 }
-
+  
+th {
+    cursor: pointer
+}
+  
 .input {
-    margin-left: 2%;
-    width: 20%;
+margin-left: 2%;
+width: 20%;
 }
 
-.buttonCalculate {
-    border: none;
-    outline: none;
-    font-size: 11px;
-    font-family: "Quicksand", sans-serif;
-    color: #343a40!important;
-    padding: 3px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid #343a40!important;
-    background-color: transparent;
-  }
-
-  table {
-  border-collapse: collapse;
-  margin: 2em;
-  font-size: 0.9em;
-  font-family: sans-serif;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.table {
+border-collapse: collapse;
+margin: 2em;
+font-size: 0.9em;
+font-family: sans-serif;
+min-width: 400px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .table thead tr {
-  background-color: #92b625;
-  color: #ffffff;
-  text-align: left;
+background-color: #92b625;
+color: #ffffff;
+text-align: left;
 }
 
 .table th,
 .table td {
-  padding: 12px 15px;
+padding: 12px 15px;
 }
 
 .table tbody tr {
-  border-bottom: 1px solid #dddddd;
+border-bottom: 1px solid #dddddd;
 }
 
 .table tbody tr:last-of-type {
-  border-bottom: 2px solid #92b625;
+border-bottom: 2px solid #92b625;
 }
 
 tr:hover {
-  background-color: #92b62570;
+background-color: #92b62570;
 }
 
 th:first-child {
-  border-radius: 6px 0 0 0;
+border-radius: 6px 0 0 0;
 }
 
 th:last-child {
-  border-radius: 0 6px 0 0;
+border-radius: 0 6px 0 0;
 }
 
 th:only-child {
-  border-radius: 6px 6px 0 0;
+border-radius: 6px 6px 0 0;
+}
+
+input[type=search] {
+    width: 45px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+  
+/* When the input field gets focus, change its width to 100% */
+input[type=search]:focus {
+    width: 230px;
 }

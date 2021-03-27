@@ -76,13 +76,13 @@ export default class SnackSearch extends Component {
         return (
             <div className = "search">
 
-                <input className = {styles.input} type = "text" id="a" maxLength="50" placeholder = "Type your snack's brand name"> 
+                <input className = {styles.input} type = "search" id="a" maxLength="50" placeholder = "Type your snack's brand name"> 
 
               </input>
 
                 <button type="button" onClick={testinValue}>Submit</button>
 
-                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
+                <table id = "myTable" className={styles.table} /*style={{ marginTop: 20 }}*/ >
                     <thead>
                         
                         <tr>
@@ -99,6 +99,7 @@ export default class SnackSearch extends Component {
                             <th>Sugar</th>
                             <th>First Ingredient</th>
                             <th>Processed</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
