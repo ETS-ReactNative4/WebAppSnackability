@@ -7,6 +7,7 @@ console.log(window.localStorage.getItem('MySavedValue'));
 
 const Snacks = ({ snacks }) => (
     <tr>
+
       <td>{snacks.brand_name}</td>
       <td>{snacks.product}</td>
       <td>{snacks.short_name}</td>
@@ -19,8 +20,21 @@ const Snacks = ({ snacks }) => (
       <td>{snacks.sugar}</td>
       <td>{snacks.first_ingredient}</td>
       <td>{snacks.processed}</td>
+      
+      <td className="operation">
+        <button className={styles.buttonCalculate} onClick={() => calculateData(snacks._id)}>
+            Calculate
+        </button>
+      </td>              
     </tr>
 );
+
+  // Calculate Data For a user.
+  const calculateData = async (SnackID) => {
+
+    alert("Redirecting to the calculate Page");
+    alert("You Clicked on Row with ID == " + SnackID);
+  };
 
 function testinValue(){    
     window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
@@ -61,13 +75,13 @@ export default class SnackSearch extends Component {
         return (
             <div className = "search">
 
-                <input className = {styles.input} type = "text" id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
+                <input type="search" className = {styles.input}  id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
 
               </input>
 
-                <button type="button" onClick={testinValue}>Submit</button>
+                <button className = {styles.searchButton} type="button" onClick={testinValue}>Submit</button>
 
-                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
+                 <table id = "myTable" className={styles.table} style={{ marginTop: 20 }} >
                     <thead>
                         
                         <tr>
@@ -83,9 +97,10 @@ export default class SnackSearch extends Component {
                             <th>Sugar</th>
                             <th>First Ingredient</th>
                             <th>Processed</th>
+                            <th>Operation</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={styles.tablebody}>
                         { this.SnackList() }
                     </tbody>
                 </table>
