@@ -14,6 +14,7 @@ import SnackSearch from "./components/snack-search.component"
 import styles from "./App.css"
 
 import logo from "./images/logo.svg";
+import SnackDetail from "./components/snack-detail.component";
 
 class App extends Component {
   render () {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path = "/" exact component= {Snackability} />
             <Route path = "/snacks" exact component = {SnackList} />
             <Route path = "/search" exact component = {SnackSearch} />
+            <Route path = "/details" exact component = {SnackDetail} />
         </div>
     </Router>
     )
