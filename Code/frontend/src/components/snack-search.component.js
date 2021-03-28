@@ -110,32 +110,3 @@ export default class SnackSearch extends Component {
     }
 
 }
-//                <h1 className = {styles.h1}>Search for your snack</h1>
-
-
-//                <input className = {styles.input} onKeyUp = {storeInput} type = "text" id="a" maxLength="50" placeholder = "Type your snack's brand name"></input>
-
-/**
- *                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        
-                        <tr>
-                            <th>Snack Name</th>
-                            <th>Product</th>
-                            <th>Short Name</th>
-                            <th>Serving Size</th>
-                            <th>Calories</th>
-                            <th>Calories Fat</th>
-                            <th>Saturated Fat</th>
-                            <th>Trans Fat</th>
-                            <th>Sodium</th>
-                            <th>Sugar</th>
-                            <th>First Ingredient</th>
-                            <th>Processed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
- */
-
