@@ -3,8 +3,11 @@ import styles from "./styles.module.css";
 import {storeInput} from "./search.js";
 import axios from 'axios';
 
+console.log(window.localStorage.getItem('MySavedValue'));
+
 const Snacks = ({ snacks }) => (
     <tr>
+
       <td>{snacks.brand_name}</td>
       <td>{snacks.product}</td>
       <td>{snacks.short_name}</td>
@@ -17,21 +20,41 @@ const Snacks = ({ snacks }) => (
       <td>{snacks.sugar}</td>
       <td>{snacks.first_ingredient}</td>
       <td>{snacks.processed}</td>
+      
+      <td className="operation">
+        <button className={styles.buttonCalculate} onClick={() => calculateData(snacks._id)}>
+            Calculate
+        </button>
+      </td>              
     </tr>
 );
 
+  // Calculate Data For a user.
+  const calculateData = async (SnackID) => {
+
+    alert("Redirecting to the calculate Page");
+    alert("You Clicked on Row with ID == " + SnackID);
+  };
+
+function testinValue(){    
+    window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
+    window.location.reload();
+}
+
 export default class SnackSearch extends Component {
+    
     constructor(props) {
         super(props);
-            this.state = { snacks: null };
+            this.state = { snacks: null };          
     }
     
     setSnackState(snacks = null) {
-        this.setState({ snacks });
+        this.setState({ snacks });        
     }
     
     componentDidMount() {
-        let input = document.getElementById("a").value;
+        //let input = document.getElementById("a").value;
+        let input = window.localStorage.getItem('MySavedValue');
         const callback = (snacks) => this.setSnackState(snacks);
         storeInput(input, callback);
     }
@@ -47,14 +70,18 @@ export default class SnackSearch extends Component {
     }
 
     render() {
+        
 
         return (
             <div className = "search">
 
-                <input className = {styles.input} type = "text" id="a" value = "" maxLength="50" placeholder = "Type your snack's brand name"></input>
-                <button type="button" onclick="">Submit</button>
+                <input type="search" className = {styles.input}  id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
 
-                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
+              </input>
+
+                <button className = {styles.searchButton} type="button" onClick={testinValue}>Submit</button>
+
+                 <table id = "myTable" className={styles.table} style={{ marginTop: 20 }} >
                     <thead>
                         
                         <tr>
@@ -70,9 +97,10 @@ export default class SnackSearch extends Component {
                             <th>Sugar</th>
                             <th>First Ingredient</th>
                             <th>Processed</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={styles.tablebody}>
                         { this.SnackList() }
                     </tbody>
                 </table>
@@ -82,32 +110,3 @@ export default class SnackSearch extends Component {
     }
 
 }
-//                <h1 className = {styles.h1}>Search for your snack</h1>
-
-
-//                <input className = {styles.input} onKeyUp = {storeInput} type = "text" id="a" maxLength="50" placeholder = "Type your snack's brand name"></input>
-
-/**
- *                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        
-                        <tr>
-                            <th>Snack Name</th>
-                            <th>Product</th>
-                            <th>Short Name</th>
-                            <th>Serving Size</th>
-                            <th>Calories</th>
-                            <th>Calories Fat</th>
-                            <th>Saturated Fat</th>
-                            <th>Trans Fat</th>
-                            <th>Sodium</th>
-                            <th>Sugar</th>
-                            <th>First Ingredient</th>
-                            <th>Processed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
- */
-
