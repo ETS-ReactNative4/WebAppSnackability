@@ -22,25 +22,26 @@ const Snacks = ({ snacks }) => (
         <td>{snacks.processed}</td>
 
         <td className="operation">
-                <button
-                  className= {styles.buttonCalculate}
-                  onClick={() => calculateData(snacks._id)}
+                <a href='/details' data-id={snacks._id}><button
+                                 onClick={() => calculateData(snacks.brand_name)}
                 >
                   Calculate
-                </button>
+                </button></a>
         </td>
     </tr>
 );
 
 function testinValue(){    
     window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
-    window.location.reload();
+    window.location.reload()
 }
 
-const calculateData = async (SnackID) => {
-
-    alert("Redirecting to the calculate Page");
-    alert("You Clicked on Row with ID == " + SnackID);
+const calculateData = async (Snack) => {
+    console.log(Snack);
+    window.localStorage.setItem('MySavedidValue', Snack); // save data
+    //window.location.reload();
+    // alert("Redirecting to the calculate Page");
+   // alert("You Clicked on Row with ID == " + Snack);
 };
 
 export default class SnackSearch extends Component {
@@ -51,7 +52,7 @@ export default class SnackSearch extends Component {
     }
     
     setSnackState(snacks = null) {
-        this.setState({ snacks });        
+        this.setState({ snacks });    
     }
     
     componentDidMount() {
@@ -112,3 +113,6 @@ export default class SnackSearch extends Component {
     }
 
 }
+
+
+
