@@ -5,7 +5,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const snackRoutes = express.Router();
 const MongoClient = require('mongodb').MongoClient;
+
 const PORT = 4000;
+
+require('dotenv').config();
+
+const mongodb_url = process.env.MONGODB_URL;
 
 let Snacks = require('./snacks.model');
 
@@ -13,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect(
-    'mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority', 
+    mongodb_url, 
     { useNewUrlParser: true, useUnifiedTopology: true});
     
 const connection = mongoose.connection;
@@ -37,7 +42,7 @@ snackRoutes.route('/').get(function(req,res) {
 app.use('/snacks', snackRoutes);
 
 app.use('/id', function(req, res) {
-    const url = "mongodb+srv://snackabilityadmin:DSge7blrO0sQ2WuB@cluster0.coira.mongodb.net/snackability_webapp?retryWrites=true&w=majority"
+    const url = mongodb_url;
 
     searchWord = req.body.searchWord;
     
