@@ -22,7 +22,3 @@ export default class Snackability extends Component {
         )
     }
 }
-
-/**
- *
- */
