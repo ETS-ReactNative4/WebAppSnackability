@@ -6,9 +6,10 @@ import {Navbar, Nav, Form, FormControl, Button} from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import SnackList from "./components/snack-list.component"
+import SnackList from "./components/snack-list.component";
 import Snackability from "./components/snackability-home.component";
-import SnackSearch from "./components/snack-search.component"
+import SnackSearch from "./components/snack-search.component";
+import SnackScore from "./components/snack-score.component"
 
 // eslint-disable-next-line
 import styles from "./App.css"
@@ -26,14 +27,16 @@ class App extends Component {
             </Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/snacks">Snack List</Nav.Link>
+                <Nav.Link href="/snacklist">Snack List</Nav.Link>
                 <Nav.Link href="/search">Search</Nav.Link>
+                <Nav.Link href="/snackscore">Snack Score</Nav.Link>
             </Nav>
           </Navbar>
         <br />
             <Route path = "/" exact component= {Snackability} />
-            <Route path = "/snacks" exact component = {SnackList} />
+            <Route path = "/snacklist" exact component = {SnackList} />
             <Route path = "/search" exact component = {SnackSearch} />
+            <Route path = "/snackscore" exact component = {SnackScore} />
         </div>
     </Router>
     )
