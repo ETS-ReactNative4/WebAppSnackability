@@ -18,3 +18,19 @@ export function storeInput(input, callback) {
 
   });
 }
+
+export function searchByID(input, callback) {
+  let result = [];
+
+  if (!callback) return;
+
+  axios.post("http://localhost:4000/score", {
+      searchID: input,
+  }).then((response) => {
+      result = response.data;
+      // if result is of array type you are expecting
+      console.log(result);
+      callback(result);
+
+  });
+}
