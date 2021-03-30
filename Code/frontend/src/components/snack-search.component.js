@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import styles from "./styles.module.css";
-import {storeInput} from "./search.js";
-import axios from 'axios';
+import {searchByID, storeInput} from "./search.js";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import SnackScore from "./snack-score.component"
-
 
 console.log(window.localStorage.getItem('SearchInput'));
 
@@ -36,8 +34,14 @@ const Snacks = ({ snacks }) => (
 // Calculate Data For a user.
 const calculateData = async (SnackID) => {
 
-    window.localStorage.setItem('ObjectIDToScore', SnackID)
-    window.location.href = "/snackscore"
+    window.localStorage.setItem('ObjectIDToScore', SnackID);
+    window.location.href = "/snackscore";
+
+    let searchID = window.localStorage.getItem('ObjectIDToScore');
+    const callback = (SnackID) => this.setSnackState(SnackID);
+
+    searchByID(searchID, callback);
+
 };
 
 function testinValue(){    
