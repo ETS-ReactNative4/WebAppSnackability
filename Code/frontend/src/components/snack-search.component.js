@@ -22,11 +22,12 @@ const Snacks = ({ snacks }) => (
         <td>{snacks.processed}</td>
 
         <td className="operation">
-                <a href='/details' data-id={snacks._id}><button
-                                 onClick={() => calculateData(snacks.brand_name)}
+                
+                    <button
+                                 onClick={() => calculateData(snacks)}
                 >
                   Calculate
-                </button></a>
+                </button>
         </td>
     </tr>
 );
@@ -37,9 +38,10 @@ function testinValue(){
 }
 
 const calculateData = async (Snack) => {
-    console.log(Snack);
-    window.localStorage.setItem('MySavedidValue', Snack); // save data
-    //window.location.reload();
+    console.log(JSON.stringify(Snack));
+    ;
+    window.localStorage.setItem('SavedSnackToCalc', JSON.stringify(Snack)); // save data
+    window.location = '/details';
     // alert("Redirecting to the calculate Page");
    // alert("You Clicked on Row with ID == " + Snack);
 };
