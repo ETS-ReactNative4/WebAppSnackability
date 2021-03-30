@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from "./styles.module.css";
-import { Card, List, ListItem, Button } from 'react-native-elements'
 
 export default class Snackability extends Component {
 
@@ -14,20 +13,24 @@ export default class Snackability extends Component {
                     The goal of Snackability app is to help you identify healthy
                     snacks by providing a score from 0 (not healthy) to 10 (very healthy) to each snack searched in our app.  
                 </p>
-                <view>
-                    <List>
-                            <ListItem
-                                roundAvatar
-                                avatar = "a"
-                                title = "Cristina Palacios"
-                                subtitle="Associate Professor"
-                            />
-                    </List>
-                </view>
-            
-                <img src="src/images/professorpalacios.png" alt="Avatar" class="avatar"></img>
-                <img src="src/images/lukkamolprapkre.png" alt="Avatar" class="avatar"></img>
 
+                
+                <h3 className = {styles.h3}> Project Management: </h3>
+                
+                <div className = {styles.card}>
+                    <img src="https://i.imgur.com/WeG8mAm.png" alt="Cristina Palacios"></img>
+                    <h5>Cristina Palacios</h5>
+                    <p class="title">Associate Professor</p>
+                    <p>Florida International University</p>
+                </div>
+
+                <div className = {styles.card}>
+                    <img src="https://i.imgur.com/B1Imo2h.png" alt="Lukkamol Prapkre"></img>
+                    <h5>Lukkamol Prapkre</h5>
+                    <p class="title">PhD Student</p>
+                    <p>Florida International University</p>
+                </div>
+                
                 <div className = {styles.footer}>
                     <h6>Contact the Product Owner</h6>
                     <p>For questions or to provide feedback in regards to the Snackability app, please email Dr. Cristina Palacios:</p>
