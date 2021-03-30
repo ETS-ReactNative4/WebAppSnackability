@@ -1,0 +1,70 @@
+.h1{
+    color: DodgerBlue;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: Arial;
+    margin-left: 2.5%;
+}
+
+.body{
+    margin: 50px;
+    padding: 0;
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.div{
+    margin-top: 50px;
+    width: 500px;
+    top: 50%;
+    left: 20%;
+    text-align: center;
+    background-color: #fff;
+    transform: translate(10%, -0%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px DodgerBlue;
+}
+
+.div2{
+    width: 500px;
+    text-align: center;
+    background-color: #fff;
+    transform: translate(150%, -235%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px DodgerBlue;
+    float: left;
+}
+
+#w:focus, #h:focus{
+    border-bottom: 2px solid #341f97;
+    width: 300px;
+    transition: 0.5s;
+}
+
+#result{
+    color: #341f97;
+}
+
+.btn{
+    font-family: inherit;
+    margin-top: 10px;
+    border: none;
+    color: #fff;
+    background-image: linear-gradient(120deg,DodgerBlue, DodgerBlue);
+    width: 150px;
+    padding: 10px;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+    box-shadow: 1px 1px 10px DodgerBlue;
+}
+
+#info{
+    font-size: 12px;
+    font-family: inherit;
+}

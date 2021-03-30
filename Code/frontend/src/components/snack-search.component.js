@@ -86,7 +86,7 @@ export default class SnackSearch extends Component {
 
                     <input type="search" className = {styles.input}  id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
 
-                </input>
+                    </input>
 
                     <button className = {styles.searchButton} type="button" onClick={testinValue}>Submit</button>
 

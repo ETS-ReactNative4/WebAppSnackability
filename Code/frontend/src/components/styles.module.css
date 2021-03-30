@@ -9,9 +9,9 @@
 .h3{
   text-align: 'center';
   font-size: 10;
-  color: #22C88A;
+  color: DodgerBlue;
   margin-left: 1%;
-  margin-top: 10;
+  margin-top: 50px;
   font-weight: 'bold';
 }
 
@@ -148,3 +148,18 @@ input[type=search] {
   text-align: center;
 }
 
+/*avatar*/
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  margin-top: 50px;
+  margin-left: 100px;
+  border-radius: 50%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+}
