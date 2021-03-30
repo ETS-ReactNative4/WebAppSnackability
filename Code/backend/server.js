@@ -5,6 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const snackRoutes = express.Router();
 const MongoClient = require('mongodb').MongoClient;
+const { ObjectID } = require('mongodb');
+
 
 const PORT = 4000;
 
@@ -13,6 +15,7 @@ require('dotenv').config();
 const mongodb_url = process.env.MONGODB_URL;
 
 let Snacks = require('./snacks.model');
+const { query } = require('express');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -67,6 +70,35 @@ app.use('/id', function(req, res) {
 
 });
 
+app.use('/score', function(req, res) {
+    const url = mongodb_url;
+
+    var searchID = req.body.searchID;
+    
+    var o_id = new ObjectID(searchID)
+
+    result = "";
+
+    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("snackability_webapp");
+
+        var queryByID = {_id: o_id}
+
+        dbo.collection("snacks").find(queryByID).toArray(function(err, result) {
+          if (err) throw err;
+          console.log(result);
+
+          res.send(result);
+          db.close();
+          
+          return result;
+        });
+    });
+});
+
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
+
+/**var searchID = new ObjectID(req.body.searchID); */
