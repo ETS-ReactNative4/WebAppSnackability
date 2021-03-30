@@ -29,7 +29,6 @@ class App extends Component {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/snacklist">Snack List</Nav.Link>
                 <Nav.Link href="/search">Search</Nav.Link>
-                <Nav.Link href="/snackscore">Snack Score</Nav.Link>
             </Nav>
           </Navbar>
         <br />
