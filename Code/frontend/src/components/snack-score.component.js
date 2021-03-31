@@ -7,32 +7,32 @@ function score() {
     var score = document.getElementById('portion').value;
 
     document.getElementById("result").innerHTML="Your score is " + score;
-}
-
-window.onload = () => {
     loadTableData(tableData);
 }
 
 var tableData = [
-    { Criteria: 'First Ingredient' }, 
-    { Criteria: 'TotalCalories' },
-    { Criteria: 'Fat' },
-    { Criteria: 'Saturated Fat' },
-    { Criteria: 'TransFat' },
-    { Criteria: 'Sodium' },
-    { Criteria: 'Sugar' },
-    { Criteria: 'Highly Processed' },
+    { criteria: 'First Ingredient', score: "", maxscore: "2" }, 
+    { criteria: 'Total Calories', score: "", maxscore: "2"  },
+    { criteria: 'Fat', score: "", maxscore: "1"   },
+    { criteria: 'Saturated Fat', score: "", maxscore: "1"   },
+    { criteria: 'TransFat', score: "", maxscore: "1"   },
+    { criteria: 'Sodium', score: "", maxscore: "1"   },
+    { criteria: 'Sugar', score: "", maxscore: "2"   },
+    { criteria: 'Highly Processed', score: "", maxscore: "1"   },
 ]
 
 function loadTableData(tableData) {
-    const tableBody = document.getElementById('tableData');
+    var tableBody = document.getElementById('tableData');
 
-    let dataHtml = '';
-
-    for (let criteria of Object.keys(tableData)) {
-        dataHtml += `<tr><td>${criteria.Criteria}</td>`;
+    for (var i = 0; i < tableData.length; i++) {
+        var row = `<tr>
+                        <td>${tableData[i].criteria}
+                        </td>
+                        <td>${tableData[i].score}</td>
+                        <td>${tableData[i].maxscore}</td>
+                    </tr>`;
+        tableBody.innerHTML += row
     }
-    console.log(dataHtml)
 }
 
 console.log(window.localStorage.getItem('ObjectIDToScore'));
@@ -70,12 +70,10 @@ export default class SnackScore extends Component {
                     
                     <table id = "myTable" className={styles.table} style={{ marginTop: 20 }} >
                         <thead>
-                            
                             <tr>
                                 <th>Criteria</th>
                                 <th>Score</th>
                                 <th>Max Score</th>
-                                <th></th>
                             </tr>
                         </thead>
 
