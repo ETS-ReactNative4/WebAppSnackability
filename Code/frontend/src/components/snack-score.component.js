@@ -87,4 +87,5 @@ export default class SnackScore extends Component {
 
 /**
  *                     <p className = {scorestyles.body}> {window.localStorage.getItem('ObjectIDToScore')} </p>
+ *                     <h1 className = {scorestyles.h1}>Snack Score</h1>
  */
