@@ -25,8 +25,7 @@ function loadTableData(tableData) {
 
     for (var i = 0; i < tableData.length; i++) {
         var row = `<tr>
-                        <td>${tableData[i].criteria}
-                        </td>
+                        <td>${tableData[i].criteria}</td>
                         <td>${tableData[i].score}</td>
                         <td>${tableData[i].maxscore}</td>
                     </tr>`;
@@ -49,9 +48,7 @@ export default class SnackScore extends Component {
             <Router>
                 
                 <div id>
-                    <h1 className = {scorestyles.h1}>Snack Score</h1>
 
-                    <p className = {scorestyles.body}> {window.localStorage.getItem('ObjectIDToScore')} </p>
                 </div>
                 
                 <div className = {scorestyles.div}>
@@ -87,3 +84,7 @@ export default class SnackScore extends Component {
         )
     }
 }
+
+/**
+ *                     <p className = {scorestyles.body}> {window.localStorage.getItem('ObjectIDToScore')} </p>
+ */
