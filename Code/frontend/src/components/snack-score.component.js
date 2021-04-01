@@ -18,7 +18,6 @@ var tableData = [
     { criteria: 'TransFat', score: "", maxscore: "1"   },
     { criteria: 'Sodium', score: "", maxscore: "1"   },
     { criteria: 'Sugar', score: "", maxscore: "2"   },
-    { criteria: 'Highly Processed', score: "", maxscore: "1"   },
 ]
 
 function loadTableData(tableData) {

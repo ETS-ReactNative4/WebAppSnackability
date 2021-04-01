@@ -34,3 +34,7 @@ export function searchByID(input, callback) {
 
   });
 }
+
+export function searchCSV(input, callback) {
+  let result = [];
+}
