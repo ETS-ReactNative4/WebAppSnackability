@@ -1,5 +1,5 @@
 # WebAppSnackability 
-![Snackability Logo](./Documentation/images/snackability-logo.png)
+<img src = "./Documentation/images/snackability-logo.png" width = 100)
 
 The goal of the Snackability app is to help you identify healthy snacks by providing a score from 0 (not healthy) to 10 (very healthy) to each snack searched in our app.
 The Web Application is a current work in progress translation of the mobile application onto a website accessible application.
