@@ -56,7 +56,7 @@ app.use('/id', function(req, res) {
     MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
       if (err) throw err;
       var dbo = db.db("snackability_webapp");
-      var query = { brand_name: {'$regex': input + '.*', '$options': 'i'} };
+      var query = { $or: [ {brand_name: {'$regex': input + '.*', '$options': 'i'}}, {product: {'$regex': input + '.*', '$options': 'i'}} ] };
       dbo.collection("snacks").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
