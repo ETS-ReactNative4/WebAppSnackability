@@ -2,14 +2,37 @@ import React, { Component } from 'react';
 import styles from "./styles.module.css";
 
 export default class Snackability extends Component {
-    render() {
 
+    render() {
         return (
-            <div id>
+            <div className= {styles.centerPageDiv}>
                 <h1 className = {styles.h1}>Welcome to Snackability</h1>
 
-                <p className = {styles.body}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis elementum nibh tellus molestie. Nec ultrices dui sapien eget mi proin sed. Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet. Tristique senectus et netus et malesuada fames ac turpis. Duis at consectetur lorem donec massa. Neque convallis a cras semper auctor neque vitae tempus quam. Ornare arcu dui vivamus arcu felis bibendum ut. Blandit massa enim nec dui nunc mattis enim ut. Arcu felis bibendum ut tristique et. Netus et malesuada fames ac turpis. Eu feugiat pretium nibh ipsum.</p>
-            
+                <h3 className = {styles.h3}> Our Mission: </h3>
+                <p className = {styles.body}> 
+                    The goal of Snackability app is to help you identify healthy
+                    snacks by providing a score from 0 (not healthy) to 10 (very healthy) to each snack searched in our app.  
+                </p>
+
+                
+                <h3 className = {styles.h3}> Project Management: </h3>
+                
+                <div className= {styles.grid}>
+                    <div className = {styles.card}>
+                        <img src="https://i.imgur.com/WeG8mAm.png" alt="Cristina Palacios" ></img>
+                        <h5>Cristina Palacios</h5>
+                        <p class="title">Associate Professor</p>
+                        <p>Florida International University</p>
+                    </div>
+
+                    <div className = {styles.card}>
+                        <img src="https://i.imgur.com/B1Imo2h.png" alt="Lukkamol Prapkre"></img>
+                        <h5>Lukkamol Prapkre</h5>
+                        <p class="title">PhD Student</p>
+                        <p>Florida International University</p>
+                    </div>
+                </div>
+                   
                 <div className = {styles.footer}>
                     <h6>Contact the Product Owner</h6>
                     <p>For questions or to provide feedback in regards to the Snackability app, please email Dr. Cristina Palacios:</p>
@@ -22,7 +45,3 @@ export default class Snackability extends Component {
         )
     }
 }
-
-/**
- *
- */

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styles from "./styles.module.css";
-import {storeInput} from "./search.js";
-import axios from 'axios';
+import {searchByID, storeInput} from "./search.js";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-console.log(window.localStorage.getItem('MySavedValue'));
+import SnackScore from "./snack-score.component"
+
+console.log(window.localStorage.getItem('SearchInput'));
 
 const Snacks = ({ snacks }) => (
     <tr>
@@ -29,15 +31,21 @@ const Snacks = ({ snacks }) => (
     </tr>
 );
 
-  // Calculate Data For a user.
-  const calculateData = async (SnackID) => {
+// Calculate Data For a user.
+const calculateData = async (SnackID) => {
 
-    alert("Redirecting to the calculate Page");
-    alert("You Clicked on Row with ID == " + SnackID);
-  };
+    window.localStorage.setItem('ObjectIDToScore', SnackID);
+    window.location.href = "/snackscore";
+
+    let searchID = window.localStorage.getItem('ObjectIDToScore');
+    const callback = (SnackID) => this.setSnackState(SnackID);
+
+    searchByID(searchID, callback);
+
+};
 
 function testinValue(){    
-    window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
+    window.localStorage.setItem('SearchInput', document.getElementById("a").value); // save data
     window.location.reload();
 }
 
@@ -54,7 +62,7 @@ export default class SnackSearch extends Component {
     
     componentDidMount() {
         //let input = document.getElementById("a").value;
-        let input = window.localStorage.getItem('MySavedValue');
+        let input = window.localStorage.getItem('SearchInput');
         const callback = (snacks) => this.setSnackState(snacks);
         storeInput(input, callback);
     }
@@ -73,38 +81,43 @@ export default class SnackSearch extends Component {
         
 
         return (
-            <div className = "search">
+            <Router>
+                <div className = "search">
 
-                <input type="search" className = {styles.input}  id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
+                    <input type="search" className = {styles.input}  id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
 
-              </input>
+                    </input>
 
-                <button className = {styles.searchButton} type="button" onClick={testinValue}>Submit</button>
+                    <button className = {styles.searchButton} type="button" onClick={testinValue}>Submit</button>
 
-                 <table id = "myTable" className={styles.table} style={{ marginTop: 20 }} >
-                    <thead>
-                        
-                        <tr>
-                            <th>Snack Name</th>
-                            <th>Product</th>
-                            <th>Short Name</th>
-                            <th>Serving Size</th>
-                            <th>Calories</th>
-                            <th>Calories Fat</th>
-                            <th>Saturated Fat</th>
-                            <th>Trans Fat</th>
-                            <th>Sodium</th>
-                            <th>Sugar</th>
-                            <th>First Ingredient</th>
-                            <th>Processed</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody className={styles.tablebody}>
-                        { this.SnackList() }
-                    </tbody>
-                </table>
-            </div>
+                    <table id = "myTable" className={styles.table} style={{ marginTop: 20 }} >
+                        <thead>
+                            
+                            <tr>
+                                <th>Snack Name</th>
+                                <th>Product</th>
+                                <th>Short Name</th>
+                                <th>Serving Size</th>
+                                <th>Calories</th>
+                                <th>Calories Fat</th>
+                                <th>Saturated Fat</th>
+                                <th>Trans Fat</th>
+                                <th>Sodium</th>
+                                <th>Sugar</th>
+                                <th>First Ingredient</th>
+                                <th>Processed</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody className={styles.tablebody}>
+                            { this.SnackList() }
+                        </tbody>
+                    </table>
+                </div>
+
+                <Route path = "/snackscore" exact component = {SnackScore} />
+
+            </Router>
         )
    
     }
