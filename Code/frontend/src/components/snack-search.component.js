@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
 import styles from "./styles.module.css";
 import {storeInput} from "./search.js";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
-console.log(window.localStorage.getItem('MySavedValue'));
 
 const Snacks = ({ snacks }) => (
     <tr>
-      <td>{snacks.brand_name}</td>
-      <td>{snacks.product}</td>
-      <td>{snacks.short_name}</td>
-      <td>{snacks.serving_size}</td>
-      <td>{snacks.calories}</td>
-      <td>{snacks.calories_fat}</td>
-      <td>{snacks.saturated_fat}</td>
-      <td>{snacks.trans_fat}</td>
-      <td>{snacks.sodium}</td>
-      <td>{snacks.sugar}</td>
-      <td>{snacks.first_ingredient}</td>
-      <td>{snacks.processed}</td>
+        <td>{snacks._id}</td>
+        <td>{snacks.brand_name}</td>
+        <td>{snacks.product}</td>
+        <td>{snacks.short_name}</td>
+        <td>{snacks.serving_size}</td>
+        <td>{snacks.calories}</td>
+        <td>{snacks.calories_fat}</td>
+        <td>{snacks.saturated_fat}</td>
+        <td>{snacks.trans_fat}</td>
+        <td>{snacks.sodium}</td>
+        <td>{snacks.sugar}</td>
+        <td>{snacks.first_ingredient}</td>
+        <td>{snacks.processed}</td>
+
+        <td className="operation">
+                <button
+                  className= {styles.buttonCalculate}
+                  onClick={() => calculateData(snacks._id)}
+                >
+                  Calculate
+                </button>
+        </td>
     </tr>
 );
 
@@ -26,6 +36,12 @@ function testinValue(){
     window.localStorage.setItem('MySavedValue', document.getElementById("a").value); // save data
     window.location.reload();
 }
+
+const calculateData = async (SnackID) => {
+
+    alert("Redirecting to the calculate Page");
+    alert("You Clicked on Row with ID == " + SnackID);
+};
 
 export default class SnackSearch extends Component {
     
@@ -39,7 +55,6 @@ export default class SnackSearch extends Component {
     }
     
     componentDidMount() {
-        //let input = document.getElementById("a").value;
         let input = window.localStorage.getItem('MySavedValue');
         const callback = (snacks) => this.setSnackState(snacks);
         storeInput(input, callback);
@@ -61,17 +76,18 @@ export default class SnackSearch extends Component {
         return (
             <div className = "search">
 
-                <input className = {styles.input} type = "text" id="a" /*value = "itos"*/ maxLength="50" placeholder = "Type your snack's brand name"> 
+                <input className = {styles.input} type = "search" id="a" maxLength="50" placeholder = "Type your snack's brand name"> 
 
               </input>
 
                 <button type="button" onClick={testinValue}>Submit</button>
 
-                 <table id = "myTable" className={styles.table} /*style={{ marginTop: 20 }}*/ >
+                <table id = "myTable" className={styles.table} /*style={{ marginTop: 20 }}*/ >
                     <thead>
                         
                         <tr>
-                            <th>Snack Name</th>
+                            <th>Object ID</th>
+                            <th>Brand Name</th>
                             <th>Product</th>
                             <th>Short Name</th>
                             <th>Serving Size</th>
@@ -83,6 +99,7 @@ export default class SnackSearch extends Component {
                             <th>Sugar</th>
                             <th>First Ingredient</th>
                             <th>Processed</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,32 +112,3 @@ export default class SnackSearch extends Component {
     }
 
 }
-//                <h1 className = {styles.h1}>Search for your snack</h1>
-
-
-//                <input className = {styles.input} onKeyUp = {storeInput} type = "text" id="a" maxLength="50" placeholder = "Type your snack's brand name"></input>
-
-/**
- *                 <table id = "myTable" className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        
-                        <tr>
-                            <th>Snack Name</th>
-                            <th>Product</th>
-                            <th>Short Name</th>
-                            <th>Serving Size</th>
-                            <th>Calories</th>
-                            <th>Calories Fat</th>
-                            <th>Saturated Fat</th>
-                            <th>Trans Fat</th>
-                            <th>Sodium</th>
-                            <th>Sugar</th>
-                            <th>First Ingredient</th>
-                            <th>Processed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
- */
-

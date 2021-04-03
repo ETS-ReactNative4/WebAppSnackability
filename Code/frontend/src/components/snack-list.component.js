@@ -54,7 +54,7 @@ export default class SnackList extends Component {
             
             <div>
 
-                <table id = "myTable" className="table-striped" style={{ marginTop: 20 }} >
+                <table id = "myTable" className={styles.table} /*style={{ marginTop: 20 }}*/ >
                     <thead>
                         
                         <tr>
