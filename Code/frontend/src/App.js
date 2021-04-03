@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div className = "App" >
-          <Navbar bg="dark" variant="dark">
+          <Navbar variant="dark" className="NavBarStyle">
             <Navbar.Brand href="/#">
               <img src={logo} width="80" height="10%" alt="Snackability" />
             </Navbar.Brand>
