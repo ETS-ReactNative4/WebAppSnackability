@@ -12,6 +12,16 @@ function score() {
     
     document.getElementById("result").innerHTML="Your score is " + score;
     loadTableData(tableData);
+    componentDidMount();
+}
+
+    
+function componentDidMount() {
+    //let input = document.getElementById("a").value;
+    let input = window.localStorage.getItem('ObjectIDToScore');
+    const callback = (snacks) => this.setSnackState(snacks);
+    searchByID(input, callback);
+    console.log(callback);
 }
 
 var tableData = [
