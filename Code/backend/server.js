@@ -87,9 +87,9 @@ app.use('/score', function(req, res) {
 
         dbo.collection("snacks").find(queryByID).toArray(function(err, result) {
           if (err) throw err;
-          console.log(result);
 
           res.send(result);
+          console.log(result);
           db.close();
           
           return result;
@@ -102,3 +102,4 @@ app.listen(PORT, function() {
 });
 
 /**var searchID = new ObjectID(req.body.searchID); */
+/**           console.log(result); */

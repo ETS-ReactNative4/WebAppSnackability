@@ -8,6 +8,8 @@ import {searchByID} from "./search.js";
 function score() {
     var score = document.getElementById('portion').value;
 
+    let input = window.localStorage.getItem('ObjectIDToScore');
+    
     document.getElementById("result").innerHTML="Your score is " + score;
     loadTableData(tableData);
 }
@@ -22,27 +24,24 @@ var tableData = [
     { criteria: 'Sugar', score: "", maxscore: "2"   },
 ]
 
-const Snacks = ({ snacks }) => (
+/** const Snacks = ({ snacks }) => (
     <tr>
 
-      <td>{snacks.brand_name}</td>
-      <td>{snacks.product}</td>
-      <td>{snacks.short_name}</td>
-      <td>{snacks.serving_size}</td>
-      <td>{snacks.calories}</td>
-      <td>{snacks.calories_fat}</td>
-      <td>{snacks.saturated_fat}</td>
-      <td>{snacks.trans_fat}</td>
-      <td>{snacks.sodium}</td>
-      <td>{snacks.sugar}</td>
-      <td>{snacks.first_ingredient}</td>
-      <td>{snacks.processed}</td>        
+      <td>{snacks.total_score}</td>
+      <td>{snacks.first_ingredient_score}</td>
+      <td>{snacks.total_calories_score}</td>
+      <td>{snacks.fat_score}</td>
+      <td>{snacks.saturated_fat_score}</td>
+      <td>{snacks.trans_fat_score}</td>
+      <td>{snacks.sodium_score}</td>
+      <td>{snacks.sugar_score}</td>
 
     </tr>
-);
+); **/
 
 function loadTableData(tableData) {
     var tableBody = document.getElementById('tableData');
+    tableBody.innerHTML = "";
 
     for (var i = 0; i < tableData.length; i++) {
         var row = `<tr>
@@ -59,33 +58,7 @@ console.log(window.localStorage.getItem('ObjectIDToScore'));
 export default class SnackScore extends Component {
     getObjectID () {
         let objectid = window.localStorage.getItem('ObjectIDToScore');
-    }
-
-    constructor(props) {
-        super(props);
-            this.state = { snacks: null };          
-    }
-    
-    setSnackState(snacks = null) {
-        this.setState({ snacks });        
-    }
-    
-    componentDidMount() {
-        //let input = document.getElementById("a").value;
-        let input = window.localStorage.getItem('ObjectIDToScore');
-        const callback = (snacks) => this.setSnackState(snacks);
-        searchByID(input, callback);
-        console.log(callback);
-    }
-
-    SnackList() {
-        const snacksList = this.state.snacks;
-        return (
-          snacksList &&
-          snacksList.map((currentSnack, i) => (
-            <Snacks snacks={currentSnack} key={i} />
-          ))
-        );
+        return objectid;
     }
 
     render() {
@@ -95,7 +68,7 @@ export default class SnackScore extends Component {
             <Router>
                 
                 <div id>
-
+                    <p>{this.getObjectID()}</p>
                 </div>
                 
                 <div className = {scorestyles.div}>

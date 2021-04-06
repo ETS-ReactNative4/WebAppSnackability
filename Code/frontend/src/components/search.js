@@ -28,13 +28,11 @@ export function searchByID(input, callback) {
       searchID: input,
   }).then((response) => {
       result = response.data;
-      // if result is of array type you are expecting
-      console.log(result);
+
+      console.log(result)
       callback(result);
 
   });
 }
 
-export function searchCSV(input, callback) {
-  let result = [];
-}
+
