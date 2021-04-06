@@ -36,3 +36,18 @@ export function searchByID(input, callback) {
 }
 
 
+export function snackScoreByID(input, callback) {
+  let result = [];
+
+  if (!callback) return;
+
+  axios.post("http://localhost:4000/scoresnack", {
+      searchID: input,
+  }).then((response) => {
+      result = response.data;
+
+      console.log(result)
+      callback(result);
+
+  });
+}

@@ -97,6 +97,32 @@ app.use('/score', function(req, res) {
     });
 });
 
+app.use('/scoresnack', function(req, res) {
+    const url = mongodb_url;
+
+    var searchID = req.body.searchID;
+    
+    result = "";
+
+    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("snackability_webapp");
+
+        var queryByID = {_id: searchID}
+        console.log(searchID);
+        dbo.collection("snacks").find(queryByID).toArray(function(err, result) {
+          if (err) throw err;
+
+          res.send(result);
+          console.log(result);
+          console.log("database results")
+          db.close();
+          
+          return result;
+        });
+    });
+});
+
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });

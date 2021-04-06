@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from "./styles.module.css";
 import scorestyles from "./scorestyles.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {searchByID} from "./search.js";
+import {searchByID, snackScoreByID} from "./search.js";
 
 
 function score() {
@@ -12,16 +12,6 @@ function score() {
     
     document.getElementById("result").innerHTML="Your score is " + score;
     loadTableData(tableData);
-    componentDidMount();
-}
-
-    
-function componentDidMount() {
-    //let input = document.getElementById("a").value;
-    let input = window.localStorage.getItem('ObjectIDToScore');
-    const callback = (snacks) => this.setSnackState(snacks);
-    searchByID(input, callback);
-    console.log(callback);
 }
 
 var tableData = [
@@ -34,7 +24,7 @@ var tableData = [
     { criteria: 'Sugar', score: "", maxscore: "2"   },
 ]
 
-/** const Snacks = ({ snacks }) => (
+const Snacks = ({ snacks }) => (
     <tr>
 
       <td>{snacks.total_score}</td>
@@ -47,7 +37,7 @@ var tableData = [
       <td>{snacks.sugar_score}</td>
 
     </tr>
-); **/
+);
 
 function loadTableData(tableData) {
     var tableBody = document.getElementById('tableData');
@@ -71,14 +61,42 @@ export default class SnackScore extends Component {
         return objectid;
     }
 
+    constructor(props) {
+        super(props);
+            this.state = { snacks: null };          
+    }
+    
+    setSnackState(snacks = null) {
+        this.setState({ snacks });        
+    }
+    
+    componentDidMount() {
+        //let input = document.getElementById("a").value;
+        let input = window.localStorage.getItem('ObjectIDToScore');
+        const callback = (snacks) => this.setSnackState(snacks);
+        snackScoreByID(input, callback);
+    }
+
+    SnackList() {
+        const snacksList = this.state.snacks;
+        return (
+          snacksList &&
+          snacksList.map((currentSnack, i) => (
+            <Snacks snacks={currentSnack} key={i} />
+          ))
+        );
+    }
+
     render() {
 
         return (
             
             <Router>
-                
+
                 <div id>
                     <p>{this.getObjectID()}</p>
+
+                    <p>{this.SnackList()}</p>
                 </div>
                 
                 <div className = {scorestyles.div}>
