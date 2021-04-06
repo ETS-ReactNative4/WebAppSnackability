@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from "./styles.module.css";
 import scorestyles from "./scorestyles.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {searchByID} from "./search.js";
+
 
 function score() {
     var score = document.getElementById('portion').value;
@@ -19,6 +21,25 @@ var tableData = [
     { criteria: 'Sodium', score: "", maxscore: "1"   },
     { criteria: 'Sugar', score: "", maxscore: "2"   },
 ]
+
+const Snacks = ({ snacks }) => (
+    <tr>
+
+      <td>{snacks.brand_name}</td>
+      <td>{snacks.product}</td>
+      <td>{snacks.short_name}</td>
+      <td>{snacks.serving_size}</td>
+      <td>{snacks.calories}</td>
+      <td>{snacks.calories_fat}</td>
+      <td>{snacks.saturated_fat}</td>
+      <td>{snacks.trans_fat}</td>
+      <td>{snacks.sodium}</td>
+      <td>{snacks.sugar}</td>
+      <td>{snacks.first_ingredient}</td>
+      <td>{snacks.processed}</td>        
+
+    </tr>
+);
 
 function loadTableData(tableData) {
     var tableBody = document.getElementById('tableData');
@@ -40,6 +61,32 @@ export default class SnackScore extends Component {
         let objectid = window.localStorage.getItem('ObjectIDToScore');
     }
 
+    constructor(props) {
+        super(props);
+            this.state = { snacks: null };          
+    }
+    
+    setSnackState(snacks = null) {
+        this.setState({ snacks });        
+    }
+    
+    componentDidMount() {
+        //let input = document.getElementById("a").value;
+        let input = window.localStorage.getItem('ObjectIDToScore');
+        const callback = (snacks) => this.setSnackState(snacks);
+        searchByID(input, callback);
+        console.log(callback);
+    }
+
+    SnackList() {
+        const snacksList = this.state.snacks;
+        return (
+          snacksList &&
+          snacksList.map((currentSnack, i) => (
+            <Snacks snacks={currentSnack} key={i} />
+          ))
+        );
+    }
 
     render() {
 
@@ -70,6 +117,8 @@ export default class SnackScore extends Component {
                                 <th>Criteria</th>
                                 <th>Score</th>
                                 <th>Max Score</th>
+
+                                <tbody>{this.SnackList}</tbody>
                             </tr>
                         </thead>
 
