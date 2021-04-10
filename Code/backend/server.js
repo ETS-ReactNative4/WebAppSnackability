@@ -14,7 +14,7 @@ require('dotenv').config();
 
 const mongodb_url = process.env.MONGODB_URL;
 
-let Snacks = require('./snacks.model');
+let Snacks = require('./db/snacks.model');
 const { query } = require('express');
 
 app.use(cors());

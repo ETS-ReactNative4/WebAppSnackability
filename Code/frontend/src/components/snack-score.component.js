@@ -10,18 +10,18 @@ function score() {
 
     let input = window.localStorage.getItem('ObjectIDToScore');
     
-    document.getElementById("result").innerHTML="Your score is " + score;
+    document.getElementById("result").innerHTML = "Your score is 4.5";
     loadTableData(tableData);
 }
 
 var tableData = [
-    { criteria: 'First Ingredient', score: "", maxscore: "2" }, 
-    { criteria: 'Total Calories', score: "", maxscore: "2"  },
-    { criteria: 'Fat', score: "", maxscore: "1"   },
-    { criteria: 'Saturated Fat', score: "", maxscore: "1"   },
-    { criteria: 'TransFat', score: "", maxscore: "1"   },
-    { criteria: 'Sodium', score: "", maxscore: "1"   },
-    { criteria: 'Sugar', score: "", maxscore: "2"   },
+    { criteria: 'First Ingredient', score: "0", maxscore: "2" }, 
+    { criteria: 'Total Calories', score: "0.5", maxscore: "2"  },
+    { criteria: 'Fat', score: "0", maxscore: "1"   },
+    { criteria: 'Saturated Fat', score: "0.5", maxscore: "1"   },
+    { criteria: 'TransFat', score: "1", maxscore: "1"   },
+    { criteria: 'Sodium', score: "0.5", maxscore: "1"   },
+    { criteria: 'Sugar', score: "2", maxscore: "2"   },
 ]
 
 const Snacks = ({ snacks }) => (
@@ -93,8 +93,9 @@ export default class SnackScore extends Component {
             
             <Router>
 
-                <div id>
-                    <p>{this.getObjectID()}</p>
+                <div className = {scorestyles.div}>
+                    <p class = {scorestyles.snackname}>Lays Classic potato chips</p>
+                    <p class = {scorestyles.snackname2}>Recommended serving size : 28 grams</p>
 
                     <p>{this.SnackList()}</p>
                 </div>
