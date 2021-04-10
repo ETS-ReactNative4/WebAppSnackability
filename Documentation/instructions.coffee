@@ -1,3 +1,5 @@
+## Installation for development
+
 Install Git:
 https://git-scm.com/
 
@@ -14,6 +16,8 @@ npm install react-scripts
 
 BackEnd:
 npm install -g nodemon
+download .env file and drag into backend folder
+
 
 Run FrontEnd:
 yarn start

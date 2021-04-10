@@ -18,3 +18,12 @@ The scoring page then allows the user to receive a score for consumption of the 
 
 ![Snack Calculator](./Documentation/images/snack-calculate.png)
 
+## Directory Structure
+
+Snackability Web App - Version 1.0 
+
+Code - Contains Snackability 4.0 Code and UPC fill program
+Documents - All the documentation for 6 sprints and Final documentation
+Poster - Our Showcase Posters
+Slides - The slide presentation for this project demonstrated in the senior presentation.
+Videos - Final videos youtube (Introduction, Installation of needed programs, App Usage, Deployment)
