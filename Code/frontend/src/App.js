@@ -1,45 +1,40 @@
-import React, { Component } from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-// eslint-disable-next-line
-import {Navbar, Nav, Form, FormControl, Button} from "react-bootstrap";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch } from 'react-router';
+import { Nav, Navbar } from 'react-bootstrap';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import HomeComponent from './components/home.component';
+import SnackList from './components/snack-list.component';
+import SnackDetailsComponent from './components/snack-details.component';
 
-import SnackList from "./components/snack-list.component";
-import Snackability from "./components/snackability-home.component";
-import SnackSearch from "./components/snack-search.component";
-import SnackScore from "./components/snack-score.component"
-
-// eslint-disable-next-line
-import styles from "./App.css"
-
-import logo from "./images/logo.svg";
+import logo from './images/logo.svg';
+import AppStyles from './styles/app.module.css'
 
 class App extends Component {
-  render () {
-    return (
-      <Router>
-        <div className = "App" >
-          <Navbar variant="dark" className="NavBarStyle">
-            <Navbar.Brand href="/#">
-              <img src={logo} width="80" height="10%" alt="Snackability" />
-            </Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/snacklist">Snack List</Nav.Link>
-                <Nav.Link href="/search">Search</Nav.Link>
-            </Nav>
-          </Navbar>
-        <br />
-            <Route path = "/" exact component= {Snackability} />
-            <Route path = "/snacklist" exact component = {SnackList} />
-            <Route path = "/search" exact component = {SnackSearch} />
-            <Route path = "/snackscore" exact component = {SnackScore} />
-        </div>
-    </Router>
-    )
-  }
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="App">
+                    <Navbar variant="dark" className={AppStyles.NavBarStyle}>
+                        <Navbar.Brand href="/#">
+                            <img src={logo} width="40" height="auto" alt="Snackability"/>
+                        </Navbar.Brand>
+                        <Nav className="mr-auto">
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/snacks">Snacks</Nav.Link>
+                        </Nav>
+                    </Navbar>
+                    <main className={ AppStyles.main }>
+                        <Switch>
+                            <Route path="/" exact component={HomeComponent}/>
+                            <Route path="/snacks" exact component={SnackList}/>
+                            <Route path="/snacks/:snack_id" exact component={SnackDetailsComponent}/>
+                        </Switch>
+                    </main>
+                </div>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;

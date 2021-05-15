@@ -21,9 +21,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect(
-    mongodb_url, 
+    mongodb_url,
     { useNewUrlParser: true, useUnifiedTopology: true});
-    
+
 const connection = mongoose.connection;
 
 connection.once('open', function() {
@@ -48,7 +48,7 @@ app.use('/id', function(req, res) {
     const url = mongodb_url;
 
     searchWord = req.body.searchWord;
-    
+
     console.log(searchWord);
     var input = searchWord;
     result = "";
@@ -66,7 +66,7 @@ app.use('/id', function(req, res) {
         return result;
 
       });
-    });    
+    });
 
 });
 
@@ -74,7 +74,7 @@ app.use('/score', function(req, res) {
     const url = mongodb_url;
 
     var searchID = req.body.searchID;
-    
+
     var o_id = new ObjectID(searchID)
 
     result = "";
@@ -85,13 +85,13 @@ app.use('/score', function(req, res) {
 
         var queryByID = {_id: o_id}
 
-        dbo.collection("snacks").find(queryByID).toArray(function(err, result) {
+        dbo.collection("snacks").findOne(queryByID, (err, result) => {
           if (err) throw err;
 
           res.send(result);
           console.log(result);
           db.close();
-          
+
           return result;
         });
     });
@@ -101,7 +101,7 @@ app.use('/scoresnack', function(req, res) {
     const url = mongodb_url;
 
     var searchID = req.body.searchID;
-    
+
     result = "";
 
     MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
@@ -117,7 +117,7 @@ app.use('/scoresnack', function(req, res) {
           console.log(result);
           console.log("database results")
           db.close();
-          
+
           return result;
         });
     });
