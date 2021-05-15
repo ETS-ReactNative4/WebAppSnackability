@@ -15,28 +15,30 @@ export function fetchSnacksList(callback) {
          });
 }
 
-export function fetchSnacksByName(input, callback) {
+export function fetchSnacksByName(keyword, callback) {
     let result = [];
 
     if (!callback) return;
 
-    axios.post('http://localhost:4000/id', {
-        searchWord: input,
+    axios.get('http://localhost:4000/snacks', {
+        params: {
+            q: keyword
+        }
     }).then((response) => {
         result = response.data;
         callback(result);
     });
 }
 
-export function fetchSnackByID(input, callback) {
-    let result = [];
+export function fetchSnackByID(snack_id, callback) {
+    let result = null;
 
     if (!callback) return;
 
-    axios.post('http://localhost:4000/score', {
-        searchID: input,
-    }).then((response) => {
-        result = response.data;
-        callback(result);
-    });
+    axios.get(`http://localhost:4000/snacks/${snack_id}`)
+        .then((response) => {
+            result = response.data;
+            callback(result);
+        });
+
 }
