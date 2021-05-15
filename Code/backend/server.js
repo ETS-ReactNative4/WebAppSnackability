@@ -1,13 +1,15 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db/db');
 
 const snacksRoutes = require('./routes/snacks.routes');
+const usdaRoutes = require('./routes/usda.routes');
+
 const Snacks = require('./models/snacks.model');
 
 const PORT = 4000;
+const app = express();
 
 db.connect()
   .then(() => console.log("Database connected"))
@@ -16,6 +18,7 @@ db.connect()
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/snacks', snacksRoutes);
+app.use('/usda', usdaRoutes);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
