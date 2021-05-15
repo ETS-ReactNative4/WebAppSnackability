@@ -8,11 +8,10 @@ import styles from '../styles/styles.module.css';
 
 const Snacks = ({snacks}) => (
     <tr>
-        <td>{snacks.brand_name}</td>
         <td>
-            <Link to={`/snacks/${snacks._id}`}>{snacks.product}</Link>
+            <Link to={`/snacks/${snacks._id}`}>{snacks.product}</Link><br/>
+            <span className="text-muted">{snacks.brand_name}</span>
         </td>
-        <td>{snacks.short_name}</td>
         <td>{snacks.serving_size}</td>
         <td>{snacks.calories}</td>
         <td>{snacks.calories_fat}</td>
@@ -29,7 +28,10 @@ export default class SnackList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { snacks: null };
+        this.state = {
+            snacks: null,
+            isLoading: false
+        };
     }
 
     componentDidMount() {
@@ -37,9 +39,31 @@ export default class SnackList extends Component {
     }
 
     fetchSnacksList() {
-        fetchSnacksList((snacks) => {
-            this.setState({ snacks: snacks });
-        });
+        this.setState({ isLoading: true });
+        fetchSnacksList()
+            .then(response => response.data)
+            .then((snacks) => {
+                this.setState({ snacks: snacks, isLoading: false });
+            })
+            .catch(error => {
+                console.error(error);
+                this.setState({ isLoading: false });
+            })
+    }
+
+    searchForItem(keyword) {
+        debounce(() => {
+            this.setState({ isLoading: true });
+            fetchSnacksByName(keyword)
+                .then(response => response.data)
+                .then((snacks) => {
+                    this.setState({ snacks: snacks, isLoading: false });
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.setState({ isLoading: false });
+                });
+        }, 1000);
     }
 
     SnackList() {
@@ -52,32 +76,22 @@ export default class SnackList extends Component {
         );
     }
 
-    searchForItem(event) {
-        debounce(() => {
-            fetchSnacksByName(event.target.value, (snacks) => {
-                this.setState({ snacks: snacks });
-            });
-        }, 1000);
-    }
-
     render() {
 
         return (
             <div className="search">
 
                 <input type="search"
-                       onKeyUp={ this.searchForItem.bind(this) }
-                       className={ styles.input }
+                       onKeyUp={ (event) => this.searchForItem(event.target.value) }
+                       style={{ width: '100%', outline: 'none' }}
                        id="a"
                        maxLength="50"
                        placeholder="Search for a snack's brand name..."/>
 
-                <table id="myTable" className={ styles.table } style={{ marginTop: 20 }}>
+                <table className={ styles.table } style={{ marginTop: 20 }}>
                     <thead>
                     <tr>
-                        <th>Snack Name</th>
                         <th>Product</th>
-                        <th>Short Name</th>
                         <th>Serving Size</th>
                         <th>Calories</th>
                         <th>Calories Fat</th>
@@ -89,8 +103,11 @@ export default class SnackList extends Component {
                         <th>Processed</th>
                     </tr>
                     </thead>
-                    <tbody className={styles.tablebody}>
-                        { this.SnackList() }
+                    <tbody>
+                        <tr className={this.state.isLoading ? 'd-table-row' : 'd-none'}>
+                            <td colSpan="12" className="text-center">Loading...</td>
+                        </tr>
+                        { !this.state.isLoading && this.SnackList() }
                     </tbody>
                 </table>
             </div>

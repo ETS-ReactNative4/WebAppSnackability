@@ -2,26 +2,18 @@
     color: DodgerBlue;
     padding-top: 1%;
     padding-bottom: 1%;
-    font-family: Arial;
+    font-family: Arial, serif;
     margin-left: 1%;
 }
 
 .h3{
-  text-align: 'center';
-  font-size: 10;
+  text-align: center;
+  font-size: 10px;
   color: DodgerBlue;
   margin-left: 1%;
   margin-top: 50px;
-  font-weight: 'bold';
+  font-weight: bold;
 }
-
-.body {
-    font-family: Arial;
-    text-align: left;
-    margin-left: 1%;
-    font-size: 20;
-}
-
 
 th {
     cursor: pointer;
@@ -30,14 +22,7 @@ th {
     text-align: center;
 }
 
-
-.input {
-    margin-left: 2%;
-    width: 20%;
-}
-
 .buttonCalculate {
-    border: none;
     outline: none;
     font-size: 11px;
     font-family: "Quicksand", sans-serif;
@@ -49,17 +34,15 @@ th {
     background-color: transparent;
 }
 
-
-
 /*Table*/
+
 .table {
     border-collapse: collapse;
-    margin: 2em;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
+}
 
   .table thead tr {
     background-color: #0277bd;
