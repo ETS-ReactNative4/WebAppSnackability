@@ -1,3 +1,7 @@
+require('dotenv').config({
+    path: `.env.${ process.env.NODE_ENV }`
+});
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +12,7 @@ const usdaRoutes = require('./routes/usda.routes');
 
 const Snacks = require('./models/snacks.model');
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 const app = express();
 
 db.connect()
