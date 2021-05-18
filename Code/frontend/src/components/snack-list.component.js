@@ -1,86 +1,118 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line
-import styles from "./styles.module.css";
-// eslint-disable-next-line
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-//<td>{props.snacks._id}</td>
+import { fetchSnacksList, fetchSnacksByName } from '../services/snack.service.js';
+import { debounce } from '../utils/debounce';
 
-const Snacks = props => (
+import styles from '../styles/styles.module.css';
+
+const Snacks = ({snacks}) => (
     <tr>
-        
-        <td>{props.snacks.brand_name}</td>
-        <td>{props.snacks.product}</td>
-        <td>{props.snacks.short_name}</td>
-        <td>{props.snacks.serving_size}</td>
-        <td>{props.snacks.calories}</td>
-        <td>{props.snacks.calories_fat}</td>
-        <td>{props.snacks.saturated_fat}</td>
-        <td>{props.snacks.trans_fat}</td>
-        <td>{props.snacks.sodium}</td>
-        <td>{props.snacks.sugar}</td>
-        <td>{props.snacks.first_ingredient}</td>
-        <td>{props.snacks.processed}</td>
-
+        <td>
+            <Link to={`/snacks/${snacks._id}`}>{snacks.product}</Link><br/>
+            <span className="text-muted">{snacks.brand_name}</span>
+        </td>
+        <td>{snacks.serving_size}</td>
+        <td>{snacks.calories}</td>
+        <td>{snacks.calories_fat}</td>
+        <td>{snacks.saturated_fat}</td>
+        <td>{snacks.trans_fat}</td>
+        <td>{snacks.sodium}</td>
+        <td>{snacks.sugar}</td>
+        <td>{snacks.first_ingredient}</td>
+        <td>{snacks.processed}</td>
     </tr>
-)
+);
 
 export default class SnackList extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {snacks: []};
+        this.state = {
+            snacks: null,
+            isLoading: false
+        };
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/snacks/')
-            .then(response => {
-                this.setState({ snacks: response.data });
+        this.fetchSnacksList();
+    }
+
+    fetchSnacksList() {
+        this.setState({ isLoading: true });
+        fetchSnacksList()
+            .then(response => response.data)
+            .then((snacks) => {
+                this.setState({ snacks: snacks, isLoading: false });
             })
-            .catch(function (error){
-                console.log(error);
+            .catch(error => {
+                console.error(error);
+                this.setState({ isLoading: false });
             })
+    }
+
+    searchForItem(keyword) {
+        debounce(() => {
+            this.setState({ isLoading: true });
+            fetchSnacksByName(keyword)
+                .then(response => response.data)
+                .then((snacks) => {
+                    this.setState({ snacks: snacks, isLoading: false });
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.setState({ isLoading: false });
+                });
+        }, 1000);
     }
 
     SnackList() {
-        return this.state.snacks.map(function(currentSnack, i){
-            return <Snacks snacks={currentSnack} key={i} />;
-        })
+        const snacksList = this.state.snacks;
+        return (
+            snacksList &&
+            snacksList.map((currentSnack, i) => (
+                <Snacks snacks={ currentSnack } key={i}/>
+            ))
+        );
     }
 
     render() {
-        
-        return (
-            
-            <div>
 
-                <table id = "myTable" className= {styles.table} >
+        return (
+            <div className="search">
+
+                <input type="search"
+                       onKeyUp={ (event) => this.searchForItem(event.target.value) }
+                       style={{ width: '100%', outline: 'none' }}
+                       id="a"
+                       maxLength="50"
+                       placeholder="Search for a snack's brand name..."/>
+
+                <table className={ styles.table } style={{ marginTop: 20 }}>
                     <thead>
-                        
-                        <tr>
-                            <th>Snack Name</th>
-                            <th>Product</th>
-                            <th>Short Name</th>
-                            <th>Serving Size</th>
-                            <th>Calories</th>
-                            <th>Calories Fat</th>
-                            <th>Saturated Fat</th>
-                            <th>Trans Fat</th>
-                            <th>Sodium</th>
-                            <th>Sugar</th>
-                            <th>First Ingredient</th>
-                            <th>Processed</th>
-                        </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Serving Size</th>
+                        <th>Calories</th>
+                        <th>Calories Fat</th>
+                        <th>Saturated Fat</th>
+                        <th>Trans Fat</th>
+                        <th>Sodium</th>
+                        <th>Sugar</th>
+                        <th>First Ingredient</th>
+                        <th>Processed</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        { this.SnackList() }
+                        <tr className={this.state.isLoading ? 'd-table-row' : 'd-none'}>
+                            <td colSpan="12" className="text-center">Loading...</td>
+                        </tr>
+                        { !this.state.isLoading && this.SnackList() }
                     </tbody>
                 </table>
-
-                   
             </div>
+        );
 
-            
-        )
     }
+
 }
