@@ -40,15 +40,14 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
 router.get('/search', async (req,res, next) => {
 
     const q = req.query.q || "";
-
+    
     try {
         const snacks = await searchUSDASnack(q);
-        res.json(snacks.data);
+        res.json(snacks.data);    
     } catch (err) {
         console.log(err)
         res.send(err);
     }
-
 });
 
 module.exports = router;
