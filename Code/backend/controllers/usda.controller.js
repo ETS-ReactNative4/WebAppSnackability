@@ -5,7 +5,7 @@ const endpoint = process.env.USDA_API_ENDPOINT;
 const API_KEY = process.env.USDA_API_KEY;
 
 exports.getUSDASnacks = () => {
-    return axios(`${endpoint}/foods/list?api_key=${API_KEY}`);
+    return axios(`${endpoint}/foods/list?dataType=Branded&api_key=${API_KEY}`);
 }
 
 exports.getUSDASnackById = (food_id) => {
