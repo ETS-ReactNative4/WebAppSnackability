@@ -8,13 +8,35 @@ import styles from '../styles/styles.module.css';
 
 const Snacks = ({snacks}) => (
     <tr>
-        <td>{snacks.fdcId}</td>
-        <td>{snacks.description}</td>
+        <td>{snacks.description}</td>        
+        <td>{snacks.fdcId}</td>        
         <td>{snacks.dataType}</td>
-        <td>{snacks.publicationDate}</td>
-        <td>{snacks.foodCode}</td>        
-        <td>{snacks.foodNutrients[1].name}</td>        
+        <td>{snacks.publicationDate}</td>             
+        <td>{snacks.brandOwner}</td>                  
+        <td>{snacks.gtinUpc}</td>                  
+        <td>{snacks.publicationDate}</td>                  
+        <td>{snacks.brandOwner}</td>                  
+        <td>{snacks.gtinUpc}</td>                  
+        <td>{snacks.dataType}</td>                  
     </tr>
+
+
+    /*
+    This are suppossed to be the values Array is undefined.
+    <tr>
+        <td>{snacks.description}</td>        
+        <td>{snacks.dataType}</td>        
+        <td>{snacks.foodNutrients[4].name}</td>
+        <td>{snacks.foodNutrients[2].name}</td>             
+        <td>{snacks.foodNutrients[16].name}</td>                  
+        <td>{snacks.foodNutrients[15].name}</td>                  
+        <td>{snacks.foodNutrients[10].name}</td>                  
+        <td>{snacks.foodNutrients[9].name}</td>                  
+        <td>{snacks.foodNutrients[9].name}</td>                  
+        <td>{snacks.foodNutrients[9].name}</td>                  
+    </tr>
+    */
+
 );
 
 export default class SnackList extends Component {
@@ -87,12 +109,16 @@ export default class SnackList extends Component {
                 <table className={ styles.table } style={{ marginTop: 20 }}>
                     <thead>
                     <tr>
-                        <th>fdcId</th>
-                        <th>description</th>
-                        <th>dataType</th>
-                        <th>publicationDate</th>
-                        <th>foodCode</th>                        
-                        <th>foodNutrients</th>                        
+                        <th>Product</th>
+                        <th>Serving Size</th>
+                        <th>Calories</th>
+                        <th>Calories Fat</th>
+                        <th>Saturated Fat</th>                        
+                        <th>Trans Fat</th>                        
+                        <th>Sodium</th>                        
+                        <th>Sugar</th>                        
+                        <th>First Ingradient</th>                        
+                        <th>Processed Food</th>                        
                     </tr>
                     </thead>
                     <tbody>

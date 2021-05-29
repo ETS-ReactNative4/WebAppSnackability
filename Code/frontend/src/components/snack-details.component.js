@@ -63,6 +63,8 @@ export default class SnackDetailsComponent extends Component {
         this.state = {
             snack: null,
             isLoading: false,
+            unitCalc: "Grams",
+            unit: "100 g",
             score: {
                 gRatio: 0.0,
                 totalScore: 0.0,
@@ -78,7 +80,7 @@ export default class SnackDetailsComponent extends Component {
             },
             showResults: false
         };
-    }
+    }    
 
     setScoreState(score) {
         this.setState({score: score});
@@ -276,6 +278,24 @@ export default class SnackDetailsComponent extends Component {
         this.setShowResults(true);
     }
 
+    setUnitCalculation(unitCalc) {
+        this.setState({unitCalc: unitCalc});
+    }
+
+    setUnit(unit) {
+        this.setState({unit: unit});
+    }
+
+    getUnitCalculation() {        
+        return this.state.unitCalc;
+    }
+
+    getUnit() {        
+        return this.state.unit;
+    }
+
+    
+
     render() {
 
         return (
@@ -288,28 +308,31 @@ export default class SnackDetailsComponent extends Component {
                                 <Card.Title>Snack Calculator Score</Card.Title>
 
                                 <Form.Group controlId="formControlPortion" style={{width: "300px", margin: "10px auto"}}>
-                                    <Form.Label>Portion Size (grams):</Form.Label>
-                                    <Form.Control id="portion" type="text" placeholder="100g" />
+                                    <Form.Label>Portion Size {this.getUnitCalculation()}:</Form.Label>
+                                    <Form.Control id="portion" type="text" placeholder={this.getUnit()} />
                                 </Form.Group>
+
+                                <div>
+                                    <Button variant="link">Not sure how much? ❓</Button>
+                                </div>
 
                                 <Dropdown as={ButtonGroup}>
 
                                     <Button variant="primary" onClick={() => this.calculate()}>
-                                        Calculate
-                                    </Button>
-
+                                        Calculate 📱
+                                    </Button>                                  
+                                    
                                     <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu id="dropdown-units-button" title="Units">
-                                        <Dropdown.Item href="">Grams</Dropdown.Item>
-                                        <Dropdown.Item href="">Tablespoon</Dropdown.Item>
-                                        <Dropdown.Item href="">Tea Spoon</Dropdown.Item>
-                                        <Dropdown.Item href="">Ounces</Dropdown.Item>
-                                        <Dropdown.Item href="">Kilograms</Dropdown.Item>
-                                        <Dropdown.Item href="">Pounds</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Grams"); this.setUnit("100 g");}}>Grams</Dropdown.Item>                                        
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tablespoon"); this.setUnit("100 tbsp");}}>Tablespoon</Dropdown.Item>                                    
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tea Spoon"); this.setUnit("100 tsp");}}>Tea Spoon</Dropdown.Item>                                          
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Ounces"); this.setUnit("100 oz");}}>Ounces</Dropdown.Item>                                      
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilogram"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Pounds"); this.setUnit("100 lbs");}}>Pounds</Dropdown.Item>                                      
                                     </Dropdown.Menu>
-
                                 </Dropdown>
                             </Card.Body>
                         </Card>
@@ -394,7 +417,7 @@ export default class SnackDetailsComponent extends Component {
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col>
-                        <Button className="m-1" variant="primary" href="/snacksgraph">Consume</Button>
+                        <Button className="m-1" variant="primary" href="/snacksgraph">Consume 🍴</Button>
                         <Button className="m-1" variant="secondary" href="/snacks">Return to search</Button>
                     </Col>
                 </Row>
