@@ -1,0 +1,15 @@
+.header {
+    background: linear-gradient(145deg,#0d47a1,#1976d2);
+    height: 300px;
+    /*transform: skewY(-8deg);*/
+    /*transform-origin: 0;*/
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 60px;
+}
+
