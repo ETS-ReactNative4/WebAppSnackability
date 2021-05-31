@@ -15,14 +15,14 @@ const Snacks = ({snacks}) => (
         <span className="text-muted">{snacks.brandOwner}</span>
         </td>        
         <td>{snacks.dataType}</td>        
-        <td>{snacks.foodNutrients[4] ? snacks.foodNutrients[4].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[2] ? snacks.foodNutrients[2].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[16] ? snacks.foodNutrients[16].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[15] ? snacks.foodNutrients[15].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[10] ? snacks.foodNutrients[10].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "0"}</td>               
-        <td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "0"}</td>               
+        <td>{snacks.foodNutrients[4] ? snacks.foodNutrients[4].amount : "-"} {snacks.foodNutrients[4] ? snacks.foodNutrients[4].unitName : ""}</td>               
+        <td>{snacks.foodNutrients[2] ? snacks.foodNutrients[2].amount : "-"} {snacks.foodNutrients[2] ? snacks.foodNutrients[2].unitName : ""}</td>               
+        <td>{snacks.foodNutrients[16] ? snacks.foodNutrients[16].amount : "-"} {snacks.foodNutrients[16] ? snacks.foodNutrients[16].unitName : ""}</td>               
+        <td>{snacks.foodNutrients[15] ? snacks.foodNutrients[15].amount : "-"} {snacks.foodNutrients[15] ? snacks.foodNutrients[15].unitName : ""}</td>               
+        <td>{snacks.foodNutrients[10] ? snacks.foodNutrients[10].amount : "-"} {snacks.foodNutrients[10] ? snacks.foodNutrients[10].unitName : ""}</td>               
+        <td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "-"}</td>               
+        {/*<td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "0"}</td>*/}               
+        {/*<td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "0"}</td>*/}               
     </tr>   
 );
 
@@ -108,8 +108,8 @@ export default class SnackList extends Component {
                         <th>Trans Fat</th>                        
                         <th>Sodium</th>                        
                         <th>Sugar</th>                        
-                        <th>First Ingradient</th>                        
-                        <th>Processed Food</th>                        
+                        {/*<th>First Ingradient</th>*/}                        
+                        {/*<th>Processed Food</th>*/}                           
                     </tr>
                     </thead>
                     <tbody>
