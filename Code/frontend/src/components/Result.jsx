@@ -11,7 +11,7 @@ class Result extends Component {
     return (
       <li>
         {' '}
-        {result.codeResult.code} [{result.codeResult.format}]{' '}
+        {result.codeResult.code}{/*[{result.codeResult.format}]*/}{' '}
       </li>
     )
   }
