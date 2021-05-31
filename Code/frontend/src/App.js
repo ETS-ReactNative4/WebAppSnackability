@@ -7,8 +7,9 @@ import HomeComponent from './components/home.component';
 import SnackList from './components/snack-list.component';
 import SnackDetailsComponent from './components/snack-details.component';
 import SnackGraph from './components/snack-graph.component';
-
-import SnackUSDADetailsComponent from './components/snackUSDA-list.component'; /*Testing.............................................*/
+import SnackUSDADetailsComponent from './components/snackUSDA-list.component'; 
+import SettingsComponent from './components/settings.component';
+import SignInComponent from './components/signin.component';
 
 import logo from './images/logo.svg';
 import AppStyles from './styles/app.module.css'
@@ -23,10 +24,11 @@ class App extends Component {
                             <img src={logo} width="40" height="auto" alt="Snackability"/>
                         </Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/snacks">Snacks</Nav.Link>
-                            <Nav.Link href="/usda">Snacks USDA</Nav.Link> 
-                            <Nav.Link href='/snacksgraph'>Snacks Graph</Nav.Link>
+                            <Nav.Link href="/">🏠 Home</Nav.Link>
+                            <Nav.Link href="/snacks">🍊 Snacks</Nav.Link>
+                            <Nav.Link href="/usda">🍒 Snacks USDA</Nav.Link> 
+                            <Nav.Link href='/snacksgraph'>📊 Snacks Graph</Nav.Link>
+                            <Nav.Link href='/settings'>🔧 Settings</Nav.Link>
                         </Nav>
                     </Navbar>
                     <main className={ AppStyles.main }>
@@ -36,6 +38,8 @@ class App extends Component {
                             <Route path="/snacks/:snack_id" exact component={SnackDetailsComponent}/>
                             <Route path="/usda" exact component={SnackUSDADetailsComponent}/> 
                             <Route path='/snacksgraph' exact component={SnackGraph} />
+                            <Route path="/settings" exact component={SettingsComponent}/>
+                            <Route path="/signin" exact component={SignInComponent}/>
                         </Switch>
                     </main>
                 </div>

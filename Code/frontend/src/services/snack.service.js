@@ -20,13 +20,15 @@ export function fetchSnacksListUSDA() {
     return axios.get('http://localhost:4000/usda/snacks');
 }
 
-
-
 export function fetchSnacksByNameUSDA(keyword) {
     return axios.get('http://localhost:4000/usda/search', {
         params: {
             q: keyword
         }
     });
+}
+
+export function fetchSnackByIDUSDA(snack_id) {
+    return axios.get(`http://localhost:4000/usda/snacks/${snack_id}`);
 }
 
