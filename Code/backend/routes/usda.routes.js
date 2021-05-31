@@ -29,7 +29,7 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
 
     try {
        const snack = await getUSDASnackById(snack_id)
-       res.json(snack.data);
+       res.json(snack.data.foods);
     } catch (err) {
         console.log(err)
         throw err;
@@ -40,15 +40,14 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
 router.get('/search', async (req,res, next) => {
 
     const q = req.query.q || "";
-
+    
     try {
         const snacks = await searchUSDASnack(q);
-        res.json(snacks.data);
+        res.json(snacks.data.foods);    
     } catch (err) {
         console.log(err)
         res.send(err);
     }
-
 });
 
 module.exports = router;
