@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import {/* Card, Col, Container, */Jumbotron/*, Row */} from 'react-bootstrap';
+import {/* Card, Col, Container, */Jumbotron,/* Button*//*, Row */} from 'react-bootstrap';
 import "../styles/home.css"
 
 
-export default class HomeComponent extends Component {
+
+export default class HomeComponent extends Component {   
 
     render() {
-        return (
-
+        return (      
             <div>
                 <Jumbotron fluid className="position-absolute w-100 text-center mt-4">
                     <h6>Contact the Product Owner</h6>
@@ -17,7 +17,6 @@ export default class HomeComponent extends Component {
                     <p>crpalaci@fiu.edu</p>
                     <p>snackabilityapp@gmail.com</p>
                 </Jumbotron>
-
             </div>
         );
     }
