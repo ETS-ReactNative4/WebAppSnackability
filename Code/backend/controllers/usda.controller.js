@@ -13,5 +13,5 @@ exports.getUSDASnackById = (food_id) => {
 }
 
 exports.searchUSDASnack = (q) => {
-    return axios(`${endpoint}/foods/search?query=${q}&api_key=${API_KEY}`);
+    return axios(`${endpoint}/foods/search?dataType=Branded&query=${q}&api_key=${API_KEY}`);
 }
