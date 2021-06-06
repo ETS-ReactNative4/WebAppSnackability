@@ -129,7 +129,35 @@ export default class SnackDetailsComponent extends Component {
             processed: 0.0,
             servingSize: 0
         };
+        
+        const unitsToConvert =  this.getUnitCalculation();
+        let resultConversion = gInputUser;
+        switch(unitsToConvert){
+            case 'Tablespoon':
+                resultConversion = gInputUser * 17.07;
+                break;
+            case 'Tea Spoon':
+                resultConversion = gInputUser * 4.928921594;
+                break;
+            case 'Ounces':
+                resultConversion = gInputUser * 28.3495;
+                break;
+            case "Kilograms":
+                console.log('Estoy en KILOSSS');
+                resultConversion = gInputUser * 1000;
+                break;
+            case 'Pounds' :
+                resultConversion = gInputUser * 453.592;
+                break;
+            case 'Grams' :
+                resultConversion = gInputUser * 1;
+                break;
+            default:
+                    console.log('Error');
 
+        }
+        console.log('resultConversion :'+ resultConversion);
+        gInputUser = resultConversion;
         score.servingSize = gInputUser;
 
         // If the gram unit is not the same as the one on the snack database.
@@ -330,7 +358,7 @@ export default class SnackDetailsComponent extends Component {
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tablespoon"); this.setUnit("100 tbsp");}}>Tablespoon</Dropdown.Item>                                    
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tea Spoon"); this.setUnit("100 tsp");}}>Tea Spoon</Dropdown.Item>                                          
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Ounces"); this.setUnit("100 oz");}}>Ounces</Dropdown.Item>                                      
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilogram"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
+                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilograms"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Pounds"); this.setUnit("100 lbs");}}>Pounds</Dropdown.Item>                                      
                                     </Dropdown.Menu>
                                 </Dropdown>

@@ -9,8 +9,13 @@ const {
 const router = express.Router();
 
 router.get('/snacks', async (req,res, next) => {
+
+    const dataType = req.query.dataType || "Branded"
+
     try {
-        const snacks = await getUSDASnacks();
+        const snacks = await getUSDASnacks({
+            dataType
+        });
         res.json(snacks.data);
     } catch (err) {
         console.log(err)
@@ -28,8 +33,8 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
     }
 
     try {
-       const snack = await getUSDASnackById(snack_id)
-       res.json(snack.data.foods);
+       const snack = await getUSDASnackById(snack_id);
+        res.json(snack.data);
     } catch (err) {
         console.log(err)
         throw err;
@@ -40,10 +45,13 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
 router.get('/search', async (req,res, next) => {
 
     const q = req.query.q || "";
-    
+    const dataType = req.query.dataType || "Branded"
+
     try {
-        const snacks = await searchUSDASnack(q);
-        res.json(snacks.data.foods);    
+        const snacks = await searchUSDASnack({
+            q, dataType
+        });
+        res.json(snacks.data.foods);
     } catch (err) {
         console.log(err)
         res.send(err);
