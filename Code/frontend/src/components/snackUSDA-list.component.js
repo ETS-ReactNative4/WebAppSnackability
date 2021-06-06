@@ -34,7 +34,8 @@ export default class SnackList extends Component {
             snacks: [], 
             isLoading: false,     
             scanning: false,
-            results: []       
+            results: [],
+            lastBarcode: null       
         };
     }
 
@@ -43,7 +44,15 @@ export default class SnackList extends Component {
     }
     
     _onDetected = result => {
-        this.setState({ results: this.state.results.concat([result]) })
+        console.log('result.codeResult.code: ' + result.codeResult.code);
+        console.log('this.state.lastBarcode: ' + this.state.lastBarcode);
+        
+        if (this.state.lastBarcode || result.codeResult.code !== this.state.lastBarcode) {
+            this.searchForItem(result.codeResult.code);
+            console.log('THE RESULT IS: ' + result.codeResult.code);   
+        }        
+
+        this.setState({ results: this.state.results.concat([result]), lastBarcode: result.codeResult.code});
     }
 
     componentDidMount() {
@@ -105,15 +114,7 @@ export default class SnackList extends Component {
                 
                 
                 <div>
-                    <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>
-                    
-                        {this.state.results.map((result, i) => (                                                      
-                            this.searchForItem(result.codeResult.code),
-                            console.log('THE RESULT IS: ' + result.codeResult.code),       
-                            this.state.isLoading = false
-                            /* Needs Improvements. */                                         
-                        ))      
-                        }                                                     
+                    <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>                                                             
 
                     {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
                 </div>
