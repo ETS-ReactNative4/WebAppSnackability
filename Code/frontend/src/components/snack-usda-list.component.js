@@ -6,7 +6,7 @@ import { debounce } from '../utils/debounce';
 
 import styles from '../styles/styles.module.css';
 
-import { Button} from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table,Card} from 'react-bootstrap';
 import Scanner from './Scanner'
 //import Result from './Result'
 
@@ -104,43 +104,47 @@ export default class SnackList extends Component {
 
         return (
             
-            <div className="search">
-                <input type="search"
-                       onKeyUp={ (event) => this.searchForItem(event.target.value) }
-                       style={{ width: '100%', outline: 'none' }}
-                       id="a"
-                       maxLength="50"                      
-                       placeholder="🔎 Search for a snack's brand name..."/>
+            <Container fluid  className="mt-5">    
+                <Row>
+                    <Col>        
+                        <Form.Group controlId="formControlPortion">
+                            <Form.Control id="a" type="search" placeholder="🔎 Search for a snack's brand name..."             
+                                onKeyUp={ (event) => this.searchForItem(event.target.value) }          
+                            />
+                       </Form.Group>
+                    </Col>
+                </Row>                  
+            
+                <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>                                                             
                 
-                
-                <div>
-                    <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>                                                             
+                {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}                     
 
-                    {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
-                </div>
-
-                <table className={ styles.table } style={{ marginTop: 20 }}>
-                    <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Serving Size</th>
-                        <th>Calories</th>
-                        <th>Calories Fat</th>
-                        <th>Saturated Fat</th>                        
-                        <th>Trans Fat</th>                        
-                        <th>Sodium</th>                        
-                        <th>Sugar</th>                                              
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr className={this.state.isLoading ? 'd-table-row' : 'd-none'}>
-                            <td colSpan="12" className="text-center">Loading...</td>
-                        </tr>
-                        { !this.state.isLoading && this.SnackList() }                        
-                    </tbody>
-                    {console.log(this.state.snacks)}                                                          
-                </table>
-            </div>
+                <Row className="mt-1">
+                    <Col>
+                        <Table striped hover>
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Serving Size</th>
+                                <th>Calories</th>
+                                <th>Calories Fat</th>
+                                <th>Saturated Fat</th>                        
+                                <th>Trans Fat</th>                        
+                                <th>Sodium</th>                        
+                                <th>Sugar</th>                                              
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr className={this.state.isLoading ? 'd-table-row' : 'd-none'}>
+                                    <td colSpan="12" className="text-center">Loading...</td>
+                                </tr>
+                                { !this.state.isLoading && this.SnackList() }                        
+                            </tbody>
+                            {console.log(this.state.snacks)}                                                        
+                        </Table>
+                    </Col>
+                </Row>          
+            </Container>
         );
 
     }
