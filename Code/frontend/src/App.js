@@ -7,7 +7,7 @@ import HomeComponent from './components/home.component';
 import SnackList from './components/snack-list.component';
 import SnackDetailsComponent from './components/snack-details.component';
 import SnackGraph from './components/snack-graph.component';
-import SnackUSDAListComponent from './components/snackUSDA-list.component'; 
+import SnackUSDAListComponent from './components/snack-usda-list.component'; 
 import SnackUSDADetailsComponent from './components/snack-usda-details.component'; 
 import SettingsComponent from './components/settings.component';
 import SignInComponent from './components/signin.component';
