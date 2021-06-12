@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { fetchSnackByID } from '../services/snack.service.js';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
-
+import {fetchSnackByIDUSDA} from '../services/snack.service.js'; 
 import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form } from 'react-bootstrap';
 
 function  generateDataTable(score) {
@@ -91,13 +90,15 @@ export default class SnackDetailsComponent extends Component {
     }
 
     componentDidMount() {
-        this.fetchSnack();
+        this.fetchSnackUSDA();
     }
 
-    fetchSnack() {
+    fetchSnackUSDA()
+    {
         this.setState({isLoading: true});
-        fetchSnackByID(this.props.match.params.snack_id).then(response => response.data).then((snack) => {
+        fetchSnackByIDUSDA(this.props.match.params.snack_id).then(response => response.data).then((snack) => {
             this.setState({snack: snack, isLoading: false});
+            console.log(this.state.snack);
         }).catch(error => {
             console.error(error);
             this.setState({isLoading: false});
@@ -111,10 +112,44 @@ export default class SnackDetailsComponent extends Component {
         ));
     }
 
+    convertUnitCalculation(unitCalculationUser)
+    {
+        switch (unitCalculationUser) {
+            case 'Grams':
+                return "g";
+            case 'Tablespoon':
+                return "tbsp";
+            case 'Tea Spoon':
+                return "tsp";
+            case 'Ounces':
+                return "oz";
+            case 'Kilogram':
+                return "kg";
+            case 'Pounds':
+                return "lbs";
+            default:
+                return "ERROR";
+        }
+    }
+
     calculate() {
+        /*LOGGGGGG*/
+        console.log('this.state.snack.servingSize: ' + this.state.snack.servingSize ? this.state.snack.servingSize : "NOOOOOO");
+        console.log('this.state.snack.servingSizeUnit: ' + this.state.snack.servingSizeUnit);
+        console.log('this.state.snack.labelNutrients.calories.value: ' + this.state.snack.labelNutrients.calories.value);
+        console.log('this.state.snack.labelNutrients.sugars.value: ' + this.state.snack.labelNutrients.sugars.value);
+        console.log('this.state.snack.labelNutrients.fat.value: ' + this.state.snack.labelNutrients.fat.value);
+        console.log('this.state.snack.labelNutrients.saturatedFat.value: ' + this.state.snack.labelNutrients.saturatedFat.value ? this.state.snack.labelNutrients.saturatedFat.value : "NOOOOO");
+        console.log('this.state.snack.labelNutrients.sodium.value: ' + this.state.snack.labelNutrients.sodium.value);
+        console.log('this.state.snack.labelNutrients.transFat.value: ' + this.state.snack.labelNutrients.transFat.value);
+        /*LOGGGGGG*/
+
         //this should be moved to the backend
         let gInputUser = +document.getElementById('portion').value;
-
+        console.log('gInputUser: ' + gInputUser);
+        let uInputUser = this.convertUnitCalculation(this.getUnitCalculation());
+        console.log('uInputUser: ' + uInputUser);
+        
         let score = {
             gRatio: 0.0,
             totalScore: 0.0,
@@ -132,13 +167,16 @@ export default class SnackDetailsComponent extends Component {
 
         score.servingSize = gInputUser;
 
-        // If the gram unit is not the same as the one on the snack database.
-        if (gInputUser !== this.state.snack.serving_size) {
+        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX SERVING SIZE OR PORTRION ??????
+        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNits needs to match
+        // If the gram unit is not the same as the one on the snack database.     
+        if (gInputUser !== this.state.snack.servingSize) {
             // Calculating the gRatio.
-            score.gRatio = gInputUser / this.state.snack.serving_size;
+            score.gRatio = gInputUser / this.state.snack.servingSize;
         }
 
         // First ingredient.
+        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         switch (this.state.snack.first_ingredient) {
             case 'dairy':
                 score.firstIngredient = 2;
@@ -162,13 +200,14 @@ export default class SnackDetailsComponent extends Component {
                 score.firstIngredient = 0;
         }
 
-        // If the gram unit is not the same as the one on the snack database.
-        if (gInputUser !== this.state.snack.serving_size) {
+        // If the gram unit is not the same as the one on the snack database.        
+        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        if (gInputUser !== this.state.snack.servingSize) {
             // Calories.
-            score.calories = score.gRatio * this.state.snack.calories;
+            score.calories = score.gRatio * this.state.snack.labelNutrients.calories;
         } else {
             // Calories.
-            score.calories = this.state.snack.calories;
+            score.calories = this.state.snack.labelNutrients.calories;            
         }
 
         // Classify calories.
@@ -224,7 +263,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // If the gram unit is not the same as the one on the snack database.
-        if (gInputUser !== this.state.snack.serving_size) {
+        if (gInputUser !== this.state.snack.servingSize) {
             // Sodium.
             score.sodium = score.gRatio * window.localStorage.getItem('sodium_score'); // In case that quantity is not the same as the db, adjust it.
         } else {
@@ -264,10 +303,10 @@ export default class SnackDetailsComponent extends Component {
         }
 
 
-        // Food Process clasisfication
-        if (this.state.snack.processed.toLowerCase() === 'yes') {
+        // Food Process clasisfication FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+        if (this.state.snack.foodClass.toLowerCase() === 'yes') {
             score.processed = -1;
-        } else if (this.state.snack.processed.toLowerCase() === 'no') {
+        } else if (this.state.snack.foodClass.toLowerCase() === 'no') {
             score.processed = 0;
         } else {
             console.log('Error clasisfication');
