@@ -6,23 +6,16 @@ import { debounce } from '../utils/debounce';
 
 import styles from '../styles/styles.module.css';
 
-import { Button, Col, Container, Form, Row, Table,Card} from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table} from 'react-bootstrap';
 import Scanner from './Scanner'
 //import Result from './Result'
 
 const Snacks = ({snacks}) => (
     <tr>
         <td>
-        <Link to={`/usda/${snacks.fdcId}`}>{snacks.description}</Link><br/>
-        <span className="text-muted">{snacks.brandOwner}</span>
-        </td>        
-        <td>{snacks.dataType}</td>        
-        <td>{snacks.foodNutrients[4] ? snacks.foodNutrients[4].amount : "-"} {snacks.foodNutrients[4] ? snacks.foodNutrients[4].unitName : ""}</td>               
-        <td>{snacks.foodNutrients[2] ? snacks.foodNutrients[2].amount : "-"} {snacks.foodNutrients[2] ? snacks.foodNutrients[2].unitName : ""}</td>               
-        <td>{snacks.foodNutrients[16] ? snacks.foodNutrients[16].amount : "-"} {snacks.foodNutrients[16] ? snacks.foodNutrients[16].unitName : ""}</td>               
-        <td>{snacks.foodNutrients[15] ? snacks.foodNutrients[15].amount : "-"} {snacks.foodNutrients[15] ? snacks.foodNutrients[15].unitName : ""}</td>               
-        <td>{snacks.foodNutrients[10] ? snacks.foodNutrients[10].amount : "-"} {snacks.foodNutrients[10] ? snacks.foodNutrients[10].unitName : ""}</td>               
-        <td>{snacks.foodNutrients[9] ? snacks.foodNutrients[9].amount : "-"}</td>                            
+            <Link to={`/usda/${snacks.fdcId}`}>{snacks.description}</Link><br/>
+            <span className="text-muted">{snacks.brandOwner}</span>
+        </td>                                 
     </tr>   
 );
 
@@ -56,7 +49,7 @@ export default class SnackList extends Component {
     }
 
     componentDidMount() {
-        this.fetchSnacksListUSDA();
+        this.searchForItem("");
     }
 
     fetchSnacksListUSDA() {
@@ -124,14 +117,7 @@ export default class SnackList extends Component {
                         <Table striped hover>
                             <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Serving Size</th>
-                                <th>Calories</th>
-                                <th>Calories Fat</th>
-                                <th>Saturated Fat</th>                        
-                                <th>Trans Fat</th>                        
-                                <th>Sodium</th>                        
-                                <th>Sugar</th>                                              
+                                <th>Product</th>                                                   
                             </tr>
                             </thead>
                             <tbody>
