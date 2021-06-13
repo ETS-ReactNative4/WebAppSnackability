@@ -1,0 +1,487 @@
+﻿brand,product,short_name,seving_size,calories,calories_fat,saturated_fat ,trans_fat ,sodium,sugar,first_ingredient,processed,brand_name_search,product_search,short_name_search
+doritos,nacho cheese flavored tortilla chips,nacho cheese tortilla chips,28,140,70,1,0,210,0,other,yes,TRTS,NXXSFLFRTTRTLXPS,NXXSTRTLXPS
+doritos,cool ranch flavored tortilla chips,cool ranch tortilla chips,28,150,70,1,0,180,0,other,yes,TRTS,KLRNXFLFRTTRTLXPS,KLRNXTRTLXPS
+doritos ,reduced fat cool ranch flavored tortilla chips,reduced fat cool ranch tortilla chips,28,130,45,1,0,160,1,whole grain,yes,TRTS,RTSTFTKLRNXFLFRTTRTLXPS,RTSTFTKLRNXTRTLXPS
+doritos,spicy sweet chilli flavored tortilla chips,chilli tortilla chips,28,140,70,1,0,270,0,other,yes,TRTS,SPSSWTXLFLFRTTRTLXPS,XLTRTLXPS
+doritos,flamas reduced fat tortilla chips,flamas reduced fat tortilla chips,28,140,45,5,0,200,0,whole grain,yes,TRTS,FLMSRTSTFTTRTLXPS,FLMSRTSTFTTRTLXPS
+doritos ,reduced fat nacho cheese flavored tortilla chips,reduced fat nacho cheese tortilla chips,28,130,45,5,0,200,0,whole grain,yes,TRTS,RTSTFTNXXSFLFRTTRTLXPS,RTSTFTNXXSTRTLXPS
+doritos,reduced fat spicy sweet chili flavored tortilla chips,reduced fat chili tortilla chips,28,130,45,5,0,180,0,whole grain,yes,TRTS,RTSTFTSPSSWTXLFLFRTTRTLXPS,RTSTFTXLTRTLXPS
+cheetos crunchy,"cheese flavored, crunchysnacks",cheese flavored,28,150,90,15,0,250,1,other,yes,XTSKRNX,XSFLFRTKRNXSNKS,XSFLFRT
+munchies,"snack mix, cheese fix",snack cheese mix,28,140,60,1,0,200,1,other,yes,MNXS,SNKMKSXSFKS,SNKXSMKS
+fritos,original corn chips,corn chips,28,160,90,15,0,170,1,other,yes,FRTS,ORJNLKRNXPS,KRNXPS
+lays,classic potato chips,potato chips,28,160,90,15,0,170,1,other,yes,LS,KLSKPTTXPS,PTTXPS
+ruffles,cheddar & sour cream potato chips,cheddar sour cream potato chips,28,160,90,15,0,180,1,other,yes,RFLS,XTRSRKRMPTTXPS,XTRSRKRMPTTXPS
+platanitos,plantain chips salted,plantain chips,32,170,90,42,0,215,0,fruit,yes,PLTNTS,PLNTNXPSSLTT,PLNTNXPS
+platanitos,plantain chips with lemon,lemon plantain chips ,32,180,95,42,0,246,0,fruit,yes,PLTNTS,PLNTNXPSW0LMN,LMNPLNTNXPS
+maduritos,sweet plantain chips,sweet plantain chips,32,160,95,25,0,2,12,fruit,yes,MTRTS,SWTPLNTNXPS,SWTPLNTNXPS
+terra,"blues potato chips, sea salt",blues potato chips,28,130,54,1,0,115,3,vegetable,yes,TR,BLSPTTXPSSSLT,BLSPTTXPS
+terra,sweet potato no salt added ,sweet potato no salt,34,190,120,1,0,15,4,vegetable,yes,TR,SWTPTTNSLTTT,SWTPTTNSLT
+stacy's,"pita chips, simply naked",pita chips simply naked,28,130,45,0,0,270,0,other,yes,STSS,PTXPSSMPLNKT,PTXPSSMPLNKT
+stacy's,"pita chips, parmesan garlic & herb",parmesan garlic pita chips,28,130,45,5,0,260,0,other,yes,STSS,PTXPSPRMSNKRLKHRB,PRMSNKRLKPTXPS
+sun chips,"100% whole grain, harvest cheddar",whole grain cheddar,28,140,54,5,0,200,2,whole grain,yes,SNXPS,WLKRNHRFSTXTR,WLKRNXTR
+lay's kettle cooked,40% less fat original potato chips,less fat potato chips,28,130,45,5,0,135,1,other,yes,LSKTLKKT,LSFTRJNLPTTXPS,LSFTPTTXPS
+lay's kettle cooked,40% less fat sea salt & vinegar potato chips,less fat salt & vinegar potato chips,28,130,45,5,0,130,1,other,yes,LSKTLKKT,LSFTSSLTFNKRPTTXPS,LSFTSLTFNKRPTTXPS
+lay's kettle cooked,40% less fat jalapeno cheddar potato chips,less fat jalapeno cheddar potato chips,28,130,45,1,0,120,1,other,yes,LSKTLKKT,LSFTJLPNXTRPTTXPS,LSFTJLPNXTRPTTXPS
+popcorners,original white cheddar popped corn chips,white cheddar popped corn chips,28,130,45,5,0,120,1,other,yes,PPKRNRS,ORJNLHTXTRPPTKRNXPS,WTXTRPPTKRNXPS
+popcorners,carnival kettle popped corn chips,carnival kettle popped corn chips,28,120,35,0,0,110,3,other,yes,PPKRNRS,KRNFLKTLPPTKRNXPS,KRNFLKTLPPTKRNXPS
+broad street bakery ,jumbo honey bun,jumbo honey bun,142,590,260,14,0,390,37,other,yes,BRTSTRTBKR,JMHNBN,JMHNBN
+mrs freshley's ,glazed donut sticks,glazed donut sticks,85,380,170,10,0,320,26,other,yes,MRSFRXLS,KLSTTNTSTKS,KLSTTNTSTKS
+mrs freshley's ,danish cinnamon swirl bun,cinnamon swirl bun,113,440,180,9,0,410,33,other,yes,MRSFRXLS,TNXSNMNSWRLBN,SNMNSWRLBN
+mrs freshley's ,danish cheese swirl bun ,cheese swirl bun ,113,460,210,11,0,390,29,other,yes,MRSFRXLS,TNXXSSWRLBN,XSSWRLBN
+kellogg's pop tarts,"frosted strawberry, toaster pastries",frosted strawberry pastries,52,200,45,15,0,170,16,other,yes,KLKSPPTRTS,FRSTTSTRBRTSTRPSTRS,FRSTTSTRBRPSTRS
+cheez-it,baked snack crackers (original) ,snack crackers,42,210,100,25,0,320,0,other,yes,XST,BKTSNKKRKRSRJNL,SNKKRKRS
+cheez-it,reduced fat white cheddar crackers,reduced fat cheddar crackers,30,130,36,1,0,290,0,other,yes,XST,RTSTFTHTXTRKRKRS,RTSTFTXTRKRKRS
+keebler elfin crackers ,keebler animal crackers cookies elfin original 212 oz (60g),crackers cookies,30,120,18,0,0,140,8,other,yes,KBLRLFNKRKRS,KBLRNMLKRKRSKKSLFNRJNLSK,KRKRSKKS
+chex mix™ ,traditional snack mix ,snack mix ,29,120,30,5,0,230,2,other,yes,XKSMKS,TRTXNLSNKMKS,SNKMKS
+"snyder's of hanover, mini pretzels, ","snyder's of hanover, mini pretzels, fat free ",mini pretzels fat free ,30,110,0,0,0,250,0,other,yes,SNTRSFHNFRMNPRTSLS,SNTRSFHNFRMNPRTSLSFTFR,MNPRTSLSFTFR
+knott's berry farm  ,shortbread cookies raspberry ,shortbread cookies raspberry ,57,240,100,25,0,120,13,other,yes,NTSBRFRM,XRTBRTKKSRSPBR,XRTBRTKKSRSPBR
+famous amos,cookie chocolate chip ,cookie chocolate chip ,29,140,63,25,0,105,9,other,yes,FMSMS,KKXKLTXP,KKXKLTXP
+grandma's® ,mini sandwich cremes vanilla flavored cookies,vanilla creme sandwich cookies,31,150,60,25,0,95,9,other,yes,KRNTMS,MNSNTWXKRMSFNLFLFRTKKS,FNLKRMSNTWXKKS
+kellogg's rice krispies treats,crispy marshmallow squares original ,crispy marshmallow,62,260,54,15,0,290,21,other,yes,KLKSRSKRSPSTRTS,KRSPMRXMLSKRSRJNL,KRSPMRXML
+welch's,"welch's, fruit snacks, island fruits",fruit snacks,255,80,0,0,0,10,11,other,yes,WLXS,WLXSFRTSNKSSLNTFRTS,FRTSNKS
+welch's,mixed fruit snacks ,mixed fruit snacks ,40,130,0,0,0,15,18,other,yes,WLXS,MKSTFRTSNKS,MKSTFRTSNKS
+"quaker, breakfast cookies",oatmeal raisin cookies,oatmeal raisin cookies,48,170,40,1,0,190,15,whole grain,yes,KKRBRKFSTKKS,OTMLRSNKKS,OTMLRSNKKS
+"quaker, breakfast cookies",oatmeal chocolate chip cookies,oatmeal chocolate chip cookies,48,180,50,2,0,190,14,whole grain,yes,KKRBRKFSTKKS,OTMLXKLTXPKKS,OTMLXKLTXPKKS
+kar's ,original trail mix unsalted,original trail mix unsalted,57,270,160,25,0,5,14,fruit,no,KRS,ORJNLTRLMKSNSLTT,ORJNLTRLMKSNSLTT
+kar's ,all energy trail mix unsalted,energy trail mix unsalted,57,280,160,45,0,15,14,protein,no,KRS,ALNRJTRLMKSNSLTT,ENRJTRLMKSNSLTT
+kar's ,roasted salted peanuts,salted peanuts,57,330,270,5,0,180,2,protein,no,KRS,RSTTSLTTPNTS,SLTTPNTS
+nature valley ,honey oat crunch granola bars,honey oat crunch bar,42,190,60,1,0,180,11,whole grain,yes,NTRFL,HNTKRNXKRNLBRS,HNTKRNXBR
+nature valley ,chewy granola bars fruit & nut trail mix ,fruit nut trail mix chewy bar,35,140,35,5,0,65,7,whole grain,yes,NTRFL,XKRNLBRSFRTNTTRLMKS,FRTNTTRLMKSXBR
+fiber one,chewy bars oats & chocolate,oat chocolate chewy bar,24,80,25,15,0,55,5,whole grain,yes,FBRN,XBRSTSXKLT,OTXKLTXBR
+clif bar,"energy bar, peanut toffee buzz",peanut toffee energy bar,68,250,60,15,0,190,21,other,yes,KLFBR,ENRJBRPNTTFBS,PNTTFNRJBR
+clif bar,"energy bar, white chocolate macadamia nut",white chocolate macadamia energy bar,68,260,70,2,0,220,21,other,yes,KLFBR,ENRJBRHTXKLTMKTMNT,WTXKLTMKTMNRJBR
+kind bar ,blueberry vanilla & cashew bar,blueberry vanilla cashew bar,40,190,90,15,0,25,11,protein,yes,KNTBR,BLBRFNLKXBR,BLBRFNLKXBR
+kellogg's nutri-grain ,cereal bars strawberry ,strawberry bar ,37,120,30,5,0,125,11,whole grain,yes,KLKSNTRKRN,SRLBRSSTRBR,STRBRBR
+"quaker, breakfast flats",banana honey nut crispy snack bar,banana honey nut bar,40,180,60,5,0,140,10,whole grain,yes,KKRBRKFSTFLTS,BNNHNNTKRSPSNKBR,BNNHNNTBR
+gatorade recover,"whey protein bar, chocolate caramel ",whey protein chocolate caramel bar,80,340,90,8,0,190,29,protein,yes,KTRTRKFR,WPRTNBRXKLTKRML,WPRTNXKLTKRMLBR
+gatorade recover,"whey protein bar,peanut butter chocolate ",whey protein peanut butter chocolate bar ,80,360,120,9,0,340,25,other,yes,KTRTRKFR,WPRTNBRPNTBTRXKLT,WPRTNPNTBTRXKLTBR
+belvita,golden oat breakfast biscuit,oat biscuit,50,230,80,5,0,220,11,whole grain,yes,BLFT,KLTNTBRKFSTBSKT,OTBSKT
+belvita,blueburry breakfast biscuit,blueburry biscuit,50,230,70,5,0,210,13,whole grain,yes,BLFT,BLBRBRKFSTBSKT,BLBRBSKT
+lorna doone,shortbread cookies,shortbread cookies,28,140,60,15,0,150,5,other,yes,LRNTN,XRTBRTKKS,XRTBRTKKS
+munchies,peanut butter crackers,peanut butter crackers,40,210,100,3,0,260,6,other,yes,MNXS,PNTBTRKRKRS,PNTBTRKRKRS
+"lance, captain's wafers, ",grilled cheese crackers,grilled cheese crackers,39,190,80,3,0,270,5,other,yes,LNSKPTNSWFRS,KRLTXSKRKRS,KRLTXSKRKRS
+oreo,chocolate with cream sandwich cookie,chocolate cream sandwich cookie,57,270,100,3,0,220,23,other,yes,OR,XKLTW0KRMSNTWXKK,XKLTKRMSNTWXKK
+m&m's ,peanut chocolate candy,peanut chocolate candy,493,250,120,5,0,25,25,Other,yes,MMS,PNTXKLTKNT,PNTXKLTKNT
+m&m's ,milk chocolate candy,milk chocolate candy,479,240,90,6,0,30,30,Other,yes,MMS,MLKXKLTKNT,MLKXKLTKNT
+snickers bar,"chocolate bar made with caramel, nougat, peanuts and milk chocolate",chocolate caramel peanut bar,527,250,110,45,0,120,27,other,yes,SNKRSBR,XKLTBRMTW0KRMLNKTPNTSNTMLKXKLT,XKLTKRMLPNTBR
+twix,chocolate caramel cookie bar,chocolate caramel cookie bar,507,250,110,7,0,100,24,other,yes,TWKS,XKLTKRMLKKBR,XKLTKRMLKKBR
+kit kat big kat ,crisp wafer bar in milk chocolate ,chocolate wafer bar,42,210,90,7,0,30,21,other,yes,KTKTBKKT,KRSPWFRBRNMLKXKLT,XKLTWFRBR
+reese's,milk chocolate peanut butter cup,chocolate peanut butter cup,42,220,120,45,0,150,22,other,yes,RSS,MLKXKLTPNTBTRKP,XKLTPNTBTRKP
+twizzlers,strawberry twists,strawberry twists,70,240,0,0,0,150,29,other,yes,TWSLRS,STRBRTWSTS,STRBRTWSTS
+sour jacks ,watermelon soft & chewy mouth-puckering candy  ,watermelon soft & chewy candy  ,40,140,0,0,0,30,24,other,yes,SRJKS,WTRMLNSFTXM0PKRNKKNT,WTRMLNSFTXKNT
+nuclear sqworms ,sour neon gummi worms,sour gummi,39,130,0,0,0,50,22,other,yes,NKLRSKWRMS,SRNNKMWRMS,SRKM
+skittles,"skittles bite size candies, original",skittles candies original,615,250,25,25,0,20,46,other,yes,SKTLS,SKTLSBTSSKNTSRJNL,SKTLSKNTSRJNL
+starburst,fruit chews candy,fruit chews candy,40,160,30,3,0,0,22,other,yes,STRBRST,FRTXSKNT,FRTXSKNT
+3 musketeers,chocolate bar,chocolate bar,544,240,70,5,0,90,36,other,yes,MSKTRS,XKLTBR,XKLTBR
+star bar ,vanilla flavored reduced fat ice cream dipped in chocolate flavored coating,vanilla reduced fat ice cream coated chocolate,42,110,60,6,0,25,9,dairy,yes,STRBR,FNLFLFRTRTSTFTSKRMTPTNXKLTFLFRTKTNK,FNLRTSTFTSKRMKTTXKLT
+chips galore,creamy vanilla flavored ice cream layered between two chocolate chip cookies rolled in mini chocolate chips,vanilla chocolate chip ice cream,97,310,130,8,0,220,27,dairy,yes,XPSKLR,KRMFNLFLFRTSKRMLYRTBTWNTWXKLTXPKKSRLTNMNXKLTXPS,FNLXKLTXPSKRM
+cookies 'n cream aundae cone,cookies 'n cream reduced fat ice cream in a sugar cone dipped in white coating topped with chocolated cookie peieces,cookies 'n cream reduced fat ice cream,97,280,110,9,0,140,23,dairy,yes,KKSNKRMNTKN,KKSNKRMRTSTFTSKRMNSKRKNTPTNHTKTNKTPTW0XKLTTKKPSS,KKSNKRMRTSTFTSKRM
+ big vanilla,creamy vanilla reduced fat ice cream layered between two rich chocolate wafers,vanilla reduced fat ice cream in chocolate wafers,105,240,70,45,0,160,22,dairy,yes,BKFNL,KRMFNLRTSTFTSKRMLYRTBTWNTWRXXKLTWFRS,FNLRTSTFTSKRMNXKLTWFRS
+big vanilla ,vanilla ice cream coated with milk chocolate and crisp rice a tasty treat to bring on the go!,vanilla ice cream coated chocolate and crisp rice,82,250,110,8,0,100,19,dairy,yes,BKFNL,FNLSKRMKTTW0MLKXKLTNTKRSPRSTSTTRTTBRNKN0K,FNLSKRMKTTXKLTNTKRSPRS
+crunch,vanilla ice cream coated with milk chocolate and crisp rice ,vanilla ice cream coated with milk chocolate and crisp rice ,60,170,100,9,0,35,13,dairy,yes,KRNX,FNLSKRMKTTW0MLKXKLTNTKRSPRS,FNLSKRMKTTW0MLKXKLTNTKRSPRS
+sundae crunch,"chocolate lovers will love creamy vanilla flavored reduced fat ice cream with a thick chocolate center, coated in a crunchy topping",vanilla reduced fat ice cream with chocolate crunchy topping,63,170,70,2,0,25,13,dairy,yes,SNTKRNX,XKLTLFRSWLLFKRMFNLFLFRTRTSTFTSKRMW00KXKLTSNTRKTTNKRNXTPNK,FNLRTSTFTSKRMW0XKLTKRNXTPNK
+sundae crunch,"strawberry lovers will love this creamy vanilla ice cream with a thick strawberry center, coated in strawberry shortcake",vanilla ice cream with strawberry shortcake,61,160,70,2,0,65,13,dairy,yes,SNTKRNX,STRBRLFRSWLLF0SKRMFNLSKRMW00KSTRBRSNTRKTTNSTRBRXRTKK,FNLSKRMW0STRBRXRTKK
+frozfruit,creamy coconut,creamy coconut,126,200,40,35,0,65,29,dairy,yes,FRSFRT,KRMKKNT,KRMKKNT
+blue bunny frozen sundae crunch bars strawberry,frozen sundae crunch bars strawberry,crunch bars strawberry,61,160,70,2,0,65,13,dairy,yes,BLBNFRSNSNTKRNXBRSSTRBR,FRSNSNTKRNXBRSSTRBR,KRNXBRSSTRBR
+frozfruit,chunky strawberry,chunky strawberry,121,130,0,0,0,30,23,other,yes,FRSFRT,XNKSTRBR,XNKSTRBR
+orange dream,vanilla flavored reduced fat ice cream in an orange fat free sherbet shell,vanilla reduced fat ice cream in orange sherbet,73,100,15,1,0,25,17,dairy,yes,ORNJTRM,FNLFLFRTRTSTFTSKRMNNRNJFTFRXRBTXL,FNLRTSTFTSKRMNRNJXRBT
+butcher boy,beef and bean burritto,beef and bean burritto,142,360,130,5,0,730,1,protein,yes,BXRB,BFNTBNBRT,BFNTBNBRT
+hot pockets,meatballs & mozzarella,meatballs mozzarella,127,310,120,5,0,480,3,Other,yes,HTPKTS,MTBLSMSRL,MTBLSMSRL
+"jose ole, chimichanga",steak & cheese chimichanga,steak cheese chimichanga,142,310,100,4,0,660,0,other,yes,JSLXMXNK,STKXSXMXNK,STKXSXMXNK
+lunchables,turkey and cheddar with crackers,turkey cheddar with crackers,91,260,120,7,0,670,5,protein,yes,LNXBLS,TRKNTXTRW0KRKRS,TRKXTRW0KRKRS
+lunchables,ham and cheese with crackers,ham and cheese with crackers,91,260,110,7,0,750,5,protein,yes,LNXBLS,HMNTXSW0KRKRS,HMNTXSW0KRKRS
+white castle hamburgers,beef hamburgers,beef hamburgers,90,270,110,5,5,340,3,other,yes,WTKSTLHMRJRS,BFHMRJRS,BFHMRJRS
+pierre,"cheeseburger flambroiled, jumbo","cheeseburger flambroiled, jumbo",196,600,310,15,0,1060,5,protein,yes,PR,XSBRJRFLMRLTJM,XSBRJRFLMRLTJM
+pierre,jumbo bacon cheeseburger,jumbo bacon cheeseburger,168,520,290,12,1,920,7,protein,yes,PR,JMBKNXSBRJR,JMBKNXSBRJR
+raybern's,philly cheesesteak sandwich,cheesesteak sandwich,156,440,180,9,5,910,6,other,yes,RBRNS,FLXSSTKSNTWX,XSSTKSNTWX
+ottis spunkmeyer,banana nut muffin,banana nut muffin,57,220,90,2,0,200,17,other,yes,OTSSPNKMYR,BNNNTMFN,BNNNTMFN
+otis spunkmeyer,chocolate chip muffin,chocolate chip muffin,113,460,50,6,0,350,35,other,yes,OTSSPNKMYR,XKLTXPMFN,XKLTXPMFN
+nestle crunch bar,milk chocolate and crisped rice,chocolate and crisped rice,46,230,100,7,0,65,25,other,yes,NSTLKRNXBR,MLKXKLTNTKRSPTRS,XKLTNTKRSPTRS
+snackwell's,vanilla creme sandwich cookies (40% less fat),less fat vanilla creme sandwich cookies,24,100,25,1,0,80,8,other,yes,SNKWLS,FNLKRMSNTWXKKSLSFT,LSFTFNLKRMSNTWXKKS
+nutter butter,nabisco nutter butter cookies,nutter butter cookies,56,270,100,3,0,210,17,other,yes,NTRBTR,NBSKNTRBTRKKS,NTRBTRKKS
+cheetos ,crunchy cheddar jalapeno cheese flavored snacks,cheddar jalapeno cheese snacks,28,160,90,15,0,290,0,other,yes,XTS,KRNXXTRJLPNXSFLFRTSNKS,XTRJLPNXSSNKS
+salsitas,chips tortilla round,chips tortilla round,28,140,70,1,0,160,1,other,yes,SLSTS,XPSTRTLRNT,XPSTRTLRNT
+fritos® flavor twists® ,honey bbq flavored corn chips,honey bbq corn chips,28,150,80,15,0,180,1,other,yes,FRTSFLFRTWSTS,HNBKFLFRTKRNXPS,HNBKKRNXPS
+sunchips® garden salsa ,100% whole grain garden salsa flavored multigrain snacks,whole grain salsa snacks,28,140,60,1,0,150,2,whole grain,yes,SNXPSKRTNSLS,WLKRNKRTNSLSFLFRTMLTKRNSNKS,WLKRNSLSSNKS
+eatsmart snacks ,"veggie crisps sea salt,",veggie crisps,30,140,50,5,0,270,0,other,yes,ETSMRTSNKS,FKKRSPSSSLT,FKKRSPS
+eatsmart ," sea salt veggie sticks, tomato, potato & spinach,",veggie sticks,30,140,50,5,0,180,0,other,yes,ETSMRT,SSLTFKSTKSTMTPTTSPNX,FKSTKS
+eatsmart snacks ,snacks whole grain tortilla chips sea salt,whole grain tortilla chips,30,150,60,5,0,80,2,whole grain,yes,ETSMRTSNKS,SNKSHLKRNTRTLXPSSSLT,WLKRNTRTLXPS
+hk anderson ,pretzels nuggets peanut butter,pretzels nuggets peanut butter,30,140,60,15,0,330,2,other,yes,KNTRSN,PRTSLSNKTSPNTBTR,PRTSLSNKTSPNTBTR
+mac's ,pork skins bbq flavored,pork skins bbq,14,80,45,2,0,240,0,other,yes,MKS,PRKSKNSBKFLFRT,PRKSKNSBK
+takis fuego,rolled tortilla chip chilli and lime flavored ,chilli and lime tortilla chip,30,150,70,25,0,420,0,other,yes,TKSFK,RLTTRTLXPXLNTLMFLFRT,XLNTLMTRTLXP
+cocoa puffs,cereal bar,cereal bar,40,150,30,0,0,100,9,whole grain,yes,KKPFS,SRLBR,SRLBR
+quaker big chewy ,granola bars chocolate chip,chocolate chip bars,42,180,50,25,0,120,13,whole grain,yes,KKRBKX,KRNLBRSXKLTXP,XKLTXPBRS
+trix,cereal bar,cereal bar,40,150,30,5,0,100,9,whole grain,yes,TRKS,SRLBR,SRLBR
+cheetos,flamin' hot puffs reduced fat ,hot puffs reduced fat ,198,90,30,0,0,135,0,other,yes,XTS,FLMNHTPFSRTSTFT,HTPFSRTSTFT
+cloverhill,big texas cinnamon roll,cinnamon roll,113,460,180,10,0,420,33,other,yes,KLFRHL,BKTKSSSNMNRL,SNMNRL
+cloverhill,cheese danish,cheese danish,113,450,180,6,6,410,36,other,yes,KLFRHL,XSTNX,XSTNX
+cloverhill,honey bun glazed jumbo,honey bun glazed jumbo,113,500,210,13,0,420,35,other,yes,KLFRHL,HNBNKLSTJM,HNBNKLSTJM
+cloverhill,mini blueberry muffins,mini blueberry muffins,71,250,100,2,0,290,20,other,yes,KLFRHL,MNBLBRMFNS,MNBLBRMFNS
+otis spunkmeyer  wild blueberry muffin,wild blueberry muffin,blueberry muffin,64,220,80,2,0,270,19,other,yes,OTSSPNKMYRWLTBLBRMFN,WLTBLBRMFN,BLBRMFN
+gatorade recover ,whey protein bar chocolate chip,whey protein chocolate chip bar,80,360,120,10,0,160,29,other,yes,KTRTRKFR,WPRTNBRXKLTXP,WPRTNXKLTXPBR
+gatorade recover ,whey protein bar mint chocolate crunch,whey protein mint chocolate bar,80,360,110,9,0,180,28,other,yes,KTRTRKFR,WPRTNBRMNTXKLTKRNX,WPRTNMNTXKLTBR
+kind bar ,peanut butter dark chocolate,peanut butter dark chocolate bar,40,200,117,35,0,40,9,Protein,yes,KNTBR,PNTBTRTRKXKLT,PNTBTRTRKXKLTBR
+sabra hummus classic,sabra hummus classic,hummus classic,28,70,45,1,0,130,0,Protein,yes,SBRHMSKLSK,SBRHMSKLSK,HMSKLSK
+sabra classic hummus with pretzels,classic hummus with pretzels,hummus with pretzels,130,370,180,3,0,840,0,Protein,yes,SBRKLSKHMSW0PRTSLS,KLSKHMSW0PRTSLS,HMSW0PRTSLS
+big az,big az® country fried chicken sandwich,fried chicken sandwich,258,760,340,10,5,1200,9,Protein,yes,BKS,BKSKNTRFRTXKNSNTWX,FRTXKNSNTWX
+big az,bbq beef sub,bbq beef sub,227,560,240,9,5,1090,9,Protein,yes,BKS,BKBFSB,BKBFSB
+big az,bubba twins charbroil with cheese,twins charbroil with cheese,246,360,160,6,5,690,7,other,yes,BKS,BBTWNSXRBRLW0XS,TWNSXRBRLW0XS
+hot pockets,"sausage, egg & cheese",sausage egg cheese,127,320,150,8,0,410,2,other,yes,HTPKTS,SSJKXS,SSJKXS
+hot pockets,hickory ham & cheddar croissant crust,hickory ham & cheddar croissant,127,310,130,8,0,490,3,other,yes,HTPKTS,HKRHMXTRKRSNTKRST,HKRHMXTRKRSNT
+hot pockets,hickory ham & cheddar crispy buttery crust,hickory ham & cheddar crispy crust ,127,280,100,5,0,620,3,other,yes,HTPKTS,HKRHMXTRKRSPBTRKRST,HKRHMXTRKRSPKRST
+patty king,jamaican style spicy beef patties,jamaican spicy beef patties,130,300,80,45,0,440,4,other,yes,PTKNK,JMKNSTLSPSBFPTS,JMKNSPSBFPTS
+pierre,sandwich chicken breaded spicy twin,sandwich chicken breaded spicy,154,410,160,45,0,820,6,other,yes,PR,SNTWXXKNBRTTSPSTWN,SNTWXXKNBRTTSPS
+chex mix ,chex mix jalapeno cheddar,chex mix jalapeno cheddar,29,120,30,5,0,270,2,other,yes,XKSMKS,XKSMKSJLPNXTR,XKSMKSJLPNXTR
+dentyne,ice sugar-free gum peppermint,sugar-free gum peppermint,3,5,0,0,0,0,2,other,yes,TNTN,ISSKRFRKMPPRMNT,SKRFRKMPPRMNT
+quaker,quaker instant oatmeal apples & cinnamon,oatmeal apples & cinnamon,43,160,20,0,0,200,12,whole grain,yes,KKR,KKRNSTNTTMLPLSSNMN,OTMLPLSSNMN
+quaker,quaker instant oatmeal maple and brown sugar,oatmeal maple and brown sugar,41,150,20,0,0,95,12,whole grain,yes,KKR,KKRNSTNTTMLMPLNTBRNSKR,OTMLMPLNTBRNSKR
+white castle,cheeseburger,cheeseburger,104,330,150,8,1,600,4,other,yes,WTKSTL,XSBRJR,XSBRJR
+nissin ,cup noodle chicken soup,chicken soup noodle,64,300,120,7,0,1060,2,other,yes,NSN,KPNTLXKNSP,XKNSPNTL
+skinny pop,popcorn,popcorn,18,100,50,5,0,45,0,whole grain,yes,SKNPP,PPKRN,PPKRN
+amplify,paqui nacho cheese especial,nacho cheese,28,140,60,1,0,190,0,other,yes,AMPLF,PKNXXSSPXL,NXXS
+amplify,paqui very verde good,very verde,28,140,60,1,0,190,0,other,yes,AMPLF,PKFRFRTKT,FRFRT
+amplify,paqui haunted ghost pepper,ghost pepper,28,140,60,1,0,190,0,other,yes,AMPLF,PKHNTTFSTPPR,FSTPPR
+quest nutrition llc           ,quest nutrition protein chips bbq,bbq protein chips,32,130,30,0,0,280,0,protein,yes,KSTNTRXNLK,KSTNTRXNPRTNXPSBK,BKPRTNXPS
+quest nutrition llc           ,quest nutrition protein chips cheddar & sour cream,cheddar & sour cream protein chips,32,130,30,5,0,190,1,protein,yes,KSTNTRXNLK,KSTNTRXNPRTNXPSXTRSRKRM,XTRSRKRMPRTNXPS
+quest nutrition llc,quest nutrition protein chips sour cream & onion,sour cream & onion protein chips,32,130,30,5,0,250,1,protein,yes,KSTNTRXNLK,KSTNTRXNPRTNXPSSRKRMNN,SRKRMNNPRTNXPS
+general mills,annies all nat bunny & friends,fruit snacks,35,160,50,5,0,105,9,whole grain,yes,JNRLMLS,ANSLNTBNFRNTS,FRTSNKS
+pepperidge farms,goldfish flavor blasted xtra cheddar,goldfish xtra cheddar,30,140,45,1,0,270,1,other,yes,PPRJFRMS,KLTFXFLFRBLSTTKSTRXTR,KLTFXKSTRXTR
+pepperidge farms,goldfish flavor blasted xtra pizza,goldfish blasted xtra pizza,26,120,40,1,0,240,0,other,yes,PPRJFRMS,KLTFXFLFRBLSTTKSTRPS,KLTFXBLSTTKSTRPS
+pepperidge farms,goldfish cheddar,goldfish cheddar,30,140,45,1,0,250,0,other,yes,PPRJFRMS,KLTFXXTR,KLTFXXTR
+kellogg/keebler cookie&cracker,cheez-it® grooves™ zesty cheddar ranch ,cheez-it zesty cheddar ranch,28,130,50,1,0,230,1,other,yes,KLKKBLRKKKRKR,XSTKRFSSSTXTRRNX,XSTSSTXTRRNX
+kellogg/keebler cookie&cracker,cheez-it® grooves™ sharp white cheddar ,cheez-it sharp white cheddar,29,140,50,15,0,240,1,other,yes,KLKKBLRKKKRKR,XSTKRFSXRPHTXTR,XSTXRPHTXTR
+kellogg/keebler cookie&cracker,cheez-it duo's: bacon and cheddar,cheez-it bacon and cheddar,30,150,70,15,0,250,1,other,yes,KLKKBLRKKKRKR,XSTTSBKNNTXTR,XSTBKNNTXTR
+kellogg/keebler cookie&cracker,cheez its original,cheez -its,30,150,70,2,0,230,0,other,yes,KLKKBLRKKKRKR,XSTSRJNL,XSTS
+kellogg/keebler cookie&cracker,cheez-it cheddar jack,cheez-it cheddar jack,29,150,64,15,0,260,0,other,yes,KLKKBLRKKKRKR,XSTXTRJK,XSTXTRJK
+kellogg/keebler cookie&cracker,cheez-it white cheddar,cheez-it white cheddar,30,150,70,2,0,210,0,other,yes,KLKKBLRKKKRKR,XSTHTXTR,XSTHTXTR
+kellogg/keebler cookie&cracker,cheez-it hot/spicy,hot and spicy cheez-it,30,150,70,2,0,230,0,other,yes,KLKKBLRKKKRKR,XSTHTSPS,HTNTSPSXST
+kellogg/keebler cookie&cracker,keebler chs/p-btr,chips peanut butter cups cookies,32,170,80,4,0,90,10,other,yes,KLKKBLRKKKRKR,KBLRXSPBTR,XPSPNTBTRKPSKKS
+kellogg/keebler cookie&cracker,keebler toast/p-btr,sandwhich cracker toast and peanut,51,250,110,2,0,390,6,other,yes,KLKKBLRKKKRKR,KBLRTSTPBTR,SNTHXKRKRTSTNTPNT
+kellogg/keebler cookie&cracker,kelloggs cracker chips salt,sea salt cracker chips,30,120,35,0,0,220,0,vegetable,yes,KLKKBLRKKKRKR,KLKSKRKRXPSSLT,SSLTKRKRXPS
+kellogg/keebler cookie&cracker,kellogg's cracker chips sour cream,sour cream chips,30,120,35,0,0,230,2,vegetable,yes,KLKKBLRKKKRKR,KLKSKRKRXPSSRKRM,SRKRMXPS
+mars chocolate north america  ,combos ched crckr,combos cheddar cheese crackers,28,140,60,3,0,310,4,other,yes,MRSXKLTNR0MRK,KMSXTKRKR,KMSXTRXSKRKRS
+mars chocolate north america  ,combos pizza pepperoni,combos pepporoni pizza crackers,28,140,60,3,0,300,4,other,yes,MRSXKLTNR0MRK,KMSPSPPRN,KMSPPRNPSKRKRS
+mars chocolate north america  ,combos pizza pepperoni,combos pepporoni pizza crackers,28,140,60,3,0,300,4,other,yes,MRSXKLTNR0MRK,KMSPSPPRN,KMSPPRNPSKRKRS
+mondelez,nab ritz bits pb,peanut butter crackers,30,150,70,2,0,170,4,other,yes,MNTLS,NBRTSBTSPB,PNTBTRKRKRS
+mondelez,nab ritz bits chs,cheese crackers,31,160,80,3,0,160,4,other,yes,MNTLS,NBRTSBTSXS,XSKRKRS
+mondelez,nab ritz bits bacon and cheese,bacon and cheese crackers,38,190,80,35,0,320,4,other,yes,MNTLS,NBRTSBTSBKNNTXS,BKNNTXSKRKRS
+new froniter foods inc        ,oceans halo snack sea,seaweed snack sea salt,10,60,35,0,0,15,0,other,yes,NFRNTRFTSNK,OSNSHLSNKS,SWTSNKSSLT
+new froniter foods inc        ,oceans halo snack srir,seaweed snack sriracha,10,60,35,0,0,15,0,other,yes,NFRNTRFTSNK,OSNSHLSNKSRR,SWTSNKSRRX
+nature's box,asiago & cheddar cheese crisps,asiago & cheddar cheese crisps,28,140,60,4,0,180,0,other,yes,NTRSBKS,AXKXTRXSKRSPS,AXKXTRXSKRSPS
+bare snacks,toasted coconut - bare fruit coconut chips - toasted 100% natural,bare toasted coconut chips,30,170,90,9,0,170,11,other,yes,BRSNKS,TSTTKKNTBRFRTKKNTXPSTSTTNTRL,BRTSTTKKNTXPS
+bare snacks,bare fuit apple chip fuji red,apple chips,30,110,0,0,0,0,21,fruit,yes,BRSNKS,BRFTPLXPFJRT,APLXPS
+bare snacks,simply banana 141oz,banana chips,30,120,0,0,0,0,23,fruit,yes,BRSNKS,SMPLBNNS,BNNXPS
+paradise fruit company        ,think fruit cinnamon apple,cinnamon apple slices,43,150,0,0,0,15,30,fruit,yes,PRTSFRTKMPN,0NKFRTSNMNPL,SNMNPLSLSS
+paradise fruit company        ,think fruit pinapple,pineapple tidbits,43,151,0,0,0,81,31,fruit,yes,PRTSFRTKMPN,0NKFRTPNPL,PNPLTTBTS
+peeled,much-ado-about-mango,mango,40,120,0,0,0,0,20,fruit,yes,PLT,MXTBTMNK,MNK
+if value naturals,i f pineapple pieces,pineapple pieces,40,140,0,0,0,20,30,fruit,yes,IFFLNTRLS,IFPNPLPSS,PNPLPSS
+if value naturals,i f papaya,papaya chunks,40,140,0,0,0,20,30,fruit,yes,IFFLNTRLS,IFPPY,PPYXNKS
+if value naturals,i f banana chips,banana chips,34,150,0,0,0,0,10,fruit,yes,IFFLNTRLS,IFBNNXPS,BNNXPS
+if value naturals,i f apricots jumbo,dried apricots,40,100,18,0,0,10,5,fruit,yes,IFFLNTRLS,IFPRKTSJM,TRTPRKTS
+nature's box,big island pineapple,dried pineapple slices,40,120,0,0,0,0,13,fruit,yes,NTRSBKS,BKSLNTPNPL,TRTPNPLSLSS
+dang,dang caramel sea salt coconut chips,coconut chips,160,90,90,10,0,180,10,other,yes,TNK,TNKKRMLSSLTKKNTXPS,KKNTXPS
+general mills,lara bar peanut butter chocolate chip,peanut butter chocolate bars,45,210,110,3,0,60,19,fruits,yes,JNRLMLS,LRBRPNTBTRXKLTXP,PNTBTRXKLTBRS
+stork,werther's popcorn ss & pretzel,caramel popcorn,30,120,35,2,0,210,14,other,yes,STRK,WR0RSPPKRNSPRTSL,KRMLPPKRN
+if value naturals,i f peanut brittle crunch,peanut brittle crunch,42,190,45,1,0,150,12,protein,yes,IFFLNTRLS,IFPNTBRTLKRNX,PNTBRTLKRNX
+nature's box,vanilla bean wafers,vanilla bean wafers,30,150,60,4,0,150,9,other,yes,NTRSBKS,FNLBNWFRS,FNLBNWFRS
+soul sprouts-two mom's in the raw,cacao almond butter bites,cacaco almond butter truffles ,28,140,90,15,0,50,7,protein,yes,SLSPRTSTWMMSN0R,KKLMNTBTRBTS,KKKLMNTBTRTRFLS
+soul sprouts-two mom's in the raw,cinnamon almond butter bites,cinnamon almond butter truffles ,28,140,80,1,0,50,8,protein,yes,SLSPRTSTWMMSN0R,SNMNLMNTBTRBTS,SNMNLMNTBTRTRFLS
+soul sprouts-two mom's in the raw,coconut chocolate chip nut bar,nut bar,28,230,150,5,0,65,10,protein,yes,SLSPRTSTWMMSN0R,KKNTXKLTXPNTBR,NTBR
+jimmy bar,jimmy bar birthday cake bar,high proten birthday cake bar,23,100,40,4,0,35,2,protein,yes,JMBR,JMBRBR0TKKBR,HFPRTNBR0TKKBR
+jimmy bar,jimmy bar peanut butter ice cream bar,peanut butter ice cream bar,23,100,45,1,0,70,0,protein,yes,JMBR,JMBRPNTBTRSKRMBR,PNTBTRSKRMBR
+justins,justin's dark chocolate - mini's standup bag pb cups,dark choclate peanut butter cups,40,210,130,7,0,120,17,other,yes,JSTNS,JSTNSTRKXKLTMNSSTNTPBKPBKPS,TRKXKLTPNTBTRKPS
+justins,justin's milk chocolate - mini's standup bag pb cups,milk choclate peanut butter cups,40,220,140,8,0,105,16,other,yes,JSTNS,JSTNSMLKXKLTMNSSTNTPBKPBKPS,MLKXKLTPNTBTRKPS
+nature's box,mini belgian waffles,mini belgian waffles,30,140,60,25,0,105,9,other,yes,NTRSBKS,MNBLJNWFLS,MNBLJNWFLS
+little secrets llc            ,little secrets dark chocolate toasted coconut ,toasted coconut dark choclate pieces,40,190,90,8,0,25,24,other,yes,LTLSKRTSLK,LTLSKRTSTRKXKLTTSTTKKNT,TSTTKKNTTRKXKLTPSS
+little secrets llc            ,little secrets dark choc peanut butter candy,dark chococlate peanut butter candy,40,210,100,8,0,75,24,other,yes,LTLSKRTSLK,LTLSKRTSTRKXKPNTBTRKNT,TRKXKKLTPNTBTRKNT
+little secrets llc            ,little secrets dark chocolate candy,dark chocolate candy,40,190,90,6,0,10,23,other,yes,LTLSKRTSLK,LTLSKRTSTRKXKLTKNT,TRKXKLTKNT
+little secrets llc            ,little secrets dark chocolate salted peanut,dark chocolate salted peanut,40,200,110,4,0,65,19,other,yes,LTLSKRTSLK,LTLSKRTSTRKXKLTSLTTPNT,TRKXKLTSLTTPNT
+justins,justins dark chocolate peanut butter cups,chocolate peanut butter cups,40,210,130,7,0,120,17,other,yes,JSTNS,JSTNSTRKXKLTPNTBTRKPS,XKLTPNTBTRKPS
+tyson,golden island kung pao beef,beef jerky,28,90,20,1,0,200,7,protein,yes,TSN,KLTNSLNTKNKPBF,BFJRK
+tyson,golden island sriracha pork,sriacha pork jerky,28,100,25,1,0,410,8,protein,yes,TSN,KLTNSLNTSRRXPRK,SRXPRKJRK
+tyson,goldend island korean bbq port,korean barbeque pork jerky,28,90,20,5,0,360,10,protein,yes,TSN,KLTNTSLNTKRNBKPRT,KRNBRBKPRKJRK
+jack links beef jerky         ,jack links beef jerky orig,beef jerkey,28,80,5,0,0,670,6,protein,yes,JKLNKSBFJRK,JKLNKSBFJRKRK,BFJRK
+jack links beef jerky         ,jack links beef jerky pepper,peppered beef jerkey,28,80,5,0,0,550,7,protein,yes,JKLNKSBFJRK,JKLNKSBFJRKPPR,PPRTBFJRK
+sonoma creamery,bacon cheddar crisps,bacon cheddar crisps,28,150,70,5,0,312,0,dairy,yes,SNMKRMR,BKNXTRKRSPS,BKNXTRKRSPS
+conagra,slim jim giant slim original dsp,orginal smoked snack stick,28,140,100,4,0,480,1,protein,yes,KNKR,SLMJMJNTSLMRJNLTSP,ORJNLSMKTSNKSTK
+conagra,slim jim giant slim tabasco,tabasco smoked snack stick,28,140,100,4,0,480,1,protein,yes,KNKR,SLMJMJNTSLMTBSK,TBSKSMKTSNKSTK
+conagra,slim jim giant slim mild dsp,mild smoked snack stick,28,140,100,4,0,480,1,protein,yes,KNKR,SLMJMJNTSLMMLTTSP,MLTSMKTSNKSTK
+conagra,slim jim monster tabasco box,tabasco smoked monster size snack stick,55,270,190,8,5,940,2,protein,yes,KNKR,SLMJMMNSTRTBSKBKS,TBSKSMKTMNSTRSSSNKSTK
+oberto sausage company        ,oh boy! oberto spicy swt,spicy sweet beef jerky,28,80,10,0,0,400,5,protein,yes,OBRTSSJKMPN,OBBRTSPSST,SPSSWTBFJRK
+oberto sausage company        ,oh boy! oberto bf jrky,original beef jerky,28,80,10,5,0,410,5,protein,yes,OBRTSSJKMPN,OBBRTBFJRK,ORJNLBFJRK
+oberto sausage company        ,oh boy! oberto bf jrky tryk,teriyaki beef jerky,28,80,5,0,0,390,6,protein,yes,OBRTSSJKMPN,OBBRTBFJRKTRK,TRYKBFJRK
+oberto sausage company        ,oh boy! oberto bacon jerky,applewood smoked bacon jerky,28,130,80,3,0,670,1,protein,yes,OBRTSSJKMPN,OBBRTBKNJRK,APLWTSMKTBKNJRK
+oberto sausage company        ,oberto pepperoni,pepperoni jerky,28,160,120,45,0,530,0,protein,yes,OBRTSSJKMPN,OBRTPPRN,PPRNJRK
+oberto sausage company        ,oberto snack sticks,snack sticks,28,130,90,4,0,410,1,protein,yes,OBRTSSJKMPN,OBRTSNKSTKS,SNKSTKS
+vermont smoke and cure        ,vermont smoke and cure beef & pork crk pepp,beef & pork sticks,28,80,60,25,0,230,0,protein,yes,FRMNTSMKNTKR,FRMNTSMKNTKRBFPRKKRKPP,BFPRKSTKS
+vermont smoke and cure        ,vermont smoke and cure beef stick bbq,bbq beef stick,28,90,50,3,0,280,1,protein,yes,FRMNTSMKNTKR,FRMNTSMKNTKRBFSTKBK,BKBFSTK
+vermont smoke and cure        ,vermont smoke and cure turkey pepperoni,uncured pepperoni turkey stick,28,70,30,1,0,230,0,protein,yes,FRMNTSMKNTKR,FRMNTSMKNTKRTRKPPRN,UNKRTPPRNTRKSTK
+country archer,original beef jerky,beef jerky,28,70,10,0,0,410,4,protein,yes,KNTRRXR,ORJNLBFJRK,BFJRK
+country archer,sriracha beef jerky,sriracha beef jerky,28,100,15,0,9,310,8,protein,yes,KNTRRXR,SRRXBFJRK,SRRXBFJRK
+country archer,hickory smoke turkey,turkey jerky hickory smoke jerky,28,70,10,0,0,420,5,protein,yes,KNTRRXR,HKRSMKTRK,TRKJRKHKRSMKJRK
+field trip                    ,field trip jerky-original beef,orginal beef jerky,28,80,10,0,0,390,3,protein,yes,FLTTRP,FLTTRPJRKRJNLBF,ORJNLBFJRK
+field trip                    ,field trip jerky-cracked pepper turkey,cracked pepper turkey jerkey,28,70,0,0,0,310,2,protein,yes,FLTTRP,FLTTRPJRKKRKTPPRTRK,KRKTPPRTRKJRK
+thanasi foods llc tsn inc    ,dukes original angus jerky,angus jerky,28,50,5,0,0,210,3,protein,yes,0NSFTSLKTSNNK,TKSRJNLNKSJRK,ANKSJRK
+general mills,annies all nat cheddar squares,cheddar squares,30,140,60,1,0,250,0,other,yes,JNRLMLS,ANSLNTXTRSKRS,XTRSKRS
+general mills,chex extreme hot chili lime,chex mix xtreme habanero lime,33,140,40,1,0,230,3,other,yes,JNRLMLS,XKSKSTRMHTXLLM,XKSMKSKSTRMHBNRLM
+sonoma creamery               ,mr cheese o's parmesan,mr cheese o's parmesan,28,150,80,6,0,260,0,dairy,yes,SNMKRMR,MRXSSPRMSN,MRXSSPRMSN
+sonoma creamery               ,mr cheese o's cheddar,mr cheese o's cheddar,28,150,80,6,0,260,0,dairy,yes,SNMKRMR,MRXSSXTR,MRXSSXTR
+paradise fruit company        ,think fruit mix it up,think fruit mix it up,43,150,0,0,0,0,34,fruit,yes,PRTSFRTKMPN,0NKFRTMKSTP,0NKFRTMKSTP
+lesserevil snack company      ,super 4 baked bean bites nacho cheese,nacho cheese baked bean bites ,28,110,30,0,0,200,1,other,yes,LSRFLSNKKMPN,SPRBKTBNBTSNXXS,NXXSBKTBNBTS
+lesserevil snack company      ,super 4 baked bean bites roasted garlic,kale and roasted garlic bake bean bites,28,110,30,0,0,220,1,other,yes,LSRFLSNKKMPN,SPRBKTBNBTSRSTTKRLK,KLNTRSTTKRLKBKBNBTS
+simply 7,  quinoa bbq 12x35oz,quinoa barbeque chips,28,140,60,5,0,300,1,other,yes,SMPL,KNBKKSS,KNBRBKXPS
+simply 7,kale chips sea salt 12x35oz,sea salt kale chips,28,140,60,5,0,290,1,other,yes,SMPL,KLXPSSSLTKSS,SSLTKLXPS
+simply 7,kale chips olive oil lemon,lemon & olive oil kale chips,28,130,50,5,0,390,1,other,yes,SMPL,KLXPSLFLLMN,LMNLFLKLXPS
+simply 7,veggie chips organic 4oz,gluten free organic veggie chips,28,130,50,5,0,200,1,other,yes,SMPL,FKXPSRKNKS,KLTNFRRKNKFKXPS
+if value naturals,i f whole almonds,almonds,30,160,9,1,0,0,1,protein,yes,IFFLNTRLS,IFHLLMNTS,ALMNTS
+yum earth,yum earth gummies,gummy bears,198,70,0,0,0,10,9,other,yes,YMR0,YMR0KMS,KMBRS
+yum earth,yumearth organic licorice pomegrante sub,licorice  gummy bears,30,110,10,5,0,20,15,others,yes,YMR0,YMR0RKNKLKRSPMKRNTSB,LKRSKMBRS
+yum earth,yumearth gummy bears pomegranate sub,pomegranate gummy bears,28,90,9,0,0,6,12,other,yes,YMR0,YMR0KMBRSPMKRNTSB,PMKRNTKMBRS
+rhythm superfoods             ,rhythm superfoods sea salt beet chips,sea salt beet chips,28,130,35,0,0,200,12,vegetable,yes,R0MSPRFTS,R0MSPRFTSSSLTBTXPS,SSLTBTXPS
+rhythm superfoods             ,rhythm superfoods cinn & cnt sugr beet chips,cinnamon & coconut sugar beet chips,28,130,36,0,0,80,13,vegetable,yes,R0MSPRFTS,R0MSPRFTSSNKNTSKRBTXPS,SNMNKKNTSKRBTXPS
+pretzel perfection            ,pretzel perfection salted caramel clusters,salted caramel clusters,28,130,63,4,0,420,11,other,yes,PRTSLPRFKXN,PRTSLPRFKXNSLTTKRMLKLSTRS,SLTTKRMLKLSTRS
+new froniter foods inc        ,oceans halo snacks maui onion,seaweed snack onion,4,20,9,0,0,40,0,vegetable,yes,NFRNTRFTSNK,OSNSHLSNKSMNN,SWTSNKNN
+brands within reach llc       ,natures addicts fruit sticks apple mng pass,apple mango passion fruit sticks,30,100,0,0,0,15,19,fruit,yes,BRNTSW0NRXLK,NTRSTKTSFRTSTKSPLMNKPS,APLMNKPSNFRTSTKS
+brands within reach llc       ,natures addicts fruit sticks apple raspberry,fruit sticks apple raspberry,30,100,0,0,0,10,19,fruit,yes,BRNTSW0NRXLK,NTRSTKTSFRTSTKSPLRSPBR,FRTSTKSPLRSPBR
+dang,dang original toasted coconut chips snack size,cocounut chips,28,170,108,11,0,160,10,other,yes,TNK,TNKRJNLTSTTKKNTXPSSNKSS,KKNTXPS
+organic valley,mighty bar bacon apple,mighty bar bacon apple,28,70,30,15,0,300,3,protein,yes,ORKNKFL,MFTBRBKNPL,MFTBRBKNPL
+organic valley,mighty bar pepper beef,mighty bar pepper beef,28,90,35,15,0,350,3,protein,yes,ORKNKFL,MFTBRPPRBF,MFTBRPPRBF
+general mills,lara bar cashew cookie,lara bar cashew cookie,48,230,110,15,0,5,18,protein,yes,JNRLMLS,LRBRKXKK,LRBRKXKK
+blue diamond growers          ,blue diamond almonds smokehouse,almonds smokehouse,28,170,144,1,0,150,1,prtoein,yes,BLTMNTKRWRS,BLTMNTLMNTSSMKHS,ALMNTSSMKHS
+organic valley,mighty bar cranberry sunflower,mighty bar cranberry sunflower seed,28,80,35,15,0,310,3,protein,yes,ORKNKFL,MFTBRKRNBRSNFLWR,MFTBRKRNBRSNFLWRST
+peeled,sea salt peas please,crunchy pea snack sea salt,28,130,41,5,0,200,1,other,yes,PLT,SSLTPSPLS,KRNXPSNKSSLT
+peeled,white cheddar peas please,crunchy pea snack white cheddar,28,120,40,0,0,190,1,other,yes,PLT,WTXTRPSPLS,KRNXPSNKHTXTR
+lp shanks company             ,sea point farms dry roasted edamame lightly salted ,dry roasted edamame lightly salted ,,130,40,5,0,150,1,vegetable,yes,LPXNKSKMPN,SPNTFRMSTRRSTTTMMLFTLSLTT,TRRSTTTMMLFTLSLTT
+lp shanks company             ,sea point farms dry roasted edamame spicy wasabi ,dry roasted edamame spicy wasabi ,30,130,40,5,0,130,1,vegetable,yes,LPXNKSKMPN,SPNTFRMSTRRSTTTMMSPSWSB,TRRSTTTMMSPSWSB
+if value naturals,i f mango chile,mango with chile,40,150,0,0,0,400,26,fruit,yes,IFFLNTRLS,IFMNKXL,MNKW0XL
+if value naturals,i f wasabi peas,wasabi peas,30,120,27,1,0,240,2,vegetable,yes,IFFLNTRLS,IFWSBPS,WSBPS
+if value naturals,i f roasted corn nuts,roasted pistachios salted,28,160,117,2,0,120,2,nuts,yes,IFFLNTRLS,IFRSTTKRNNTS,RSTTPSTXSSLTT
+if value naturals,i f fire rstd cashw w/sslt       ,cashew with sea salt,30,180,153,1,0,110,0,protein,yes,IFFLNTRLS,IFFRRSTTKXSLT,KXW0SSLT
+if value naturals,i f pumpkin seeds r/s,roasted salted pumpkin seed,30,160,117,3,0,15,1,protein,yes,IFFLNTRLS,IFPMPKNSTSRS,RSTTSLTTPMPKNST
+if value naturals,i f pistachio r/s ,roasted salted pistachios,,,,,,,,,yes,IFFLNTRLS,IFPSTXRS,RSTTSLTTPSTXS
+hain celestial group          ,sens port veggie chips sea salt,"veggie chips, sea salt",28,130,60,1,0,250,1,other,yes,HNSLSXLKRP,SNSPRTFKXPSSSLT,FKXPSSSLT
+nature's box,mocha almonds,mocha almonds,30,190,130,25,0,40,5,protein,yes,NTRSBKS,MXLMNTS,MXLMNTS
+royal ridge fruits            ,stoneridge orchards all natural dried berry mix,dried berry mix,40,130,5,0,0,10,30,fruit,yes,RYLRJFRTS,STNRJRXRTSLNTRLTRTBRMKS,TRTBRMKS
+royal ridge fruits            ,stoneridge orchards all natural dried montmorency cherries,dried montmorency cherries,40,130,0,0,0,10,30,fruit,yes,RYLRJFRTS,STNRJRXRTSLNTRLTRTMNTMRNSXRS,TRTMNTMRNSXRS
+nature's box,sriracha roasted cashews,sriracha roasted cashews,30,160,110,25,0,190,4,protein,yes,NTRSBKS,SRRXRSTTKXS,SRRXRSTTKXS
+wild things,wild things skinny rasp dipped almonds,almonds dark chocolate raspberry ,34,180,140,25,0,100,6,protein,yes,WLT0NKS,WLT0NKSSKNRSPTPTLMNTS,ALMNTSTRKXKLTRSPBR
+soul sprouts-two mom's in the raw,soul sprout blueberry burst,soul sprout blueberry burst,43,190,120,15,0,70,10,other,yes,SLSPRTSTWMMSN0R,SLSPRTBLBRBRST,SLSPRTBLBRBRST
+gourmet pop!,gourmet pop! tajin kettle cooked potato chi,potato chips tajin,28,140,70,5,0,330,0,other,yes,KRMTPP,KRMTPPTJNKTLKKTPTTX,PTTXPSTJN
+rocky mountain popcorn co     ,rocky mntn popcorn naked,popcorn ,28,160,110,1,0,115,0,whole grain ,yes,RKMNTNPPKRNK,RKMNTNPPKRNNKT,PPKRN
+rocky mountain popcorn co     ,rocky mountain popcorn wht chddr,popcorn white cheddar,28,140,80,5,0,200,2,whole grain,yes,RKMNTNPPKRNK,RKMNTNPPKRNTXTR,PPKRNHTXTR
+roberts american gourmet      ,pirates smart puffs wisc chdr,corn puffs real wisonsin cheddar,28,140,60,1,0,260,2,other,yes,RBRTSMRKNKRMT,PRTSSMRTPFSWSKXTR,KRNPFSRLWSNSNXTR
+roberts american gourmet      ,pirates booty wh chddr,corn puffs white cheddar,28,140,50,1,0,190,1,other,yes,RBRTSMRKNKRMT,PRTSBTXTR,KRNPFSHTXTR
+popcorn indiana ,original kettlecorn 4oz,original kettlecorn,28,130,45,0,0,130,9,whole grain,yes,PPKRNNTN,ORJNLKTLKRNS,ORJNLKTLKRN
+"inventure foods, inc         ",tgi fridays mac & cheesebites,mac & cheese party bites,28,140,60,1,0,150,1,other,yes,INFNTRFTSNK,TJFRTSMKXSBTS,MKXSPRTBTS
+popcorners,pop corners white chedddar feel good,pop corners white chedddar,28,120,40,5,0,135,0,other,yes,PPKRNRS,PPKRNRSHTXTRFLKT,PPKRNRSHTXTR
+popcorners,popcorners carnival kettle,popcorners carnival kettle,28,120,35,0,0,110,3,other,yes,PPKRNRS,PPKRNRSKRNFLKTL,PPKRNRSKRNFLKTL
+popcorn indiana ,movie theater butter 35oz,movie theater popcorn,28,160,108,15,0,170,0,whole grain,yes,PPKRNNTN,MF0TRBTRS,MF0TRPPKRN
+popcorn indiana ,aged white cheddar 35oz,popcorn white cheddar,28,150,81,1,0,290,2,whole grain,yes,PPKRNNTN,AJTHTXTRS,PPKRNHTXTR
+amplify,skinny pop lightly salted ,popcorn lightly salted ,28,150,90,1,0,75,0,whole grain,yes,AMPLF,SKNPPLFTLSLTT,PPKRNLFTLSLTT
+amplify,skinny pop white cheddar,popcorn white cheddar,28,150,90,1,0,95,0,whole grain,yes,AMPLF,SKNPPHTXTR,PPKRNHTXTR
+amplify,skinny pop jalapeno,popcorn jalapeno,28,140,80,5,0,270,0,whole grain,yes,AMPLF,SKNPPJLPN,PPKRNJLPN
+gourmet pop!,gourmet pop! the original huy fong sriracha ,popcorn sriracha ,30,170,108,1,0,180,1,whole grain,yes,KRMTPP,KRMTPP0RJNLHFNKSRRX,PPKRNSRRX
+general mills,gardetto pretzel mix deli,pretzel mix mustard,31,130,18,0,0,220,0,other,yes,JNRLMLS,KRTTPRTSLMKSTL,PRTSLMKSMSTRT
+hershey,reese's dipped pretzels,reese's dipped pretzels,40,190,80,7,0,130,13,other,yes,HRX,RSSTPTPRTSLS,RSSTPTPRTSLS
+hershey,hershey dipped pretzel,hershey dipped pretzel,41,190,70,5,0,130,15,other,yes,HRX,HRXTPTPRTSL,HRXTPTPRTSL
+mars chocolate north america  ,combos pretzel cheddar cheese,combos pretzel cheddar cheese,28,140,45,3,0,300,4,other,yes,MRSXKLTNR0MRK,KMSPRTSLXTRXS,KMSPRTSLXTRXS
+mars chocolate north america  ,combos pretzel pizzeria,combos pretzel pizzeria,28,130,45,3,0,310,4,other,yes,MRSXKLTNR0MRK,KMSPRTSLPSR,KMSPRTSLPSR
+mars chocolate north america  ,combos vanilla frosted vanilla frostd prtzl pretzel,combos vanilla frostd pretzels,28,130,45,3,0,270,5,other,yes,MRSXKLTNR0MRK,KMSFNLFRSTTFNLFRSTTPRTSLPRTSL,KMSFNLFRSTTPRTSLS
+snack factory llc             ,pretzel crisp original,pretzel crisp original,28,100,0,0,0,330,2,other,yes,SNKFKTRLK,PRTSLKRSPRJNL,PRTSLKRSPRJNL
+snack factory llc             ,pretzel crisp buffalo,pretzel crisp buffalo,28,110,15,0,0,540,2,other,yes,SNKFKTRLK,PRTSLKRSPBFL,PRTSLKRSPBFL
+sl snacks national snyders    ,snyders hanover prtz mini,mini pretzels,30,110,0,0,0,250,1,other,yes,SLSNKSNXNLSNTRS,SNTRSHNFRPRTSMN,MNPRTSLS
+sl snacks national snyders    ,snyders hanover prtz pc hny/mstd,honey mustard & onion pretzel pieces,28,140,60,3,0,240,3,other,yes,SLSNKSNXNLSNTRS,SNTRSHNFRPRTSPKNMSTT,HNMSTRTNNPRTSLPSS
+sl snacks national snyders    ,snyders hanover prtz nblr srdgh,pretzel sourdough,30,120,0,0,0,200,1,other,yes,SLSNKSNXNLSNTRS,SNTRSHNFRPRTSNBLRSRTF,PRTSLSRT
+sl snacks national snyders    ,sny hot buffalo wing ,pretzel hot buffalo wing,28,140,63,3,0,380,0,other,yes,SLSNKSNXNLSNTRS,SNHTBFLWNK,PRTSLHTBFLWNK
+if value naturals,i f sesame stick salted,salted sesame sticks,28,150,81,1,0,230,0,other,yes,IFFLNTRLS,IFSSMSTKSLTT,SLTTSSMSTKS
+road crew snacks,road crew crunch milk chocolate mile,crunch milk chocolate mile,28,140,72,3,0,110,7,other,yes,RTKRSNKS,RTKRKRNXMLKXKLTML,KRNXMLKXKLTML
+road crew snacks,road crew crunch peanut butter pass,crunch peanut butter pass,28,150,81,45,0,95,9,other,yes,RTKRSNKS,RTKRKRNXPNTBTRPS,KRNXPNTBTRPS
+pretzel perfection            ,pretzel perfection tomato basil pretzel sticks,pretzel tomato basil,28,110,36,15,0,430,2,other,yes,PRTSLPRFKXN,PRTSLPRFKXNTMTBSLPRTSLSTKS,PRTSLTMTBSL
+demets candy company          ,flipz pretzel mlk choc,milk chocolate pretzels,28,140,46,3,0,140,12,other,yes,TMTSKNTKMPN,FLPSPRTSLMLKXK,MLKXKLTPRTSLS
+demets candy company          ,flipz birthday cake,birthday cake covered pretzels,28,130,54,5,0,140,11,other,yes,TMTSKNTKMPN,FLPSBR0TKK,BR0TKKKFRTPRTSLS
+demets candy company          ,flipz pretzel wht fdg,sugar free white fudge covered pretzels,28,100,63,6,0,130,0,other,yes,TMTSKNTKMPN,FLPSPRTSLTFTK,SKRFRHTFJKFRTPRTSLS
+wonderful pistachios & almonds,wonderful pistachios,pistachios,50,290,207,3,0,270,4,protein,yes,WNTRFLPSTXSLMNTS,WNTRFLPSTXS,PSTXS
+wonderful pistachios & almonds,wonderful roasted & salted no shells,"pistachios, salted, no shell",30,160,126,15,0,160,2,protein,yes,WNTRFLPSTXSLMNTS,WNTRFLRSTTSLTTNXLS,PSTXSSLTTNXL
+wonderful pistachios & almonds,wonderful pistachios s&p,pistachios salt and pepper,30,126,126,15,0,160,2,protein,yes,WNTRFLPSTXSLMNTS,WNTRFLPSTXSSP,PSTXSSLTNTPPR
+conagra,david jumbo sunflower seeds,sunflower seeds,30,190,135,15,0,140,5,other,yes,KNKR,TFTJMSNFLWRSTS,SNFLWRSTS
+kraft heinz foods co dry      ,planters peanut whole and halves honey,peanuts honey,,,,,,,,,,KRFTHNSFTSKTR,PLNTRSPNTHLNTHLFSHN,PNTSHN
+kraft heinz foods co dry      ,planters peanut whole and halves regular,peanut regular,,,,,,,,,,KRFTHNSFTSKTR,PLNTRSPNTHLNTHLFSRKLR,PNTRKLR
+kraft heinz foods co dry      ,planters dry roasted peanuts,roasted peanuts,28,160,14,2,0,150,2,protein,yes,KRFTHNSFTSKTR,PLNTRSTRRSTTPNTS,RSTTPNTS
+kraft heinz foods co dry      ,planters cashew salt ,cashew salt ,100,160,13,25,0,100,2,protein,yes,KRFTHNSFTSKTR,PLNTRSKXSLT,KXSLT
+kraft heinz foods co dry      ,planters cashew honey roast ,cashew honey roast ,28,140,72,15,0,15,12,protein,yes,KRFTHNSFTSKTR,PLNTRSKXHNRST,KXHNRST
+hain celestial group          ,sens port veggie strw lgtly slt,"veggie straws, lightly salted",28,130,63,1,0,210,5,other,yes,HNSLSXLKRP,SNSPRTFKSTRLKTLSLT,FKSTRSLFTLSLTT
+natures joy inc               ,natures joy kernals - bbq ,smoky bbq pistachio kernels,28,160,117,15,0,160,3,protein,yes,NTRSJNK,NTRSJKRNLSBK,SMKBKPSTXKRNLS
+natures joy inc               ,natures joy kernals - cajan,cajun hotter sauce flavored pistachio kernels,32,140,99,1,0,200,3,protein,yes,NTRSJNK,NTRSJKRNLSKJN,KJNHTRSSFLFRTPSTXKRNLS
+biena llc                     ,biena chic pea sea salt,"chickpea snacks, sea salt",28,130,36,0,0,160,0,vegetable,yes,BNLK,BNXKPSSLT,XKPSNKSSSLT
+biena llc                     ,biena chic pea honey roasted,chickpea snacks honey roasted,34,150,32,0,0,120,5,vegetable,yes,BNLK,BNXKPHNRSTT,XKPSNKSHNRSTT
+general mills,chex mix cheddar,chex mix cheddar,30,130,32,5,0,230,3,other,yes,JNRLMLS,XKSMKSXTR,XKSMKSXTR
+general mills,chex mix bold party blend,chex mix bold party blend,29,120,30,5,0,220,2,other,yes,JNRLMLS,XKSMKSBLTPRTBLNT,XKSMKSBLTPRTBLNT
+general mills,chex mix hot'n spicy,chex mix hot 'n spicy ,26,110,25,5,25,140,2,other,yes,JNRLMLS,XKSMKSHTNSPS,XKSMKSHTNSPS
+general mills,chex mix traditional,chex mix traditional,29,120,32,5,0,210,2,other,yes,JNRLMLS,XKSMKSTRTXNL,XKSMKSTRTXNL
+general mills,gardettos snack mix orig,snack mix,32,150,60,1,0,310,1,other,yes,JNRLMLS,KRTTSSNKMKSRK,SNKMKS
+general mills,gardetto snack mix italian recipe,snack mix italian,31,140,45,1,0,320,1,other,yes,JNRLMLS,KRTTSNKMKSTLNRSP,SNKMKSTLN
+general mills,chex mix jalapeno cheddar,chex mix jalapeno cheddar,29,120,30,5,0,270,2,other,yes,JNRLMLS,XKSMKSJLPNXTR,XKSMKSJLPNXTR
+general mills,chex mix chocolate cookies/cream,chocolate chex mix cookies & cream,33,150,40,35,0,65,12,other,yes,JNRLMLS,XKSMKSXKLTKKSKRM,XKLTXKSMKSKKSKRM
+general mills,chex mix muddy buddies choc,chocolate chex mix muddy buddies,28,130,40,25,0,70,9,other,yes,JNRLMLS,XKSMKSMTBTSXK,XKLTXKSMKSMTBTS
+kellogg/keebler cookie&cracker,cheez-it snack mix sirrachia,cheez-it snack mix sirrachia,30,120,45,1,0,250,1,other,yes,KLKKBLRKKKRKR,XSTSNKMKSSRX,XSTSNKMKSSRX
+kellogg/keebler cookie&cracker,cheez-it snack mix sweet and salty,cheez-it snack mix sweet and salty,30,140,45,15,0,160,5,other,yes,KLKKBLRKKKRKR,XSTSNKMKSSWTNTSLT,XSTSNKMKSSWTNTSLT
+kellogg/keebler cookie&cracker,cheez-it original snack mix   ,cheez-it original snack mix   ,30,130,40,1,0,370,1,other,yes,KLKKBLRKKKRKR,XSTRJNLSNKMKS,XSTRJNLSNKMKS
+hershey,hershey snack mix,hershey snack mix,43,190,90,45,0,230,12,other,yes,HRX,HRXSNKMKS,HRXSNKMKS
+hershey,reese snack mix,reese snack mix,56,280,135,6,0,230,18,other,yes,HRX,RSSNKMKS,RSSNKMKS
+general mills,annies all nat org ched snk mix,cheddar snack mix,30,150,60,1,0,200,0,other,yes,JNRLMLS,ANSLNTRKXTSNKMKS,XTRSNKMKS
+kraft heinz foods co dry      ,planters nuts and trail mixes - new peanut butter trail mix,peanut butter chocolate trail mix,32,180,12,2,0,70,9,protein,yes,KRFTHNSFTSKTR,PLNTRSNTSNTTRLMKSSNPNTBTRTRLMKS,PNTBTRXKLTTRLMKS
+kraft heinz foods co dry      ,planters trail mix nut/choc,trail mix nut chocolate,33,170,10,25,0,35,11,protein,yes,KRFTHNSFTSKTR,PLNTRSTRLMKSNTXK,TRLMKSNTXKLT
+kraft heinz foods co dry      ,planters trail mix fruit/nut,trail mix fruit nut,31,160,90,3,0,15,11,protein,yes,KRFTHNSFTSKTR,PLNTRSTRLMKSFRTNT,TRLMKSFRTNT
+oberto sausage company        ,oberto original beef jerky trail mix,beef jerky trail mix,57,270,171,45,0,140,12,protein,yes,OBRTSSJKMPN,OBRTRJNLBFJRKTRLMKS,BFJRKTRLMKS
+oberto sausage company        ,oberto spicy beef jerky trail  mix,beef spicy jerky trail mix,57,260,135,25,0,180,11,protein,yes,OBRTSSJKMPN,OBRTSPSBFJRKTRLMKS,BFSPSJRKTRLMKS
+oberto sausage company        ,obertoteriyaki chicken jerky trail mix,chicken jerky trail mix,57,240,126,25,0,330,12,protein,yes,OBRTSSJKMPN,OBRTTRYKXKNJRKTRLMKS,XKNJRKTRLMKS
+stone ridge,fruit & nut bites - cranberry,fruit & nut bites - cranberry,40,180,99,15,0,20,11,protein,yes,STNRJ,FRTNTBTSKRNBR,FRTNTBTSKRNBR
+stone ridge,fruit & nut bites - blueberry greek yogurt,fruit & nut bites - blueberry greek yogurt,40,180,90,35,0,20,15,dairy,yes,STNRJ,FRTNTBTSBLBRKRKYKRT,FRTNTBTSBLBRKRKYKRT
+stone ridge,fruit & nut bites - cherry cashew pecan,fruit & nut bites - cherry cashew pecan,40,180,80,15,0,55,13,protein,yes,STNRJ,FRTNTBTSXRKXPKN,FRTNTBTSXRKXPKN
+gourmet nut,power up protein packed trail mix,power up protein packed trail mix,28,150,72,1,0,5,10,protein,yes,KRMTNT,PWRPPRTNPKTTRLMKS,PWRPPRTNPKTTRLMKS
+gourmet nut,power up body boosting antioxidant mix,power up body boosting antioxidant mix,30,150,70,15,0,200,6,fruit,yes,KRMTNT,PWRPBTBSTNKNXKSTNTMKS,PWRPBTBSTNKNXKSTNTMKS
+gourmet nut,power up mega omega trail mix,power up mega omega trail mix,28,150,80,1,0,5,10,fruit,yes,KRMTNT,PWRPMKMKTRLMKS,PWRPMKMKTRLMKS
+if value naturals,i f choc nut trail mix,choc nut trail mix,28,190,90,2,0,95,9,protein,yes,IFFLNTRLS,IFXKNTTRLMKS,XKNTTRLMKS
+if value naturals,i f cherry delight,snack mix cherry delite,28,140,54,2,0,10,15,fruit,yes,IFFLNTRLS,IFXRTLFT,SNKMKSXRTLT
+if value naturals,i f cranberry health,dried cranberries,40,130,0,0,0,0,26,fruit,yes,IFFLNTRLS,IFKRNBRHL0,TRTKRNBRS
+if value naturals,i f carmel apple crunch,caramel apple crunch snack mix,40,196,99,3,0,96,17,protein,yes,IFFLNTRLS,IFKRMLPLKRNX,KRMLPLKRNXSNKMKS
+if value naturals,i f raspberry rage snk mx,raspberry rage snack mix,30,300,126,6,0,10,35,fruit,yes,IFFLNTRLS,IFRSPBRRJSNKMKS,RSPBRRJSNKMKS
+if value naturals,i f butter toffee cashews        ,toffee cashews,30,150,72,15,0,20,13,other,yes,IFFLNTRLS,IFBTRTFKXS,TFKXS
+if value naturals,i f deluxe mixed fruit,sliced fruit delxue,40,110,0,0,0,25,15,fruit,yes,IFFLNTRLS,IFTLKSMKSTFRT,SLSTFRTTLKS
+if value naturals,i f survival mix ,survival snack mix,30,220,54,1,0,55,6,protein,yes,IFFLNTRLS,IFSRFFLMKS,SRFFLSNKMKS
+nourish,nourish coconut-vanilla,coconut vanilla granola bites,28,120,40,3,0,100,6,whole grain,yes,NRX,NRXKKNTFNL,KKNTFNLKRNLBTS
+nutri grain,nutri-grain bar apple cinnamon,bar apple cinnamon,37,120,30,5,0,110,12,Whole grain,yes,NTRKRN,NTRKRNBRPLSNMN,BRPLSNMN
+nutri grain,nutri-grain bar blueberry,bar blueberry,37,120,30,5,0,110,12,Whole grain,yes,NTRKRN,NTRKRNBRBLBR,BRBLBR
+goodnessknows,goodnessknows peach cherry bar,peach cherry bar,34,150,60,15,0,40,12,protein,yes,KTNSKNS,KTNSKNSPXXRBR,PXXRBR
+goodnessknows,goodnessknows cranberry bar,cranberry bar,34,150,60,15,0,40,11,fruit,yes,KTNSKNS,KTNSKNSKRNBRBR,KRNBRBR
+nature's bakery,nature's bakery fig bars raspberry,fig bars raspberry,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSRSPBR,FKBRSRSPBR
+nature's bakery,nature's bakery fig bars apple cinnamon,fig bars apple cinnamon,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSPLSNMN,FKBRSPLSNMN
+nature's bakery,nature's bakery fig bars blueberry,fig bars blueberry,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSBLBR,FKBRSBLBR
+nature's bakery,nature's bakery fig bars fig,fig bars original,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSFK,FKBRSRJNL
+nature's bakery,nature's bakery fig bars lemon,fig bars lemon,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSLMN,FKBRSLMN
+nature's bakery,nature's bakery fig bars peach apricot,fig bars peach apricot,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSPXPRKT,FKBRSPXPRKT
+nature's bakery,nature's bakery fig bars strawberry,fig bars strawberry,28,110,225,0,0,45,10,whole grain,yes,NTRSBKR,NTRSBKRFKBRSSTRBR,FKBRSSTRBR
+general mills,cinnamon toast crunch,cinnamon toast crunch,31,130,30,5,0,180,9,Whole grain,yes,JNRLMLS,SNMNTSTKRNX,SNMNTSTKRNX
+general mills,apple cinnamon toast crunch,apple cinnamon toast crunch,28,120,25,1,0,120,9,Whole grain,yes,JNRLMLS,APLSNMNTSTKRNX,APLSNMNTSTKRNX
+general mills,blueberry toast crunch,blueberry toast crunch,28,120,30,1,0,120,9,Whole grain,yes,JNRLMLS,BLBRTSTKRNX,BLBRTSTKRNX
+general mills,strawberry toast crunch,strawberry toast crunch,28,120,25,1,0,120,9,Whole grain,yes,JNRLMLS,STRBRTSTKRNX,STRBRTSTKRNX
+general mills,french toast crunch,french toast crunch,28,110,10,0,0,140,9,Whole grain,yes,JNRLMLS,FRNXTSTKRNX,FRNXTSTKRNX
+cheerios,cheerios honey nut,cheerios honey nut,28,110,15,0,0,160,9,Whole grain,yes,XRS,XRSHNNT,XRSHNNT
+kellogg's,kell froot loops,froot loops,29,110,10,5,0,135,12,other,yes,KLKS,KLFRTLPS,FRTLPS
+kellogg's,kellogg's kell frosted flakes cereal,frosted flakes cereal,29,110,0,0,0,150,10,other,yes,KLKS,KLKSKLFRSTTFLKSSRL,FRSTTFLKSSRL
+nature valley ,sweet & spicy chili dark chocolate bar,chili dark chocolate bar,35,160,72,0,0,150,9,protein,yes,NTRFL,SWTSPSXLTRKXKLTBR,XLTRKXKLTBR
+nature valley ,granola cups almond butter,granola cups almond butter,38,200,100,4,0,180,9,Whole grain,yes,NTRFL,KRNLKPSLMNTBTR,KRNLKPSLMNTBTR
+nature valley ,granola cups peanut butter chocolate,granola cups peanut butter chocolate,38,200,100,4,0,180,9,Whole grain,yes,NTRFL,KRNLKPSPNTBTRXKLT,KRNLKPSPNTBTRXKLT
+belvita,bites chocolate,bites chocolate,50,230,70,15,0,135,12,Whole grain,yes,BLFT,BTSXKLT,BTSXKLT
+belvita,belvita protein blueberry and almond soft baked biscuits,protein blueberry and almond biscuits ,50,200,70,1,0,220,11,Whole grain,yes,BLFT,BLFTPRTNBLBRNTLMNTSFTBKTBSKTS,PRTNBLBRNTLMNTBSKTS
+belvita,"protein oats, honey & chocolate soft baked biscuits","protein oats, honey & chocolate biscuits",50,200,70,2,0,220,10,protein,yes,BLFT,PRTNTSHNXKLTSFTBKTBSKTS,PRTNTSHNXKLTBSKTS
+santa barbara bar,peanut chocolate cherry bar,peanut chocolate cherry bar,45,180,70,15,0,130,9,other,yes,SNTBRBRBR,PNTXKLTXRBR,PNTXKLTXRBR
+santa barbara bar,cranberry white chocolate bar,cranberry white chocolate bar,45,190,70,15,0,105,9,other,yes,SNTBRBRBR,KRNBRHTXKLTBR,KRNBRHTXKLTBR
+santa barbara bar,coconut almond bar,coconut almond bar,45,190,80,2,0,115,8,other,yes,SNTBRBRBR,KKNTLMNTBR,KKNTLMNTBR
+this bar saves lives,"madagascar vanilla, almonds & honey bar","vanilla, almonds & honey bar",40,180,80,5,0,70,6,protein,yes,0SBRSFSLFS,MTKSKRFNLLMNTSHNBR,FNLLMNTSHNBR
+this bar saves lives,"dark chocolate, cherry & sea salt bar","dark chocolate, cherry bar",40,160,60,2,0,70,12,protein,yes,0SBRSFSLFS,TRKXKLTXRSSLTBR,TRKXKLTXRBR
+this bar saves lives,dark chocolate peanut butter & sea salt bar,dark chocolate peanut butter bar ,40,190,90,25,0,110,7,other,yes,0SBRSFSLFS,TRKXKLTPNTBTRSSLTBR,TRKXKLTPNTBTRBR
+luna,luna white choc macdmia bar,white choc macademia bar,48,200,70,2,0,190,8,protein,yes,LN,LNHTXKMKTMBR,WTXKMKTMBR
+clif bar,clif choc chip bar,choc chip bar,68,250,45,15,0,140,21,other,yes,KLFBR,KLFXKXPBR,XKXPBR
+clif bar,crunchy peanut butter bar ,crunchy peanut butter bar ,68,260,60,1,0,230,19,other,yes,KLFBR,KRNXPNTBTRBR,KRNXPNTBTRBR
+clif bar,chocolate chip peanut crunch bar,chocolate chip peanut crunch  bar,68,260,60,15,0,240,20,other,yes,KLFBR,XKLTXPPNTKRNXBR,XKLTXPPNTKRNXBR
+clif bar,bar chocolate brownie bar,chocolate brownie  bar,68,250,50,15,0,180,21,other,yes,KLFBR,BRXKLTBRNBR,XKLTBRNBR
+luna,nutz over chocolate bar,nutz over chocolate bar,48,200,70,25,0,170,7,protein,yes,LN,NTSFRXKLTBR,NTSFRXKLTBR
+clif bar,clif luna bar lemon zest,lemon zest bar,48,190,60,25,0,95,9,protein,yes,KLFBR,KLFLNBRLMNSST,LMNSSTBR
+clif bar,clif luna s'mores,s'mores bar,48,190,60,25,0,130,9,protein,yes,KLFBR,KLFLNSMRS,SMRSBR
+clif bar,clif coconut chocolate chip energy ,coconut chocolate chip bar,68,260,50,25,0,170,20,other,yes,KLFBR,KLFKKNTXKLTXPNRJ,KKNTXKLTXPBR
+clif bar,clif organic trail mix bar dark chocolate cherry almond,trail mix bar dark chocolate cherry almond,40,180,80,25,0,115,13,protein,yes,KLFBR,KLFRKNKTRLMKSBRTRKXKLTXRLMNT,TRLMKSBRTRKXKLTXRLMNT
+clif bar,clif nut butter filled-chocolate hazlenut butter,chocolate hazlenut butter filled,50,230,100,2,0,160,10,protein,yes,KLFBR,KLFNTBTRFLTXKLTHSLNTBTR,XKLTHSLNTBTRFLT
+clif bar,clif nut butter filled-chocolate peanut butter,chocolate peanut butter filled,50,230,100,25,0,150,9,protein,yes,KLFBR,KLFNTBTRFLTXKLTPNTBTR,XKLTPNTBTRFLT
+clif bar,clif nut butter filled-coconut almond butter,coconut almond butter filled,50,230,90,3,0,150,10,protein,yes,KLFBR,KLFNTBTRFLTKKNTLMNTBTR,KKNTLMNTBTRFLT
+clif bar,clif bar oatmeal raisin walnut,oatmeal raisin walnut bar,68,250,50,5,0,140,21,other,yes,KLFBR,KLFBRTMLRSNWLNT,OTMLRSNWLNTBR
+clif builder's,clif builder's protein bar chocolate mint‎,protein bar chocolate mint‎,68,270,80,6,0,200,21,protein,yes,KLFBLTRS,KLFBLTRSPRTNBRXKLTMNT,PRTNBRXKLTMNT
+clif builder's,clif builder's protein bar chocolate peanut butter,chocolate peanut butter bar,68,280,90,5,0,330,21,protein,yes,KLFBLTRS,KLFBLTRSPRTNBRXKLTPNTBTR,XKLTPNTBTRBR
+clif builder's,clif builder's protein bar crunchy peanut butter,crunchy peanut butter bar ,68,280,90,5,0,360,22,protein,yes,KLFBLTRS,KLFBLTRSPRTNBRKRNXPNTBTR,KRNXPNTBTRBR
+good greens,chocolate mint bar,chocolate mint bar,50,199,82,2,0,107,14,other,yes,KTKRNS,XKLTMNTBR,XKLTMNTBR
+good greens,blueberry bliss bar,blueberry bliss bar,50,190,72,2,0,71,14,other,yes,KTKRNS,BLBRBLSBR,BLBRBLSBR
+nature valley,nature valley peanut butter granola,peanut butter granola bar,42,190,72,1,0,180,11,Whole grain,yes,NTRFL,NTRFLPNTBTRKRNL,PNTBTRKRNLBR
+nature valley,sweet & salty chewy granola bars almond,granola bars almond,35,160,60,2,0,140,8,protein,yes,NTRFL,SWTSLTXKRNLBRSLMNT,KRNLBRSLMNT
+nature valley,nature valley sweet & salty nut peanut granola bars,sweet & salty nut peanut granola bars,35,170,80,25,0,140,7,protein,yes,NTRFL,NTRFLSWTSLTNTPNTKRNLBRS,SWTSLTNTPNTKRNLBRS
+nature valley,dark chocolate cherry fruit & nut bars,chocolate cherry bar,35,140,36,1,0,65,8,whole grain,yes,NTRFL,TRKXKLTXRFRTNTBRS,XKLTXRBR
+nature valley,energy bar cranberry almond,energy bar cranberry almond,50,200,50,5,0,150,15,other,yes,NTRFL,ENRJBRKRNBRLMNT,ENRJBRKRNBRLMNT
+nature valley,protein peanut butter dark chocolate,peanut butter chocolate bar,40,190,110,35,0,180,6,protein,yes,NTRFL,PRTNPNTBTRTRKXKLT,PNTBTRXKLTBR
+nature valley,protein bar salted caramel nut,salted caramel nut bar,40,190,110,3,0,200,6,protein,yes,NTRFL,PRTNBRSLTTKRMLNT,SLTTKRMLNTBR
+go lean,peanut hemp crunch,peanut hemp crunch,45,200,100,15,0,115,8,whole grain,yes,KLN,PNTHMPKRNX,PNTHMPKRNX
+good greens,chocolate peanut butter,chocolate peanut butter,50,197,81,2,0,77,14,other,yes,KTKRNS,XKLTPNTBTR,XKLTPNTBTR
+good greens,chocolate coconut,chocolate coconut,40,201,80,2,0,79,14,other,yes,KTKRNS,XKLTKKNT,XKLTKKNT
+jennies,"raw organic coconut bar, cacao pow",coconut cacao bar,43,190,108,10,0,40,8,fruit,yes,JNS,RRKNKKKNTBRKKP,KKNTKKBR
+jimmybar,jimmy bar lemon vanilla swirl  bar,lemon vanilla swirl  bar,58,260,100,4,0,90,4,protein,yes,JMBR,JMBRLMNFNLSWRLBR,LMNFNLSWRLBR
+kind,kind bar cranberry and almond,cranberry and almond,40,190,117,15,0,20,8,protein,yes,KNT,KNTBRKRNBRNTLMNT,KRNBRNTLMNT
+kind,kind bar dark chocolate almond & coconut,dark chocolate almond & coconut,40,190,110,5,0,25,12,protein,yes,KNT,KNTBRTRKXKLTLMNTKKNT,TRKXKLTLMNTKKNT
+kind,kind bar caramel almond & sea salt,caramel almond & sea salt,40,200,140,3,0,125,5,protein,yes,KNT,KNTBRKRMLLMNTSSLT,KRMLLMNTSSLT
+kind,kind bar dark chocolate mocha almond,dark chocolate mocha almond,40,200,135,35,0,15,5,protein,yes,KNT,KNTBRTRKXKLTMXLMNT,TRKXKLTMXLMNT
+kind,kind bar dark chocolate cherry cashew,dark chocolate cherry cashew,40,170,90,3,0,20,11,protein,yes,KNT,KNTBRTRKXKLTXRKX,TRKXKLTXRKX
+kind,kind bar dark chocolate nuts & sea salty,dark chocolate nuts & sea salty,40,200,135,3,0,140,5,protein,yes,KNT,KNTBRTRKXKLTNTSSSLT,TRKXKLTNTSSSLT
+kind,kind bar dark chocolate almond mint,dark chocolate almond mint,40,200,135,35,0,20,5,protein,yes,KNT,KNTBRTRKXKLTLMNTMNT,TRKXKLTLMNTMNT
+kind press,kind press pineapple banana kale spinach,pineapple banana kale spinach,35,110,0,0,0,45,18,fruit,yes,KNTPRS,KNTPRSPNPLBNNKLSPNX,PNPLBNNKLSPNX
+kind press,kind press strawberry apple chia,strawberry apple chia,35,110,45,0,0,0,19,fruit,yes,KNTPRS,KNTPRSSTRBRPLX,STRBRPLX
+nugo,vanilla yogurt,vanilla yogurt,50,170,25,15,0,150,13,other,yes,NK,FNLYKRT,FNLYKRT
+nugo,dark mint chocolate chip,dark mint chocolate chip,50,200,50,3,0,160,14,other,yes,NK,TRKMNTXKLTXP,TRKMNTXKLTXP
+nugo,dark chocolate pretzel ,dark chocolate pretzel ,50,200,50,3,0,350,15,other,yes,NK,TRKXKLTPRTSL,TRKXKLTPRTSL
+soul sprout,jalapeno nut bar,jalapeno nut bar,43,220,130,2,0,200,10,protein,no,SLSPRT,JLPNNTBR,JLPNNTBR
+charmed bar,almond butter cran-dipity,almond butter cran-dipity,50,240,135,25,0,110,17,protein,yes,XRMTBR,ALMNTBTRKRNTPT,ALMNTBTRKRNTPT
+charmed bar,peanut butter cherry-licious,peanut butter cherry-licious,50,230,135,25,0,115,18,protein,yes,XRMTBR,PNTBTRXRLSS,PNTBTRXRLSS
+ancient grains,bars chocolate chunk nut,chocolate chunk nut,35,160,90,2,0,40,7,Whole grain,yes,ANSNTKRNS,BRSXKLTXNKNT,XKLTXNKNT
+ancient grains,bars triple berry nut ,triple berry nut ,35,160,80,5,0,50,8,Whole grain,yes,ANSNTKRNS,BRSTRPLBRNT,TRPLBRNT
+rxbar,blueberry bar,blueberry bar,52,210,63,1,0,115,15,protein,no,RKSBR,BLBRBR,BLBRBR
+rxbar,coconut chocolate bar,coconut chocolate bar,52,210,80,2,0,170,13,protein,no,RKSBR,KKNTXKLTBR,KKNTXKLTBR
+rxbar,chocolate sea salt bar,chocolate sea salt bar,52,210,80,2,0,240,13,protein,no,RKSBR,XKLTSSLTBR,XKLTSSLTBR
+rxbar,mint chocolate bar,mint chocolate bar,52,210,80,2,0,190,13,protein,no,RKSBR,MNTXKLTBR,MNTXKLTBR
+epic,bison bacon cranberry bar,bison bacon cranberry,37,130,70,3,0,320,6,protein,yes,EPK,BSNBKNKRNBRBR,BSNBKNKRNBR
+epic,chicken sriracha bar,chicken sriracha,43,100,35,0,0,400,0,protein,yes,EPK,XKNSRRXBR,XKNSRRX
+soul sprout,nut bar cranberry crush,nut bar cranberry crush,43,200,130,15,0,70,10,protein,no,SLSPRT,NTBRKRNBRKRX,NTBRKRNBRKRX
+golean,salted dark chocolate & nuts bar,salted dark chocolate & nuts ,45,190,90,2,0,115,9,protein,yes,KLN,SLTTTRKXKLTNTSBR,SLTTTRKXKLTNTS
+cheerios,honey nut milk'n cereal bars ,honey nut cereal bars ,40,160,35,2,0,90,13,Other,yes,XRS,HNNTMLKNSRLBRS,HNNTSRLBRS
+cinnamon toast crunch,cinnamon toast crunch milk 'n cereal bars,cinnamon toast crunch cereal bars,45,180,40,25,0,130,17,other,yes,SNMNTSTKRNX,SNMNTSTKRNXMLKNSRLBRS,SNMNTSTKRNXSRLBRS
+pillsbury,mini bluberry muffin with streusel,mini bluberry muffin with streusel,85,290,120,2,0,390,20,other,yes,PLSBR,MNBLBRMFNW0STRSL,MNBLBRMFNW0STRSL
+pop tarts,frost blueberry,blueberry,52,200,45,15,0,170,16,other,yes,PPTRTS,FRSTBLBR,BLBR
+pop tarts,frost brown sugar cinnamon,brown sugar cinnamon,50,210,60,2,0,170,15,other,yes,PPTRTS,FRSTBRNSKRSNMN,BRNSKRSNMN
+pop tarts,frost cherry,frost cherry,52,200,45,15,0,170,16,other,yes,PPTRTS,FRSTXR,FRSTXR
+pop tarts,hot fudge sundae,hot fudge sundae,48,180,40,15,0,210,16,other,yes,PPTRTS,HTFJSNT,HTFJSNT
+special k,fruit crisps strawberry,fruit crisps strawberry,25,100,20,1,0,80,7,other,yes,SPXLK,FRTKRSPSSTRBR,FRTKRSPSSTRBR
+pop tarts,s'mores,s'mores,52,200,45,15,0,210,19,other,yes,PPTRTS,SMRS,SMRS
+7 days,soft croissant chocolate,croissant chocolate,75,330,190,12,0,75,15,other,yes,TS,SFTKRSNTXKLT,KRSNTXKLT
+mrs freshley's,jumbo honey bun,jumbo honey bun,142,590,280,17,0,450,30,other,yes,MRSFRXLS,JMHNBN,JMHNBN
+mrs freshley's,minis chocolate mini creme filled cupcakes ,chocolate mini cupcakes,43,160,45,2,0,210,15,other,yes,MRSFRXLS,MNSXKLTMNKRMFLTKPKKS,XKLTMNKPKKS
+mrs freshley's,reese peanut butter swiss rolls ,peanut butter swiss rolls ,72,360,180,11,0,250,22,other,yes,MRSFRXLS,RSPNTBTRSWSRLS,PNTBTRSWSRLS
+java me up,coffee bar caramel macchiato,caramel macchiato,40,160,60,35,0,55,9,Whole grain,yes,JFMP,KFBRKRMLMKXT,KRMLMKXT
+java me up,coffee bar café mocha,cafe mocha,40,160,60,3,0,65,8,Whole grain,yes,JFMP,KFBRKFMX,KFMX
+hostess,blueberry jumbo muffin,blueberry muffin,156,620,270,5,0,370,49,other,yes,HSTS,BLBRJMMFN,BLBRMFN
+hostess,donettes powdered mini donuts,donettes donuts,60,240,100,5,0,230,15,other,yes,HSTS,TNTSPTRTMNTNTS,TNTSTNTS
+special k,chocolate peanut butter protein meal bar,chocolate peanut butter protein,45,180,60,35,0,210,13,protein,yes,SPXLK,XKLTPNTBTRPRTNMLBR,XKLTPNTBTRPRTN
+special k,strawberry protein meal bar,strawberry protein,45,170,50,4,0,150,14,protein,yes,SPXLK,STRBRPRTNMLBR,STRBRPRTN
+special k,double chocolate protein meal bar,double chocolate protein,45,170,45,4,0,180,13,protein,yes,SPXLK,TBLXKLTPRTNMLBR,TBLXKLTPRTN
+special k,chocolate caramel protein meal bars,chocolate caramel protein,45,170,40,35,0,170,14,protein,yes,SPXLK,XKLTKRMLPRTNMLBRS,XKLTKRMLPRTN
+met-rx,big 100 colossal peanut butter pretzel,peanut butter pretzel,100,410,110,5,0,510,28,protein,yes,MTRKS,BKKLSLPNTBTRPRTSL,PNTBTRPRTSL
+powerbar ,energy bar vanilla crisp,energy vanilla,65,230,30,5,0,200,26,other,yes,PWRBR,ENRJBRFNLKRSP,ENRJFNL
+powerbar ,protein plus vanilla bar,protein plus vanilla,60,210,45,3,0,130,14,protein,yes,PWRBR,PRTNPLSFNLBR,PRTNPLSFNL
+powerbar ,protein plus chocolate peanut butter,protein chocolate peanut butter,60,210,55,3,0,200,12,protein,yes,PWRBR,PRTNPLSXKLTPNTBTR,PRTNXKLTPNTBTR
+powerbar ,protein plus cookies n cream,protein cookies n cream,60,210,45,3,0,120,13,protein,yes,PWRBR,PRTNPLSKKSNKRM,PRTNKKSNKRM
+detour,lower sugar caramel peanut,lower sugar caramel peanut,43,170,45,3,0,240,3,protein,yes,TTR,LWRSKRKRMLPNT,LWRSKRKRMLPNT
+detour,lean muscle cookie dough caramel crisp,lean cookie caramel,90,370,110,7,0,460,3,protein,yes,TTR,LNMSKLKKTKRMLKRSP,LNKKKRML
+detour simple,simple bar carmel peanut,carmel peanut,30,120,40,15,0,130,2,protein,yes,TTRSMPL,SMPLBRKRMLPNT,KRMLPNT
+detour simple,simple bar chocolate chip caramel,chocolate chip caramel,30,110,25,2,0,100,2,protein,yes,TTRSMPL,SMPLBRXKLTXPKRML,XKLTXPKRML
+met-rx,chocolate chip cookie dough protein bar,chocolate chip cookie,100,360,45,25,0,160,25,protein,yes,MTRKS,XKLTXPKKTPRTNBR,XKLTXPKK
+met-rx,colossal super cookie crunch,super cookie crunch,100,420,130,6,0,320,26,other,yes,MTRKS,KLSLSPRKKKRNX,SPRKKKRNX
+robert irvine's fit crunch,whey protein brownie chocolate,whey brownie chocolate,50,190,72,4,0,250,5,protein,yes,RBRTRFNSFTKRNX,WPRTNBRNXKLT,WBRNXKLT
+probar base,protein bar peanut butter chocolate,peanut butter chocolate,70,290,90,6,0,380,15,protein,yes,PRBRBS,PRTNBRPNTBTRXKLT,PNTBTRXKLT
+probar base,coffee crunch,coffee crunch,70,280,80,6,0,320,16,Protein,yes,PRBRBS,KFKRNX,KFKRNX
+questbar,cookies & cream ,cookies & cream,60,200,70,25,0,290,1,Protein,yes,KSTBR,KKSKRM,KKSKRM
+questbar,chocolate chip cookie dough,chocolate chip cookie dough,60,190,70,25,0,190,1,Protein,yes,KSTBR,XKLTXPKKT,XKLTXPKKT
+questbar,double chocolate chunk,double chocolate chunk,60,180,60,25,0,200,1,Protein,yes,KSTBR,TBLXKLTXNK,TBLXKLTXNK
+questbar,s'mores,s'mores,60,190,60,25,0,210,1,Protein,yes,KSTBR,SMRS,SMRS
+questbar,oatmeal chocolate chip,oatmeal chocolate chip,60,190,70,15,0,200,1,protein,yes,KSTBR,OTMLXKLTXP,OTMLXKLTXP
+questbar,maple almond with pretzel,maple almond with pretzel,37,190,120,25,0,180,3,protein,yes,KSTBR,MPLLMNTW0PRTSL,MPLLMNTW0PRTSL
+questbar,honey peanut butter + banana chips,peanut butter and chips,37,200,140,6,0,50,7,protein,yes,KSTBR,HNPNTBTRBNNXPS,PNTBTRNTXPS
+project 7,sugar free gum front porch lemonade,gum lemonade,25,5,0,0,0,0,2,other,yes,PRJKT,SKRFRKMFRNTPRXLMNT,KMLMNT
+project 7,sugar free gum birthday cake,gum birthday cake,25,5,0,0,0,0,2,other,yes,PRJKT,SKRFRKMBR0TKK,KMBR0TKK
+simply gum,cinnamon chewing gum,cinnamon gum,25,3,0,0,0,0,1,other,yes,SMPLKM,SNMNXWNKKM,SNMNKM
+simply gum,mint chewing gum,mint gum,25,3,0,0,0,0,1,other,yes,SMPLKM,MNTXWNKKM,MNTKM
+simply gum,ginger mint chewing gum,ginger mint gum,25,3,0,0,0,0,1,other,yes,SMPLKM,JNJRMNTXWNKKM,JNJRMNTKM
+theo,dark chocolate peanut butter cups,chocolate peanut butter cups,37,210,130,6,0,55,13,protein,yes,0,TRKXKLTPNTBTRKPS,XKLTPNTBTRKPS
