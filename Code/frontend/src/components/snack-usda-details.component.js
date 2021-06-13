@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import {fetchSnackByIDUSDA} from '../services/snack.service.js'; 
 import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form } from 'react-bootstrap';
+var fs = require("fs");
+var firstIngredientCsvFile = '../exceldocs/first_ing_list.csv';
 
 function  generateDataTable(score) {
     return [
@@ -67,7 +69,7 @@ export default class SnackDetailsComponent extends Component {
             score: {
                 gRatio: 0.0,
                 totalScore: 0.0,
-                firstIngredient: '',
+                firstIngredient: 0,
                 calories: 0.0,
                 calorieScore: 0.0,
                 totalFat: 0.0,
@@ -131,10 +133,10 @@ export default class SnackDetailsComponent extends Component {
                 return "ERROR";
         }
     }
-
+    
     calculate() {
         /*LOGGGGGG*/
-        console.log('this.state.snack.servingSize: ' + this.state.snack.servingSize ? this.state.snack.servingSize : "NOOOOOO");
+        console.log('this.state.snack.servingSize: ' + this.state.snack.servingSize);
         console.log('this.state.snack.servingSizeUnit: ' + this.state.snack.servingSizeUnit);
         console.log('this.state.snack.labelNutrients.calories.value: ' + this.state.snack.labelNutrients.calories.value);
         console.log('this.state.snack.labelNutrients.sugars.value: ' + this.state.snack.labelNutrients.sugars.value);
@@ -153,7 +155,7 @@ export default class SnackDetailsComponent extends Component {
         let score = {
             gRatio: 0.0,
             totalScore: 0.0,
-            firstIngredient: '',
+            firstIngredient: 0,
             calories: 0.0,
             calorieScore: 0.0,
             totalFat: 0.0,
@@ -176,7 +178,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // First ingredient.
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX        
         switch (this.state.snack.first_ingredient) {
             case 'dairy':
                 score.firstIngredient = 2;
@@ -199,17 +201,21 @@ export default class SnackDetailsComponent extends Component {
             default:
                 score.firstIngredient = 0;
         }
+        
+        //this.firstIngredientCalculation(this.state.snack.ingredients, score);
 
         // If the gram unit is not the same as the one on the snack database.        
         // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         if (gInputUser !== this.state.snack.servingSize) {
             // Calories.
-            score.calories = score.gRatio * this.state.snack.labelNutrients.calories;
+            score.calories = score.gRatio * this.state.snack.labelNutrients.calories.value;
         } else {
             // Calories.
-            score.calories = this.state.snack.labelNutrients.calories;            
+            score.calories = this.state.snack.labelNutrients.calories.value;            
         }
-
+        
+        console.log('CALORIESSSSSSSSSSSSSSSSSSSSSSSSS:' + score.calories);
+        
         // Classify calories.
         if (score.calories >= 1.0 && score.calories <= 50) {
             score.calorieScore = 2;
@@ -225,8 +231,8 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error calories');
         }
 
-        // Total Fat. (35% of  Calories)
-        score.totalFat = (score.calories * 35) / 100;
+        // Total Fat. FAT = ((fat * 9) /  calories) * 100
+        score.totalFat = ((this.state.snack.labelNutrients.fat.value * 9) / score.calories) * 100;
 
         // Classify totalFat.
         if (score.totalFat >= 0 && score.totalFat <= 20) {
@@ -239,8 +245,8 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error totalFat');
         }
 
-        // Saturated Fat. (10% of  Calories)
-        score.satFat = (score.calories * 10) / 100;
+        // Saturated Fat. SATFAT = ((saturatedFat * 9) /  calories) * 100
+        score.satFat = ((this.state.snack.labelNutrients.saturatedFat.value * 9) / score.calories) * 100;
 
         // Classify satFat.
         if (score.satFat >= 0 && score.satFat <= 4.9) {
@@ -253,10 +259,10 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error satFat');
         }
 
-        // Classify transFat.
-        if (this.state.snack.trans_fat > 0) {
+        // Classify transFat. [Working]
+        if (this.state.snack.labelNutrients.transFat.value > 0) {
             score.transFat = 0;
-        } else if (this.state.snack.trans_fat === 0) {
+        } else if (this.state.snack.labelNutrients.transFat.value === 0) {
             score.transFat = 1;
         } else {
             console.log('Error transFat');
@@ -265,13 +271,13 @@ export default class SnackDetailsComponent extends Component {
         // If the gram unit is not the same as the one on the snack database.
         if (gInputUser !== this.state.snack.servingSize) {
             // Sodium.
-            score.sodium = score.gRatio * window.localStorage.getItem('sodium_score'); // In case that quantity is not the same as the db, adjust it.
+            score.sodium = score.gRatio * this.state.snack.labelNutrients.sodium.value; // In case that quantity is not the same as the db, adjust it.
         } else {
             // Sodium.
-            score.sodium = window.localStorage.getItem('sodium_score');
+            score.sodium = this.state.snack.labelNutrients.sodium.value;
         }
 
-        // Classify Sodium.
+        // Classify Sodium. [Working]
         if (score.sodium >= 0 && score.sodium <= 140) {
             score.sodium = 1;
         } else if (score.sodium >= 140.1 && score.sodium <= 170) {
@@ -285,7 +291,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Sugar (35% Weight).
-        score.sugar = (gInputUser * 35) / 100;
+        score.sugar = (this.state.snack.labelNutrients.sugars.value / gInputUser) * 100;
 
         // Classify Sugar.
         if (score.sugar >= 0 && score.sugar <= 14.9) {
@@ -317,6 +323,119 @@ export default class SnackDetailsComponent extends Component {
         this.setShowResults(true);
     }
 
+    firstIngredientCalculation(ingredients, score) {
+        // Initialization.
+        var category = 'other';
+
+        // regex to break down to first ingredient and set to lower case
+        var regex = ingredients.replace(/\s+/g, " ").toLowerCase();
+
+        // split items at a comma, in order to get first ingredient
+        regex = regex.split(",");
+
+        //we only want first ingredient
+        regex = regex[0];
+
+        // remove every character that is not a number, letter or a percentage sign
+        regex = regex.replace(/[^0-9a-z%]/gi, " ");
+
+        // if there is more than one space between words, remove it
+        regex = regex.replace(/  +/g, " ");
+
+        // remove all spaces at the end, if any
+        regex = regex.replace(/\s*$/, "");
+
+        var combinations = regex.split(" ");
+
+        var n = combinations.length;
+
+        regex = "";
+
+        // make all possible combinations of the words of the first ingredient
+        for (var i = 0; i < n; i++) {
+          for (var j = 0; j <= i; j++) {
+            regex += (combinations.slice(j, n - i + j).join('') + ',');
+          }
+        }
+
+        // remove the comma at the end due to for loop
+        regex = regex.toString().replace(/\,$/, "");
+        regex = regex.split(',');
+
+        var test1 = regex.length;
+        var test2 = regex.length;
+        var test3 = '';
+
+        // check for both singular and plural of the first ingredient
+        for (i = 0; i < test1; i++) {
+          try {throw i}
+          catch(ii) {
+            test3 = regex[ii].slice(-1);
+
+            if (test3 === 's') {
+                regex[test2] = regex[ii].substring(0, regex[ii].length - 1);
+                test2++;
+            }
+            else {
+                regex[test2] = regex[ii] + 's';
+                test2++;
+            }
+          }
+        }
+
+        // read first ing from csv file, set all to lowercase and split at ,
+        //var dataCSV = fs.readFileSync(firstIngredientCsvFile, {"encoding": "utf8"});
+        var dataCSV = fs.readFileSync(firstIngredientCsvFile, "utf8");
+        let first_ing = dataCSV.toString().toLowerCase().replace(/\n/g, ",").split(",");        
+
+        // loop thru all combinations of the first ingredient
+        regex.forEach(function(snack, i) {
+
+            //console.log('All combinations of first ingredient: ' + snack)
+            first_ing.forEach(function(item, j) {
+
+                if (j + 1 < first_ing.length) {
+
+                    item = first_ing[j + 1];
+                    item = item.replace(/\s/g, '');
+                    
+                    if (item === snack) {
+                        category = first_ing[j];
+                        console.log('*Matching first ing: ' + snack)
+                    }
+                }
+            });
+        });
+                
+        console.log('Ingredients after checking db: ' + category)
+                
+        switch (category) {
+            case 'dairy':
+            case 'proteins-nut':
+            case 'whole grains':
+            case 'vegetables':
+            case 'fruits':
+            case 'proteins':
+                score.firstIngredient = 2;
+                break;
+            /*    
+            case 'They are Secret!':
+                if(!isLocal && name.toLowerCase().replace("Yogurt").length > 0) score.firstIngredient = 2;
+                score.firstIngredient = 0;
+                break;
+            */
+            case 'other':
+                score.firstIngredient = 0;
+                break;
+            case 'none':
+                console.log('It appears there are no ingredients?');
+                score.firstIngredient = 0;
+                break;
+            default:
+                score.firstIngredient = 0;
+        }
+    }    
+
     setUnitCalculation(unitCalc) {
         this.setState({unitCalc: unitCalc});
     }
@@ -332,8 +451,6 @@ export default class SnackDetailsComponent extends Component {
     getUnit() {        
         return this.state.unit;
     }
-
-    
 
     render() {
 
