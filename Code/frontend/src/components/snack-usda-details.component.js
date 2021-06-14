@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import {fetchSnackByIDUSDA} from '../services/snack.service.js'; 
 import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form } from 'react-bootstrap';
-var fs = require("fs");
 var firstIngredientCsvFile = '../exceldocs/first_ing_list.csv';
+var processedFoodCsvFile = '../exceldocs/processed_food.csv';
 
 function  generateDataTable(score) {
     return [
@@ -141,7 +141,7 @@ export default class SnackDetailsComponent extends Component {
         console.log('this.state.snack.labelNutrients.calories.value: ' + this.state.snack.labelNutrients.calories.value);
         console.log('this.state.snack.labelNutrients.sugars.value: ' + this.state.snack.labelNutrients.sugars.value);
         console.log('this.state.snack.labelNutrients.fat.value: ' + this.state.snack.labelNutrients.fat.value);
-        console.log('this.state.snack.labelNutrients.saturatedFat.value: ' + this.state.snack.labelNutrients.saturatedFat.value ? this.state.snack.labelNutrients.saturatedFat.value : "NOOOOO");
+        console.log('this.state.snack.labelNutrients.saturatedFat.value: ' + this.state.snack.labelNutrients.saturatedFat.value);
         console.log('this.state.snack.labelNutrients.sodium.value: ' + this.state.snack.labelNutrients.sodium.value);
         console.log('this.state.snack.labelNutrients.transFat.value: ' + this.state.snack.labelNutrients.transFat.value);
         /*LOGGGGGG*/
@@ -202,7 +202,7 @@ export default class SnackDetailsComponent extends Component {
                 score.firstIngredient = 0;
         }
         
-        //this.firstIngredientCalculation(this.state.snack.ingredients, score);
+        this.firstIngredientCalculation(this.state.snack.ingredients, score);        
 
         // If the gram unit is not the same as the one on the snack database.        
         // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -290,7 +290,7 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error Sodium');
         }
 
-        // Sugar (35% Weight).
+        //+++++++++++++++ Sugar (35% Weight).
         score.sugar = (this.state.snack.labelNutrients.sugars.value / gInputUser) * 100;
 
         // Classify Sugar.
@@ -308,8 +308,8 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error Sugar');
         }
 
-
         // Food Process clasisfication FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+        /*
         if (this.state.snack.foodClass.toLowerCase() === 'yes') {
             score.processed = -1;
         } else if (this.state.snack.foodClass.toLowerCase() === 'no') {
@@ -317,6 +317,9 @@ export default class SnackDetailsComponent extends Component {
         } else {
             console.log('Error clasisfication');
         }
+        */
+
+        this.processedFoodCalculation(this.state.snack.ingredients, score);
 
         score.totalScore = score.firstIngredient + score.calorieScore + score.totalFat + score.satFat + score.transFat + score.sodium + score.sugar + score.processed;
         this.setScoreState(score);
@@ -385,7 +388,8 @@ export default class SnackDetailsComponent extends Component {
 
         // read first ing from csv file, set all to lowercase and split at ,
         //var dataCSV = fs.readFileSync(firstIngredientCsvFile, {"encoding": "utf8"});
-        var dataCSV = fs.readFileSync(firstIngredientCsvFile, "utf8");
+       var dataCSV = "fruits,apples,fruits,apricots,fruits,bananas,fruits,cherries,fruits,Coconut,fruits,Coconut Flakes";
+        
         let first_ing = dataCSV.toString().toLowerCase().replace(/\n/g, ",").split(",");        
 
         // loop thru all combinations of the first ingredient
@@ -435,6 +439,60 @@ export default class SnackDetailsComponent extends Component {
                 score.firstIngredient = 0;
         }
     }    
+
+    processedFoodCalculation(ingredients, score) {
+        var count = 0;
+
+        //var dataProcessed = fs.readFileSync(processedFoodCsvFile, {"encoding": "utf8"});
+        var dataProcessed = "MONOSODIUM GLUTAMATE,Monosodium glutamate,artificial flavor,disodium guanylate";
+
+        var additives = dataProcessed.toString().toLowerCase().split(','); // <---------change for in case that the file returned them in enters    /\n/   
+        console.log('additives:' + additives);
+        console.log('additives[1]:' + additives[1]);
+        
+        //regex to break down and set to lower case 
+        var regex = ingredients.replace(/\s+/g, ' ').toLowerCase();
+        console.log('regex:' + regex);
+                
+        // split items at a comma
+        regex = regex.split(",");
+    
+        // remove all spaces at the end and beginning, if any
+        for (var i = 0; i < regex.length; i++) {
+            regex[i] = regex[i].replace(/\s*$/,'');
+            regex[i] = regex[i].replace(/^\s+/g, '');
+        }
+    
+        regex[regex.length-1] = regex[regex.length-1].replace(/\.$/, "");
+    
+        //see how many of the ingredients of the snack match the additives, a.k.a. are additives
+        for (i = 0; i < additives.length; i++) {
+            for (var j = 0; j < regex.length; j++) {
+                if (additives[i] === regex[j]) {
+                    console.log('Additives found: ' + additives[i])
+                    count++
+                }
+            }
+        }
+    
+        console.log('Count additives: ' + count)
+    
+        if (count <= 0) {
+            score.processed = 1;
+        }
+        else if (count === 1) {
+            score.processed = 0.5;
+        }
+        else if (count === 2 || count === 3) {
+            score.processed = 0;
+        }
+        else if (count === 4 || count === 5) {
+            score.processed = -0.5;
+        }
+        else if (count > 5) {
+            score.processed = -1;
+        }
+    }   
 
     setUnitCalculation(unitCalc) {
         this.setState({unitCalc: unitCalc});

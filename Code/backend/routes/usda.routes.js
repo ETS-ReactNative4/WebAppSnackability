@@ -1,4 +1,5 @@
 const express = require('express');
+var fs = require("fs");
 
 const {
     getUSDASnacks,
