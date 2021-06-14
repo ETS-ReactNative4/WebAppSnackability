@@ -7,7 +7,8 @@ import HomeComponent from './components/home.component';
 import SnackList from './components/snack-list.component';
 import SnackDetailsComponent from './components/snack-details.component';
 import SnackGraph from './components/snack-graph.component';
-import SnackUSDADetailsComponent from './components/snackUSDA-list.component'; 
+import SnackUSDAListComponent from './components/snack-usda-list.component'; 
+import SnackUSDADetailsComponent from './components/snack-usda-details.component'; 
 import SettingsComponent from './components/settings.component';
 import SignInComponent from './components/signin.component';
 
@@ -25,8 +26,8 @@ class App extends Component {
                         </Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link href="/">🏠 Home</Nav.Link>
-                            <Nav.Link href="/snacks">🍊 Snacks</Nav.Link>
-                            <Nav.Link href="/usda">🍒 Snacks USDA</Nav.Link> 
+                            {/*<Nav.Link href="/snacks">🍊 Snacks</Nav.Link>*/} 
+                            <Nav.Link href="/usda">🍒 Snacks USDA</Nav.Link>
                             <Nav.Link href='/snacksgraph'>📊 Snacks Graph</Nav.Link>
                             <Nav.Link href='/settings'>🔧 Settings</Nav.Link>
                         </Nav>
@@ -35,8 +36,9 @@ class App extends Component {
                         <Switch>
                             <Route path="/" exact component={HomeComponent}/>
                             <Route path="/snacks" exact component={SnackList}/>                            
-                            <Route path="/snacks/:snack_id" exact component={SnackDetailsComponent}/>
-                            <Route path="/usda" exact component={SnackUSDADetailsComponent}/> 
+                            <Route path="/snacks/:snack_id" exact component={SnackDetailsComponent}/>                            
+                            <Route path="/usda" exact component={SnackUSDAListComponent}/> 
+                            <Route path="/usda/:snack_id" exact component={SnackUSDADetailsComponent}/>
                             <Route path='/snacksgraph' exact component={SnackGraph} />
                             <Route path="/settings" exact component={SettingsComponent}/>
                             <Route path="/signin" exact component={SignInComponent}/>
