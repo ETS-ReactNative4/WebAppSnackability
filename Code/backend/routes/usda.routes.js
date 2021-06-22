@@ -40,11 +40,11 @@ router.get('/snacks/:snack_id', async (req, res, next) => {
 	}
 });
 
-router.get('/snack_score', async (req, res, next) => {
-	const q = req.query;
+router.get('/:snack_id/score', async (req, res, next) => {
+	const snack_id = req.params.snack_id;
 
 	try {
-		const snack = await getUSDASnackById(q.snack_id);
+		const snack = await getUSDASnackById(snack_id);
 		var score = firstIng(snack.ingredients);
 		res.send({ firstIngScore: score });
 	} catch (err) {

@@ -33,9 +33,8 @@ export function fetchSnackByIDUSDA(snack_id) {
 }
 
 export function fetchSnackScore(snack_id, serving, unit) {
-	return axios.get('http://localhost:4000/usda/snack_score', {
+	return axios.get(`http://localhost:4000/usda/${snack_id}/score`, {
 		params: {
-			snack_id: snack_id,
 			serving: serving,
 			unit: unit,
 		},
