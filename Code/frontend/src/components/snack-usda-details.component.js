@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import {fetchSnackByIDUSDA,fetchCSVFiles} from '../services/snack.service.js'; 
-import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form } from 'react-bootstrap';
+import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form, Modal} from 'react-bootstrap';
+import foodPic from '../images/foodinfo.png'
+
 var firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
 var processedFoodCsvFile = './excelfiles/processed_food.csv';
 
@@ -79,9 +81,10 @@ export default class SnackDetailsComponent extends Component {
                 sugar: 0.0,
                 processed: 0.0,
                 userGramsConverted: 0.0 
-            },
+            },            
             showResults: false
         };
+        this._toggle = this._toggle.bind(this);
     }    
 
     setScoreState(score) {
@@ -572,6 +575,13 @@ export default class SnackDetailsComponent extends Component {
     }   
 
 
+	_toggle() {
+		this.setState((prevState) => ({
+			modal: !prevState.modal,
+		}));
+	}
+
+
 
     render() {
 
@@ -590,8 +600,15 @@ export default class SnackDetailsComponent extends Component {
                                 </Form.Group>
 
                                 <div>
-                                    <Button variant="link">Not sure how much? ❓</Button>
+                                    <Button variant="link" onClick={this._toggle}>Not sure how much? ❓</Button>
                                 </div>
+
+                                <Modal show={this.state.modal} onHide={this._toggle}>
+					                <Modal.Header closeButton='true' />
+					                <Modal.Body>   
+                                        <img style={{width:"460px"}} src={foodPic} alt=""/>          						
+					                </Modal.Body>
+				                </Modal>
 
                                 <Dropdown as={ButtonGroup}>
 
