@@ -159,7 +159,7 @@ export default class SnackDetailsComponent extends Component {
         const input = gInputUser;
         const numberCheck = /\d/g;
 
-        if(!numberCheck.test(input) || input === 0 || input < 0){
+        if(!numberCheck.test(input) || input === 0 || input < 0 || input === "" || input === null){
             alert('Please enter a number !!');
             window.location.reload();
         }    
@@ -176,13 +176,13 @@ export default class SnackDetailsComponent extends Component {
             switch (uInputUser) {
                 case 'kg':
                     return this.getRatio(gInputUser * 1000, "g");
-                case 'Ounces':
+                case 'oz':
                     return this.getRatio(gInputUser * 28.35, "g");
-                case 'tbsp':                    
+                case 'tbsp':                                                        
                     return this.getRatio(gInputUser * 17.07, "g");
-                case 'Tea Spoon':
+                case 'tsp':
                     return this.getRatio(gInputUser * 5.69, "g");
-                case 'Pounds':
+                case 'lbs':   
                     return this.getRatio(gInputUser * 453.6, "g");
                 default:
                     return "ERROR";
@@ -202,55 +202,80 @@ export default class SnackDetailsComponent extends Component {
     }
     
     calculate() {
-        /*LOGGGGGG*/
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-        /* Sugar */
-        console.log('this.state.snack.foodNutrients[2].nutrient.name: ' + this.state.snack.foodNutrients[2].nutrient.name);
-        console.log('this.state.snack.foodNutrients[2].amount: ' + this.state.snack.foodNutrients[2].amount);
-        console.log('-----------');        
-        /* Calories */
-        console.log('this.state.snack.foodNutrients[4].nutrient.name: ' + this.state.snack.foodNutrients[4].nutrient.name);
-        console.log('this.state.snack.foodNutrients[4].amount: ' + this.state.snack.foodNutrients[4].amount);
-        console.log('-----------');  
-        /* Sodium */
-        console.log('this.state.snack.foodNutrients[5].nutrient.name: ' + this.state.snack.foodNutrients[5].nutrient.name);
-        console.log('this.state.snack.foodNutrients[5].amount: ' + this.state.snack.foodNutrients[5].amount);
-        console.log('-----------');  
-        /* Sat Fat */
-        console.log('this.state.snack.foodNutrients[0].nutrient.name: ' + this.state.snack.foodNutrients[0].nutrient.name);
-        console.log('this.state.snack.foodNutrients[0].amount: ' + this.state.snack.foodNutrients[0].amount);
-        console.log('-----------'); 
-        /* Trans Fat */            
-        console.log('this.state.snack.foodNutrients[12].nutrient.name: ' + this.state.snack.foodNutrients[12].nutrient.name);
-        console.log('this.state.snack.foodNutrients[12].amount: ' + this.state.snack.foodNutrients[12].amount);
-        console.log('-----------'); 
-        /* Fat */            
-        console.log('this.state.snack.foodNutrients[10].nutrient.name: ' + this.state.snack.foodNutrients[10].nutrient.name);
-        console.log('this.state.snack.foodNutrients[10].amount: ' + this.state.snack.foodNutrients[10].amount);
-        console.log('-----------');                                          
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-        /*LOGGGGGG*/
+        /* Initialization. */
+        let searchedSugar = 0;
+        let searchedCalories = 0;
+        let searchedSodium = 0;
+        let searchedSatFat = 0;
+        let searchedTransFat = 0;
+        let searchedFat = 0;
 
-        //this should be moved to the backend
+        /* Searching in the result USDA Array to look food ingredients since they are not returned in the same order. */
+        for (let index = 0; index < this.state.snack.foodNutrients.length; index++) {
+            /* Calories - Energy */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1008) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedCalories = this.state.snack.foodNutrients[index].amount;             
+            }           
+
+            /* Sugar */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1235) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedSugar = this.state.snack.foodNutrients[index].amount;             
+            }   
+
+            /* Sodium */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1093) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedSodium = this.state.snack.foodNutrients[index].amount;             
+            }   
+            
+            /* Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1004) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedFat = this.state.snack.foodNutrients[index].amount;             
+            }   
+
+            /* Trans Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1257) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedTransFat = this.state.snack.foodNutrients[index].amount;             
+            }   
+
+            /* Sat Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1258) {
+                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
+                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
+                searchedSatFat = this.state.snack.foodNutrients[index].amount;             
+            }              
+        }
+        
+        /* Getting Unit calculation to setup on the page. */
         let gInputUser = +document.getElementById('portion').value;
         console.log('gInputUser: ' + gInputUser);
         let uInputUser = this.formatUnitCalculation(this.getUnitCalculation());
         console.log('uInputUser: ' + uInputUser);
 
-        this.checkInput(gInputUser);// Calling funciton to pass parameter
+        // Validating the input from the user.
+        this.checkInput(gInputUser);
         
         let score = {
-            gRatio: 0.0,
-            totalScore: 0.0,
+            gRatio: 0,
+            totalScore: 0,
             firstIngredient: 0,
-            calories: 0.0,
-            calorieScore: 0.0,
-            totalFat: 0.0,
-            satFat: 0.0,
-            transFat: 0.0,
-            sodium: 0.0,
-            sugar: 0.0,
-            processed: 0.0,
+            calories: 0,
+            calorieScore: 0,
+            totalFat: 0,
+            satFat: 0,
+            transFat: 0,
+            sodium: 0,
+            sugar: 0,
+            processed: 0,
             servingSize: 0
         };
 
@@ -264,7 +289,7 @@ export default class SnackDetailsComponent extends Component {
         this.firstIngredientCalculation(this.state.snack.ingredients, score);        
      
         // Calories.
-        score.calories = score.gRatio * this.state.snack.foodNutrients[4].amount;        
+        score.calories = score.gRatio * searchedCalories;        
         console.log('CALORIESSSSSSSSSSSSSSSSSSSSSSSSS:' + score.calories);
         
         // Classify calories.
@@ -283,7 +308,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Total Fat [FORMULA]. FAT = ((fat * 9) /  calories) * 100
-        score.totalFat = (((this.state.snack.foodNutrients[10].amount * score.gRatio) * 9) / score.calories) * 100;
+        score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
 
         // Classify totalFat.
         if (score.totalFat >= 0 && score.totalFat <= 20) {
@@ -297,7 +322,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Saturated Fat [FORMULA]. SATFAT = ((saturatedFat * 9) /  calories) * 100
-        score.satFat = (((this.state.snack.foodNutrients[0].amount * score.gRatio) * 9) / score.calories) * 100;
+        score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
 
         // Classify satFat.
         if (score.satFat >= 0 && score.satFat <= 4.9) {
@@ -311,9 +336,9 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Classify transFat. 
-        if ((this.state.snack.foodNutrients[12].amount * score.gRatio) > 0) {
+        if ((searchedTransFat * score.gRatio) > 0) {
             score.transFat = 0;
-        } else if ((this.state.snack.foodNutrients[12].amount * score.gRatio) === 0) {
+        } else if ((searchedTransFat * score.gRatio) === 0) {
             score.transFat = 1;
         } else {
             console.log('Error transFat');
@@ -321,7 +346,7 @@ export default class SnackDetailsComponent extends Component {
 
 
         // Sodium.
-        score.sodium = score.gRatio * this.state.snack.foodNutrients[5].amount; 
+        score.sodium = score.gRatio * searchedSodium; 
 
         // Classify Sodium.
         if (score.sodium >= 0 && score.sodium <= 140) {
@@ -337,7 +362,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         //+++++++++++++++ Sugar (35% Weight).
-        score.sugar = ((this.state.snack.foodNutrients[2].amount * score.gRatio) / this.state.score.userGramsConverted) * 100;
+        score.sugar = ((searchedSugar * score.gRatio) / this.state.score.userGramsConverted) * 100;
 
         // Classify Sugar.
         if (score.sugar >= 0 && score.sugar <= 14.9) {
@@ -378,10 +403,27 @@ export default class SnackDetailsComponent extends Component {
 
         this.processedFoodCalculation(this.state.snack.ingredients,  score);
 
+      
+            console.log('score.totalScore' + score.totalScore);
+            console.log('score.firstIngredient' + score.firstIngredient);
+            console.log('score.calories' + score.calories);
+            console.log('score.calorieScore' + score.calorieScore);
+            console.log('score.totalFat' + score.totalFat);
+            console.log('score.satFat' + score.satFat);
+            console.log('score.transFat' + score.transFat);
+            console.log('score.sodium' + score.sodium);
+            console.log('score.sugar' + score.sugar);
+            console.log('score.processed' + score.processed);
+ 
 
+    
+            
         score.totalScore = score.firstIngredient + score.calorieScore + score.totalFat + score.satFat + score.transFat + score.sodium + score.sugar + score.processed;
-        this.setScoreState(score);
+        this.setScoreState(score);                            
         this.setShowResults(true);
+        console.log('score.totalScore' + score.totalScore);
+        console.log('score.firstIngredient' + score.firstIngredient);
+        console.log('score.processed' + score.processed);
     }
 
     firstIngredientCalculation(ingredients, score) {
@@ -640,7 +682,7 @@ export default class SnackDetailsComponent extends Component {
                                 <Card.Title>{this.state.snack && this.state.snack.product}</Card.Title>
 
                                 <p className={SnackDetailsStyles.snackname2}>
-                                    Serving size : { this.state.score.servingSize } grams
+                                    Serving size : { this.state.score.servingSize } { this.getUnitCalculation() }
                                 </p>
                                 <Table striped hover>
                                     <tbody>
