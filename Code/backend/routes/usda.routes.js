@@ -59,4 +59,18 @@ router.get('/search', async (req,res, next) => {
     }
 });
 
+router.get('/files', async (req,res, next) => {
+
+    const f = req.query.f;
+    
+    try {
+        var dataCSV = await fs.readFileSync(f, {"encoding": "utf8"});
+        //console.log(dataCSV);
+        res.send(dataCSV);
+    } catch (err) {
+        //console.log(err)
+        res.send(err);
+    }
+});
+
 module.exports = router;

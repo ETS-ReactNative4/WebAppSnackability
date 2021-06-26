@@ -101,7 +101,7 @@ export default class SnackList extends Component {
                 <Row>
                     <Col>        
                         <Form.Group controlId="formControlPortion">
-                            <Form.Control id="a" type="search" placeholder="🔎 Search for a snack's brand name..."             
+                            <Form.Control type="search" placeholder="🔎 Search for a snack's brand name..."             
                                 onKeyUp={ (event) => this.searchForItem(event.target.value) }          
                             />
                        </Form.Group>
