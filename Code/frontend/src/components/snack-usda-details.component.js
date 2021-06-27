@@ -285,7 +285,6 @@ export default class SnackDetailsComponent extends Component {
         console.log('score.gRatio:' + score.gRatio);
 
         // First ingredient.
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
         this.firstIngredientCalculation(this.state.snack.ingredients, score);        
      
         // Calories.
@@ -308,7 +307,14 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Total Fat [FORMULA]. FAT = ((fat * 9) /  calories) * 100
-        score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
+        if(score.calories !== 0)
+        {
+            score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
+        }
+        else 
+        {
+            score.totalFat = 0;
+        }
 
         // Classify totalFat.
         if (score.totalFat >= 0 && score.totalFat <= 20) {
@@ -322,7 +328,14 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Saturated Fat [FORMULA]. SATFAT = ((saturatedFat * 9) /  calories) * 100
-        score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
+        if(score.calories !== 0)
+        {
+            score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
+        }
+        else 
+        {
+            score.satFat = 0;
+        }
 
         // Classify satFat.
         if (score.satFat >= 0 && score.satFat <= 4.9) {
@@ -549,45 +562,59 @@ export default class SnackDetailsComponent extends Component {
 
     processedFoodCalculation(ingredients, score) {
         var count = 0;
-        var dataProcessed = "";
+        var dataProcessed = "";   
 
         //var dataProcessed = fs.readFileSync(processedFoodCsvFile, {"encoding": "utf8"});
         //var dataProcessed = "MONOSODIUM GLUTAMATE,Monosodium glutamate,artificial flavor,disodium guanylate";
 
         fetchCSVFiles(processedFoodCsvFile).then(response => response.data).then((dataCSV) => {            
-            console.log(dataCSV);
+            //console.log(dataCSV);
             dataProcessed = dataCSV;
 
-            var additives = dataProcessed.toString().toLowerCase().split(/\n/); // <---------change for in case that the file returned them in enters    /\n/   
-            console.log('additives:' + additives);
-            console.log('additives[1]:' + additives[1]);
+            let additives = dataProcessed.toString().toLowerCase().split(/\n/); // <---------change for in case that the file returned them in enters    /\n/   
+            //console.log('additives:' + additives);
             
-            //regex to break down and set to lower case 
-            var regex = ingredients.replace(/\s+/g, ' ').toLowerCase();
+            
+            
+            // regex to break down and set to lower case and split it into an array.
+            let regex = ingredients.replace(/\s+/g, ' ').toLowerCase().split(",");
             console.log('regex:' + regex);
-                    
-            // split items at a comma
-            regex = regex.split(",");
-        
+            //console.log('regex[3]:' + regex[3]);                   
+
             // remove all spaces at the end and beginning, if any
-            for (var i = 0; i < regex.length; i++) {
+            for (let i = 0; i < regex.length; i++) {
                 regex[i] = regex[i].replace(/\s*$/,'');
                 regex[i] = regex[i].replace(/^\s+/g, '');
             }
         
             regex[regex.length-1] = regex[regex.length-1].replace(/\.$/, "");
+
+            console.log('additives[653]:' + additives[653] + ':');
+            console.log('regex[3]:+' + regex[3]+ '+'); 
+            
+
+             console.log('regex[3].slice(0):' + regex[3].slice(0));
+                
+
+            if(additives[653].slice(0) === regex[3].slice(0))
+            {
+                console.log('DONT TALK TO ME!!!!!!!');                
+            }
+
+            
         
-            //see how many of the ingredients of the snack match the additives, a.k.a. are additives
-            for (i = 0; i < additives.length; i++) {
-                for (var j = 0; j < regex.length; j++) {
+            //see how many of the ingredients of the snack match the additives, a.k.a. are additives           
+            for (let i = 0; i < additives.length; i++) {                                                
+                for (var j = 0; j < regex.length; j++) {                     
+
                     if (additives[i] === regex[j]) {
-                        console.log('Additives found: ' + additives[i])
-                        count++
+                        console.log('Additives found: ' + additives[i]);
+                        count++;
                     }
                 }
             }
         
-            console.log('Count additives: ' + count)
+            console.log('Count additives: ' + count);
         
             if (count <= 0) {
                 console.log('heloooooooooooooooooooooooooooooo');                              
@@ -622,8 +649,6 @@ export default class SnackDetailsComponent extends Component {
 			modal: !prevState.modal,
 		}));
 	}
-
-
 
     render() {
 
@@ -669,7 +694,7 @@ export default class SnackDetailsComponent extends Component {
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilogram"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
                                         <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Pounds"); this.setUnit("100 lbs");}}>Pounds</Dropdown.Item>                                      
                                     </Dropdown.Menu>
-                                </Dropdown>
+                                </Dropdown>                       
                             </Card.Body>
                         </Card>
                     </Col>
