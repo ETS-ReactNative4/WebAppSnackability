@@ -334,116 +334,55 @@ export default class SnackDetailsComponent extends Component {
     }
 
     firstIngredientCalculation(ingredients, score) {
-        // Initialization.
+
         let category = 'other';
 
-        // regex to break down to first ingredient and set to lower case
-        let regex = ingredients.replace(/\s+/g, ' ').toLowerCase();
+        let [ingredient] = ingredients
+            .toLowerCase()
+            .split(',')
+            .map(item =>
+                item.replace(/[^0-9a-z%]/gi, ' ')
+                    .replace(/  +/g, ' ')
+                    .replace(/\s*$/, '')
+                    .replace('.', '')
+                    .trim()
+            );
 
-        // split items at a comma, in order to get first ingredient
-        regex = regex.split(',');
+        fetchCSVFiles(firstIngredientCsvFile)
+            .then(response => response.data)
+            .then((dataCSV) => {
 
-        //we only want first ingredient
-        regex = regex[0];
-
-        // remove every character that is not a number, letter or a percentage sign
-        regex = regex.replace(/[^0-9a-z%]/gi, ' ');
-
-        // if there is more than one space between words, remove it
-        regex = regex.replace(/  +/g, ' ');
-
-        // remove all spaces at the end, if any
-        regex = regex.replace(/\s*$/, '');
-
-        let combinations = regex.split(' ');
-
-        let n = combinations.length;
-
-        regex = '';
-
-        // make all possible combinations of the words of the first ingredient
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j <= i; j++) {
-                regex += (combinations.slice(j, n - i + j).join('') + ',');
-            }
-        }
-
-        // remove the comma at the end due to for loop
-        regex = regex.toString().replace(/,$/, '');
-        regex = regex.split(',');
-
-        var test1 = regex.length;
-        var test2 = regex.length;
-        var test3 = '';
-
-        // check for both singular and plural of the first ingredient
-        for (let i = 0; i < test1; i++) {
-            try {
-                throw i;
-            } catch (ii) {
-                test3 = regex[ii].slice(-1);
-
-                if (test3 === 's') {
-                    regex[test2] = regex[ii].substring(0, regex[ii].length - 1);
-                    test2++;
-                } else {
-                    regex[test2] = regex[ii] + 's';
-                    test2++;
-                }
-            }
-        }
-
-        // read first ing from csv file, set all to lowercase and split at ,
-        //var dataCSV = fs.readFileSync(firstIngredientCsvFile, {"encoding": "utf8"});
-        //var dataCSV = "fruits,apples,fruits,apricots,fruits,bananas,fruits,cherries,fruits,Coconut,fruits,Coconut Flakes";
-
-        fetchCSVFiles(firstIngredientCsvFile).then(response => response.data).then((dataCSV) => {
-            let first_ing = dataCSV.toString().toLowerCase().replace(/\n/g, ',').split(',');
-
-            // loop thru all combinations of the first ingredient
-            regex.forEach(function (snack, i) {
-
-                //console.log('All combinations of first ingredient: ' + snack)
-                first_ing.forEach(function (item, j) {
-
-                    if (j + 1 < first_ing.length) {
-
-                        item = first_ing[j + 1];
-                        item = item.replace(/\s/g, '');
-
-                        if (item === snack) {
-                            category = first_ing[j];
+                dataCSV
+                    .toString()
+                    .toLowerCase()
+                    .split('\n')
+                    .forEach(item => {
+                        const food = item.split(',')[1];
+                        if(ingredient.indexOf(food) !== -1) {
+                            category = item.split(',')[0];
                         }
-                    }
-                });
-            });
+                    });
 
-            switch (category) {
-                case 'dairy':
-                case 'proteins-nut':
-                case 'whole grains':
-                case 'vegetables':
-                case 'fruits':
-                case 'proteins':
-                    score.firstIngredient = 2;
-                    break;
-                /*
-                case 'They are Secret!':
-                    if(!isLocal && name.toLowerCase().replace("Yogurt").length > 0) score.firstIngredient = 2;
-                    score.firstIngredient = 0;
-                    break;
-                */
-                case 'other':
-                    score.firstIngredient = 0;
-                    break;
-                case 'none':
-                    score.firstIngredient = 0;
-                    break;
-                default:
-                    score.firstIngredient = 0;
-            }
+                switch (category) {
+                    case 'dairy':
+                    case 'proteins-nut':
+                    case 'whole grains':
+                    case 'vegetables':
+                    case 'fruits':
+                    case 'proteins':
+                        score.firstIngredient = 2;
+                        break;
+                    case 'other':
+                        score.firstIngredient = 0;
+                        break;
+                    case 'none':
+                        score.firstIngredient = 0;
+                        break;
+                    default:
+                        score.firstIngredient = 0;
+                }
 
-            score.totalScore += score.firstIngredient;
+                score.totalScore += score.firstIngredient;
 
         }).catch(error => {
             console.error(error);
