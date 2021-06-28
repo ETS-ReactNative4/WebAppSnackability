@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
-import {fetchSnackByIDUSDA,fetchCSVFiles} from '../services/snack.service.js'; 
-import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form, Modal} from 'react-bootstrap';
-import foodPic from '../images/foodinfo.png'
+import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table } from 'react-bootstrap';
+import foodPic from '../images/foodinfo.png';
 
-var firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
-var processedFoodCsvFile = './excelfiles/processed_food.csv';
+const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
+const processedFoodCsvFile = './excelfiles/processed_food.csv';
 
-function  generateDataTable(score) {
+const units = {
+    Grams: 'g',
+    Tablespoon: 'tbsp',
+    TeaSpoon: 'tsp',
+    Ounces: 'oz',
+    Kilogram: 'kg',
+    Pounds: 'lbs',
+};
+
+function generateDataTable(score) {
     return [
         {
             criteria: 'First Ingredient',
@@ -66,8 +75,8 @@ export default class SnackDetailsComponent extends Component {
         this.state = {
             snack: null,
             isLoading: false,
-            unitCalc: "Grams",
-            unit: "100 g",
+            unit: 'Grams',
+            portion: 100.0,
             score: {
                 gRatio: 0.0,
                 totalScore: 0.0,
@@ -80,12 +89,15 @@ export default class SnackDetailsComponent extends Component {
                 sodium: 0.0,
                 sugar: 0.0,
                 processed: 0.0,
-                userGramsConverted: 0.0 
-            },            
+            },
             showResults: false
         };
         this._toggle = this._toggle.bind(this);
-    }    
+    }
+
+    setPortion(portion) {
+        this.setState({portion: portion});
+    }
 
     setScoreState(score) {
         this.setState({score: score});
@@ -95,16 +107,18 @@ export default class SnackDetailsComponent extends Component {
         this.setState({showResults: showResults});
     }
 
+    setUnit(unit) {
+        this.setState({unit: unit});
+    }
+
     componentDidMount() {
         this.fetchSnackUSDA();
     }
 
-    fetchSnackUSDA()
-    {
+    fetchSnackUSDA() {
         this.setState({isLoading: true});
         fetchSnackByIDUSDA(this.props.match.params.snack_id).then(response => response.data).then((snack) => {
             this.setState({snack: snack, isLoading: false});
-            console.log(this.state.snack);
         }).catch(error => {
             console.error(error);
             this.setState({isLoading: false});
@@ -118,90 +132,35 @@ export default class SnackDetailsComponent extends Component {
         ));
     }
 
-    formatUnitCalculation(unitCalculationUser)
-    {
-        switch (unitCalculationUser) 
-        {
-            case 'Grams':
-                return "g";
-            case 'Tablespoon':
-                return "tbsp";
-            case 'Tea Spoon':
-                return "tsp";
-            case 'Ounces':
-                return "oz";
-            case 'Kilogram':
-                return "kg";
-            case 'Pounds':
-                return "lbs";
-            default:
-                return "ERROR";
-        }
-    }
+    getPortionInGrams() {
 
-    setUnitCalculation(unitCalc) {
-        this.setState({unitCalc: unitCalc});
-    }
+        const unit = units[this.state.unit]
 
-    setUnit(unit) {
-        this.setState({unit: unit});
-    }
+        if (unit !== units.Grams) {
 
-    getUnitCalculation() {        
-        return this.state.unitCalc;
-    }
-
-    getUnit() {        
-        return this.state.unit;
-    }
-
-    checkInput (gInputUser) {
-        const input = gInputUser;
-        const numberCheck = /\d/g;
-
-        if(!numberCheck.test(input) || input === 0 || input < 0 || input === "" || input === null){
-            alert('Please enter a number !!');
-            window.location.reload();
-        }    
-    }
-
-    adjustUserInput(gInputUser, uInputUser) {
-        if(gInputUser === "100" && uInputUser === "g") {
-            return this.getRatio(gInputUser, uInputUser);
-        }
-        else if(gInputUser !== "100" && uInputUser === "g") {
-            return this.getRatio(gInputUser, uInputUser);
-        }
-        else if(uInputUser !== "g") {
-            switch (uInputUser) {
-                case 'kg':
-                    return this.getRatio(gInputUser * 1000, "g");
-                case 'oz':
-                    return this.getRatio(gInputUser * 28.35, "g");
-                case 'tbsp':                                                        
-                    return this.getRatio(gInputUser * 17.07, "g");
-                case 'tsp':
-                    return this.getRatio(gInputUser * 5.69, "g");
-                case 'lbs':   
-                    return this.getRatio(gInputUser * 453.6, "g");
+            switch (unit) {
+                case units.Kilogram:
+                    return this.state.portion * 1000;
+                case units.Ounces:
+                    return this.state.portion * 28.35;
+                case units.Tablespoon:
+                    return this.state.portion * 17.07;
+                case units.TeaSpoon:
+                    return this.state.portion * 5.69;
+                case units.Pounds:
+                    return this.state.portion * 453.6;
                 default:
-                    return "ERROR";
-            }         
+                    return 'ERROR';
+            }
+
+        } else {
+            return this.state.portion / 100;
         }
+
     }
 
-    getRatio(gInputUser, uInputUser) {
-        if(uInputUser === "g") {
-            this.state.score.userGramsConverted = gInputUser;
-            let ratio = gInputUser / 100;
-            return ratio;
-        }
-        else {
-            return "ERROR";
-        }        
-    }
-    
     calculate() {
+
         /* Initialization. */
         let searchedSugar = 0;
         let searchedCalories = 0;
@@ -214,56 +173,38 @@ export default class SnackDetailsComponent extends Component {
         for (let index = 0; index < this.state.snack.foodNutrients.length; index++) {
             /* Calories - Energy */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1008) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedCalories = this.state.snack.foodNutrients[index].amount;             
-            }           
+                searchedCalories = this.state.snack.foodNutrients[index].amount;
+            }
 
             /* Sugar */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1235) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedSugar = this.state.snack.foodNutrients[index].amount;             
-            }   
+                searchedSugar = this.state.snack.foodNutrients[index].amount;
+            }
 
             /* Sodium */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1093) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedSodium = this.state.snack.foodNutrients[index].amount;             
-            }   
-            
+                searchedSodium = this.state.snack.foodNutrients[index].amount;
+            }
+
             /* Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1004) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedFat = this.state.snack.foodNutrients[index].amount;             
-            }   
+                searchedFat = this.state.snack.foodNutrients[index].amount;
+            }
 
             /* Trans Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1257) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedTransFat = this.state.snack.foodNutrients[index].amount;             
-            }   
+                searchedTransFat = this.state.snack.foodNutrients[index].amount;
+            }
 
             /* Sat Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1258) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);   
-                searchedSatFat = this.state.snack.foodNutrients[index].amount;             
-            }              
+                searchedSatFat = this.state.snack.foodNutrients[index].amount;
+            }
         }
-        
-        /* Getting Unit calculation to setup on the page. */
-        let gInputUser = +document.getElementById('portion').value;
-        console.log('gInputUser: ' + gInputUser);
-        let uInputUser = this.formatUnitCalculation(this.getUnitCalculation());
-        console.log('uInputUser: ' + uInputUser);
 
-        // Validating the input from the user.
-        this.checkInput(gInputUser);
-        
+        /* Getting Unit calculation to setup on the page. */
+        let portion = this.state.portion;
+
         let score = {
             gRatio: 0,
             totalScore: 0,
@@ -279,19 +220,16 @@ export default class SnackDetailsComponent extends Component {
             servingSize: 0
         };
 
-        score.servingSize = gInputUser;
+        score.servingSize = portion;
 
-        score.gRatio = this.adjustUserInput(gInputUser, uInputUser);
-        console.log('score.gRatio:' + score.gRatio);
+        score.gRatio = this.getPortionInGrams();
 
         // First ingredient.
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-        this.firstIngredientCalculation(this.state.snack.ingredients, score);        
-     
+        this.firstIngredientCalculation(this.state.snack.ingredients, score);
+
         // Calories.
-        score.calories = score.gRatio * searchedCalories;        
-        console.log('CALORIESSSSSSSSSSSSSSSSSSSSSSSSS:' + score.calories);
-        
+        score.calories = score.gRatio * searchedCalories;
+
         // Classify calories.
         if (score.calories >= 1.0 && score.calories <= 50) {
             score.calorieScore = 2;
@@ -308,7 +246,11 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Total Fat [FORMULA]. FAT = ((fat * 9) /  calories) * 100
-        score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
+        if (score.calories !== 0) {
+            score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
+        } else {
+            score.totalFat = 0;
+        }
 
         // Classify totalFat.
         if (score.totalFat >= 0 && score.totalFat <= 20) {
@@ -322,7 +264,11 @@ export default class SnackDetailsComponent extends Component {
         }
 
         // Saturated Fat [FORMULA]. SATFAT = ((saturatedFat * 9) /  calories) * 100
-        score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
+        if (score.calories !== 0) {
+            score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
+        } else {
+            score.satFat = 0;
+        }
 
         // Classify satFat.
         if (score.satFat >= 0 && score.satFat <= 4.9) {
@@ -335,7 +281,7 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error satFat');
         }
 
-        // Classify transFat. 
+        // Classify transFat.
         if ((searchedTransFat * score.gRatio) > 0) {
             score.transFat = 0;
         } else if ((searchedTransFat * score.gRatio) === 0) {
@@ -344,9 +290,8 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error transFat');
         }
 
-
         // Sodium.
-        score.sodium = score.gRatio * searchedSodium; 
+        score.sodium = score.gRatio * searchedSodium;
 
         // Classify Sodium.
         if (score.sodium >= 0 && score.sodium <= 140) {
@@ -362,7 +307,7 @@ export default class SnackDetailsComponent extends Component {
         }
 
         //+++++++++++++++ Sugar (35% Weight).
-        score.sugar = ((searchedSugar * score.gRatio) / this.state.score.userGramsConverted) * 100;
+        score.sugar = ((searchedSugar * score.gRatio) / this.state.portion) * 100;
 
         // Classify Sugar.
         if (score.sugar >= 0 && score.sugar <= 14.9) {
@@ -379,251 +324,123 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error Sugar');
         }
 
-        // Food Process clasisfication FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-        /*
-        fetchCSVFiles(processedFoodCsvFile).then(response => response.data).then((dataCSV) => {            
-            console.log(dataCSV);
-        }).catch(error => {
-            console.error(error);
-            this.setState({isLoading: false});
-        });
-        */   
+        // Food Process classification
+        this.processedFoodCalculation(this.state.snack.ingredients, score);
 
-
-
-        /*
-        if (this.state.snack.foodClass.toLowerCase() === 'yes') {
-            score.processed = -1;
-        } else if (this.state.snack.foodClass.toLowerCase() === 'no') {
-            score.processed = 0;
-        } else {
-            console.log('Error clasisfication');
-        }
-        */
-
-        this.processedFoodCalculation(this.state.snack.ingredients,  score);
-
-      
-            console.log('score.totalScore' + score.totalScore);
-            console.log('score.firstIngredient' + score.firstIngredient);
-            console.log('score.calories' + score.calories);
-            console.log('score.calorieScore' + score.calorieScore);
-            console.log('score.totalFat' + score.totalFat);
-            console.log('score.satFat' + score.satFat);
-            console.log('score.transFat' + score.transFat);
-            console.log('score.sodium' + score.sodium);
-            console.log('score.sugar' + score.sugar);
-            console.log('score.processed' + score.processed);
- 
-
-    
-            
         score.totalScore = score.firstIngredient + score.calorieScore + score.totalFat + score.satFat + score.transFat + score.sodium + score.sugar + score.processed;
-        this.setScoreState(score);                            
+        this.setScoreState(score);
         this.setShowResults(true);
-        console.log('score.totalScore' + score.totalScore);
-        console.log('score.firstIngredient' + score.firstIngredient);
-        console.log('score.processed' + score.processed);
+
     }
 
     firstIngredientCalculation(ingredients, score) {
-        // Initialization.
-        var category = 'other';
 
-        // regex to break down to first ingredient and set to lower case
-        var regex = ingredients.replace(/\s+/g, " ").toLowerCase();
+        let category = 'other';
 
-        // split items at a comma, in order to get first ingredient
-        regex = regex.split(",");
+        let [ingredient] = ingredients
+            .toLowerCase()
+            .split(',')
+            .map(item =>
+                item.replace(/[^0-9a-z%]/gi, ' ')
+                    .replace(/  +/g, ' ')
+                    .replace(/\s*$/, '')
+                    .replace('.', '')
+                    .trim()
+            );
 
-        //we only want first ingredient
-        regex = regex[0];
+        fetchCSVFiles(firstIngredientCsvFile)
+            .then(response => response.data)
+            .then((dataCSV) => {
 
-        // remove every character that is not a number, letter or a percentage sign
-        regex = regex.replace(/[^0-9a-z%]/gi, " ");
-
-        // if there is more than one space between words, remove it
-        regex = regex.replace(/  +/g, " ");
-
-        // remove all spaces at the end, if any
-        regex = regex.replace(/\s*$/, "");
-
-        var combinations = regex.split(" ");
-
-        var n = combinations.length;
-
-        regex = "";
-
-        // make all possible combinations of the words of the first ingredient
-        for (var i = 0; i < n; i++) {
-          for (var j = 0; j <= i; j++) {
-            regex += (combinations.slice(j, n - i + j).join('') + ',');
-          }
-        }
-
-        // remove the comma at the end due to for loop
-        regex = regex.toString().replace(/\,$/, "");
-        regex = regex.split(',');
-
-        var test1 = regex.length;
-        var test2 = regex.length;
-        var test3 = '';
-
-        // check for both singular and plural of the first ingredient
-        for (i = 0; i < test1; i++) {
-          try {throw i}
-          catch(ii) {
-            test3 = regex[ii].slice(-1);
-
-            if (test3 === 's') {
-                regex[test2] = regex[ii].substring(0, regex[ii].length - 1);
-                test2++;
-            }
-            else {
-                regex[test2] = regex[ii] + 's';
-                test2++;
-            }
-          }
-        }
-
-        // read first ing from csv file, set all to lowercase and split at ,
-        //var dataCSV = fs.readFileSync(firstIngredientCsvFile, {"encoding": "utf8"});
-        //var dataCSV = "fruits,apples,fruits,apricots,fruits,bananas,fruits,cherries,fruits,Coconut,fruits,Coconut Flakes";
-
-        fetchCSVFiles(firstIngredientCsvFile).then(response => response.data).then((dataCSV) => { 
-            let first_ing = dataCSV.toString().toLowerCase().replace(/\n/g, ",").split(",");        
-
-            // loop thru all combinations of the first ingredient
-            regex.forEach(function(snack, i) {
-    
-                //console.log('All combinations of first ingredient: ' + snack)
-                first_ing.forEach(function(item, j) {
-    
-                    if (j + 1 < first_ing.length) {
-    
-                        item = first_ing[j + 1];
-                        item = item.replace(/\s/g, '');
-                        
-                        if (item === snack) {
-                            category = first_ing[j];
-                            console.log('*Matching first ing: ' + snack)
+                dataCSV
+                    .toString()
+                    .toLowerCase()
+                    .split('\n')
+                    .forEach(item => {
+                        const food = item.split(',')[1];
+                        if(ingredient.indexOf(food) !== -1) {
+                            category = item.split(',')[0];
                         }
-                    }
-                });
-            });
-                    
-            console.log('Ingredients after checking db: ' + category)
-                    
-            switch (category) {
-                case 'dairy':
-                case 'proteins-nut':
-                case 'whole grains':
-                case 'vegetables':
-                case 'fruits':
-                case 'proteins':
-                    score.firstIngredient = 2;
-                    break;
-                /*    
-                case 'They are Secret!':
-                    if(!isLocal && name.toLowerCase().replace("Yogurt").length > 0) score.firstIngredient = 2;
-                    score.firstIngredient = 0;
-                    break;
-                */
-                case 'other':
-                    score.firstIngredient = 0;
-                    break;
-                case 'none':
-                    console.log('It appears there are no ingredients?');
-                    score.firstIngredient = 0;
-                    break;
-                default:
-                    score.firstIngredient = 0;
-            }
+                    });
+
+                switch (category) {
+                    case 'dairy':
+                    case 'proteins-nut':
+                    case 'whole grains':
+                    case 'vegetables':
+                    case 'fruits':
+                    case 'proteins':
+                        score.firstIngredient = 2;
+                        break;
+                    case 'other':
+                        score.firstIngredient = 0;
+                        break;
+                    case 'none':
+                        score.firstIngredient = 0;
+                        break;
+                    default:
+                        score.firstIngredient = 0;
+                }
+
+                score.totalScore += score.firstIngredient;
+
         }).catch(error => {
             console.error(error);
             this.setState({isLoading: false});
         });
 
-
-    }    
+    }
 
     processedFoodCalculation(ingredients, score) {
-        var count = 0;
-        var dataProcessed = "";
 
-        //var dataProcessed = fs.readFileSync(processedFoodCsvFile, {"encoding": "utf8"});
-        //var dataProcessed = "MONOSODIUM GLUTAMATE,Monosodium glutamate,artificial flavor,disodium guanylate";
+        fetchCSVFiles(processedFoodCsvFile)
+            .then(response => response.data)
+            .then((dataCSV) => {
 
-        fetchCSVFiles(processedFoodCsvFile).then(response => response.data).then((dataCSV) => {            
-            console.log(dataCSV);
-            dataProcessed = dataCSV;
+                let additives = dataCSV
+                    .toString()
+                    .toLowerCase()
+                    .split('\n');
 
-            var additives = dataProcessed.toString().toLowerCase().split(/\n/); // <---------change for in case that the file returned them in enters    /\n/   
-            console.log('additives:' + additives);
-            console.log('additives[1]:' + additives[1]);
-            
-            //regex to break down and set to lower case 
-            var regex = ingredients.replace(/\s+/g, ' ').toLowerCase();
-            console.log('regex:' + regex);
-                    
-            // split items at a comma
-            regex = regex.split(",");
-        
-            // remove all spaces at the end and beginning, if any
-            for (var i = 0; i < regex.length; i++) {
-                regex[i] = regex[i].replace(/\s*$/,'');
-                regex[i] = regex[i].replace(/^\s+/g, '');
-            }
-        
-            regex[regex.length-1] = regex[regex.length-1].replace(/\.$/, "");
-        
-            //see how many of the ingredients of the snack match the additives, a.k.a. are additives
-            for (i = 0; i < additives.length; i++) {
-                for (var j = 0; j < regex.length; j++) {
-                    if (additives[i] === regex[j]) {
-                        console.log('Additives found: ' + additives[i])
-                        count++
-                    }
+                let ingredientsList = ingredients
+                    .toLowerCase()
+                    .split(',')
+                    .map(item => item.replace('.', '').trim());
+
+                let total = additives.reduce((total, additive) => {
+                    return total + ingredientsList.includes(additive);
+                }, 0);
+
+                if (total <= 0) {
+                    score.processed = 1;
+                } else if (total === 1) {
+                    score.processed = 0.5;
+                } else if (total === 2 || total === 3) {
+                    score.processed = 0;
+                } else if (total === 4 || total === 5) {
+                    score.processed = -0.5;
+                } else if (total > 5) {
+                    score.processed = -1;
                 }
-            }
-        
-            console.log('Count additives: ' + count)
-        
-            if (count <= 0) {
-                console.log('heloooooooooooooooooooooooooooooo');                              
-                score.processed = 1;
-            }
-            else if (count === 1) {
-                score.processed = 0.5;
-            }
-            else if (count === 2 || count === 3) {
-                score.processed = 0;
-            }
-            else if (count === 4 || count === 5) {
-                score.processed = -0.5;
-            }
-            else if (count > 5) {
-                score.processed = -1;
-            }
 
-            this.setScoreState(score);
-            this.setState({isLoading: false});
-        }).catch(error => {
+                score.totalScore += score.processed;
+
+                this.setScoreState(score);
+                this.setState({isLoading: false});
+
+            }).catch(error => {
             console.error(error);
             this.setState({isLoading: false});
         });
 
-
-    }   
-
-
-	_toggle() {
-		this.setState((prevState) => ({
-			modal: !prevState.modal,
-		}));
-	}
+    }
 
 
+    _toggle() {
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
+    }
 
     render() {
 
@@ -636,9 +453,11 @@ export default class SnackDetailsComponent extends Component {
 
                                 <Card.Title>Snack Calculator Score</Card.Title>
 
-                                <Form.Group controlId="formControlPortion" style={{width: "300px", margin: "10px auto"}}>
-                                    <Form.Label>Portion Size {this.getUnitCalculation()}:</Form.Label>
-                                    <Form.Control id="portion" type="text" placeholder={this.getUnit()} />
+                                <Form.Group style={{width: '300px', margin: '10px auto'}}>
+                                    <Form.Label>Portion Size {this.state.unit}:</Form.Label>
+                                    <Form.Control type="number"
+                                                  placeholder={ `${this.state.portion} ${units[this.state.unit]}` }
+                                                  onChange={(e) => this.setPortion(e.target.value)}/>
                                 </Form.Group>
 
                                 <div>
@@ -646,28 +465,40 @@ export default class SnackDetailsComponent extends Component {
                                 </div>
 
                                 <Modal show={this.state.modal} onHide={this._toggle}>
-					                <Modal.Header closeButton='true' />
-					                <Modal.Body>   
-                                        <img style={{width:"460px"}} src={foodPic} alt=""/>          						
-					                </Modal.Body>
-				                </Modal>
+                                    <Modal.Header closeButton="true"/>
+                                    <Modal.Body>
+                                        <img style={{width: '460px'}} src={foodPic} alt=""/>
+                                    </Modal.Body>
+                                </Modal>
 
                                 <Dropdown as={ButtonGroup}>
 
-                                    <Button variant="primary" onClick={() => this.calculate()}>
+                                    <Button variant="primary" onClick={() => this.calculate()} disabled={this.state.isLoading}>
                                         Calculate 📱
-                                    </Button>                                  
-                                    
+                                    </Button>
+
                                     <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu id="dropdown-units-button" title="Units">
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Grams"); this.setUnit("100 g");}}>Grams</Dropdown.Item>                                        
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tablespoon"); this.setUnit("100 tbsp");}}>Tablespoon</Dropdown.Item>                                    
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tea Spoon"); this.setUnit("100 tsp");}}>Tea Spoon</Dropdown.Item>                                          
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Ounces"); this.setUnit("100 oz");}}>Ounces</Dropdown.Item>                                      
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilogram"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Pounds"); this.setUnit("100 lbs");}}>Pounds</Dropdown.Item>                                      
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('Grams');
+                                        }}>Grams</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('Tablespoon');
+                                        }}>Tablespoon</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('TeaSpoon');
+                                        }}>Tea Spoon</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('Ounces');
+                                        }}>Ounces</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('Kilogram');
+                                        }}>Kilograms</Dropdown.Item>
+                                        <Dropdown.Item href="" onClick={() => {
+                                            this.setUnit('Pounds');
+                                        }}>Pounds</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Card.Body>
@@ -682,7 +513,7 @@ export default class SnackDetailsComponent extends Component {
                                 <Card.Title>{this.state.snack && this.state.snack.product}</Card.Title>
 
                                 <p className={SnackDetailsStyles.snackname2}>
-                                    Serving size : { this.state.score.servingSize } { this.getUnitCalculation() }
+                                    Serving size : {this.state.score.servingSize} {this.state.unit}
                                 </p>
                                 <Table striped hover>
                                     <tbody>
