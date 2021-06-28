@@ -173,43 +173,31 @@ export default class SnackDetailsComponent extends Component {
         for (let index = 0; index < this.state.snack.foodNutrients.length; index++) {
             /* Calories - Energy */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1008) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedCalories = this.state.snack.foodNutrients[index].amount;
             }
 
             /* Sugar */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1235) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedSugar = this.state.snack.foodNutrients[index].amount;
             }
 
             /* Sodium */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1093) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedSodium = this.state.snack.foodNutrients[index].amount;
             }
 
             /* Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1004) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedFat = this.state.snack.foodNutrients[index].amount;
             }
 
             /* Trans Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1257) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedTransFat = this.state.snack.foodNutrients[index].amount;
             }
 
             /* Sat Fat */
             if (this.state.snack.foodNutrients[index].nutrient.id === 1258) {
-                console.log('this.state.snack.foodNutrients[index].nutrient.name: ' + this.state.snack.foodNutrients[index].nutrient.name);
-                console.log('this.state.snack.foodNutrients[index].amount: ' + this.state.snack.foodNutrients[index].amount);
                 searchedSatFat = this.state.snack.foodNutrients[index].amount;
             }
         }
@@ -425,13 +413,10 @@ export default class SnackDetailsComponent extends Component {
 
                         if (item === snack) {
                             category = first_ing[j];
-                            console.log('*Matching first ing: ' + snack);
                         }
                     }
                 });
             });
-
-            console.log('Ingredients after checking db: ' + category);
 
             switch (category) {
                 case 'dairy':
@@ -452,7 +437,6 @@ export default class SnackDetailsComponent extends Component {
                     score.firstIngredient = 0;
                     break;
                 case 'none':
-                    console.log('It appears there are no ingredients?');
                     score.firstIngredient = 0;
                     break;
                 default:

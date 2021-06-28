@@ -35,12 +35,9 @@ export default class SnackList extends Component {
     }
 
     _onDetected = result => {
-        console.log('result.codeResult.code: ' + result.codeResult.code);
-        console.log('this.state.lastBarcode: ' + this.state.lastBarcode);
 
         if (this.state.lastBarcode || result.codeResult.code !== this.state.lastBarcode) {
             this.searchForItem(result.codeResult.code);
-            console.log('THE RESULT IS: ' + result.codeResult.code);
         }
 
         this.setState({ results: this.state.results.concat([result]), lastBarcode: result.codeResult.code});
@@ -95,22 +92,23 @@ export default class SnackList extends Component {
 
         return (
 
-            <Container fluid  className="mt-5">
+            <Container fluid className="mt-3">
                 <Row>
-                    <Col>
+                    <Col xs={12} sm={10}>
                         <Form.Group controlId="formControlPortion">
                             <Form.Control type="search" placeholder="🔎 Search for a snack's brand name..."
                                 onKeyUp={ (event) => this.searchForItem(event.target.value) }
                             />
                        </Form.Group>
                     </Col>
+                    <Col xs={12} sm={2}>
+                        <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>
+                    </Col>
                 </Row>
-
-                <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>
 
                 {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
 
-                <Row className="mt-1">
+                <Row className="mt-3">
                     <Col>
                         <Table striped hover>
                             <thead>
@@ -124,7 +122,6 @@ export default class SnackList extends Component {
                                 </tr>
                                 { !this.state.isLoading && this.SnackList() }
                             </tbody>
-                            {console.log(this.state.snacks)}
                         </Table>
                     </Col>
                 </Row>
