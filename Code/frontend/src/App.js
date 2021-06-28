@@ -24,7 +24,7 @@ class App extends Component {
                         </Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link href="/">🏠 Home</Nav.Link>
-                            <Nav.Link href="/usda">🍒 Snacks USDA</Nav.Link>
+                            <Nav.Link href="/usda">🍒 Snacks</Nav.Link>
                             <Nav.Link href='/snacksgraph'>📊 Snacks Graph</Nav.Link>
                             <Nav.Link href='/settings'>🔧 Settings</Nav.Link>
                         </Nav>
