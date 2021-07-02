@@ -2,6 +2,29 @@ import axios from 'axios';
 import Chart from 'chart.js/auto';
 import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { defaults } from 'react-chartjs-2';
+import moment from "moment"; // No more errors, errors present when using {moment}
+
+import SnackDetailsStyles from '../styles/graph.css';
+
+defaults.plugins.legend.position = 'top';
+
+function Average (){
+	let points = [15, 4, 4, 66, 7, 9, 33, 4, 6, 43, 43, 43, 40];
+	let count = 0;
+	let total =0;
+
+	for ( let i = 0; i < points.length; i++) {
+		if (points[i] !== undefined) {
+			count++;
+			total +=points[i];
+		}
+	}
+	let avg = total / count;
+	console.log(avg);
+
+}
+
 
 
 const SnackGraph = () => {
