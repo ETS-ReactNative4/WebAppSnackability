@@ -5,24 +5,30 @@ require('dotenv').config({
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./db/db');
+const admin = require('firebase-admin');
+const serviceAccount = require("./snackability-webapp-firebase-adminsdk-h60le-4728fc7268.json");
 
-const snacksRoutes = require('./routes/snacks.routes');
+const authRoutes = require('./routes/auth.routes');
 const usdaRoutes = require('./routes/usda.routes');
+const scoreRoutes = require('./routes/score.routes');
 
-const Snacks = require('./models/snacks.model');
+const decodeIdToken = require('./middlewares/decodeToken');
 
 const PORT = process.env.PORT;
 const app = express();
 
-db.connect()
-  .then(() => console.log("Database connected"))
-  .catch((e) => console.error(e));
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use('/snacks', snacksRoutes);
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use('/auth', authRoutes);
 app.use('/usda', usdaRoutes);
+app.use('/score', decodeIdToken, scoreRoutes);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
