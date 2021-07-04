@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+/*
 export function fetchSnacksList() {
     return axios.get('http://localhost:4000/snacks');
 }
@@ -15,6 +16,7 @@ export function fetchSnacksByName(keyword) {
 export function fetchSnackByID(snack_id) {
     return axios.get(`http://localhost:4000/snacks/${snack_id}`);
 }
+*/
 
 export function fetchSnacksListUSDA() {
     return axios.get('http://localhost:4000/usda/snacks');
@@ -31,7 +33,6 @@ export function fetchSnacksByNameUSDA(keyword) {
 export function fetchSnackByIDUSDA(snack_id) {
     return axios.get(`http://localhost:4000/usda/snacks/${snack_id}`);
 }
-
 
 export function fetchCSVFiles(file_path) {
     return axios.get(`http://localhost:4000/usda/files`, {
