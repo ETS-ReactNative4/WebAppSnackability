@@ -4,7 +4,6 @@ Project Structure
 
 - backend                       Contains the backend API portion of the snackability web app
     - node_modules              Contains all the node modules for the backend  
-    - db                        Contains .csv files for the MongoDB database
 
 - frontend                      Contains the frontend react native application portion of the snackability web app
     - node_modules              Contains all the node modules for the frontend
