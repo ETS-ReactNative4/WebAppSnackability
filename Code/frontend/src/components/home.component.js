@@ -38,7 +38,7 @@ export default class HomeComponent extends Component {
                                         <small><i>Associate Professor</i></small>
                                     </Card.Title>
                                     <Card.Text>
-                                        <p>Florida International University</p>
+                                        <span>Florida International University</span>
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -53,7 +53,7 @@ export default class HomeComponent extends Component {
                                         <small><i>PhD Student</i></small>
                                     </Card.Title>
                                     <Card.Text>
-                                        <p>Florida International University</p>
+                                        <span>Florida International University</span>
                                     </Card.Text>
 
                                 </Card.Body>
@@ -65,8 +65,7 @@ export default class HomeComponent extends Component {
 
                 <Jumbotron fluid className="position-absolute w-100 text-center mt-4">
                     <h6>Contact the Product Owner</h6>
-                    <p>For questions or to provide feedback in regards to the Snackability app, please email
-                        Dr. Cristina Palacios:</p>
+                    <s>For questions or to provide feedback in regards to the Snackability app, please email Dr. Cristina Palacios:</s>
                     <p>crpalaci@fiu.edu</p>
                     <p>snackabilityapp@gmail.com</p>
                 </Jumbotron>

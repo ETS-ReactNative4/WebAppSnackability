@@ -36,7 +36,7 @@ export function fetchSnackByIDUSDA(snack_id) {
 export function fetchCSVFiles(file_path) {
     return axios.get(`http://localhost:4000/usda/files`, {
         params: {
-            f: file_path  
+            f: file_path
         }
     });
 }
