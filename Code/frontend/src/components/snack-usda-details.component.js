@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
-import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table } from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import foodPic from '../images/foodinfo.png';
 
 const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
@@ -468,37 +468,38 @@ export default class SnackDetailsComponent extends Component {
                                         <img style={{width: '460px'}} src={foodPic} alt=""/>
                                     </Modal.Body>
                                 </Modal>
+                                <OverlayTrigger placement={'right'} overlay={<Tooltip id="tooltip-disabled">Change units measures here</Tooltip>}>
+                                    <Dropdown as={ButtonGroup}>
 
-                                <Dropdown as={ButtonGroup}>
+                                        <Button variant="primary" onClick={() => this.calculate()} disabled={this.state.isLoading}>
+                                            Calculate 📱
+                                        </Button>
 
-                                    <Button variant="primary" onClick={() => this.calculate()} disabled={this.state.isLoading}>
-                                        Calculate 📱
-                                    </Button>
+                                        <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
+                                        </Dropdown.Toggle>
 
-                                    <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu id="dropdown-units-button" title="Units">
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('Grams');
-                                        }}>Grams</Dropdown.Item>
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('Tablespoon');
-                                        }}>Tablespoon</Dropdown.Item>
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('TeaSpoon');
-                                        }}>Tea Spoon</Dropdown.Item>
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('Ounces');
-                                        }}>Ounces</Dropdown.Item>
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('Kilogram');
-                                        }}>Kilograms</Dropdown.Item>
-                                        <Dropdown.Item href="" onClick={() => {
-                                            this.setUnit('Pounds');
-                                        }}>Pounds</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                        <Dropdown.Menu id="dropdown-units-button" title="Units">
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Grams');
+                                            }}>Grams</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Tablespoon');
+                                            }}>Tablespoon</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('TeaSpoon');
+                                            }}>Tea Spoon</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Ounces');
+                                            }}>Ounces</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Kilogram');
+                                            }}>Kilograms</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Pounds');
+                                            }}>Pounds</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </OverlayTrigger>
                             </Card.Body>
                         </Card>
                     </Col>

@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { Switch } from 'react-router';
-import { Nav, Navbar } from 'react-bootstrap';
+
+import { AuthProvider } from './utils/auth';
+import { NavbarComponent } from './components/navbar.component';
+
+import PublicRoute from './routes/public-routes.component';
+import PrivateRoute from './routes/private-route.component';
 
 import HomeComponent from './components/home.component';
 import SnackGraph from './components/snack-graph.component';
@@ -10,39 +15,29 @@ import SnackUSDADetailsComponent from './components/snack-usda-details.component
 import SettingsComponent from './components/settings.component';
 import SignInComponent from './components/signin.component';
 
-import logo from './images/logo.svg';
 import AppStyles from './styles/app.module.css'
 
-class App extends Component {
-    render() {
-        return (
+const App = () => {
+
+    return (
+        <AuthProvider>
             <BrowserRouter>
                 <div className="App">
-                    <Navbar variant="dark" className={AppStyles.NavBarStyle}>
-                        <Navbar.Brand href="/#">
-                            <img src={logo} width="40" height="auto" alt="Snackability"/>
-                        </Navbar.Brand>
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/">🏠 Home</Nav.Link>
-                            <Nav.Link href="/usda">🍒 Snacks</Nav.Link>
-                            <Nav.Link href='/snacksgraph'>📊 Snacks Graph</Nav.Link>
-                            <Nav.Link href='/settings'>🔧 Settings</Nav.Link>
-                        </Nav>
-                    </Navbar>
+                    <NavbarComponent />
                     <main className={ AppStyles.main }>
                         <Switch>
-                            <Route path="/" exact component={HomeComponent}/>
-                            <Route path="/usda" exact component={SnackUSDAListComponent}/>
-                            <Route path="/usda/:snack_id" exact component={SnackUSDADetailsComponent}/>
-                            <Route path='/snacksgraph' exact component={SnackGraph} />
-                            <Route path="/settings" exact component={SettingsComponent}/>
-                            <Route path="/signin" exact component={SignInComponent}/>
+                            <PublicRoute restricted={false} path="/" exact component={HomeComponent} />
+                            <PrivateRoute path="/usda" exact component={SnackUSDAListComponent}/>
+                            <PrivateRoute path="/usda/:snack_id" exact component={SnackUSDADetailsComponent}/>
+                            <PrivateRoute path='/snacksgraph' exact component={SnackGraph} />
+                            <PrivateRoute path="/settings" exact component={SettingsComponent}/>
+                            <PublicRoute restricted={true} path="/signin" exact component={SignInComponent} />
                         </Switch>
                     </main>
                 </div>
             </BrowserRouter>
-        );
-    }
+        </AuthProvider>
+    );
 }
 
 export default App;

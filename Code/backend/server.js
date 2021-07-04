@@ -6,9 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
-const serviceAccount = require("./snackability-webapp-firebase-adminsdk-h60le-4728fc7268.json");
+const serviceAccount = require("./serviceAccount.json");
 
-const authRoutes = require('./routes/auth.routes');
 const usdaRoutes = require('./routes/usda.routes');
 const scoreRoutes = require('./routes/score.routes');
 
@@ -22,12 +21,9 @@ admin.initializeApp({
 });
 
 app.use(cors());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json());
 
-app.use('/auth', authRoutes);
-app.use('/usda', usdaRoutes);
+app.use('/usda', decodeIdToken, usdaRoutes);
 app.use('/score', decodeIdToken, scoreRoutes);
 
 app.listen(PORT, function() {
