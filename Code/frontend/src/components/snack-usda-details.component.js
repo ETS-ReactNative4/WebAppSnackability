@@ -89,7 +89,8 @@ export default class SnackDetailsComponent extends Component {
                 sodium: 0.0,
                 sugar: 0.0,
                 processed: 0.0,
-            },
+                userGramsConverted: 0.0 
+            },            
             showResults: false
         };
         this._toggle = this._toggle.bind(this);
@@ -160,7 +161,6 @@ export default class SnackDetailsComponent extends Component {
     }
 
     calculate() {
-
         /* Initialization. */
         let searchedSugar = 0;
         let searchedCalories = 0;
@@ -204,7 +204,6 @@ export default class SnackDetailsComponent extends Component {
 
         /* Getting Unit calculation to setup on the page. */
         let portion = this.state.portion;
-
         let score = {
             gRatio: 0,
             totalScore: 0,
@@ -229,7 +228,6 @@ export default class SnackDetailsComponent extends Component {
 
         // Calories.
         score.calories = score.gRatio * searchedCalories;
-
         // Classify calories.
         if (score.calories >= 1.0 && score.calories <= 50) {
             score.calorieScore = 2;
@@ -326,9 +324,9 @@ export default class SnackDetailsComponent extends Component {
 
         // Food Process classification
         this.processedFoodCalculation(this.state.snack.ingredients, score);
-
+            
         score.totalScore = score.firstIngredient + score.calorieScore + score.totalFat + score.satFat + score.transFat + score.sodium + score.sugar + score.processed;
-        this.setScoreState(score);
+        this.setScoreState(score);                            
         this.setShowResults(true);
 
     }
@@ -515,6 +513,7 @@ export default class SnackDetailsComponent extends Component {
 
                                 <p className={SnackDetailsStyles.snackname2}>
                                     Serving size : {this.state.score.servingSize} {this.state.unit}
+
                                 </p>
                                 <Table striped hover>
                                     <tbody>
