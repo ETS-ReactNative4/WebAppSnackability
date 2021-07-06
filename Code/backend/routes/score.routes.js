@@ -29,12 +29,11 @@ router.get('', async (req, res, next) => {
 
 });
 
-router.post('/consume', async (req, res, next) => {
-
-    const snack_id = req.body.snack_id;
-    const score = req.body.score;
+router.post('/consume', async (req, res, next) => {    
+    const snack_id = req.body.params.snack_id;
+    const score = req.body.params.score;
     const user_id = req.currentUser.uid;
-    const created_at = new Date();
+    const created_at = new Date();    
 
     if(snack_id && score) {
 
