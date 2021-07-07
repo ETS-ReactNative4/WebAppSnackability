@@ -602,8 +602,8 @@ export default class SnackDetailsComponent extends Component {
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col>
-                        <Button className="m-1" variant="primary" onClick={this.getScoreeeeee()}>Consume 🍴</Button>            
-                        {/*<Button className="m-1" variant="primary" href="/snacksgraph" onClick={this.getScoreeeeee()}>Consume 🍴</Button>*/}            
+                        {/*<Button className="m-1" variant="primary" onClick={this.getScoreeeeee()}>Consume 🍴</Button>*/}            
+                        <Button className="m-1" variant="primary" href="/snacksgraph" onClick={this.getScoreeeeee()}>Consume 🍴</Button>
                         <Button className="m-1" variant="secondary" href="/snacks">Return to search</Button>
                     </Col>
                 </Row>

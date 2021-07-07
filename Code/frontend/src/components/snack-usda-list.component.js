@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchSnacksListUSDA,fetchSnacksByNameUSDA } from '../services/snack.service.js';
 import { debounce } from '../utils/debounce';
 
-import { Button, Col, Container, Form, Row, Table} from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table, Modal} from 'react-bootstrap';
 import Scanner from './Scanner'
 //import Result from './Result'
 
@@ -26,22 +26,47 @@ export default class SnackList extends Component {
             isLoading: false,
             scanning: false,
             results: [],
-            lastBarcode: null
+            lastBarcode: null,
+            modal: false,
         };
+        this._toggle = this._toggle.bind(this);
     }
 
     _scan = () => {
-        this.setState({ scanning: !this.state.scanning })
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
+        this.setState({ scanning: !this.state.scanning });
+    };
+
+    _toggle() {
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
     }
 
-    _onDetected = result => {
+    _onDetected = (result) => {
+        console.log(result);
+        console.log('result.codeResult.code: ' + result.codeResult.code);
+        console.log('this.state.lastBarcode: ' + this.state.lastBarcode);
+        this.setState({ modal: false });
+        /*if (
+            this.state.lastBarcode ||
+            result.codeResult.code !== this.state.lastBarcode
+        ) {*/
+        this.searchForItem(result.codeResult.code);
+        console.log('THE RESULT IS: ' + result.codeResult.code);
+        //}
 
-        if (this.state.lastBarcode || result.codeResult.code !== this.state.lastBarcode) {
-            this.searchForItem(result.codeResult.code);
-        }
-
-        this.setState({ results: this.state.results.concat([result]), lastBarcode: result.codeResult.code});
-    }
+        this.setState({
+            results: this.state.results.concat([result]),
+            //lastBarcode: result.codeResult.code,
+        });
+        // this.setState((prevState) => ({
+        //     modal: !prevState.modal,
+        // }));
+        //this._toggle();
+    };
 
     componentDidMount() {
         this.searchForItem("");
@@ -102,11 +127,18 @@ export default class SnackList extends Component {
                        </Form.Group>
                     </Col>
                     <Col xs={12} sm={2}>
-                        <Button variant="primary" onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Or Scan the Barcode!'} 📷</Button>
+                        <Button variant='primary' onClick={this._toggle}> Scan Barcode! 📷</Button>
                     </Col>
                 </Row>
 
-                {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
+                {/*this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null*/}
+
+                <Modal show={this.state.modal} onHide={this._toggle}>
+                    <Modal.Header closeButton='true' />
+                    <Modal.Body>
+                        <Scanner onDetected={this._onDetected} />
+                    </Modal.Body>
+                </Modal>
 
                 <Row className="mt-3">
                     <Col>

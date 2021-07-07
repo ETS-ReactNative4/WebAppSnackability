@@ -9,3 +9,9 @@ export function postSnackScore(snack_id,score) {
         }
     });
 }
+
+export function fetSnackScore() {               
+
+    return axios.get('http://localhost:4000/score/graph', {
+    });
+}
