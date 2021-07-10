@@ -44,7 +44,16 @@ const SigninComponent = ({history}) => {
                                 <Alert variant="danger" show={error}> {error} </Alert>
 
                                 <Button type="submit" variant="primary"> Sign In </Button>
-
+                                <br></br>
+                                <br></br>
+                                <p>
+                                    Don't have an Account?{" "}
+                                    <Alert.Link href="/signin">Create an Account</Alert.Link>.
+                                </p> 
+                                <p>
+                                    Forgot password?{" "}
+                                    <Alert.Link href="/signin">Reset Password</Alert.Link>.
+                                </p> 
                             </Form>
                         </Card.Body>
                     </Card>

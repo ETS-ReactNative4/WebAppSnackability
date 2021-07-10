@@ -2,24 +2,24 @@ const express = require('express');
 const router = express.Router();
 const admin = require('firebase-admin');
 
-router.get('', async (req, res, next) => {
+router.get('/graph', async (req, res, next) => {
 
     const user_id = req.currentUser.uid;
 
     try {
 
         const db = admin.firestore();
-        const snapshot = await db.collection('score')
-            .where('user_id', '==', user_id)
+        const snapshot = await db.collection('score')            
+            .where('user_id', '==', user_id)            
             .get();
-
+        
         if(snapshot.empty) {
             res.send([]);
         } else {
             const scores = [];
             snapshot.forEach(doc => {
                 scores.push(doc.data());
-            });
+            });         
             res.send(scores);
         }
 
@@ -29,12 +29,11 @@ router.get('', async (req, res, next) => {
 
 });
 
-router.post('/consume', async (req, res, next) => {
-
-    const snack_id = req.body.snack_id;
-    const score = req.body.score;
+router.post('/consume', async (req, res, next) => {    
+    const snack_id = req.body.params.snack_id;
+    const score = req.body.params.score;
     const user_id = req.currentUser.uid;
-    const created_at = new Date();
+    const created_at = new Date();            
 
     if(snack_id && score) {
 

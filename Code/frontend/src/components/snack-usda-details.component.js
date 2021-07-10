@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
 import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import foodPic from '../images/foodinfo.png';
+
+import { postSnackScore } from '../services/score.service.js';
+import {AuthContext } from '../utils/auth';
+
+
+
 
 const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
 const processedFoodCsvFile = './excelfiles/processed_food.csv';
@@ -131,6 +137,11 @@ export default class SnackDetailsComponent extends Component {
         return dataTable.map((item, i) => (
             <ScoreRow data={item} key={i}/>
         ));
+    }
+
+    getScoreeeeee()
+    {
+        console.log("Score: " + this.state.score.totalScore);
     }
 
     getPortionInGrams() {
@@ -422,6 +433,13 @@ export default class SnackDetailsComponent extends Component {
                 }
 
                 score.totalScore += score.processed;
+                
+                postSnackScore(this.state.snack.fdcId,score.totalScore).then(response => response.data).then((score) => {
+                    console.log(score);                    
+                }).catch(error => {
+                    console.error(error);
+                    this.setState({isLoading: false});
+                });                             
 
                 this.setScoreState(score);
                 this.setState({isLoading: false});
@@ -584,7 +602,8 @@ export default class SnackDetailsComponent extends Component {
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col>
-                        <Button className="m-1" variant="primary" href="/snacksgraph">Consume 🍴</Button>
+                        {/*<Button className="m-1" variant="primary" onClick={this.getScoreeeeee()}>Consume 🍴</Button>*/}            
+                        <Button className="m-1" variant="primary" href="/snacksgraph" onClick={this.getScoreeeeee()}>Consume 🍴</Button>
                         <Button className="m-1" variant="secondary" href="/snacks">Return to search</Button>
                     </Col>
                 </Row>

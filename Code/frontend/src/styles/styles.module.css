@@ -106,3 +106,10 @@ th {
   max-width: 300px;
   text-align: center;
 }
+
+.modal {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0px;
+}
