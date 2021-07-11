@@ -41,8 +41,7 @@ function generateDataTable(score) {
         {
             return faMinus;
         }
-    }
-    
+    }    
 
     return [
         {
@@ -51,13 +50,15 @@ function generateDataTable(score) {
             score: score.firstIngredient,
             maxscore: '2',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.firstIngredient,2)}/>,   
+            message: 'Points if it is a fruit, vegetables, dairy, protein, or whole grain.'
         },
         {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Total Calories',
             score: score.calorieScore,
             maxscore: '2',
-            lastIcon: <FontAwesomeIcon icon={generateIcon(score.calorieScore,2)}/>,    
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.calorieScore,2)}/>, 
+            message: '2 Points if < 200 kcal.'   
         },
         {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
@@ -65,6 +66,7 @@ function generateDataTable(score) {
             score: score.totalFat,
             maxscore: '1',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.totalFat,1)}/>, 
+            message: '1 Point if < 35% kcal from fat.'
         },
         {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
@@ -72,24 +74,28 @@ function generateDataTable(score) {
             score: score.satFat,
             maxscore: '1',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.satFat,1)}/>, 
+            message: '1 Point if < 10% kcal from fat.'
         }, {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'TransFat',
             score: score.transFat,
             maxscore: '1',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.transFat,1)}/>, 
+            message: '1 Point if 0g.'
         }, {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sodium',
             score: score.sodium,
             maxscore: '1',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.sodium,1)}/>, 
+            message: '1 Point if < 200 mg.'
         }, {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sugar',
             score: score.sugar,
             maxscore: '2',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.sugar,2)}/>,    
+            message: '2 Points if < 35%.'
         },
         {
             firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
@@ -97,14 +103,15 @@ function generateDataTable(score) {
             score: score.processed,
             maxscore: '1',
             lastIcon: <FontAwesomeIcon icon={generateIcon(score.processed,1)}/>, 
+            message: '+1 Point if not processed.'
         }
     ];
 }
 
 const ScoreRow = ({data}) => {
-    return (
-        <tr>
-            <td>{data.firstIcon}</td> 
+    return (         
+        <tr>           
+            <td title={data.message}>{data.firstIcon}</td> 
             <td>{data.criteria}</td>
             <td>{data.score}</td>
             <td>{data.maxscore}</td> 
@@ -567,7 +574,7 @@ export default class SnackDetailsComponent extends Component {
 
         return (
             <Container className="mt-4">
-                <Row className="text-center">
+                <Row className="text-center" style={{display: this.state.showResults ? 'none' : ''}}>
                     <Col>
                         <Card>
                             <Card.Body>
