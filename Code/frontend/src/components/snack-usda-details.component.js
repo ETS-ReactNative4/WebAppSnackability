@@ -1,14 +1,15 @@
 import React, { Component, useContext } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
-import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
 import foodPic from '../images/foodinfo.png';
 
 import { postSnackScore } from '../services/score.service.js';
 import {AuthContext } from '../utils/auth';
 
-
-
+let feedbackJSON = require('../utils/feedback');
+let feedBackMessage = "";
+let feedBackNutritionMessage = "";
 
 const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
 const processedFoodCsvFile = './excelfiles/processed_food.csv';
@@ -435,13 +436,15 @@ export default class SnackDetailsComponent extends Component {
                 score.totalScore += score.processed;
                 
                 postSnackScore(this.state.snack.fdcId,score.totalScore).then(response => response.data).then((score) => {
-                    console.log(score);                    
+                    console.log(score);                                     
                 }).catch(error => {
                     console.error(error);
                     this.setState({isLoading: false});
                 });                             
 
                 this.setScoreState(score);
+                feedBackMessage = this.processScoreFeedBack(score);   
+                feedBackNutritionMessage = this.processNutritionFeedback(score);   
                 this.setState({isLoading: false});
 
             }).catch(error => {
@@ -450,6 +453,70 @@ export default class SnackDetailsComponent extends Component {
         });
 
     }
+
+    processScoreFeedBack(score) {
+        var result = void 0;
+        score = this.state.score.totalScore;
+
+        switch (true) {
+            case score < 6:
+                return feedbackJSON.scoreFeedback.feedback1to5[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback1to5.length)];
+            case score >= 6 && score < 8:
+                return feedbackJSON.scoreFeedback.feedback6to7[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback6to7.length)];
+            case score >= 8 && score < 10:
+                return feedbackJSON.scoreFeedback.feedback8to9[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback8to9.length)];
+            default:
+                return feedbackJSON.scoreFeedback.feedback10to11[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback10to11.length)];
+        }
+    };
+
+    processNutritionFeedback(score) {       
+        let name = void 0;
+
+        if (this.state.score.totalScore === 0 || this.state.score.totalScore === 0.0) {
+            name = "calScore";
+        } else if (this.state.score.processed === -1) {
+            name = "processedScore";
+        } else {
+            let scoreList = {
+                "calScore": this.state.score.totalScore,
+                "fatScore": this.state.score.totalFat,
+                "satScore": this.state.score.satFat,
+                "tranScore": this.state.score.transFat,
+                "sodiumScore": this.state.score.sodium,
+                "sugarScore": this.state.score.sugar,
+                "processedScore": this.state.score.processed,
+            };
+            
+
+            //get sorted list of scores
+            let min = Object.keys(scoreList).sort(function (a, b) {
+                return scoreList[a] - scoreList[b];
+            });
+            //get first one - the smallest score - to get pick which nutrition message to return
+            name = min[0];
+        }
+    
+        switch (true) {
+            case name === "calScore":
+                return feedbackJSON.nutritionFeedback.calScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.calScore.length)];
+            case name === "fatScore":
+                return feedbackJSON.nutritionFeedback.fatScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.fatScore.length)];
+            case name === "satScore":
+                return feedbackJSON.nutritionFeedback.satScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.satScore.length)];
+            case name === "tranScore":
+                return feedbackJSON.nutritionFeedback.tranScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.tranScore.length)];
+            case name === "sodiumScore":
+                return feedbackJSON.nutritionFeedback.sodiumScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sodiumScore.length)];
+            case name === "processedScore":
+                return feedbackJSON.nutritionFeedback.processedScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.processedScore.length)];
+            case name === "sugarScore":
+                return feedbackJSON.nutritionFeedback.sugarScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sugarScore.length)];
+            default:
+                console.log('A score type is somehow missing? Fix it!!!');
+                break;
+        }
+    };
 
 
     _toggle() {
@@ -522,6 +589,11 @@ export default class SnackDetailsComponent extends Component {
                         </Card>
                     </Col>
                 </Row>
+                
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackMessage}
+                </Alert>                
 
                 <Row className="mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col xs={12} md={6}>
@@ -599,6 +671,11 @@ export default class SnackDetailsComponent extends Component {
                         </Card>
                     </Col>
                 </Row>
+                
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackNutritionMessage}
+                </Alert>                
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col>
