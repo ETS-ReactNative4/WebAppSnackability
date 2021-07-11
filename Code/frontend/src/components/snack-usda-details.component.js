@@ -5,7 +5,10 @@ import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, 
 import foodPic from '../images/foodinfo.png';
 
 import { postSnackScore } from '../services/score.service.js';
-import {AuthContext } from '../utils/auth';
+import { AuthContext } from '../utils/auth';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faTimes, faCheck, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 let feedbackJSON = require('../utils/feedback');
 let feedBackMessage = "";
@@ -24,43 +27,76 @@ const units = {
 };
 
 function generateDataTable(score) {
+
+    function generateIcon(tempScore, maxScore) {
+        if(tempScore === 0)
+        {
+            return faTimes;
+        }
+        else if (tempScore === maxScore)
+        {
+            return faCheck;
+        }
+        else
+        {
+            return faMinus;
+        }
+    }
+    
+
     return [
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>, 
             criteria: 'First Ingredient',
             score: score.firstIngredient,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.firstIngredient,2)}/>,   
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Total Calories',
             score: score.calorieScore,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.calorieScore,2)}/>,    
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Fat',
             score: score.totalFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.totalFat,1)}/>, 
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Saturated Fat',
             score: score.satFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.satFat,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'TransFat',
             score: score.transFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.transFat,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sodium',
             score: score.sodium,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sodium,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sugar',
             score: score.sugar,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sugar,2)}/>,    
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Processed',
             score: score.processed,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.processed,1)}/>, 
         }
     ];
 }
@@ -68,9 +104,11 @@ function generateDataTable(score) {
 const ScoreRow = ({data}) => {
     return (
         <tr>
+            <td>{data.firstIcon}</td> 
             <td>{data.criteria}</td>
             <td>{data.score}</td>
-            <td>{data.maxscore}</td>
+            <td>{data.maxscore}</td> 
+            {<td>{data.lastIcon}</td>}                                 
         </tr>
     );
 };
@@ -593,85 +631,45 @@ export default class SnackDetailsComponent extends Component {
                 <br></br>
                 <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
                     {feedBackMessage}
-                </Alert>                
-
-                <Row className="mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
-                    <Col xs={12} md={6}>
+                </Alert>         
+                
+                <Row className="mt-4" style={{width: '1350px',margin: '30px auto',display: this.state.showResults ? '' : 'none'}}>                                            
+                    <Col xs={24} md={10}>                                    
                         <Card>
                             <Card.Body>
-                                <Card.Title>{this.state.snack && this.state.snack.product}</Card.Title>
-
-                                <p className={SnackDetailsStyles.snackname2}>
-                                    Serving size : {this.state.score.servingSize} {this.state.unit}
-
-                                </p>
-                                <Table striped hover>
-                                    <tbody>
-                                    <tr>
-                                        <th>Total Score</th>
-                                        <td>{this.state.score.totalScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>First Ingredient Score</th>
-                                        <td>{this.state.score.firstIngredient}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total Calories Score</th>
-                                        <td>{this.state.score.calorieScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fat Score</th>
-                                        <td>{this.state.score.totalFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Saturated Fat Score</th>
-                                        <td>{this.state.score.satFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Trans Fat Score</th>
-                                        <td>{this.state.score.transFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sodium Score</th>
-                                        <td>{this.state.score.sodium}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sugar Score</th>
-                                        <td>{this.state.score.sugar}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Processed Score</th>
-                                        <td>{this.state.score.processed}</td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
-
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Card>
-                            <Card.Body>
-
-                                <Card.Title>Score Breakdown</Card.Title>
+                                <Card.Title>
+                                    <center>
+                                        <p>
+                                            <strong>Score Breakdown</strong>
+                                        </p>
+                                    </center>                                        
+                                </Card.Title>
 
                                 <Table striped hover>
                                     <thead>
-                                    <tr>
-                                        <th>Criteria</th>
-                                        <th>Score</th>
-                                        <th>Max Score</th>
-                                    </tr>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Criteria</th>
+                                            <th>Score</th>
+                                            <th>Max Score</th>
+                                        </tr>
                                     </thead>
-                                    <tbody>{this.getScoreBreakdown()}</tbody>
+
+                                    <tbody>
+                                        {this.getScoreBreakdown()}
+                                    </tbody>
+                                    
+                                    <tr>
+                                        <th> </th>
+                                        <th>Total Score</th>
+                                        <td>{this.state.score.totalScore}</td>
+                                    </tr>
                                 </Table>
-
                             </Card.Body>
+                        </Card>                                    
+                    </Col>                                            
+                </Row>                       
 
-                        </Card>
-                    </Col>
-                </Row>
-                
                 <br></br>
                 <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
                     {feedBackNutritionMessage}
