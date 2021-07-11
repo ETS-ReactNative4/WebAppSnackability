@@ -1,14 +1,18 @@
 import React, { Component, useContext } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
-import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
 import foodPic from '../images/foodinfo.png';
 
 import { postSnackScore } from '../services/score.service.js';
-import {AuthContext } from '../utils/auth';
+import { AuthContext } from '../utils/auth';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faTimes, faCheck, faMinus } from '@fortawesome/free-solid-svg-icons';
 
-
+let feedbackJSON = require('../utils/feedback');
+let feedBackMessage = "";
+let feedBackNutritionMessage = "";
 
 const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
 const processedFoodCsvFile = './excelfiles/processed_food.csv';
@@ -23,43 +27,76 @@ const units = {
 };
 
 function generateDataTable(score) {
+
+    function generateIcon(tempScore, maxScore) {
+        if(tempScore === 0)
+        {
+            return faTimes;
+        }
+        else if (tempScore === maxScore)
+        {
+            return faCheck;
+        }
+        else
+        {
+            return faMinus;
+        }
+    }
+    
+
     return [
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>, 
             criteria: 'First Ingredient',
             score: score.firstIngredient,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.firstIngredient,2)}/>,   
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Total Calories',
             score: score.calorieScore,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.calorieScore,2)}/>,    
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Fat',
             score: score.totalFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.totalFat,1)}/>, 
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Saturated Fat',
             score: score.satFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.satFat,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'TransFat',
             score: score.transFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.transFat,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sodium',
             score: score.sodium,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sodium,1)}/>, 
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sugar',
             score: score.sugar,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sugar,2)}/>,    
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Processed',
             score: score.processed,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.processed,1)}/>, 
         }
     ];
 }
@@ -67,9 +104,11 @@ function generateDataTable(score) {
 const ScoreRow = ({data}) => {
     return (
         <tr>
+            <td>{data.firstIcon}</td> 
             <td>{data.criteria}</td>
             <td>{data.score}</td>
-            <td>{data.maxscore}</td>
+            <td>{data.maxscore}</td> 
+            {<td>{data.lastIcon}</td>}                                 
         </tr>
     );
 };
@@ -435,13 +474,15 @@ export default class SnackDetailsComponent extends Component {
                 score.totalScore += score.processed;
                 
                 postSnackScore(this.state.snack.fdcId,score.totalScore).then(response => response.data).then((score) => {
-                    console.log(score);                    
+                    console.log(score);                                     
                 }).catch(error => {
                     console.error(error);
                     this.setState({isLoading: false});
                 });                             
 
                 this.setScoreState(score);
+                feedBackMessage = this.processScoreFeedBack(score);   
+                feedBackNutritionMessage = this.processNutritionFeedback(score);   
                 this.setState({isLoading: false});
 
             }).catch(error => {
@@ -450,6 +491,70 @@ export default class SnackDetailsComponent extends Component {
         });
 
     }
+
+    processScoreFeedBack(score) {
+        var result = void 0;
+        score = this.state.score.totalScore;
+
+        switch (true) {
+            case score < 6:
+                return feedbackJSON.scoreFeedback.feedback1to5[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback1to5.length)];
+            case score >= 6 && score < 8:
+                return feedbackJSON.scoreFeedback.feedback6to7[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback6to7.length)];
+            case score >= 8 && score < 10:
+                return feedbackJSON.scoreFeedback.feedback8to9[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback8to9.length)];
+            default:
+                return feedbackJSON.scoreFeedback.feedback10to11[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback10to11.length)];
+        }
+    };
+
+    processNutritionFeedback(score) {       
+        let name = void 0;
+
+        if (this.state.score.totalScore === 0 || this.state.score.totalScore === 0.0) {
+            name = "calScore";
+        } else if (this.state.score.processed === -1) {
+            name = "processedScore";
+        } else {
+            let scoreList = {
+                "calScore": this.state.score.totalScore,
+                "fatScore": this.state.score.totalFat,
+                "satScore": this.state.score.satFat,
+                "tranScore": this.state.score.transFat,
+                "sodiumScore": this.state.score.sodium,
+                "sugarScore": this.state.score.sugar,
+                "processedScore": this.state.score.processed,
+            };
+            
+
+            //get sorted list of scores
+            let min = Object.keys(scoreList).sort(function (a, b) {
+                return scoreList[a] - scoreList[b];
+            });
+            //get first one - the smallest score - to get pick which nutrition message to return
+            name = min[0];
+        }
+    
+        switch (true) {
+            case name === "calScore":
+                return feedbackJSON.nutritionFeedback.calScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.calScore.length)];
+            case name === "fatScore":
+                return feedbackJSON.nutritionFeedback.fatScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.fatScore.length)];
+            case name === "satScore":
+                return feedbackJSON.nutritionFeedback.satScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.satScore.length)];
+            case name === "tranScore":
+                return feedbackJSON.nutritionFeedback.tranScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.tranScore.length)];
+            case name === "sodiumScore":
+                return feedbackJSON.nutritionFeedback.sodiumScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sodiumScore.length)];
+            case name === "processedScore":
+                return feedbackJSON.nutritionFeedback.processedScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.processedScore.length)];
+            case name === "sugarScore":
+                return feedbackJSON.nutritionFeedback.sugarScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sugarScore.length)];
+            default:
+                console.log('A score type is somehow missing? Fix it!!!');
+                break;
+        }
+    };
 
 
     _toggle() {
@@ -522,83 +627,53 @@ export default class SnackDetailsComponent extends Component {
                         </Card>
                     </Col>
                 </Row>
-
-                <Row className="mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
-                    <Col xs={12} md={6}>
+                
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackMessage}
+                </Alert>         
+                
+                <Row className="mt-4" style={{width: '1350px',margin: '30px auto',display: this.state.showResults ? '' : 'none'}}>                                            
+                    <Col xs={24} md={10}>                                    
                         <Card>
                             <Card.Body>
-                                <Card.Title>{this.state.snack && this.state.snack.product}</Card.Title>
-
-                                <p className={SnackDetailsStyles.snackname2}>
-                                    Serving size : {this.state.score.servingSize} {this.state.unit}
-
-                                </p>
-                                <Table striped hover>
-                                    <tbody>
-                                    <tr>
-                                        <th>Total Score</th>
-                                        <td>{this.state.score.totalScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>First Ingredient Score</th>
-                                        <td>{this.state.score.firstIngredient}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total Calories Score</th>
-                                        <td>{this.state.score.calorieScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fat Score</th>
-                                        <td>{this.state.score.totalFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Saturated Fat Score</th>
-                                        <td>{this.state.score.satFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Trans Fat Score</th>
-                                        <td>{this.state.score.transFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sodium Score</th>
-                                        <td>{this.state.score.sodium}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sugar Score</th>
-                                        <td>{this.state.score.sugar}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Processed Score</th>
-                                        <td>{this.state.score.processed}</td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
-
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Card>
-                            <Card.Body>
-
-                                <Card.Title>Score Breakdown</Card.Title>
+                                <Card.Title>
+                                    <center>
+                                        <p>
+                                            <strong>Score Breakdown</strong>
+                                        </p>
+                                    </center>                                        
+                                </Card.Title>
 
                                 <Table striped hover>
                                     <thead>
-                                    <tr>
-                                        <th>Criteria</th>
-                                        <th>Score</th>
-                                        <th>Max Score</th>
-                                    </tr>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Criteria</th>
+                                            <th>Score</th>
+                                            <th>Max Score</th>
+                                        </tr>
                                     </thead>
-                                    <tbody>{this.getScoreBreakdown()}</tbody>
+
+                                    <tbody>
+                                        {this.getScoreBreakdown()}
+                                    </tbody>
+                                    
+                                    <tr>
+                                        <th> </th>
+                                        <th>Total Score</th>
+                                        <td>{this.state.score.totalScore}</td>
+                                    </tr>
                                 </Table>
-
                             </Card.Body>
+                        </Card>                                    
+                    </Col>                                            
+                </Row>                       
 
-                        </Card>
-                    </Col>
-                </Row>
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackNutritionMessage}
+                </Alert>                
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
                     <Col>
