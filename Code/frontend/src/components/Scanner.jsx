@@ -1,16 +1,26 @@
-import React, { Component } from 'react'
-import Quagga from 'quagga'
+import React, { Component } from 'react';
+import Quagga from 'quagga';
+import styles from '../styles/scanner.css';
 
 class Scanner extends Component {
-<<<<<<< HEAD
+	constructor(props) {
+		super(props);
+		this.videoRef = React.createRef();
+		this.state = {
+			dataUri: '',
+		};
+		this._onDetected = this._onDetected.bind(this);
+	}
+
 	componentDidMount() {
 		Quagga.init(
 			{
 				inputStream: {
 					type: 'LiveStream',
 					constraints: {
-						width: 640,
-						height: 480,
+						width: { min: 800, max: 1280 },
+						height: { min: 600, max: 720 },
+						aspectRatio: { min: 4 / 3, max: 16 / 9 },
 						facingMode: 'environment', // or user
 					},
 					area: {
@@ -21,25 +31,25 @@ class Scanner extends Component {
 						bottom: '25%', // bottom offset
 					},
 				},
+				frequency: 'full',
 				locator: {
 					patchSize: 'medium',
 					halfSample: true,
 				},
-				numOfWorkers: 4,
+				numOfWorkers: 8,
 				decoder: {
 					readers: [
-						// 'code_128_reader',
-
-						// 'ean_8_reader',
-						// 'code_39_reader',
-						// 'code_39_vin_reader',
-						// 'codabar_reader',
+						//	'code_128_reader',
+						//	'ean_8_reader',
+						//	'code_39_reader',
+						//	'code_39_vin_reader',
+						//	'codabar_reader',
 						'upc_reader',
-						'upc_e_reader',
-						'ean_reader',
-						// 'i2of5_reader',
-						// '2of5_reader',
-						// 'code_93_reader',
+						//	'upc_e_reader',
+						//	'ean_reader',
+						//	'i2of5_reader',
+						//	'2of5_reader',
+						//	'code_93_reader',
 					],
 					debug: {
 						drawBoundingBox: true,
@@ -63,10 +73,10 @@ class Scanner extends Component {
 		Quagga.stop();
 	}
 
-	_onDetected = (result) => {
+	_onDetected(result) {
 		this.props.onDetected(result);
 		Quagga.stop();
-	};
+	}
 
 	_onProcessed(result) {
 		let drawingCtx = Quagga.canvas.ctx.overlay,
@@ -113,51 +123,6 @@ class Scanner extends Component {
 	render() {
 		return <div id='interactive' className='viewport' />;
 	}
-=======
-  componentDidMount() {
-    Quagga.init(
-      {
-        inputStream: {
-          type: 'LiveStream',
-          constraints: {
-            width: 640,
-            height: 480,
-            facingMode: 'environment', // or user
-          },
-        },
-        locator: {
-          patchSize: 'medium',
-          halfSample: true,
-        },
-        numOfWorkers: 4,
-        decoder: {
-          readers: ['code_128_reader','ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','upc_reader','upc_e_reader','i2of5_reader','2of5_reader','code_93_reader'],
-          
-        },
-        locate: true,
-      },
-      function(err) {
-        if (err) {
-          return console.log(err)
-        }
-        Quagga.start()
-      },
-    )
-    Quagga.onDetected(this._onDetected)
-  }
-
-  componentWillUnmount() {
-    Quagga.offDetected(this._onDetected)
-  }
-
-  _onDetected = result => {
-    this.props.onDetected(result)
-  }
-
-  render() {
-    return <div id="interactive" className="viewport" />
-  }
->>>>>>> parent of e7a9195 (Scanner style)
 }
 
-export default Scanner
+export default Scanner;

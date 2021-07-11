@@ -1,23 +1,67 @@
-import React, { Component } from 'react';
+import React, { useCallback, useState } from 'react';
+import { withRouter } from 'react-router';
+import { app } from '../utils/auth';
 
-import {/* Card, Col, Container, */Jumbotron,/* Button*//*, Row */} from 'react-bootstrap';
-import "../styles/home.css"
+import {
+    Alert,
+    Button,
+    Card, Col, Container, Form,
+    FormControl,
+    InputGroup,
+    Row,
+} from 'react-bootstrap';
 
+const SigninComponent = ({history}) => {
 
+    const [error, setError] = useState('');
 
-export default class HomeComponent extends Component {   
+    const handleSignIn = useCallback(async event => {
+        event.preventDefault();
+        const { email, password } = event.target.elements;
+        try {
+            await app.auth().signInWithEmailAndPassword(email.value, password.value);
+            history.push('/');
+        } catch (e) {
+            setError(e.message);
+        }
+    }, [history]);
 
-    render() {
-        return (      
-            <div>
-                <Jumbotron fluid className="position-absolute w-100 text-center mt-4">
-                    <h6>Contact the Product Owner</h6>
-                    <p>For questions or to provide feedback in regards to the Snackability app, please email
-                        Dr. Cristina Palacios:</p>
-                    <p>crpalaci@fiu.edu</p>
-                    <p>snackabilityapp@gmail.com</p>
-                </Jumbotron>
-            </div>
-        );
-    }
+    return (
+        <Container className="mt-3">
+            <Row className="justify-content-md-center">
+                <Col xs={12} sm={8}>
+                    <Card>
+                        <Card.Body>
+                            <Form onSubmit={handleSignIn}>
+
+                                <InputGroup className="mb-3">
+                                    <FormControl name="email" type="email" placeholder="email@domain.com" />
+                                </InputGroup>
+                                <InputGroup className="mb-3">
+                                    <FormControl name="password" type="password" placeholder="password" />
+                                </InputGroup>
+
+                                <Alert variant="danger" show={error}> {error} </Alert>
+
+                                <Button type="submit" variant="primary"> Sign In </Button>
+                                <br></br>
+                                <br></br>
+                                <p>
+                                    Don't have an Account?{" "}
+                                    <Alert.Link href="/signin">Create an Account</Alert.Link>.
+                                </p> 
+                                <p>
+                                    Forgot password?{" "}
+                                    <Alert.Link href="/signin">Reset Password</Alert.Link>.
+                                </p> 
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
+    );
+
 }
+
+export default withRouter(SigninComponent);

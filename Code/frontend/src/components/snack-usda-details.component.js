@@ -1,58 +1,121 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
-import {fetchSnackByIDUSDA} from '../services/snack.service.js'; 
-import { Dropdown, Button, ButtonGroup, Card, Col, Container, Row, Table, Form } from 'react-bootstrap';
-var fs = require("fs");
-var firstIngredientCsvFile = '../exceldocs/first_ing_list.csv';
+import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
+import foodPic from '../images/foodinfo.png';
 
-function  generateDataTable(score) {
+import { postSnackScore } from '../services/score.service.js';
+import { AuthContext } from '../utils/auth';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faTimes, faCheck, faMinus } from '@fortawesome/free-solid-svg-icons';
+
+let feedbackJSON = require('../utils/feedback');
+let feedBackMessage = "";
+let feedBackNutritionMessage = "";
+
+const firstIngredientCsvFile = './excelfiles/first_ing_list.csv';
+const processedFoodCsvFile = './excelfiles/processed_food.csv';
+
+const units = {
+    Grams: 'g',
+    Tablespoon: 'tbsp',
+    TeaSpoon: 'tsp',
+    Ounces: 'oz',
+    Kilogram: 'kg',
+    Pounds: 'lbs',
+};
+
+function generateDataTable(score) {
+
+    function generateIcon(tempScore, maxScore) {
+        if(tempScore === 0)
+        {
+            return faTimes;
+        }
+        else if (tempScore === maxScore)
+        {
+            return faCheck;
+        }
+        else
+        {
+            return faMinus;
+        }
+    }    
+
     return [
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>, 
             criteria: 'First Ingredient',
             score: score.firstIngredient,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.firstIngredient,2)}/>,   
+            message: 'Points if it is a fruit, vegetables, dairy, protein, or whole grain.'
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Total Calories',
             score: score.calorieScore,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.calorieScore,2)}/>, 
+            message: '2 Points if < 200 kcal.'   
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Fat',
             score: score.totalFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.totalFat,1)}/>, 
+            message: '1 Point if < 35% kcal from fat.'
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Saturated Fat',
             score: score.satFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.satFat,1)}/>, 
+            message: '1 Point if < 10% kcal from fat.'
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'TransFat',
             score: score.transFat,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.transFat,1)}/>, 
+            message: '1 Point if 0g.'
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sodium',
             score: score.sodium,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sodium,1)}/>, 
+            message: '1 Point if < 200 mg.'
         }, {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Sugar',
             score: score.sugar,
-            maxscore: '2'
+            maxscore: '2',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.sugar,2)}/>,    
+            message: '2 Points if < 35%.'
         },
         {
+            firstIcon: <FontAwesomeIcon icon={faInfoCircle}/>,
             criteria: 'Processed',
             score: score.processed,
-            maxscore: '1'
+            maxscore: '1',
+            lastIcon: <FontAwesomeIcon icon={generateIcon(score.processed,1)}/>, 
+            message: '+1 Point if not processed.'
         }
     ];
 }
 
 const ScoreRow = ({data}) => {
-    return (
-        <tr>
+    return (         
+        <tr>           
+            <td title={data.message}>{data.firstIcon}</td> 
             <td>{data.criteria}</td>
             <td>{data.score}</td>
-            <td>{data.maxscore}</td>
+            <td>{data.maxscore}</td> 
+            {<td>{data.lastIcon}</td>}                                 
         </tr>
     );
 };
@@ -64,8 +127,8 @@ export default class SnackDetailsComponent extends Component {
         this.state = {
             snack: null,
             isLoading: false,
-            unitCalc: "Grams",
-            unit: "100 g",
+            unit: 'Grams',
+            portion: 100.0,
             score: {
                 gRatio: 0.0,
                 totalScore: 0.0,
@@ -78,10 +141,16 @@ export default class SnackDetailsComponent extends Component {
                 sodium: 0.0,
                 sugar: 0.0,
                 processed: 0.0,
-            },
+                userGramsConverted: 0.0 
+            },            
             showResults: false
         };
-    }    
+        this._toggle = this._toggle.bind(this);
+    }
+
+    setPortion(portion) {
+        this.setState({portion: portion});
+    }
 
     setScoreState(score) {
         this.setState({score: score});
@@ -91,16 +160,18 @@ export default class SnackDetailsComponent extends Component {
         this.setState({showResults: showResults});
     }
 
+    setUnit(unit) {
+        this.setState({unit: unit});
+    }
+
     componentDidMount() {
         this.fetchSnackUSDA();
     }
 
-    fetchSnackUSDA()
-    {
+    fetchSnackUSDA() {
         this.setState({isLoading: true});
         fetchSnackByIDUSDA(this.props.match.params.snack_id).then(response => response.data).then((snack) => {
             this.setState({snack: snack, isLoading: false});
-            console.log(this.state.snack);
         }).catch(error => {
             console.error(error);
             this.setState({isLoading: false});
@@ -114,108 +185,101 @@ export default class SnackDetailsComponent extends Component {
         ));
     }
 
-    convertUnitCalculation(unitCalculationUser)
-    {
-        switch (unitCalculationUser) {
-            case 'Grams':
-                return "g";
-            case 'Tablespoon':
-                return "tbsp";
-            case 'Tea Spoon':
-                return "tsp";
-            case 'Ounces':
-                return "oz";
-            case 'Kilogram':
-                return "kg";
-            case 'Pounds':
-                return "lbs";
-            default:
-                return "ERROR";
-        }
-    }
-    
-    calculate() {
-        /*LOGGGGGG*/
-        console.log('this.state.snack.servingSize: ' + this.state.snack.servingSize);
-        console.log('this.state.snack.servingSizeUnit: ' + this.state.snack.servingSizeUnit);
-        console.log('this.state.snack.labelNutrients.calories.value: ' + this.state.snack.labelNutrients.calories.value);
-        console.log('this.state.snack.labelNutrients.sugars.value: ' + this.state.snack.labelNutrients.sugars.value);
-        console.log('this.state.snack.labelNutrients.fat.value: ' + this.state.snack.labelNutrients.fat.value);
-        console.log('this.state.snack.labelNutrients.saturatedFat.value: ' + this.state.snack.labelNutrients.saturatedFat.value ? this.state.snack.labelNutrients.saturatedFat.value : "NOOOOO");
-        console.log('this.state.snack.labelNutrients.sodium.value: ' + this.state.snack.labelNutrients.sodium.value);
-        console.log('this.state.snack.labelNutrients.transFat.value: ' + this.state.snack.labelNutrients.transFat.value);
-        /*LOGGGGGG*/
+    getPortionInGrams() {
 
-        //this should be moved to the backend
-        let gInputUser = +document.getElementById('portion').value;
-        console.log('gInputUser: ' + gInputUser);
-        let uInputUser = this.convertUnitCalculation(this.getUnitCalculation());
-        console.log('uInputUser: ' + uInputUser);
-        
+        const unit = units[this.state.unit]
+
+        if (unit !== units.Grams) {
+
+            switch (unit) {
+                case units.Kilogram:
+                    return this.state.portion * 1000;
+                case units.Ounces:
+                    return this.state.portion * 28.35;
+                case units.Tablespoon:
+                    return this.state.portion * 17.07;
+                case units.TeaSpoon:
+                    return this.state.portion * 5.69;
+                case units.Pounds:
+                    return this.state.portion * 453.6;
+                default:
+                    return 'ERROR';
+            }
+
+        } else {
+            return this.state.portion / 100;
+        }
+
+    }
+
+    calculate() {
+        /* Initialization. */
+        let searchedSugar = 0;
+        let searchedCalories = 0;
+        let searchedSodium = 0;
+        let searchedSatFat = 0;
+        let searchedTransFat = 0;
+        let searchedFat = 0;
+
+        /* Searching in the result USDA Array to look food ingredients since they are not returned in the same order. */
+        for (let index = 0; index < this.state.snack.foodNutrients.length; index++) {
+            /* Calories - Energy */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1008) {
+                searchedCalories = this.state.snack.foodNutrients[index].amount;
+            }
+
+            /* Sugar */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1235) {
+                searchedSugar = this.state.snack.foodNutrients[index].amount;
+            }
+
+            /* Sodium */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1093) {
+                searchedSodium = this.state.snack.foodNutrients[index].amount;
+            }
+
+            /* Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1004) {
+                searchedFat = this.state.snack.foodNutrients[index].amount;
+            }
+
+            /* Trans Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1257) {
+                searchedTransFat = this.state.snack.foodNutrients[index].amount;
+            }
+
+            /* Sat Fat */
+            if (this.state.snack.foodNutrients[index].nutrient.id === 1258) {
+                searchedSatFat = this.state.snack.foodNutrients[index].amount;
+            }
+        }
+
+        /* Getting Unit calculation to setup on the page. */
+        let portion = this.state.portion;
         let score = {
-            gRatio: 0.0,
-            totalScore: 0.0,
+            gRatio: 0,
+            totalScore: 0,
             firstIngredient: 0,
-            calories: 0.0,
-            calorieScore: 0.0,
-            totalFat: 0.0,
-            satFat: 0.0,
-            transFat: 0.0,
-            sodium: 0.0,
-            sugar: 0.0,
-            processed: 0.0,
+            calories: 0,
+            calorieScore: 0,
+            totalFat: 0,
+            satFat: 0,
+            transFat: 0,
+            sodium: 0,
+            sugar: 0,
+            processed: 0,
             servingSize: 0
         };
 
-        score.servingSize = gInputUser;
+        score.servingSize = portion;
 
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX SERVING SIZE OR PORTRION ??????
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNits needs to match
-        // If the gram unit is not the same as the one on the snack database.     
-        if (gInputUser !== this.state.snack.servingSize) {
-            // Calculating the gRatio.
-            score.gRatio = gInputUser / this.state.snack.servingSize;
-        }
+        score.gRatio = this.getPortionInGrams();
 
         // First ingredient.
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX        
-        switch (this.state.snack.first_ingredient) {
-            case 'dairy':
-                score.firstIngredient = 2;
-                break;
-            case 'fruit':
-                score.firstIngredient = 2;
-                break;
-            case 'fruits':
-                score.firstIngredient = 2;
-                break;
-            case 'nuts':
-                score.firstIngredient = 2;
-                break;
-            case 'protein':
-                score.firstIngredient = 2;
-                break;
-            case 'vegetable':
-                score.firstIngredient = 2;
-                break;
-            default:
-                score.firstIngredient = 0;
-        }
-        
-        //this.firstIngredientCalculation(this.state.snack.ingredients, score);
+        this.firstIngredientCalculation(this.state.snack.ingredients, score);
 
-        // If the gram unit is not the same as the one on the snack database.        
-        // FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        if (gInputUser !== this.state.snack.servingSize) {
-            // Calories.
-            score.calories = score.gRatio * this.state.snack.labelNutrients.calories.value;
-        } else {
-            // Calories.
-            score.calories = this.state.snack.labelNutrients.calories.value;            
-        }
-        
-        console.log('CALORIESSSSSSSSSSSSSSSSSSSSSSSSS:' + score.calories);
-        
+        // Calories.
+        score.calories = score.gRatio * searchedCalories;
         // Classify calories.
         if (score.calories >= 1.0 && score.calories <= 50) {
             score.calorieScore = 2;
@@ -231,8 +295,12 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error calories');
         }
 
-        // Total Fat. FAT = ((fat * 9) /  calories) * 100
-        score.totalFat = ((this.state.snack.labelNutrients.fat.value * 9) / score.calories) * 100;
+        // Total Fat [FORMULA]. FAT = ((fat * 9) /  calories) * 100
+        if (score.calories !== 0) {
+            score.totalFat = (((searchedFat * score.gRatio) * 9) / score.calories) * 100;
+        } else {
+            score.totalFat = 0;
+        }
 
         // Classify totalFat.
         if (score.totalFat >= 0 && score.totalFat <= 20) {
@@ -245,8 +313,12 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error totalFat');
         }
 
-        // Saturated Fat. SATFAT = ((saturatedFat * 9) /  calories) * 100
-        score.satFat = ((this.state.snack.labelNutrients.saturatedFat.value * 9) / score.calories) * 100;
+        // Saturated Fat [FORMULA]. SATFAT = ((saturatedFat * 9) /  calories) * 100
+        if (score.calories !== 0) {
+            score.satFat = (((searchedSatFat * score.gRatio) * 9) / score.calories) * 100;
+        } else {
+            score.satFat = 0;
+        }
 
         // Classify satFat.
         if (score.satFat >= 0 && score.satFat <= 4.9) {
@@ -259,25 +331,19 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error satFat');
         }
 
-        // Classify transFat. [Working]
-        if (this.state.snack.labelNutrients.transFat.value > 0) {
+        // Classify transFat.
+        if ((searchedTransFat * score.gRatio) > 0) {
             score.transFat = 0;
-        } else if (this.state.snack.labelNutrients.transFat.value === 0) {
+        } else if ((searchedTransFat * score.gRatio) === 0) {
             score.transFat = 1;
         } else {
             console.log('Error transFat');
         }
 
-        // If the gram unit is not the same as the one on the snack database.
-        if (gInputUser !== this.state.snack.servingSize) {
-            // Sodium.
-            score.sodium = score.gRatio * this.state.snack.labelNutrients.sodium.value; // In case that quantity is not the same as the db, adjust it.
-        } else {
-            // Sodium.
-            score.sodium = this.state.snack.labelNutrients.sodium.value;
-        }
+        // Sodium.
+        score.sodium = score.gRatio * searchedSodium;
 
-        // Classify Sodium. [Working]
+        // Classify Sodium.
         if (score.sodium >= 0 && score.sodium <= 140) {
             score.sodium = 1;
         } else if (score.sodium >= 140.1 && score.sodium <= 170) {
@@ -290,8 +356,8 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error Sodium');
         }
 
-        // Sugar (35% Weight).
-        score.sugar = (this.state.snack.labelNutrients.sugars.value / gInputUser) * 100;
+        //+++++++++++++++ Sugar (35% Weight).
+        score.sugar = ((searchedSugar * score.gRatio) / this.state.portion) * 100;
 
         // Classify Sugar.
         if (score.sugar >= 0 && score.sugar <= 14.9) {
@@ -308,272 +374,317 @@ export default class SnackDetailsComponent extends Component {
             console.log('Error Sugar');
         }
 
-
-        // Food Process clasisfication FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-        if (this.state.snack.foodClass.toLowerCase() === 'yes') {
-            score.processed = -1;
-        } else if (this.state.snack.foodClass.toLowerCase() === 'no') {
-            score.processed = 0;
-        } else {
-            console.log('Error clasisfication');
-        }
-
+        // Food Process classification
+        this.processedFoodCalculation(this.state.snack.ingredients, score);
+            
         score.totalScore = score.firstIngredient + score.calorieScore + score.totalFat + score.satFat + score.transFat + score.sodium + score.sugar + score.processed;
-        this.setScoreState(score);
+        this.setScoreState(score);                            
         this.setShowResults(true);
+
     }
 
     firstIngredientCalculation(ingredients, score) {
-        // Initialization.
-        var category = 'other';
 
-        // regex to break down to first ingredient and set to lower case
-        var regex = ingredients.replace(/\s+/g, " ").toLowerCase();
+        let category = 'other';
 
-        // split items at a comma, in order to get first ingredient
-        regex = regex.split(",");
+        let [ingredient] = ingredients
+            .toLowerCase()
+            .split(',')
+            .map(item =>
+                item.replace(/[^0-9a-z%]/gi, ' ')
+                    .replace(/  +/g, ' ')
+                    .replace(/\s*$/, '')
+                    .replace('.', '')
+                    .trim()
+            );
 
-        //we only want first ingredient
-        regex = regex[0];
+        fetchCSVFiles(firstIngredientCsvFile)
+            .then(response => response.data)
+            .then((dataCSV) => {
 
-        // remove every character that is not a number, letter or a percentage sign
-        regex = regex.replace(/[^0-9a-z%]/gi, " ");
+                dataCSV
+                    .toString()
+                    .toLowerCase()
+                    .split('\n')
+                    .forEach(item => {
+                        const food = item.split(',')[1];
+                        if(ingredient.indexOf(food) !== -1) {
+                            category = item.split(',')[0];
+                        }
+                    });
 
-        // if there is more than one space between words, remove it
-        regex = regex.replace(/  +/g, " ");
-
-        // remove all spaces at the end, if any
-        regex = regex.replace(/\s*$/, "");
-
-        var combinations = regex.split(" ");
-
-        var n = combinations.length;
-
-        regex = "";
-
-        // make all possible combinations of the words of the first ingredient
-        for (var i = 0; i < n; i++) {
-          for (var j = 0; j <= i; j++) {
-            regex += (combinations.slice(j, n - i + j).join('') + ',');
-          }
-        }
-
-        // remove the comma at the end due to for loop
-        regex = regex.toString().replace(/\,$/, "");
-        regex = regex.split(',');
-
-        var test1 = regex.length;
-        var test2 = regex.length;
-        var test3 = '';
-
-        // check for both singular and plural of the first ingredient
-        for (i = 0; i < test1; i++) {
-          try {throw i}
-          catch(ii) {
-            test3 = regex[ii].slice(-1);
-
-            if (test3 === 's') {
-                regex[test2] = regex[ii].substring(0, regex[ii].length - 1);
-                test2++;
-            }
-            else {
-                regex[test2] = regex[ii] + 's';
-                test2++;
-            }
-          }
-        }
-
-        // read first ing from csv file, set all to lowercase and split at ,
-        //var dataCSV = fs.readFileSync(firstIngredientCsvFile, {"encoding": "utf8"});
-        var dataCSV = fs.readFileSync(firstIngredientCsvFile, "utf8");
-        let first_ing = dataCSV.toString().toLowerCase().replace(/\n/g, ",").split(",");        
-
-        // loop thru all combinations of the first ingredient
-        regex.forEach(function(snack, i) {
-
-            //console.log('All combinations of first ingredient: ' + snack)
-            first_ing.forEach(function(item, j) {
-
-                if (j + 1 < first_ing.length) {
-
-                    item = first_ing[j + 1];
-                    item = item.replace(/\s/g, '');
-                    
-                    if (item === snack) {
-                        category = first_ing[j];
-                        console.log('*Matching first ing: ' + snack)
-                    }
+                switch (category) {
+                    case 'dairy':
+                    case 'proteins-nut':
+                    case 'whole grains':
+                    case 'vegetables':
+                    case 'fruits':
+                    case 'proteins':
+                        score.firstIngredient = 2;
+                        break;
+                    case 'other':
+                        score.firstIngredient = 0;
+                        break;
+                    case 'none':
+                        score.firstIngredient = 0;
+                        break;
+                    default:
+                        score.firstIngredient = 0;
                 }
-            });
+
+                score.totalScore += score.firstIngredient;
+
+        }).catch(error => {
+            console.error(error);
+            this.setState({isLoading: false});
         });
-                
-        console.log('Ingredients after checking db: ' + category)
-                
-        switch (category) {
-            case 'dairy':
-            case 'proteins-nut':
-            case 'whole grains':
-            case 'vegetables':
-            case 'fruits':
-            case 'proteins':
-                score.firstIngredient = 2;
-                break;
-            /*    
-            case 'They are Secret!':
-                if(!isLocal && name.toLowerCase().replace("Yogurt").length > 0) score.firstIngredient = 2;
-                score.firstIngredient = 0;
-                break;
-            */
-            case 'other':
-                score.firstIngredient = 0;
-                break;
-            case 'none':
-                console.log('It appears there are no ingredients?');
-                score.firstIngredient = 0;
-                break;
+
+    }
+
+    processedFoodCalculation(ingredients, score) {
+
+        fetchCSVFiles(processedFoodCsvFile)
+            .then(response => response.data)
+            .then((dataCSV) => {
+
+                let additives = dataCSV
+                    .toString()
+                    .toLowerCase()
+                    .split('\n');
+
+                let ingredientsList = ingredients
+                    .toLowerCase()
+                    .split(',')
+                    .map(item => item.replace('.', '').trim());
+
+                let total = additives.reduce((total, additive) => {
+                    return total + ingredientsList.includes(additive);
+                }, 0);
+
+                if (total <= 0) {
+                    score.processed = 1;
+                } else if (total === 1) {
+                    score.processed = 0.5;
+                } else if (total === 2 || total === 3) {
+                    score.processed = 0;
+                } else if (total === 4 || total === 5) {
+                    score.processed = -0.5;
+                } else if (total > 5) {
+                    score.processed = -1;
+                }
+
+                score.totalScore += score.processed;
+
+                this.setScoreState(score);
+                feedBackMessage = this.processScoreFeedBack(score);   
+                feedBackNutritionMessage = this.processNutritionFeedback(score);   
+                this.setState({isLoading: false});
+
+            }).catch(error => {
+            console.error(error);
+            this.setState({isLoading: false});
+        });
+
+    }
+
+    consumeSnack(){
+        postSnackScore(this.state.snack.fdcId,this.state.score.totalScore).then(response => response.data).then((score) => {
+            this.props.history.push({
+                pathname:'/snacksgraph'
+            });
+            console.log(score);                                     
+        }).catch(error => {
+            console.error(error);
+            this.setState({isLoading: false});
+        });  
+    }
+
+    processScoreFeedBack(score) {
+        var result = void 0;
+        score = this.state.score.totalScore;
+
+        switch (true) {
+            case score < 6:
+                return feedbackJSON.scoreFeedback.feedback1to5[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback1to5.length)];
+            case score >= 6 && score < 8:
+                return feedbackJSON.scoreFeedback.feedback6to7[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback6to7.length)];
+            case score >= 8 && score < 10:
+                return feedbackJSON.scoreFeedback.feedback8to9[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback8to9.length)];
             default:
-                score.firstIngredient = 0;
+                return feedbackJSON.scoreFeedback.feedback10to11[Math.floor(Math.random() * feedbackJSON.scoreFeedback.feedback10to11.length)];
         }
-    }    
+    };
 
-    setUnitCalculation(unitCalc) {
-        this.setState({unitCalc: unitCalc});
-    }
+    processNutritionFeedback(score) {       
+        let name = void 0;
 
-    setUnit(unit) {
-        this.setState({unit: unit});
-    }
+        if (this.state.score.totalScore === 0 || this.state.score.totalScore === 0.0) {
+            name = "calScore";
+        } else if (this.state.score.processed === -1) {
+            name = "processedScore";
+        } else {
+            let scoreList = {
+                "calScore": this.state.score.totalScore,
+                "fatScore": this.state.score.totalFat,
+                "satScore": this.state.score.satFat,
+                "tranScore": this.state.score.transFat,
+                "sodiumScore": this.state.score.sodium,
+                "sugarScore": this.state.score.sugar,
+                "processedScore": this.state.score.processed,
+            };
+            
 
-    getUnitCalculation() {        
-        return this.state.unitCalc;
-    }
+            //get sorted list of scores
+            let min = Object.keys(scoreList).sort(function (a, b) {
+                return scoreList[a] - scoreList[b];
+            });
+            //get first one - the smallest score - to get pick which nutrition message to return
+            name = min[0];
+        }
+    
+        switch (true) {
+            case name === "calScore":
+                return feedbackJSON.nutritionFeedback.calScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.calScore.length)];
+            case name === "fatScore":
+                return feedbackJSON.nutritionFeedback.fatScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.fatScore.length)];
+            case name === "satScore":
+                return feedbackJSON.nutritionFeedback.satScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.satScore.length)];
+            case name === "tranScore":
+                return feedbackJSON.nutritionFeedback.tranScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.tranScore.length)];
+            case name === "sodiumScore":
+                return feedbackJSON.nutritionFeedback.sodiumScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sodiumScore.length)];
+            case name === "processedScore":
+                return feedbackJSON.nutritionFeedback.processedScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.processedScore.length)];
+            case name === "sugarScore":
+                return feedbackJSON.nutritionFeedback.sugarScore[Math.floor(Math.random() * feedbackJSON.nutritionFeedback.sugarScore.length)];
+            default:
+                console.log('A score type is somehow missing? Fix it!!!');
+                break;
+        }
+    };
 
-    getUnit() {        
-        return this.state.unit;
+
+    _toggle() {
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
     }
 
     render() {
 
         return (
             <Container className="mt-4">
-                <Row className="text-center">
+                <Row className="text-center" style={{display: this.state.showResults ? 'none' : ''}}>
                     <Col>
                         <Card>
                             <Card.Body>
 
                                 <Card.Title>Snack Calculator Score</Card.Title>
 
-                                <Form.Group controlId="formControlPortion" style={{width: "300px", margin: "10px auto"}}>
-                                    <Form.Label>Portion Size {this.getUnitCalculation()}:</Form.Label>
-                                    <Form.Control id="portion" type="text" placeholder={this.getUnit()} />
+                                <Form.Group style={{width: '300px', margin: '10px auto'}}>
+                                    <Form.Label>Portion Size {this.state.unit}:</Form.Label>
+                                    <Form.Control type="number"
+                                                  placeholder={ `${this.state.portion} ${units[this.state.unit]}` }
+                                                  onChange={(e) => this.setPortion(e.target.value)}/>
                                 </Form.Group>
 
                                 <div>
-                                    <Button variant="link">Not sure how much? ❓</Button>
+                                    <Button variant="link" onClick={this._toggle}>Not sure how much? ❓</Button>
                                 </div>
 
-                                <Dropdown as={ButtonGroup}>
+                                <Modal show={this.state.modal} onHide={this._toggle}>
+                                    <Modal.Header closeButton="true"/>
+                                    <Modal.Body>
+                                        <img style={{width: '460px'}} src={foodPic} alt=""/>
+                                    </Modal.Body>
+                                </Modal>
+                                <OverlayTrigger placement={'right'} overlay={<Tooltip id="tooltip-disabled">Change units measures here</Tooltip>}>
+                                    <Dropdown as={ButtonGroup}>
 
-                                    <Button variant="primary" onClick={() => this.calculate()}>
-                                        Calculate 📱
-                                    </Button>                                  
-                                    
-                                    <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
-                                    </Dropdown.Toggle>
+                                        <Button variant="primary" onClick={() => this.calculate()} disabled={this.state.isLoading}>
+                                            Calculate 📱
+                                        </Button>
 
-                                    <Dropdown.Menu id="dropdown-units-button" title="Units">
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Grams"); this.setUnit("100 g");}}>Grams</Dropdown.Item>                                        
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tablespoon"); this.setUnit("100 tbsp");}}>Tablespoon</Dropdown.Item>                                    
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Tea Spoon"); this.setUnit("100 tsp");}}>Tea Spoon</Dropdown.Item>                                          
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Ounces"); this.setUnit("100 oz");}}>Ounces</Dropdown.Item>                                      
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Kilogram"); this.setUnit("100 kg");}}>Kilograms</Dropdown.Item>                                       
-                                        <Dropdown.Item href="" onClick={() => {this.setUnitCalculation("Pounds"); this.setUnit("100 lbs");}}>Pounds</Dropdown.Item>                                      
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                        <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu id="dropdown-units-button" title="Units">
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Grams');
+                                            }}>Grams</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Tablespoon');
+                                            }}>Tablespoon</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('TeaSpoon');
+                                            }}>Tea Spoon</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Ounces');
+                                            }}>Ounces</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Kilogram');
+                                            }}>Kilograms</Dropdown.Item>
+                                            <Dropdown.Item href="" onClick={() => {
+                                                this.setUnit('Pounds');
+                                            }}>Pounds</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </OverlayTrigger>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
-
-                <Row className="mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
-                    <Col xs={12} md={6}>
+                
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackMessage}
+                </Alert>         
+                
+                <Row className="mt-4" style={{width: '1350px',margin: '30px auto',display: this.state.showResults ? '' : 'none'}}>                                            
+                    <Col xs={24} md={10}>                                    
                         <Card>
                             <Card.Body>
-                                <Card.Title>{this.state.snack && this.state.snack.product}</Card.Title>
-
-                                <p className={SnackDetailsStyles.snackname2}>
-                                    Serving size : { this.state.score.servingSize } grams
-                                </p>
-                                <Table striped hover>
-                                    <tbody>
-                                    <tr>
-                                        <th>Total Score</th>
-                                        <td>{this.state.score.totalScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>First Ingredient Score</th>
-                                        <td>{this.state.score.firstIngredient}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total Calories Score</th>
-                                        <td>{this.state.score.calorieScore}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fat Score</th>
-                                        <td>{this.state.score.totalFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Saturated Fat Score</th>
-                                        <td>{this.state.score.satFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Trans Fat Score</th>
-                                        <td>{this.state.score.transFat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sodium Score</th>
-                                        <td>{this.state.score.sodium}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sugar Score</th>
-                                        <td>{this.state.score.sugar}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Processed Score</th>
-                                        <td>{this.state.score.processed}</td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
-
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Card>
-                            <Card.Body>
-
-                                <Card.Title>Score Breakdown</Card.Title>
+                                <Card.Title>
+                                    <center>
+                                        <p>
+                                            <strong>Score Breakdown</strong>
+                                        </p>
+                                    </center>                                        
+                                </Card.Title>
 
                                 <Table striped hover>
                                     <thead>
-                                    <tr>
-                                        <th>Criteria</th>
-                                        <th>Score</th>
-                                        <th>Max Score</th>
-                                    </tr>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Criteria</th>
+                                            <th>Score</th>
+                                            <th>Max Score</th>
+                                        </tr>
                                     </thead>
-                                    <tbody>{this.getScoreBreakdown()}</tbody>
+
+                                    <tbody>
+                                        {this.getScoreBreakdown()}
+                                    </tbody>
+                                    
+                                    <tr>
+                                        <th> </th>
+                                        <th>Total Score</th>
+                                        <td>{this.state.score.totalScore}</td>
+                                    </tr>
                                 </Table>
-
                             </Card.Body>
+                        </Card>                                    
+                    </Col>                                            
+                </Row>                       
 
-                        </Card>
-                    </Col>
-                </Row>
+                <br></br>
+                <Alert variant={'primary'} style={{display: this.state.showResults ? '' : 'none'}}>
+                    {feedBackNutritionMessage}
+                </Alert>                
 
                 <Row className="text-center mt-4" style={{display: this.state.showResults ? '' : 'none'}}>
-                    <Col>
-                        <Button className="m-1" variant="primary" href="/snacksgraph">Consume 🍴</Button>
+                    <Col>                                  
+                        <Button className="m-1" variant="primary" onClick={() => this.consumeSnack()}>Consume 🍴</Button>
                         <Button className="m-1" variant="secondary" href="/snacks">Return to search</Button>
                     </Col>
                 </Row>
