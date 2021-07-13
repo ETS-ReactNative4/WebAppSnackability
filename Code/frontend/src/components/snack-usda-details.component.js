@@ -1,7 +1,7 @@
 import React, { Component, useContext } from 'react';
 import SnackDetailsStyles from '../styles/snack-details.module.css';
 import { fetchCSVFiles, fetchSnackByIDUSDA } from '../services/snack.service.js';
-import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Table, OverlayTrigger, Tooltip, Alert, Spinner} from 'react-bootstrap';
 import foodPic from '../images/foodinfo.png';
 
 import { postSnackScore } from '../services/score.service.js';
@@ -600,10 +600,27 @@ export default class SnackDetailsComponent extends Component {
                                 </Modal>
                                 <OverlayTrigger placement={'right'} overlay={<Tooltip id="tooltip-disabled">Change units measures here</Tooltip>}>
                                     <Dropdown as={ButtonGroup}>
-
-                                        <Button variant="primary" onClick={() => this.calculate()} disabled={this.state.isLoading}>
-                                            Calculate 📱
-                                        </Button>
+                                        <Button
+											variant='primary'
+											onClick={() => this.calculate()}
+											hidden={this.state.isLoading}
+										>
+											Calculate 📱
+										</Button>
+										<Button
+											variant='primary'
+											disabled
+											hidden={!this.state.isLoading}
+										>
+											<Spinner
+												as='span'
+												animation='border'
+												size='sm'
+												role='status'
+												aria-hidden='true'
+											/>
+											&nbsp;Loading...
+										</Button>
 
                                         <Dropdown.Toggle split variant="primary" id="dropdown-split-basic">
                                         </Dropdown.Toggle>
