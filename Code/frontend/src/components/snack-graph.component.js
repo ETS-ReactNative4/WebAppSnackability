@@ -213,7 +213,7 @@ const SnackGraph = () => {
 
 					},
 					borderWidth: 1,
-					borderRadius: [5],
+					borderRadius: [8],
 				}]
 			})
 		}).catch(error => {
@@ -240,7 +240,7 @@ const SnackGraph = () => {
 					display: true,
 					text: 'Points'
 				}
-				
+
 				// tick: {
 				// 	callback: function (value, index) {
 				// 		console.log(this.getLabelForValue(value))
@@ -270,7 +270,6 @@ const SnackGraph = () => {
 	return (
 
 		<div className='container'>
-
 			<Bar data = {chartData} options = {options} />
 		</div>
 
