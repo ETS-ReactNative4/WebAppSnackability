@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^9.10.0",
     "fs": "0.0.1-security",
-    "win-node-env": "^0.4.0"
+    "nodemon": "^2.0.12"
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1"
