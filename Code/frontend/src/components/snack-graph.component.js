@@ -1,23 +1,30 @@
 // import axios from 'axios';
 // import Chart from 'chart.js/auto';
 import { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Bubble } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2';
 // import moment from "moment"; // No more errors, errors present when using {moment}
 
 import { fetSnackScore } from '../services/score.service.js';
-
 import SnackDetailsStyles from '../styles/graph.css';
 
 defaults.plugins.legend.position = 'top';
+defaults.plugins.legend.title = {
+	display: true,
+	text: 'Average Points Earned Daily',
+	font: {
+		size: 22
+	}
+};
+defaults.plugins.legend.labels.boxWidth = 0;
+
 
 
 const SnackGraph = () => {
 
     const [chartData, setChartData] = useState({});
-    //const [snackPoints, setsnackPoints] = useState({});
-    //const [employeeAge, setEmployeeAge] = useState({});
 
+ 
 	let wholeAverageDays = [];
 
     const chart = () => {            
@@ -183,7 +190,7 @@ const SnackGraph = () => {
 				//labels: [day5, day4, day3, day2, day1],
 				labels: datesEND,
 				datasets: [{
-					label: 'Average Points Earned Daily',
+					label: '',
 					data:  wholeAverageDays,
 					backgroundColor: function(context)
 					{
@@ -191,8 +198,8 @@ const SnackGraph = () => {
 						var value = context.dataset.data[index];
 	
 						return value >= 9 ? 'rgba(144,238,144, 0.5)' :
-							value < 5 ?  'rgba(205, 92, 92, 0.5)'   :
-								'rgba(255,228,181, 0.5)';
+							   value < 5 ?  'rgba(205, 92, 92, 0.5)' :
+							             	'rgba(255,228,181, 0.5)' ;
 	
 					},
 					borderColor: function(context)
@@ -207,8 +214,7 @@ const SnackGraph = () => {
 					},
 					borderWidth: 1,
 					borderRadius: [5],
-				}
-				]
+				}]
 			})  
 		}).catch(error => {
 			console.error(error);
@@ -219,23 +225,35 @@ const SnackGraph = () => {
         chart()
     },[]);
 
+const options = {	
+		responsive: true,
+		title : {
+			text: 'Points Earned', 
+			display: true
+		},
+		scales: {
+			yAxes: {
+				display: true,
+				max: 10,
+				min: 0,
+				
+			}
+		}	
+};
+
+
+
     return (
-        <div className = "grid">
+		
+		
+ 
             <div className='container'>
-                <div style ={{height: "300px", width: "700px"}}>
-                    <Bar data={chartData} options = {{
-                        responsive: true,
-                        title : {text: 'Points Earned', display: true},
-                        scales: {
-                            yAxis: {
-                                max: 10,
-                                min: 0
-                            }
-                        }
-                    }} />
+               
+				<div class = "axis"> </div>
+                    <Bar data = {chartData} options = {options} />
+					<p> <center> Last Five Days of Snack Consumed </center> </p>
                 </div>
-            </div>
-        </div>
+           
     )
 };
 

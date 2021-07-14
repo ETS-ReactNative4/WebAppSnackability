@@ -1,13 +1,4 @@
-.grid {
-    width: 85vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 30px;
-    padding: 50px 50px 70px 50px;
-}
-
-.container {
+.container{
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -18,12 +9,13 @@
     box-shadow: 1px 1px 5px DodgerBlue;
     background-color: #fff;
     margin-top: 50px;
-    margin-bottom: 100px;
-    height: fit-content;
+    margin-bottom: 500px;
+    width: 300px;
     padding: 50px 50px 70px 50px;
 
-
 }
+
+
 
 .container:hover {
     transform: scale(1.05);
