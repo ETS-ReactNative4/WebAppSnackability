@@ -1,0 +1,124 @@
+{
+    "scoreFeedback" : {
+        "feedback1to5" : [
+            "This snack is not healthy, you need to choose a healthier option",
+            "Try again!",
+            "Don't give up, try again!",
+            "Hmm, there is room for improvement here",
+            "This is not a healthy snack, choose another one",
+            "This snack is not good for you. Not eating this would be better for you",
+            "Don't eat this",
+            "Be careful! This is an unhealthy snack!",
+            "An awful snack choice!"
+        ],
+        "feedback6to7" : [
+            "This snack is somewhat healthy, this could be better",
+            "Your snack ability is a work in progress",
+            "Aim for a higher score on your next snack!",
+            "Your snack ability is evolving!",
+            "Choose a new snack to boost your score a little more",
+            "This snack is ok, but there are better options you can explore",
+            "Don't forget to keep the portion size in mind when choosing snacks",
+            "A good snack choice!",
+            "This snack is pretty nice, but I know you can get something better. I'd grade it a B"
+        ],
+        "feedback8to9" : [
+            "Good job! This snack is healthy!",
+            "Nice score!",
+            "Nice choice, go again for a score of 10!",
+            "You have a notable snack ability!",
+            "This snack is good! Keep choosing snacks like these!",
+            "Awesome! Keep it up!",
+            "A great snack choice",
+            "This snack is great but not the best. I'd grade it an A-"
+        ],
+        "feedback10to11" : [
+            "PERFECT score! This snack is very healthy!",
+            "Your snack ability is genius!",
+            "You're killing it!",
+            "You have a knack for healthy snacks!",
+            "This snack is AMAZING!",
+            "The best snack choice!",
+            "You are making the greatest decisions!",
+            "WOW! You're looking better already!",
+            "Excellent! This is an A+ snack!"
+        ]
+    },
+    "nutritionFeedback" : {
+        "calScore" : [
+            "Look for snacks that have <200 calories per portion",
+            "This is a high calorie snack! Look for snacks with <200 kcal",
+            "This is a high calorie snack! Reduce the portion size to get <200 kcal",
+            "Choose a fruit or a veggie, usually they are low in calories!",
+            "Watch out! Calories matter!",
+            "Boost your snack by choosing a snack with less calories per portion",
+            "Lower the calories in your snack! Check out fat and sugar as well!",
+            "Aim for snacks that incliude fruit, vegetable, whole-grain, dairy, or protein as a first ingredient"
+        ],
+        "fatScore" : [
+            "Choose snacks that are baked instead of fried",
+            "This snack is high FAT! Choose a reduced fat snack",
+            "Try a low fat snack instead",
+            "Try mixed nuts or veggies as a snack",
+            "Look for a snack that has <35% of calories per portion to improve your score",
+            "Boost your snack score! Choose a low or non-fat snack",
+            "Boost your snack score! Choose a fruit or veggie",
+            "Improve your score by trying mixed nuts",
+            "Check the ingredients. If fat is listed 1st or 2nd, it is high fat"
+        ],
+        "fatNutsScore": [
+            "This snack is high in healthy fats! Try finding a lower-fat option, however",
+            "Look for nuts that have <90% of calories per portion to improve your score"
+        ],
+        "fatDairyScore": [
+            "Try a low fat snack instead",
+            "Look dairy products that have <65% of calories per portion to improve your score"
+        ],
+        "satScore" : [
+            "To improve your score, choose a snack with <10% of calories from satured fat",
+            "Choose a low or non-fat dairy or protein based snack",
+            "Try a piece of fruit as a snack",
+            "Choose mixed nuts, a fruit, or a veggie instead",
+            "Choose a heart healthy snack instead!",
+            "Reduce fat and oil in your snack",
+            "Save your heart! Try mixed nuts, fruits, or veggies intead"
+        ],
+        "satNutsScore" : [
+            "To improve your nutty score, choose a snack with <30% of calories from satured fat",
+            "Choose a lower-fat nuts-based snack"
+        ],
+        "satDairyScore" : [
+            "To improve your dairy score, choose a snack with <30% of calories from satured fat",
+            "Choose a lower-fat or non-fat dairy-based based snack"
+        ],
+        "tranScore" : [
+            "Watch out! Your snack should be ZERO trans-fat!",
+            "Look for ZERO trans-fat!",
+            "Dangerous trans-fat! GO for ZERO!",
+            "To improve your score, choose a snack with NO trans-fat!"
+        ],
+        "sodiumScore" : [
+            "Choose a snack with <200 mg of sodium",
+            "Too salty snack!",
+            "Look for a reduced salt snack!",
+            "Save your heart! Try a fruit or veggie instead!",
+            "Save your kidney! Avoid salty snack!"
+        ],
+        "sugarScore" : [
+            "Too sweet snack!",
+            "Look for low or no sugar snack!",
+            "Choose natural sweet from a fruit or a veggie!",
+            "Save your teeth! Choose a snack with less sugar",
+            "Choose low sugar snack instead!",
+            "Watch out! You are eating too much SUGAR!",
+            "Check the ingredients, that snack probably listed sugar at the beginning",
+            "Check the ingredients and choose snacks with sugar listed towards the end"
+        ],
+        "processedScore" : [
+            "This snack is highly processed, aim for snacks from nature",
+            "Oops! Highly processed snack! Try to choose non or less processed",
+            "This snack has food additive including added fat, sugar, and salt",
+            "Choose a snack that lists as first ingredient a fruit, vegetable, whole-grain, dairy, or protein"
+        ]
+    }
+}

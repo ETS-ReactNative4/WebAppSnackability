@@ -12,12 +12,4 @@ npm install
 npm run start.prod
 ```
 
-### Enviroment
-
-```
-PORT=
-DB_HOST=
-USDA_API_ENDPOINT=
-USDA_API_KEY=
-
-```
+### Remember to include the two (2) .env into back end folder. This can be obtained from your GitHub account.
