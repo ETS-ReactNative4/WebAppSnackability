@@ -12,4 +12,4 @@ npm install
 npm run start.prod
 ```
 
-### Remember to include the two (2) .env into front end folder. This can be obtained from your GitHub account.
+### Remember to include the two (2) .env into back end folder. This can be obtained from your GitHub account.
