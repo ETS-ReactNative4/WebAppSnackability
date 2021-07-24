@@ -17,3 +17,5 @@ The query results show the user basic nutritional information of the snack and a
 The scoring page then allows the user to receive a score for consumption of the snack as well as display a score breakdown.
 
 ![Snack Calculator](./Documentation/images/snack-calculate.png)
+
+![Snack Calculated](./Documentation/images/snack-calculated.png)
