@@ -1,45 +1,43 @@
-import React, { Component } from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-// eslint-disable-next-line
-import {Navbar, Nav, Form, FormControl, Button} from "react-bootstrap";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Switch } from 'react-router';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import { AuthProvider } from './utils/auth';
+import { NavbarComponent } from './components/navbar.component';
 
-import SnackList from "./components/snack-list.component";
-import Snackability from "./components/snackability-home.component";
-import SnackSearch from "./components/snack-search.component";
-import SnackScore from "./components/snack-score.component"
+import PublicRoute from './routes/public-routes.component';
+import PrivateRoute from './routes/private-route.component';
 
-// eslint-disable-next-line
-import styles from "./App.css"
+import HomeComponent from './components/home.component';
+import SnackGraph from './components/snack-graph.component';
+import SnackUSDAListComponent from './components/snack-usda-list.component';
+import SnackUSDADetailsComponent from './components/snack-usda-details.component';
+import SettingsComponent from './components/settings.component';
+import SignInComponent from './components/signin.component';
 
-import logo from "./images/logo.svg";
+import AppStyles from './styles/app.module.css'
 
-class App extends Component {
-  render () {
+const App = () => {
+
     return (
-      <Router>
-        <div className = "App" >
-          <Navbar variant="dark" className="NavBarStyle">
-            <Navbar.Brand href="/#">
-              <img src={logo} width="80" height="10%" alt="Snackability" />
-            </Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/snacklist">Snack List</Nav.Link>
-                <Nav.Link href="/search">Search</Nav.Link>
-            </Nav>
-          </Navbar>
-        <br />
-            <Route path = "/" exact component= {Snackability} />
-            <Route path = "/snacklist" exact component = {SnackList} />
-            <Route path = "/search" exact component = {SnackSearch} />
-            <Route path = "/snackscore" exact component = {SnackScore} />
-        </div>
-    </Router>
-    )
-  }
+        <AuthProvider>
+            <BrowserRouter>
+                <div className="App">
+                    <NavbarComponent />
+                    <main className={ AppStyles.main }>
+                        <Switch>
+                            <PublicRoute restricted={false} path="/" exact component={HomeComponent} />
+                            <PrivateRoute path="/usda" exact component={SnackUSDAListComponent}/>
+                            <PrivateRoute path="/usda/:snack_id" exact component={SnackUSDADetailsComponent}/>
+                            <PrivateRoute path='/snacksgraph' exact component={SnackGraph} />
+                            <PrivateRoute path="/settings" exact component={SettingsComponent}/>
+                            <PublicRoute restricted={true} path="/signin" exact component={SignInComponent} />
+                        </Switch>
+                    </main>
+                </div>
+            </BrowserRouter>
+        </AuthProvider>
+    );
 }
 
 export default App;

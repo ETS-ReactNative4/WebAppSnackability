@@ -1,0 +1,17 @@
+.NavBarStyle {
+    position: fixed !important;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    background: linear-gradient(145deg,#0d47a1,#1976d2);
+    font-size: 16px;
+    color:white;
+    z-index: 999;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+.main {
+    position: relative;
+    display: block;
+    padding: 64px 0;
+}

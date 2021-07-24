@@ -1,0 +1,115 @@
+.h1{
+    color: DodgerBlue;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: Arial, serif;
+    margin-left: 1%;
+}
+
+.h3{
+  text-align: center;
+  font-size: 10px;
+  color: DodgerBlue;
+  margin-left: 1%;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+th {
+    cursor: pointer;
+    color:#FEFEFE;
+    background-color: #0277BD;
+    text-align: center;
+}
+
+.buttonCalculate {
+    outline: none;
+    font-size: 11px;
+    font-family: "Quicksand", sans-serif;
+    color: #0277BD!important;
+    padding: 3px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #0277BD!important;
+    background-color: transparent;
+}
+
+/*Table*/
+
+.table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+  .table thead tr {
+    background-color: #0277bd;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 15px;
+  }
+
+  .table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .table tbody tr:last-of-type {
+    border-bottom: 2px solid #0277bd;
+  }
+
+  tr:hover {
+    background-color: #0278bd32;
+  }
+
+  th:first-child {
+    border-radius: 6px 0 0 0;
+  }
+
+  th:last-child {
+    border-radius: 0 6px 0 0;
+  }
+
+  th:only-child {
+    border-radius: 6px 6px 0 0;
+  }
+/*Table*/
+
+/*Home page Footer*/
+.footer {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/*avatar*/
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  margin-top: 50px;
+  margin-left: 100px;
+  border-radius: 50%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+}
+
+.modal {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0px;
+}
