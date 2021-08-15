@@ -1,3 +1,3 @@
-Code/frontend/.env
+node_modules
 .idea/
-.node_modules
+.env
