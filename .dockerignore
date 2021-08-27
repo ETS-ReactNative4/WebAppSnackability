@@ -1,0 +1,9 @@
+build
+node_modules
+docs
+
+CHANGELOG.md
+README.md
+
+.editorconfig
+npm-debug.log
