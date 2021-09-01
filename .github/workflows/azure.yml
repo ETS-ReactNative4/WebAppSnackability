@@ -1,9 +1,9 @@
-on: 
+on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
+
 name: CD Azure
 
 jobs:
@@ -13,12 +13,17 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
-          
+
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+
+        - name: 'Create env file'
+          uses: azure/login@v1
+          run:
+            echo "${{ secrets.ENV_PRODUCTION }}" > .env.production
+
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
