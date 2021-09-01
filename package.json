@@ -33,10 +33,10 @@
     "workbox-build": "^6.1.2"
   },
   "scripts": {
-    "start": "env-cmd -f .env.development react-scripts start",
-    "start:prod": "env-cmd -f .env.production react-scripts start",
-    "build": "env-cmd -f .env.development npm run-script build",
-    "build:prod": "env-cmd -f .env.production npm run-script build",
+    "start": "env-cmd -e .env.development react-scripts start",
+    "start:prod": "env-cmd -e .env.production react-scripts start",
+    "build": "env-cmd -e .env.development npm run-script build",
+    "build:prod": "env-cmd -e .env.production npm run-script build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
