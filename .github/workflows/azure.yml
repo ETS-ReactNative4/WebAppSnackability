@@ -20,7 +20,6 @@ jobs:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
 
         - name: 'Create env file'
-          uses: azure/login@v1
           run:
             echo "${{ secrets.ENV_PRODUCTION }}" > .env.production
 
