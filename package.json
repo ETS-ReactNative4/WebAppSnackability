@@ -33,8 +33,10 @@
     "workbox-build": "^6.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f .env.development react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
+    "build": "env-cmd -f .env.development npm run-script build",
+    "build:production": "env-cmd -f .env.production npm run-script build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -57,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@types/firebase": "^3.2.1"
+    "@types/firebase": "^3.2.1",
+    "env-cmd": "^10.1.0"
   }
 }

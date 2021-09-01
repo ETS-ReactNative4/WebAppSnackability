@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export function fetchSnacksListUSDA() {
-    return axios.get('http://localhost:4000/usda/snacks');
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/usda/snacks`);
 }
 
 export function fetchSnacksByNameUSDA(keyword) {
-    return axios.get('http://localhost:4000/usda/search', {
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/usda/search`, {
         params: {
             q: keyword
         }
@@ -13,11 +13,11 @@ export function fetchSnacksByNameUSDA(keyword) {
 }
 
 export function fetchSnackByIDUSDA(snack_id) {
-    return axios.get(`http://localhost:4000/usda/snacks/${snack_id}`);
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/usda/snacks/${snack_id}`);
 }
 
 export function fetchCSVFiles(file_path) {
-    return axios.get(`http://localhost:4000/usda/files`, {
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/usda/files`, {
         params: {
             f: file_path
         }
