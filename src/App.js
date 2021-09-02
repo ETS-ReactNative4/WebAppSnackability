@@ -14,6 +14,7 @@ import SnackUSDAListComponent from './components/snack-usda-list.component';
 import SnackUSDADetailsComponent from './components/snack-usda-details.component';
 import SettingsComponent from './components/settings.component';
 import SignInComponent from './components/signin.component';
+import ContactUs from './components/contactus.component';
 
 import AppStyles from './styles/app.module.css'
 
@@ -32,6 +33,7 @@ const App = () => {
                             <PrivateRoute path='/snacksgraph' exact component={SnackGraph} />
                             <PrivateRoute path="/settings" exact component={SettingsComponent}/>
                             <PublicRoute restricted={true} path="/signin" exact component={SignInComponent} />
+                            <PublicRoute restricted={false} path="/contactus" exact component={ContactUs} />
                         </Switch>
                     </main>
                 </div>
