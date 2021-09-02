@@ -28,6 +28,9 @@ export const NavbarComponent = () => {
                     <Nav.Link href='/snacksgraph'>
                         <FontAwesomeIcon icon={faChartLine}/> Snacks Graph
                     </Nav.Link>
+                    <Nav.Link href="/contactus">
+                         Contact Us
+                    </Nav.Link>
                 </Nav>
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title={ currentUser.email }>
@@ -56,6 +59,9 @@ export const NavbarComponent = () => {
                 <Nav className="mr-auto">
                     <Nav.Link href="/">
                         <FontAwesomeIcon icon={faHome}/> Home
+                    </Nav.Link>
+                    <Nav.Link href="/contactus">
+                         Contact Us
                     </Nav.Link>
                 </Nav>
                 <Nav>
