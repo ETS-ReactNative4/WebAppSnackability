@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN ls -la
+RUN cat .env.production
 RUN npm run build:prod
 
 ### STAGE 2: Setup ###
