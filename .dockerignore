@@ -1,10 +1,13 @@
-build
-node_modules
-docs
+.git
+.github
+.gitignore
+.env.development
+.editorconfig
 
+npm-debug.log
 CHANGELOG.md
 README.md
 
-.editorconfig
-npm-debug.log
-.env.development
+build
+node_modules
+docs

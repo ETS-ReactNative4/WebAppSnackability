@@ -8,9 +8,8 @@ RUN npm install
 
 COPY . .
 
-RUN ls -la
-RUN cat .env.production
 RUN npm run build:prod
+RUN ls -la
 
 ### STAGE 2: Setup ###
 FROM nginx:alpine
