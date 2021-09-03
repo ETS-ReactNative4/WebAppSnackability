@@ -44,3 +44,4 @@ jobs:
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: snackability-ui
             location: 'west us'
+            ports: 3000
