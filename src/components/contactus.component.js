@@ -53,16 +53,16 @@ class ContactUs extends Component {
       data: this.state,
     }).then((response) => {
       if (response.data.status === "success") {
-        this.setState({isSuccess:true, success:"Message Sent!"});
+        this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
         this.resetForm();
       } else if (response.data.status === "fail") {
-        this.setState({isError:false, success:"Message Failed to Send!"});
+        this.setState({isError:true, isSuccess: false, error:"Message Failed to Send!"});
       }
     });
   }
 
   resetForm() {
-    this.setState({ name: "", email: "", subject: "", message: "" });
+    this.setState({ firstName: "", lastName: "", email: "", message: "",});
   }
 
   render() {
