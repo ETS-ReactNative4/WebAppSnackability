@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/contactus.css"
+import "../styles/contactus.css";
 import {
   Alert,
   Button,
@@ -84,6 +84,15 @@ class ContactUs extends Component {
                   </Form>
                 </Card.Body>
               </Card>
+              <Col>
+                <Button
+                  className="m-1"
+                  variant="primary"
+                  //onClick={() => this.method()}
+                >
+                  Submit Request
+                </Button>
+              </Col>
             </Col>
           </Row>
         </Container>
