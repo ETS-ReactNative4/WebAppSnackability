@@ -1,0 +1,12 @@
+.contactHeader {
+    background: linear-gradient(145deg,#0d47a1,#1976d2);
+    height: 200px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contactTitle {
+    font-size: 50px;
+}
