@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/contactus.css";
+import axios from "axios";
 import {
   Alert,
   Button,
@@ -21,6 +22,10 @@ class ContactUs extends Component {
       lastName: "",
       email: "",
       message: "",
+      isSuccess: false,
+      success: "",
+      isError: false,
+      error: "",
     };
   }
 
@@ -40,6 +45,26 @@ class ContactUs extends Component {
     this.setState({ message: event.target.value });
   }
 
+  sendMessage(e) {
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_API_ENDPOINT + "/send",
+      data: this.state,
+    }).then((response) => {
+      if (response.data.status === "success") {
+        this.setState({isSuccess:true, success:"Message Sent!"});
+        this.resetForm();
+      } else if (response.data.status === "fail") {
+        this.setState({isError:false, success:"Message Failed to Send!"});
+      }
+    });
+  }
+
+  resetForm() {
+    this.setState({ name: "", email: "", subject: "", message: "" });
+  }
+
   render() {
     return (
       <div>
@@ -56,7 +81,7 @@ class ContactUs extends Component {
             <Col xs={12} sm={7}>
               <Card>
                 <Card.Body>
-                  <Form>
+                  <Form id="contact-form" onSubmit={this.sendMessage.bind(this)} method="POST">
                     <Row>
                       <Col>
                         <Form.Group className="mb-3" controlId="firstName">
@@ -81,18 +106,20 @@ class ContactUs extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
+                    <Alert variant="success" show={this.state.isSuccess}> {this.state.success} </Alert>
+                    <Alert variant="danger" show={this.state.isError}> {this.state.error} </Alert>
+                    <Button
+                      className="m-1"
+                      variant="primary"
+                      type="submit"
+                      //onClick={() => this.method()}
+                    >
+                      Submit Request
+                    </Button>
                   </Form>
                 </Card.Body>
               </Card>
-              <Col>
-                <Button
-                  className="m-1"
-                  variant="primary"
-                  //onClick={() => this.method()}
-                >
-                  Submit Request
-                </Button>
-              </Col>
+              <Col></Col>
             </Col>
           </Row>
         </Container>
