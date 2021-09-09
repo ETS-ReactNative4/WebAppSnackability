@@ -106,7 +106,24 @@ class ContactUs extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
+                                        
+                    <Row>
+                      <Col>
+                        <Form.Group className="mb-3" controlId="email">
+                          <Form.Label>Email</Form.Label>
+                          <Form.Control
+                            // email@address.com was annoying cause .com/.edu/.net etc..
+                            placeholder="Please Enter Your Email Here"
+                            required
+                            value={this.state.email}
+                            onChange={this.onEmailChange.bind(this)}
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+
                     <Form.Group controlId="message" label="Comments">
+                    <Form.Label>Message</Form.Label>
                       <Form.Control
                         as="textarea"
                         placeholder="Leave a comment here"
