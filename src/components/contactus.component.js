@@ -62,7 +62,7 @@ class ContactUs extends Component {
   }
 
   resetForm() {
-    this.setState({ firstName: "", lastName: "", email: "", message: "",});
+    this.setState({ firstName: "", lastName: "", email: "", message: "" });
   }
 
   render() {
@@ -126,8 +126,10 @@ class ContactUs extends Component {
                     <Form.Label>Message</Form.Label>
                       <Form.Control
                         as="textarea"
-                        placeholder="Leave a comment here"
+                        placeholder="Leave a message here"
                         style={{ height: '100px' }}
+                        value={this.state.message}
+                        onChange={this.onMessageChange.bind(this)}
                       />
                     </Form.Group>
 
