@@ -14,6 +14,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "chart.js": "^3.3.0",
+    "chokidar": "^3.5.2",
     "firebase": "^8.7.0",
     "fs": "0.0.1-security",
     "moment": "^2.29.1",

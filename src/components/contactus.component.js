@@ -106,6 +106,14 @@ class ContactUs extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
+                    <Form.Group controlId="message" label="Comments">
+                      <Form.Control
+                        as="textarea"
+                        placeholder="Leave a comment here"
+                        style={{ height: '100px' }}
+                      />
+                    </Form.Group>
+
                     <Alert variant="success" show={this.state.isSuccess}> {this.state.success} </Alert>
                     <Alert variant="danger" show={this.state.isError}> {this.state.error} </Alert>
                     <Button
