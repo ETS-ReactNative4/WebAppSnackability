@@ -49,7 +49,7 @@ class ContactUs extends Component {
     e.preventDefault();
     axios({
       method: "POST",
-      url: process.env.REACT_APP_API_ENDPOINT + "/send",
+      url: process.env.REACT_APP_API_ENDPOINT + "/contact/send",
       data: this.state,
     }).then((response) => {
       if (response.data.status === "success") {
@@ -113,7 +113,7 @@ class ContactUs extends Component {
                           <Form.Label>Email</Form.Label>
                           <Form.Control
                             // email@address.com was annoying cause .com/.edu/.net etc..
-                            placeholder="Please Enter Your Email Here"
+                            placeholder="Enter email address"
                             required
                             value={this.state.email}
                             onChange={this.onEmailChange.bind(this)}
