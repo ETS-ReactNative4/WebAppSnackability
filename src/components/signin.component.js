@@ -33,12 +33,13 @@ const SigninComponent = ({history}) => {
                     <Card>
                         <Card.Body>
                             <Form onSubmit={handleSignIn}>
-
+                                <Form.Label>Email</Form.Label>
                                 <InputGroup className="mb-3">
                                     <FormControl name="email" type="email" placeholder="email@domain.com" />
                                 </InputGroup>
+                                <Form.Label>Password</Form.Label>
                                 <InputGroup className="mb-3">
-                                    <FormControl name="password" type="password" placeholder="password" />
+                                    <FormControl name="password" type="password" placeholder="Enter password" />
                                 </InputGroup>
 
                                 <Alert variant="danger" show={error}> {error} </Alert>
