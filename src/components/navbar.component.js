@@ -39,8 +39,8 @@ export const NavbarComponent = () => {
                                 <FontAwesomeIcon icon={faCog}/> Settings
                             </span>
                         </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <span onClick={() => app.auth().signOut() }>
+                        <NavDropdown.Item onClick={() => app.auth().signOut() }>
+                            <span>
                                 <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                             </span>
                         </NavDropdown.Item>
