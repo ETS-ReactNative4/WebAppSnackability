@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/index.css";
+import "../styles/contactus.css";
 import axios from "axios";
 import {
   Alert,
