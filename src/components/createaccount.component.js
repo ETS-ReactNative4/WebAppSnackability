@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/createaccount.css";
 import axios from "axios";
+import RandomPassword from "./RandomPassword";
 import {
   Alert,
   Button,
@@ -105,24 +106,7 @@ class CreateAccount extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
-
-                    <Row>
-                      <Col>
-                        <Form.Label>Password</Form.Label>
-                        <InputGroup className="mb-3" controlId="password">
-                          <Button
-                            variant="outline-dark"
-                            id="create-account-button"
-                            size="sm"
-                            //onClick={() => this.method()}
-                          >
-                            Generate random password
-                          </Button>
-                          <FormControl />
-                        </InputGroup>
-                      </Col>
-                    </Row>
-
+                    <RandomPassword />
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
                       {this.state.success}{" "}
@@ -131,20 +115,20 @@ class CreateAccount extends Component {
                       {" "}
                       {this.state.error}{" "}
                     </Alert>
-                    <Button
-                      className="m-1"
-                      variant="primary"
-                      type="submit"
-                      //onClick={() => this.method()}
-                    >
-                      Create account
-                    </Button>
                   </Form>
                 </Card.Body>
               </Card>
-              <Col></Col>
+              <Button
+                className="m-1"
+                variant="primary"
+                type="submit"
+                //onClick={() => this.method()}
+              >
+                Create account
+              </Button>
             </Col>
           </Row>
+          <RandomPassword />
         </Container>
       </div>
     );
