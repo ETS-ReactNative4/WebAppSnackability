@@ -23,7 +23,6 @@ class CreateAccount extends Component {
       lastName: "",
       email: "",
       password: "",
-      message: "",
       isSuccess: false,
       success: "",
       isError: false,
@@ -43,13 +42,17 @@ class CreateAccount extends Component {
     this.setState({ email: event.target.value });
   }
 
-  onPasswordChange(event) {
-    this.setState({ password: event.target.value });
-  }
+  // onPasswordChange = (event) => {
+  //   this.setState({ password: event.target.value });
+  // }
 
   resetForm() {
     this.setState({ firstName: "", lastName: "", email: "", password: "" });
   }
+
+  getPassword(pass){
+    this.setState({password: pass});
+  };
 
   render() {
     return (
@@ -106,7 +109,8 @@ class CreateAccount extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
-                    <RandomPassword />
+
+                    <RandomPassword getPass={this.getPassword.bind(this)}/>
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
                       {this.state.success}{" "}
@@ -128,7 +132,6 @@ class CreateAccount extends Component {
               </Button>
             </Col>
           </Row>
-          <RandomPassword />
         </Container>
       </div>
     );

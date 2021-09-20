@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button} from 'react-bootstrap';
+import { Button, Form, Col} from 'react-bootstrap';
 
 
 const string = "abcdefghijklmnopqrstuvwxyz";
@@ -7,7 +7,7 @@ const numeric = "0123456789";
 const punctuation = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
 
-export default function RandomPassword() {
+export default function RandomPassword(props) {
   const [length, setLength] = useState(10);
   const [password, setPassword] = useState("");
 
@@ -44,26 +44,29 @@ export default function RandomPassword() {
       })
       .join("");
     setPassword(password.substr(0, length));
+
+    props.getPass(password.substr(0, length));
   };
 
 
   return (
-    <div className="RandomPassword">
-        Password
-      <form onSubmit={generatePassword}>
+    <Form.Group className="RandomPassword">
+        <Form.Label>Password</Form.Label>
+      
         {/* <div>
           <label>length</label>
           <input value={length} onChange={(e) => setLength(e.target.value)} />
         </div> */}
-      
+        <br />
         <Button 
             type="submit"
             variant="primary"
-            size="sm">
+            size="sm"
+            onClick={generatePassword}>
             Generate Password
         </Button>
-      </form>
-      <div>{password}</div>
-    </div>
+      
+      <Form.Text>{password}</Form.Text>
+    </Form.Group>
   );
 }
