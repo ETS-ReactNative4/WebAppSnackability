@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, Col} from 'react-bootstrap';
 
 
-const string = "abcdefghijklmnopqrstuvwxyz";
+const string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ";
 const numeric = "0123456789";
-const punctuation = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+const punctuation = "!@#$%^&*";
 
 
 export default function RandomPassword(props) {
-  const [length, setLength] = useState(10);
+  const [length, setLength] = useState(20);
   const [password, setPassword] = useState("");
 
   const generatePassword = (e) => {

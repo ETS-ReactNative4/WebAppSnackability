@@ -50,9 +50,31 @@ class CreateAccount extends Component {
     this.setState({ firstName: "", lastName: "", email: "", password: "" });
   }
 
-  getPassword(pass){
-    this.setState({password: pass});
-  };
+  getPassword(pass) {
+    this.setState({ password: pass });
+  }
+
+  // sendMessage(e) {
+  //   e.preventDefault();
+  //   axios({
+  //     method: "POST",
+  //     url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
+  //     data: this.state,
+  //     name: string,
+  //     email: string (valid email),
+  //     password: string (min length: 6),
+  //     role: string (admin, user),
+  //     Header: { 'Content-Type': 'application/x-www-form-urlencoded'}
+
+  //   }).then((response) => {
+  //     if (response.data.status === "success") {
+  //       this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
+  //       this.resetForm();
+  //     } else if (response.data.status === "fail") {
+  //       this.setState({isError:true, isSuccess: false, error:"Message Failed to Send!"});
+  //     }
+  //   });
+  // }
 
   render() {
     return (
@@ -110,7 +132,7 @@ class CreateAccount extends Component {
                       </Col>
                     </Row>
 
-                    <RandomPassword getPass={this.getPassword.bind(this)}/>
+                    <RandomPassword getPass={this.getPassword.bind(this)} />
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
                       {this.state.success}{" "}
