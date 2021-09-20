@@ -54,27 +54,38 @@ class CreateAccount extends Component {
     this.setState({ password: pass });
   }
 
-  // sendMessage(e) {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "POST",
-  //     url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
-  //     data: this.state,
-  //     name: string,
-  //     email: string (valid email),
-  //     password: string (min length: 6),
-  //     role: string (admin, user),
-  //     Header: { 'Content-Type': 'application/x-www-form-urlencoded'}
+  validateAndSend(e){
+    e.preventDefault();
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  //   }).then((response) => {
-  //     if (response.data.status === "success") {
-  //       this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
-  //       this.resetForm();
-  //     } else if (response.data.status === "fail") {
-  //       this.setState({isError:true, isSuccess: false, error:"Message Failed to Send!"});
-  //     }
-  //   });
-  // }
+    if ( !re.test(this.state.email) ) {
+      this.setState({isError:true, isSuccess: false, error:"Email Invalid!"});
+    }
+    else if(this.state.password.length < 6){
+      this.setState({isError:true, isSuccess: false, error:"Password too short!"});
+    }
+    else {
+      //this.accountCreation.bind(this);
+    }
+  };
+
+  accountCreation(e) {
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
+      data: this.state,
+      Header: { 'Content-Type': 'application/x-www-form-urlencoded'}
+
+    }).then((response) => {
+      if (response.data.status === "success") {
+        this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
+        this.resetForm();
+      } else if (response.data.status === "fail") {
+        this.setState({isError:true, isSuccess: false, error:"Message Failed to Send!"});
+      }
+    });
+  }
 
   render() {
     return (
@@ -83,16 +94,17 @@ class CreateAccount extends Component {
           <h1 className="createAccountTitle">Create Account</h1>
         </div>
         <Container className="mt-3">
+        <Form
+          id="createAccount-form"
+          //create account method
+          onSubmit={this.validateAndSend.bind(this)}
+          //method="POST"
+        >
           <Row className="justify-content-md-center">
             <Col xs={12} sm={7}>
               <Card>
                 <Card.Body>
-                  <Form
-                    id="createAccount-form"
-                    //create account method
-                    // onSubmit={this.accountCreation.bind(this)}
-                    // method="POST"
-                  >
+                  
                     <Row>
                       <Col>
                         <Form.Group className="mb-3" controlId="firstName">
@@ -141,19 +153,20 @@ class CreateAccount extends Component {
                       {" "}
                       {this.state.error}{" "}
                     </Alert>
-                  </Form>
+                  
                 </Card.Body>
               </Card>
               <Button
                 className="m-1"
                 variant="primary"
                 type="submit"
-                //onClick={() => this.method()}
+                //onClick={this.validateAndSend.bind(this)}
               >
                 Create account
               </Button>
             </Col>
           </Row>
+          </Form>
         </Container>
       </div>
     );
