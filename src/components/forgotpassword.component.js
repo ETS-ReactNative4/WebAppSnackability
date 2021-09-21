@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/contactus.css";
+import "../styles/forgotpassword.css";
 import axios from "axios";
 import {
   Alert,
@@ -67,11 +67,8 @@ class  ForgotPassword extends Component {
   render() {
     return (
       <div>
-        <div className="contactHeader text-center">
-          <h1 className="contactTitle">Reset Password</h1>
-          <span>
-            If you would like to reset Password
-          </span>
+        <div className="forgotHeader text-center">
+          <h1 className="forgotTitle">Forgot Password</h1>
         </div>
         <Container className="mt-3">
           <Row className="justify-content-md-center">
