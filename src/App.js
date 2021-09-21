@@ -36,7 +36,7 @@ const App = () => {
                             <PrivateRoute path="/settings" exact component={SettingsComponent}/>
                             <PublicRoute restricted={true} path="/signin" exact component={SignInComponent} />
                             <PublicRoute restricted={false} path="/contactus" exact component={ContactUs} />
-                            <PublicRoute restricted={false} path="/forgot" exact component={ForgotPassword} />
+                            <PublicRoute restricted={false} path="/forgotpassword" exact component={ForgotPassword} />
                         </Switch>
                     </main>
                 </div>

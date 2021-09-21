@@ -30,6 +30,20 @@ class  ForgotPassword extends Component {
   onEmailChange(event) {
     this.setState({ email: event.target.value });
   }
+
+  validateAndSend(e){
+    e.preventDefault();
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if ( !re.test(this.state.email) ) {
+      this.setState({isError:true, isSuccess: false, error:"Email Invalid!"});
+    }
+    else {
+      this.setState({isError:false, isSuccess: false, error:""});
+      this.sendMessage.bind(this);
+    }
+  };
+
   sendMessage(e) {
     e.preventDefault();
     axios({
@@ -64,7 +78,7 @@ class  ForgotPassword extends Component {
             <Col xs={12} sm={7}>
               <Card>
                 <Card.Body>
-                  <Form id="contact-form" onSubmit={this.sendMessage.bind(this)} method="POST">
+                  <Form id="contact-form" onSubmit={this.validateAndSend.bind(this)} method="POST">
                   <Form.Group className="mb-3" controlId="email">
                           <Form.Label>Email</Form.Label>
                           <Form.Control
