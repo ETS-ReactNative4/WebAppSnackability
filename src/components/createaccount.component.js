@@ -78,7 +78,7 @@ class CreateAccount extends Component {
         error: "Password too short!",
       });
     } else {
-      //this.accountCreation.bind(this);
+      this.accountCreation.bind(this);
     }
   }
 
@@ -87,21 +87,25 @@ class CreateAccount extends Component {
     axios({
       method: "POST",
       url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
-      data: this.state,
-      Header: { "Content-Type": "application/x-www-form-urlencoded" },
+      data: {
+        name: this.state.firstName + " " + this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        role: this.state.selectedOption,
+      },
     }).then((response) => {
-      if (response.data.status === "success") {
+      if (response.status === "200") {
         this.setState({
           isSuccess: true,
           isError: false,
-          success: "Message Sent!",
+          success: "Account created!",
         });
         this.resetForm();
-      } else if (response.data.status === "fail") {
+      } else if (response.status === "400" || response.status === "500") {
         this.setState({
           isError: true,
           isSuccess: false,
-          error: "Message Failed to Send!",
+          error: "Failed to create account! Verify information and try again.",
         });
       }
     });
@@ -118,7 +122,7 @@ class CreateAccount extends Component {
             id="createAccount-form"
             //create account method
             onSubmit={this.validateAndSend.bind(this)}
-            //method="POST"
+            method="POST"
           >
             <Row className="justify-content-md-center">
               <Col xs={12} sm={7}>
