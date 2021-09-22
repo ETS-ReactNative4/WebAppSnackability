@@ -58,6 +58,7 @@ export default function RandomPassword(props) {
           <input value={length} onChange={(e) => setLength(e.target.value)} />
         </div> */}
         <br />
+        <Col>
         <Button 
             type="submit"
             variant="primary"
@@ -65,6 +66,7 @@ export default function RandomPassword(props) {
             onClick={generatePassword}>
             Generate Password
         </Button>
+        </Col>
       
       <Form.Text>{password}</Form.Text>
     </Form.Group>
