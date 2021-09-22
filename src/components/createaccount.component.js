@@ -75,15 +75,19 @@ class CreateAccount extends Component {
       this.setState({
         isError: true,
         isSuccess: false,
-        error: "Password too short!",
+        error: "No password!",
       });
     } else {
-      this.accountCreation.bind(this);
+      this.setState({
+        isError: false,
+        isSuccess: false,
+        error: "No password!",
+      });
+      this.accountCreation();
     }
   }
 
-  accountCreation(e) {
-    e.preventDefault();
+  accountCreation() {
     axios({
       method: "POST",
       url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
