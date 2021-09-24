@@ -89,39 +89,26 @@ class CreateAccount extends Component {
 
   accountCreation() {
     const params = new URLSearchParams();
-    params.append("name", this.state.firstName + this.state.lastName);
+    params.append("name", this.state.firstName);
     params.append("email", this.state.email);
     params.append("password", this.state.password);
     params.append("role", this.state.selectedOption);
 
     axios({
       method: "POST",
-      Header: "Content-Type: application/x-www-form-urlencoded",
+      headers: { "Content-Type": "x-www-form-urlencoded" },
       url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
-      data: {
-        params: {
-          name: "name",
-          email: "email",
-          password: "password",
-          role: "role",
-        },
-      },
-    }).then((response) => {
-      if (response.status === "200") {
-        this.setState({
-          isSuccess: true,
-          isError: false,
-          success: "Account created!",
-        });
+      data: params,
+    })
+      .then(function (response) {
+        console.log(response);
         this.resetForm();
-      } else if (response.status === "400" || response.status === "500") {
-        this.setState({
-          isError: true,
-          isSuccess: false,
-          error: "Failed to create account! Verify information and try again.",
-        });
-      }
-    });
+        //success
+      })
+      .catch(function (error) {
+        console.log(error.response);
+        //fail
+      });
   }
 
   render() {
