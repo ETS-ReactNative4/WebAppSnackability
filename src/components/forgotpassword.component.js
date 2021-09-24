@@ -40,24 +40,22 @@ class  ForgotPassword extends Component {
     }
     else {
       this.setState({isError:false, isSuccess: false, error:""});
-      this.sendMessage.bind(this);
+      this.sendMessage();
     }
   };
 
-  sendMessage(e) {
-    e.preventDefault();
+  sendMessage() {
     axios({
       method: "POST",
       url: process.env.REACT_APP_API_ENDPOINT + "/resetpassword/send",
       data: this.state,
     }).then((response) => {
-      if (response.data.status === "success") {
         this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
         this.resetForm();
-      } else if (response.data.status === "fail") {
-        this.setState({isError:true, isSuccess: false, error:"Message Failed to Send!"});
-      }
-    });
+    }).catch(error => {
+      console.log(error.json());
+      this.setState({isError:true, isSuccess: false, error: error.error});
+    })
   }
 
   resetForm() {
