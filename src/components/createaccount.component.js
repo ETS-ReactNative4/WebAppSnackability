@@ -168,7 +168,7 @@ class CreateAccount extends Component {
                         <input
                           type="radio"
                           value="user"
-                          checked={this.state.selectedOption === "User"}
+                          checked={this.state.selectedOption === "user"}
                           onChange={this.onUserChange.bind(this)}
                         />
                         User
@@ -179,7 +179,7 @@ class CreateAccount extends Component {
                         <input
                           type="radio"
                           value="admin"
-                          checked={this.state.selectedOption === "Admin"}
+                          checked={this.state.selectedOption === "admin"}
                           onChange={this.onUserChange.bind(this)}
                         />
                         Admin
