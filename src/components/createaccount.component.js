@@ -27,7 +27,7 @@ class CreateAccount extends Component {
       success: "",
       isError: false,
       error: "",
-      selectedOption: "User",
+      selectedOption: "user",
       value: "",
     };
   }
@@ -94,21 +94,18 @@ class CreateAccount extends Component {
     params.append("password", this.state.password);
     params.append("role", this.state.selectedOption);
 
-    axios({
-      method: "POST",
-      headers: { "Content-Type": "x-www-form-urlencoded" },
-      url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
-      data: params,
+    axios.post(process.env.REACT_APP_API_ENDPOINT + "/user/create", params, {
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
-      .then(function (response) {
-        console.log(response);
-        this.resetForm();
-        //success
-      })
-      .catch(function (error) {
-        console.log(error.response);
-        //fail
-      });
+    .then(function (response) {
+      console.log(response);
+      this.resetForm();
+      //success
+    })
+    .catch(function (error) {
+      console.log(error.response);
+      //fail
+    });
   }
 
   render() {
@@ -170,7 +167,7 @@ class CreateAccount extends Component {
                       <label>
                         <input
                           type="radio"
-                          value="User"
+                          value="user"
                           checked={this.state.selectedOption === "User"}
                           onChange={this.onUserChange.bind(this)}
                         />
@@ -181,7 +178,7 @@ class CreateAccount extends Component {
                       <label>
                         <input
                           type="radio"
-                          value="Admin"
+                          value="admin"
                           checked={this.state.selectedOption === "Admin"}
                           onChange={this.onUserChange.bind(this)}
                         />
