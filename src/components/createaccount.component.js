@@ -88,14 +88,23 @@ class CreateAccount extends Component {
   }
 
   accountCreation() {
+    const params = new URLSearchParams();
+    params.append("name", this.state.firstName + this.state.lastName);
+    params.append("email", this.state.email);
+    params.append("password", this.state.password);
+    params.append("role", this.state.selectedOption);
+
     axios({
       method: "POST",
+      Header: "Content-Type: application/x-www-form-urlencoded",
       url: process.env.REACT_APP_API_ENDPOINT + "/user/create",
       data: {
-        name: this.state.firstName + " " + this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
-        role: this.state.selectedOption,
+        params: {
+          name: "name",
+          email: "email",
+          password: "password",
+          role: "role",
+        },
       },
     }).then((response) => {
       if (response.status === "200") {

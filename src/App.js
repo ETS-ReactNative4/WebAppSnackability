@@ -18,7 +18,6 @@ import ContactUs from "./components/contactus.component";
 import CreateAccount from "./components/createaccount.component";
 
 import AppStyles from "./styles/app.module.css";
-import RandomPassword from "./components/RandomPassword";
 
 const App = () => {
   return (
