@@ -50,11 +50,11 @@ class  ForgotPassword extends Component {
       url: process.env.REACT_APP_API_ENDPOINT + "/resetpassword/send",
       data: this.state,
     }).then((response) => {
-        this.setState({isSuccess:true, isError: false, success:"Message Sent!"});
+        this.setState({isSuccess:true, isError: false, success:"Password reset email sent!"});
         this.resetForm();
     }).catch(error => {
-      console.log(error.json());
-      this.setState({isError:true, isSuccess: false, error: error.error});
+      console.log(error);
+      this.setState({isError:true, isSuccess: false, error: error.response.data.error});
     })
   }
 
