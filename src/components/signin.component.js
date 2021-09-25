@@ -53,7 +53,7 @@ const SigninComponent = ({history}) => {
                                 </p> 
                                 <p>
                                     Forgot password?{" "}
-                                    <Alert.Link href="/signin">Reset Password</Alert.Link>.
+                                    <Alert.Link href="/forgotpassword">Reset Password</Alert.Link>.
                                 </p> 
                             </Form>
                         </Card.Body>

@@ -7,7 +7,6 @@ import { NavbarComponent } from "./components/navbar.component";
 
 import PublicRoute from "./routes/public-routes.component";
 import PrivateRoute from "./routes/private-route.component";
-
 import HomeComponent from "./components/home.component";
 import SnackGraph from "./components/snack-graph.component";
 import SnackUSDAListComponent from "./components/snack-usda-list.component";
@@ -16,10 +15,13 @@ import SettingsComponent from "./components/settings.component";
 import SignInComponent from "./components/signin.component";
 import ContactUs from "./components/contactus.component";
 import CreateAccount from "./components/createaccount.component";
+import ForgotPassword from './components/forgotpassword.component';
+
 
 import AppStyles from "./styles/app.module.css";
 
 const App = () => {
+
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -67,6 +69,10 @@ const App = () => {
                 exact
                 component={CreateAccount}
               />
+              <PublicRoute 
+                restricted={false} 
+                path="/forgotpassword" 
+                exact component={ForgotPassword} />
             </Switch>
           </main>
         </div>
