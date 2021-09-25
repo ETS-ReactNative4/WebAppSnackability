@@ -97,15 +97,14 @@ class CreateAccount extends Component {
     axios.post(process.env.REACT_APP_API_ENDPOINT + "/user/create", params, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
-    .then(function (response) {
-      console.log(response);
+    .then((response) => {
+      this.setState({isSuccess:true, isError: false, success:"Account created! Details sent to the user."});
       this.resetForm();
-      //success
     })
-    .catch(function (error) {
-      console.log(error.response);
-      //fail
-    });
+    .catch((error) => {
+    console.log(error);
+    this.setState({isError:true, isSuccess: false, error: "Failed to create account! The email may already be in use."});
+    })
   }
 
   render() {
