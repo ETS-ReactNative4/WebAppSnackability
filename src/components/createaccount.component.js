@@ -183,7 +183,10 @@ class CreateAccount extends Component {
                         />
                         Admin
                       </label>
+                      
                     </Col>
+                    <Row>
+                    <Col>
                     <RandomPassword getPass={this.getPassword.bind(this)} />
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
@@ -193,6 +196,8 @@ class CreateAccount extends Component {
                       {" "}
                       {this.state.error}{" "}
                     </Alert>
+                    </Col>
+                    </Row>
                   </Card.Body>
                 </Card>
                 <Button

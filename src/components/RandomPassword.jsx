@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col} from 'react-bootstrap';
+import { Button, Form, Col, Row} from 'react-bootstrap';
 
 
 const string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ";
@@ -8,7 +8,7 @@ const punctuation = "!@#$%^&*";
 
 
 export default function RandomPassword(props) {
-  const [length, setLength] = useState(20);
+  const [length, setLength] = useState(10);
   const [password, setPassword] = useState("");
 
   const generatePassword = (e) => {
@@ -51,24 +51,25 @@ export default function RandomPassword(props) {
 
   return (
     <Form.Group className="RandomPassword">
-        <Form.Label>Password</Form.Label>
-      
-        {/* <div>
-          <label>length</label>
-          <input value={length} onChange={(e) => setLength(e.target.value)} />
-        </div> */}
+        <Form.Label>Password</Form.Label>      
         <br />
-        <Col>
-        <Button 
-            type="submit"
-            variant="primary"
-            size="sm"
-            onClick={generatePassword}>
-            Generate Password
-        </Button>
-        </Col>
-      
-      <Form.Text>{password}</Form.Text>
+        <Row>  
+          <Col>
+            <Form.Control
+              placeholder="Enter custom password OR generate random "
+              Input value={password}
+              
+              />
+               </Col> 
+          <Button 
+              type="submit"
+              variant="primary"
+              size="sm"
+              onClick={generatePassword}>
+              Generate Password
+          </Button>
+        </Row>      
+
     </Form.Group>
   );
 }
