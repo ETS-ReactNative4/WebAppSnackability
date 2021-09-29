@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row} from 'react-bootstrap';
+import {
+  Alert,
+  Button,
+  Col,
+  Form,
+  FormControl,
+  FormLabel,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 
 
 const string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ";
@@ -50,25 +59,17 @@ export default function RandomPassword(props) {
 
 
   return (
-    <Form.Group className="RandomPassword">
-        <Form.Label>Password</Form.Label>      
-        <br />
-        <Row>  
-          <Col>
-            <Form.Control
-              placeholder="Enter custom password OR generate random "
-              Input value={password}
-              
-              />
-               </Col> 
+    <Form.Group className="RandomPassword">   
+    <br/> 
+    <Col xs = {{span: .5}}>
           <Button 
               type="submit"
               variant="primary"
-              size="sm"
+              size="sm"                
               onClick={generatePassword}>
-              Generate Password
-          </Button>
-        </Row>      
+              Generate Random
+          </Button>   
+          </Col>
 
     </Form.Group>
   );

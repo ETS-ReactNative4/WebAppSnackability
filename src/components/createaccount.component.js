@@ -29,6 +29,7 @@ class CreateAccount extends Component {
       error: "",
       selectedOption: "user",
       value: "",
+      password: "",
     };
   }
 
@@ -48,9 +49,9 @@ class CreateAccount extends Component {
     this.setState({ selectedOption: event.target.value });
   }
 
-  // onPasswordChange = (event) => {
-  //   this.setState({ password: event.target.value });
-  // }
+  onPasswordChange = (event) => {
+    this.setState({ password: event.target.value });
+  };
 
   resetForm() {
     this.setState({ firstName: "", lastName: "", email: "", password: "" });
@@ -94,17 +95,26 @@ class CreateAccount extends Component {
     params.append("password", this.state.password);
     params.append("role", this.state.selectedOption);
 
-    axios.post(process.env.REACT_APP_API_ENDPOINT + "/user/create", params, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-    .then((response) => {
-      this.setState({isSuccess:true, isError: false, success:"Account created! Details sent to the user."});
-      this.resetForm();
-    })
-    .catch((error) => {
-    console.log(error);
-    this.setState({isError:true, isSuccess: false, error: "Failed to create account! The email may already be in use."});
-    })
+    axios
+      .post(process.env.REACT_APP_API_ENDPOINT + "/user/create", params, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then((response) => {
+        this.setState({
+          isSuccess: true,
+          isError: false,
+          success: "Account created! Details sent to the user.",
+        });
+        this.resetForm();
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          isError: true,
+          isSuccess: false,
+          error: "Failed to create account! The email may already be in use.",
+        });
+      });
   }
 
   render() {
@@ -152,6 +162,7 @@ class CreateAccount extends Component {
                       <Col>
                         <Form.Group className="mb-3" controlId="email">
                           <Form.Label>Email</Form.Label>
+
                           <Form.Control
                             placeholder="Enter email address"
                             required
@@ -183,11 +194,23 @@ class CreateAccount extends Component {
                         />
                         Admin
                       </label>
-                      
                     </Col>
                     <Row>
-                    <Col>
-                    <RandomPassword getPass={this.getPassword.bind(this)} />
+                      <Col>
+                        <Form.Group className="mb-3" controlId="password">
+                          <Form.Label>Password</Form.Label>
+
+                          <Form.Control
+                            style={{ fontSize: 15 }}
+                            placeholder="Enter custom password OR generate random "
+                            required
+                            value={this.state.password}
+                            onChange={this.onPasswordChange.bind(this)}
+                          />
+                        </Form.Group>
+                      </Col>
+                      <RandomPassword getPass={this.getPassword.bind(this)} />
+                    </Row>
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
                       {this.state.success}{" "}
@@ -196,8 +219,6 @@ class CreateAccount extends Component {
                       {" "}
                       {this.state.error}{" "}
                     </Alert>
-                    </Col>
-                    </Row>
                   </Card.Body>
                 </Card>
                 <Button
