@@ -60,12 +60,12 @@ export default function RandomPassword(props) {
 
   return (
     <Form.Group className="RandomPassword">   
-    <br/> 
+    
     <Col xs = {{span: .5}}>
           <Button 
               type="submit"
               variant="primary"
-              size="sm"                
+              //size="sm"                
               onClick={generatePassword}>
               Generate Random
           </Button>   

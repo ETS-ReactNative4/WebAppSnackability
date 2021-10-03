@@ -195,13 +195,13 @@ class CreateAccount extends Component {
                         Admin
                       </label>
                     </Col>
-                    <Row>
+                    <Form.Row className="d-flex align-items-end">
                       <Col>
                         <Form.Group className="mb-3" controlId="password">
                           <Form.Label>Password</Form.Label>
 
                           <Form.Control
-                            style={{ fontSize: 15 }}
+                            //style={{ fontSize: 15 }}
                             placeholder="Enter custom password OR generate random "
                             required
                             value={this.state.password}
@@ -210,7 +210,7 @@ class CreateAccount extends Component {
                         </Form.Group>
                       </Col>
                       <RandomPassword getPass={this.getPassword.bind(this)} />
-                    </Row>
+                    </Form.Row>
                     <Alert variant="success" show={this.state.isSuccess}>
                       {" "}
                       {this.state.success}{" "}
