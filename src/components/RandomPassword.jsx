@@ -65,7 +65,6 @@ export default function RandomPassword(props) {
           <Button 
               type="submit"
               variant="primary"
-              //size="sm"                
               onClick={generatePassword}>
               Generate Random
           </Button>   

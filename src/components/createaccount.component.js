@@ -90,7 +90,7 @@ class CreateAccount extends Component {
 
   accountCreation() {
     const params = new URLSearchParams();
-    params.append("name", this.state.firstName);
+    params.append("name", this.state.firstName + "" + this.state.lastName);
     params.append("email", this.state.email);
     params.append("password", this.state.password);
     params.append("role", this.state.selectedOption);
@@ -162,7 +162,6 @@ class CreateAccount extends Component {
                       <Col>
                         <Form.Group className="mb-3" controlId="email">
                           <Form.Label>Email</Form.Label>
-
                           <Form.Control
                             placeholder="Enter email address"
                             required
@@ -201,7 +200,6 @@ class CreateAccount extends Component {
                           <Form.Label>Password</Form.Label>
 
                           <Form.Control
-                            //style={{ fontSize: 15 }}
                             placeholder="Enter custom password OR generate random "
                             required
                             value={this.state.password}
