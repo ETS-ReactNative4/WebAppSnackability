@@ -9,6 +9,8 @@ import {
   faHome,
   faSignInAlt,
   faSignOutAlt,
+  faPlus,
+  faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
 
 import AppStyles from "../styles/app.module.css";
@@ -33,8 +35,24 @@ export const NavbarComponent = () => {
           <Nav.Link href="/snacksgraph">
             <FontAwesomeIcon icon={faChartLine} /> Snacks Graph
           </Nav.Link>
-          <Nav.Link href="/contactus">Contact Us</Nav.Link>
-          <Nav.Link href="/createaccount">Create an Account</Nav.Link>
+          <Nav.Link href="/contactus">
+            <FontAwesomeIcon icon={faAddressBook} /> Contact Us
+          </Nav.Link>
+        </Nav>
+
+        <Nav>
+          <NavDropdown id="nav-bar-dropdown" title="Admin">
+            <NavDropdown.Item href={"/createaccount"}>
+              <span>
+                <FontAwesomeIcon icon={faPlus} /> Create New Account
+              </span>
+            </NavDropdown.Item>
+            <NavDropdown.Item href={"/users"}>
+              <span>
+                <FontAwesomeIcon icon={faCog} /> Manage Users
+              </span>
+            </NavDropdown.Item>
+          </NavDropdown>
         </Nav>
         <Nav>
           <NavDropdown id="nav-bar-dropdown" title={currentUser.email}>
