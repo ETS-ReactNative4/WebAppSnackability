@@ -14,14 +14,13 @@ import SnackUSDADetailsComponent from "./components/snack-usda-details.component
 import SettingsComponent from "./components/settings.component";
 import SignInComponent from "./components/signin.component";
 import ContactUs from "./components/contactus.component";
-import CreateAccount from "./components/createaccount.component";
-import ForgotPassword from './components/forgotpassword.component';
-
+import CreateAccountComponent from "./components/createaccount.component";
+import ForgotPassword from "./components/forgotpassword.component";
+import Users from "./components/users";
 
 import AppStyles from "./styles/app.module.css";
 
 const App = () => {
-
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -63,16 +62,18 @@ const App = () => {
                 exact
                 component={ContactUs}
               />
-              <PublicRoute
-                restricted={false}
+              <PrivateRoute
                 path="/createaccount"
                 exact
-                component={CreateAccount}
+                component={CreateAccountComponent}
               />
-              <PublicRoute 
-                restricted={false} 
-                path="/forgotpassword" 
-                exact component={ForgotPassword} />
+              <PublicRoute
+                restricted={false}
+                path="/forgotpassword"
+                exact
+                component={ForgotPassword}
+              />
+              <PrivateRoute path="/users" exact component={Users} />
             </Switch>
           </main>
         </div>
