@@ -112,7 +112,7 @@ class CreateAccountComponent extends Component {
         this.setState({
           isError: true,
           isSuccess: false,
-          error: "Failed to create account! The email may already be in use.",
+          error: error.response.data.error,
         });
       });
   }
