@@ -200,7 +200,7 @@ class CreateAccountComponent extends Component {
                           <Form.Label>Password</Form.Label>
 
                           <Form.Control
-                            placeholder="Enter custom password OR generate random "
+                            placeholder="Enter or generate a password"
                             required
                             value={this.state.password}
                             onChange={this.onPasswordChange.bind(this)}
