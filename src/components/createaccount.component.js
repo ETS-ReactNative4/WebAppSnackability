@@ -76,13 +76,13 @@ class CreateAccountComponent extends Component {
       this.setState({
         isError: true,
         isSuccess: false,
-        error: "No password!",
+        error: "Password too short!",
       });
     } else {
       this.setState({
         isError: false,
         isSuccess: false,
-        error: "No password!",
+        error: "",
       });
       this.accountCreation();
     }
