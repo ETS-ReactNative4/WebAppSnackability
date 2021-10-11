@@ -1,0 +1,12 @@
+.createAccountHeader {
+  background: linear-gradient(145deg, #0d47a1, #1976d2);
+  height: 100px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.createAccountTitle {
+  font-size: 50px;
+}
