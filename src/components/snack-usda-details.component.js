@@ -387,57 +387,64 @@ export default class SnackDetailsComponent extends Component {
 
         let category = 'other';
 
-        let [ingredient] = ingredients
-            .toLowerCase()
-            .split(',')
-            .map(item =>
-                item.replace(/[^0-9a-z%]/gi, ' ')
-                    .replace(/  +/g, ' ')
-                    .replace(/\s*$/, '')
-                    .replace('.', '')
-                    .trim()
-            );
+        if(ingredients.length <= 0){
+            score.firstIngredient = 2;
+            score.totalScore += score.firstIngredient;
+        }
+        else{
+            let [ingredient] = ingredients
+                .toLowerCase()
+                .split(',')
+                .map(item =>
+                    item.replace(/[^0-9a-z%]/gi, ' ')
+                        .replace(/  +/g, ' ')
+                        .replace(/\s*$/, '')
+                        .replace('.', '')
+                        .trim()
+                );
 
-        fetchCSVFiles(firstIngredientCsvFile)
-            .then(response => response.data)
-            .then((dataCSV) => {
+            fetchCSVFiles(firstIngredientCsvFile)
+                .then(response => response.data)
+                .then((dataCSV) => {
 
-                dataCSV
-                    .toString()
-                    .toLowerCase()
-                    .split('\n')
-                    .forEach(item => {
-                        const food = item.split(',')[1];
-                        if(ingredient.indexOf(food) !== -1) {
-                            category = item.split(',')[0];
-                        }
-                    });
+                    dataCSV
+                        .toString()
+                        .toLowerCase()
+                        .split('\n')
+                        .forEach(item => {
+                            const food = item.split(',')[1];
+                            if(ingredient.indexOf(food) !== -1) {
+                                category = item.split(',')[0];
+                            }
+                        });
 
-                switch (category) {
-                    case 'dairy':
-                    case 'proteins-nut':
-                    case 'whole grains':
-                    case 'vegetables':
-                    case 'fruits':
-                    case 'proteins':
-                        score.firstIngredient = 2;
-                        break;
-                    case 'other':
-                        score.firstIngredient = 0;
-                        break;
-                    case 'none':
-                        score.firstIngredient = 0;
-                        break;
-                    default:
-                        score.firstIngredient = 0;
-                }
+                    switch (category) {
+                        case 'dairy':
+                        case 'proteins-nut':
+                        case 'whole grains':
+                        case 'vegetables':
+                        case 'fruits':
+                        case 'proteins':
+                            score.firstIngredient = 2;
+                            break;
+                        case 'other':
+                            score.firstIngredient = 0;
+                            break;
+                        case 'none':
+                            score.firstIngredient = 0;
+                            break;
+                        default:
+                            score.firstIngredient = 0;
+                    }
 
-                score.totalScore += score.firstIngredient;
+                    score.totalScore += score.firstIngredient;
+                    
 
-        }).catch(error => {
-            console.error(error);
-            this.setState({isLoading: false});
-        });
+            }).catch(error => {
+                console.error(error);
+                this.setState({isLoading: false});
+            });
+        }
 
     }
 
