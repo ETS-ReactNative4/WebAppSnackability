@@ -452,6 +452,7 @@ export default class SnackDetailsComponent extends Component {
                     .toLowerCase()
                     .split('\n')
                     .map(item => item.replace('\r',''));
+                    
 
                 // const splitCSVRegex = /,((?![^(]*\))(?!\d))/g;
                 const splitCSVRegex = /,((?!\d))/g;
