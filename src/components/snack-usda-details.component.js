@@ -450,7 +450,8 @@ export default class SnackDetailsComponent extends Component {
                 let additives = dataCSV
                     .toString()
                     .toLowerCase()
-                    .split('\n');
+                    .split('\n')
+                    .map(item => item.replace('\r',''));
 
                 // const splitCSVRegex = /,((?![^(]*\))(?!\d))/g;
                 const splitCSVRegex = /,((?!\d))/g;
@@ -470,6 +471,7 @@ export default class SnackDetailsComponent extends Component {
                     if(ingredientsList.includes(additive)) {
                         total++;
                     }
+                    
                     return total;
                 }, 0);
 
