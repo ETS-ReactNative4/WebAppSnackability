@@ -477,65 +477,44 @@ export default class SnackDetailsComponent extends Component {
   }
 
   processedFoodCalculation(ingredients, score) {
-
     fetchCSVFiles(processedFoodCsvFile)
-        .then(response => response.data)
-        .then((dataCSV) => {
+      .then((response) => response.data)
+      .then((dataCSV) => {
+        let additives = dataCSV.toString().toLowerCase().split("\n");
 
-            let additives = dataCSV
-                .toString()
-                .toLowerCase()
-                .split('\n')
-                .map(item => item.replace('\r',''));
-                
+        let ingredientsList = ingredients
+          .toLowerCase()
+          .split(",")
+          .map((item) => item.replace(".", "").trim());
 
-            // const splitCSVRegex = /,((?![^(]*\))(?!\d))/g;
-            const splitCSVRegex = /,((?!\d))/g;
+        let total = additives.reduce((total, additive) => {
+          return total + ingredientsList.includes(additive);
+        }, 0);
 
-            let ingredientsList = ingredients
-                .toLowerCase()
-                .split(splitCSVRegex)
-                .map(item => item.replace('ingredients: ', '')
-                                 .replace('raising agents', '')
-                                 .replace('(', '')
-                                 .replace(')', '')
-                                 .replace('.', '')
-                                 .trim()
-                );
+        if (total <= 0) {
+          score.processed = 1;
+        } else if (total === 1) {
+          score.processed = 0.5;
+        } else if (total === 2 || total === 3) {
+          score.processed = 0;
+        } else if (total === 4 || total === 5) {
+          score.processed = -0.5;
+        } else if (total > 5) {
+          score.processed = -1;
+        }
 
-            let total = additives.reduce((total, additive) => {
-                if(ingredientsList.includes(additive)) {
-                    total++;
-                }
-                
-                return total;
-            }, 0);
+        score.totalScore += score.processed;
 
-            if (total <= 0) {
-                score.processed = 1;
-            } else if (total === 1) {
-                score.processed = 0.5;
-            } else if (total <= 3) {
-                score.processed = 0;
-            } else if (total <= 5) {
-                score.processed = -0.5;
-            } else if (total > 5) {
-                score.processed = -1;
-            }
-
-            score.totalScore += score.processed;
-
-            this.setScoreState(score);
-            feedBackMessage = this.processScoreFeedBack(score);
-            feedBackNutritionMessage = this.processNutritionFeedback(score);
-            this.setState({isLoading: false});
-
-        }).catch(error => {
+        this.setScoreState(score);
+        feedBackMessage = this.processScoreFeedBack(score);
+        feedBackNutritionMessage = this.processNutritionFeedback(score);
+        this.setState({ isLoading: false });
+      })
+      .catch((error) => {
         console.error(error);
-        this.setState({isLoading: false});
-    });
-
-}
+        this.setState({ isLoading: false });
+      });
+  }
 
   consumeSnack() {
     postSnackScore(this.state.snack.fdcId, this.state.score.totalScore)
