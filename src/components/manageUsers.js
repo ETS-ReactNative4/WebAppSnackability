@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import {
   Button,
   Col,
@@ -21,6 +22,10 @@ class manageUsers extends Component {
       name: "",
       email: "",
       role: "",
+      isSuccess: false,
+      isError: false,
+      success: "",
+      error: "",
     };
   }
 
@@ -42,6 +47,20 @@ class manageUsers extends Component {
   //         });
   //     }, 1000);
   //   }
+
+  sendPasswordReset() {
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_API_ENDPOINT + "/resetpassword/send",
+      data: this.state,
+    }).then((response) => {
+        this.setState({isSuccess:true, isError: false, success:"Password reset email sent!"});
+        this.resetForm();
+    }).catch(error => {
+      console.log(error);
+      this.setState({isError:true, isSuccess: false, error: error.response.data.error});
+    })
+  }
 
   render() {
     return (
@@ -69,6 +88,14 @@ class manageUsers extends Component {
                 </Button>
               </Col>
             </Form.Group>
+          </Row>
+
+            <Row>
+              <Col sm> 
+                <Alert variant="success" show={this.state.isSuccess}> {this.state.success} </Alert>
+                <Alert variant="danger" show={this.state.isError}> {this.state.error} </Alert>
+              </Col>
+              
             <Table striped bordered hover>
               <thead>
                 <tr>
@@ -87,9 +114,14 @@ class manageUsers extends Component {
                   <td>example@domain.com</td>
                   <td>User/Admin</td>
                   <td>
-                    <Alert.Link href="/forgotpassword">
-                      Forgot password
-                    </Alert.Link>
+                  <Button
+                      variant="primary"
+                      size="sm"
+                      //type="submit"
+                      //onClick={() => this.method()}
+                    >
+                      Forgot Password
+                    </Button>
                   </td>
                   <td>
                   <Form.Control as="select" size="sm">
