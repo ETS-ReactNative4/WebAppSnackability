@@ -53,6 +53,7 @@ class manageUsers extends Component {
   //     }, 1000);
   //   }
 
+
   sendPasswordReset() {
     axios({
       method: "POST",
@@ -66,6 +67,25 @@ class manageUsers extends Component {
       this.setState({isError:true, isSuccess: false, error: error.response.data.error});
     })
   }
+
+  //method incomplete!!
+ getAllUsers(e) {
+    e.preventDefault();
+    axios({
+      method: "GET",
+      url: process.env.REACT_APP_API_ENDPOINT + "/users",
+      data: this.state,
+    })
+    .then(response => {
+      const allUsers = response.data.users.allUsers;
+      this.getAllUsers(allUsers);
+    })
+    .catch(error => {
+       //error
+    });
+  }
+
+  
 
   render() {
     return (
