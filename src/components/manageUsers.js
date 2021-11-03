@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { HiDotsVertical } from "react-icons/hi";
 import {
   Button,
   Col,
@@ -8,6 +9,7 @@ import {
   Row,
   Table,
   Alert,
+  Dropdown,
   
   
 } from "react-bootstrap";
@@ -124,11 +126,15 @@ class manageUsers extends Component {
                     </Button>
                   </td>
                   <td>
-                  <Form.Control as="select" size="sm">
-                      <option>Select Option</option>
-                      <option value="Disable">Disable</option>
-                      <option value="Delete">Delete</option>
-                     </Form.Control>
+                  <Dropdown >
+                  <Dropdown.Toggle>
+                  <HiDotsVertical />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                  <Dropdown.Item>Disable</Dropdown.Item>
+                  <Dropdown.Item>Delete</Dropdown.Item>
+                  </Dropdown.Menu>
+                  </Dropdown>
                   </td>
                 </tr>
                 <tr>
