@@ -9,9 +9,6 @@ import {
   Col,
   Container,
   Form,
-  FormControl,
-  FormLabel,
-  InputGroup,
   Row,
 } from "react-bootstrap";
 
@@ -29,7 +26,6 @@ class CreateAccountComponent extends Component {
       error: "",
       selectedOption: "user",
       value: "",
-      password: "",
     };
   }
 

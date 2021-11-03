@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
-import { Jumbotron, Tab, ListGroup, Col, Row } from "react-bootstrap";
+import { Tab, ListGroup, Col, Row } from "react-bootstrap";
 import "../styles/settings.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,

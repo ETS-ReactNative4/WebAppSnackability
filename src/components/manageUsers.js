@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { HiDotsVertical } from "react-icons/hi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faEllipsisV,
+} from "@fortawesome/free-solid-svg-icons";
+
 import {
   Button,
   Col,
@@ -9,9 +14,7 @@ import {
   Row,
   Table,
   Alert,
-  Dropdown,
-  
-  
+  Dropdown, 
 } from "react-bootstrap";
 
 class manageUsers extends Component {
@@ -127,13 +130,13 @@ class manageUsers extends Component {
                   </td>
                   <td>
                   <Dropdown >
-                  <Dropdown.Toggle>
-                  <HiDotsVertical />
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                  <Dropdown.Item>Disable</Dropdown.Item>
-                  <Dropdown.Item>Delete</Dropdown.Item>
-                  </Dropdown.Menu>
+                    <Dropdown.Toggle>
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>Disable</Dropdown.Item>
+                      <Dropdown.Item>Delete</Dropdown.Item>
+                    </Dropdown.Menu>
                   </Dropdown>
                   </td>
                 </tr>
