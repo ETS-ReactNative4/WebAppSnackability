@@ -25,8 +25,6 @@ export const NavbarComponent = () => {
       .auth()
       .currentUser.getIdTokenResult(true)
       .then((idTokenResult) => {
-        console.log(idTokenResult.claims.role);
-        console.log("Hi");
         if (idTokenResult.claims.role !== "admin") {
           setIsAdmin(false);
         } else {

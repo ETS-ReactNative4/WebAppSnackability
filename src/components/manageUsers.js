@@ -22,11 +22,12 @@ class manageUsers extends Component {
     super(props);
     this.user = this.props.match.user;
     this.state = {
-      user: "",
-      searchField: "",
-      name: "",
-      email: "",
-      role: "",
+      // user: "",
+      // searchField: "",
+      // name: "",
+      // email: "",
+      // role: "",
+      users: [],
       isSuccess: false,
       isError: false,
       success: "",
@@ -35,6 +36,7 @@ class manageUsers extends Component {
   }
 
   componentDidMount() {
+    this.getAllUsers();
     // this.searchForUser("");
   }
 
@@ -54,14 +56,13 @@ class manageUsers extends Component {
   //   }
 
 
-  sendPasswordReset() {
+  sendPasswordReset(email) {
     axios({
       method: "POST",
       url: process.env.REACT_APP_API_ENDPOINT + "/resetpassword/send",
-      data: this.state,
+      data: email,
     }).then((response) => {
         this.setState({isSuccess:true, isError: false, success:"Password reset email sent!"});
-        this.resetForm();
     }).catch(error => {
       console.log(error);
       this.setState({isError:true, isSuccess: false, error: error.response.data.error});
@@ -69,21 +70,70 @@ class manageUsers extends Component {
   }
 
   //method incomplete!!
- getAllUsers(e) {
-    e.preventDefault();
-    axios({
-      method: "GET",
-      url: process.env.REACT_APP_API_ENDPOINT + "/users",
-      data: this.state,
+  getAllUsers() {
+    console.log("Test");
+   axios.get(process.env.REACT_APP_API_ENDPOINT + "/users")
+    .then((response) => {
+      console.log(response);
+      const allUsers = response.data;
+      this.setState({users: allUsers});
+      this.renderTableData();
     })
-    .then(response => {
-      const allUsers = response.data.users.allUsers;
-      this.getAllUsers(allUsers);
-    })
-    .catch(error => {
-       //error
+    .catch((error) => {
+      console.log(error);
     });
+      
+      // axios({
+      //   method: "GET",
+      //   url: process.env.REACT_APP_API_ENDPOINT + "/users",
+      //   data: this.state,
+      // })
+      // .then(response => {
+      //   const allUsers = response.data.users;
+      //   console.log(allUsers);
+      //   this.setState.users({allUsers});
+      //   this.renderTableData();
+      // })
+      // .catch(error => {
+      //   console.log("Error");
+      // });
   }
+
+  renderTableData() {
+    console.log("HI!");
+    return this.state.users.map((user) => {
+       const { name, email, role } = user //destructuring
+       console.log(user);
+       return (
+        <tr>
+        <td>{name}</td>
+        <td>{email}</td>
+        <td>{role}</td>
+        <td>
+        <Button
+            variant="primary"
+            size="sm"
+            //type="submit"
+            onClick={() => this.sendPasswordReset(email)}
+          >
+            Reset Password
+          </Button>
+        </td>
+        <td>
+        <Dropdown >
+          <Dropdown.Toggle>
+            <FontAwesomeIcon icon={faEllipsisV} />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>Disable</Dropdown.Item>
+            <Dropdown.Item>Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        </td>
+      </tr>
+       )
+    })
+ }
 
   
 
@@ -133,41 +183,7 @@ class manageUsers extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Firstname Lastname</td>
-                  <td>example@domain.com</td>
-                  <td>User/Admin</td>
-                  <td>
-                  <Button
-                      variant="primary"
-                      size="sm"
-                      //type="submit"
-                      //onClick={() => this.method()}
-                    >
-                      Forgot Password
-                    </Button>
-                  </td>
-                  <td>
-                  <Dropdown >
-                    <Dropdown.Toggle>
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>Disable</Dropdown.Item>
-                      <Dropdown.Item>Delete</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>...</td>
-                  <td>...</td>
-                  <td>...</td>
-                  <td>...</td>
-                  <td>...</td>
-                </tr>
+                {this.getAllUsers.bind(this)}
               </tbody>
             </Table>
           </Row>
