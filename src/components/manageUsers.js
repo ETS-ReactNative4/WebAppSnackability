@@ -50,33 +50,69 @@ function ManageUsers(props) {
     }
 
     function disableAccount(id, disabled) {
+
+        let confirmation = window.confirm(`Are you sure you want to ${disabled ? 'enable' : 'disable'} the account?`);
+        if (!confirmation) return;
+
         let isDisabled = !disabled;
-        console.log(isDisabled);
+
         axios({
             method: 'PUT',
             url: process.env.REACT_APP_API_ENDPOINT + '/users/' + id,
             data: {
                 disabled: isDisabled
             },
-        }).then((response) => {
+        })
+        .then(response => response.data)
+        .then((user) => {
+
+            const index = users.findIndex(u => u.id === id);
+            users[index] = user;
+            renderTableData();
+
+            setSuccess(`Account ${user.disabled ? 'disabled' : 'enabled'} successfully!`);
             setIsSuccess(true);
             setHasError(false);
-            if(isDisabled == false){
-                setSuccess('Account enabled successfully!');
-            }
-            else{
-                setSuccess('Account disabled successfully!');
+
+        }).catch(error => {
+
+            if(error.response.data && error.response.data.errors.length > 0) {
+                let errors = '';
+                error.response.data.errors.forEach(e => {
+                    errors += `${e.msg}`;
+                });
+                setError(errors);
             }
 
-            const index = users.findIndex(user => user.id == id);
-            users[index] = response.data;
-            renderTableData();
-            
-        }).catch(error => {
-            console.log(error);
             setIsSuccess(false);
             setHasError(true);
-            setError(error.response.data.errors[0].msg);
+
+        });
+    }
+
+    function deleteAccount(id) {
+
+        let confirmation = window.confirm(`Are you sure you want to delete the account?`);
+        if (!confirmation) return;
+
+        axios({
+            method: 'DELETE',
+            url: process.env.REACT_APP_API_ENDPOINT + '/users/' + id,
+        })
+        .then((response) => {
+
+            const index = users.findIndex(u => u.id === id);
+            users.splice(index, index);
+            renderTableData();
+
+            setSuccess(`Account ${id} was deleted!`);
+            setIsSuccess(true);
+            setHasError(false);
+
+        }).catch(error => {
+            setError("Failed to delete the account, please try again.")
+            setIsSuccess(false);
+            setHasError(true);
         });
     }
 
@@ -110,91 +146,43 @@ function ManageUsers(props) {
             const {id, name, email, disabled, role, created_at, last_signed_in} = user;
             const rowNum = index + 1;
 
-            //Checks whether user is disabled and loads the appropriate enable/disable button
-            if(disabled == true){
-                return (
-                    <tr key={index}>
-                        <td>{rowNum}</td>
-                        <td>{name}</td>
-                        <td>{email}</td>
-                        <td>{role}</td>
-                        <td>
-                            <Button
-                                variant="primary"
-                                size="sm"
-                                //type="submit"
-                                onClick={() => sendPasswordReset(email)}>
-                                Reset Password
-                            </Button>
-                        </td>
-                        <td>
-                            <Button
-                                variant="secondary"
-                                size="sm"
-                                //type="submit"
-                                onClick={() => disableAccount(id, disabled)}
-                            >
-                                Enable Account
-                            </Button>
-                        </td>
-                        <td>
-                            <Button
-                                variant="danger"
-                                size="sm"
-                                //type="submit"
-                                //onClick={() => sendPasswordReset(email)}
-                            >
-                                Delete Account
-                            </Button>
-                        </td>
-                    </tr>
-                );
-            }
-
-            else{
-                return (
-                    <tr key={index}>
-                        <td>{rowNum}</td>
-                        <td>{name}</td>
-                        <td>{email}</td>
-                        <td>{role}</td>
-                        <td>
-                            <Button
-                                variant="primary"
-                                size="sm"
-                                //type="submit"
-                                onClick={() => sendPasswordReset(email)}>
-                                Reset Password
-                            </Button>
-                        </td>
-                        <td>
-                            <Button
-                                variant="primary"
-                                size="sm"
-                                //type="submit"
-                                onClick={() => disableAccount(id, disabled)}
-                            >
-                                Disable Account
-                            </Button>
-                        </td>
-                        <td>
-                            <Button
-                                variant="danger"
-                                size="sm"
-                                //type="submit"
-                                //onClick={() => sendPasswordReset(email)}
-                            >
-                                Delete Account
-                            </Button>
-                        </td>
-                    </tr>
-                );
-            } 
+            return (
+                <tr key={index}>
+                    <td>{rowNum}</td>
+                    <td>{name}</td>
+                    <td>{email}</td>
+                    <td>{role}</td>
+                    <td>
+                        <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={() => sendPasswordReset(email)}>
+                            Reset Password
+                        </Button>
+                    </td>
+                    <td>
+                        <Button
+                            variant={ disabled ? 'primary' : 'danger' }
+                            size="sm"
+                            onClick={() => disableAccount(id, disabled)}>
+                            { disabled ? 'Enable Account' : 'Disable Account' }
+                        </Button>
+                    </td>
+                    <td>
+                        <Button
+                            variant="danger"
+                            size="sm"
+                            onClick={() => deleteAccount(id)}>
+                            Delete Account
+                        </Button>
+                    </td>
+                </tr>
+            );
         });
     }
 
     return (
-        
+
         <div>
             <Container fluid className="mt-3">
 
@@ -223,7 +211,7 @@ function ManageUsers(props) {
                 </Row>
 
                 <Row>
-                    <Card style={{ width: '90%', margin:'auto'}}> 
+                    <Card style={{ width: '90%', margin:'auto'}}>
                         <Card.Body>
                             <Alert transition={false} variant="success" show={isSuccess}> {success} </Alert>
                             <Alert transition={false} variant="danger" show={hasError}> {error} </Alert>
