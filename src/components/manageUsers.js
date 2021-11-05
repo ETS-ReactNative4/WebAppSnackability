@@ -49,6 +49,37 @@ function ManageUsers(props) {
         });
     }
 
+    function disableAccount(id, disabled) {
+        let isDisabled = !disabled;
+        console.log(isDisabled);
+        axios({
+            method: 'PUT',
+            url: process.env.REACT_APP_API_ENDPOINT + '/users/' + id,
+            data: {
+                disabled: isDisabled
+            },
+        }).then((response) => {
+            setIsSuccess(true);
+            setHasError(false);
+            if(isDisabled == false){
+                setSuccess('Account enabled successfully!');
+            }
+            else{
+                setSuccess('Account disabled successfully!');
+            }
+
+            const index = users.findIndex(user => user.id == id);
+            users[index] = response.data;
+            renderTableData();
+            
+        }).catch(error => {
+            console.log(error);
+            setIsSuccess(false);
+            setHasError(true);
+            setError(error.response.data.errors[0].msg);
+        });
+    }
+
     function searchUser(event) {
         var filter = event.target.value.toUpperCase();
         var table = document.getElementById("table");
@@ -76,7 +107,7 @@ function ManageUsers(props) {
     function renderTableData() {
         return users.map((user, index) => {
 
-            const {name, email, disabled, role, created_at, last_signed_in} = user;
+            const {id, name, email, disabled, role, created_at, last_signed_in} = user;
             const rowNum = index + 1;
 
             //Checks whether user is disabled and loads the appropriate enable/disable button
@@ -101,7 +132,7 @@ function ManageUsers(props) {
                                 variant="secondary"
                                 size="sm"
                                 //type="submit"
-                                //onClick={() => sendPasswordReset(email)}
+                                onClick={() => disableAccount(id, disabled)}
                             >
                                 Enable Account
                             </Button>
@@ -141,7 +172,7 @@ function ManageUsers(props) {
                                 variant="primary"
                                 size="sm"
                                 //type="submit"
-                                //onClick={() => sendPasswordReset(email)}
+                                onClick={() => disableAccount(id, disabled)}
                             >
                                 Disable Account
                             </Button>
