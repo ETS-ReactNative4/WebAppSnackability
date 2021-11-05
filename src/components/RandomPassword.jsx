@@ -48,7 +48,7 @@ export default function RandomPassword(props) {
         return 0.5 - Math.random();
       })
       .join("");
-    setPassword(password.substr(0, length));
+    //setPassword(password.substr(0, length));
 
     props.getPass(password.substr(0, length));
   };

@@ -86,7 +86,7 @@ class CreateAccountComponent extends Component {
 
   accountCreation() {
     const params = new URLSearchParams();
-    params.append("name", this.state.firstName + "" + this.state.lastName);
+    params.append("name", this.state.firstName + " " + this.state.lastName);
     params.append("email", this.state.email);
     params.append("password", this.state.password);
     params.append("role", this.state.selectedOption);

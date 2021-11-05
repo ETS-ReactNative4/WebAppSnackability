@@ -28,6 +28,7 @@ class manageUsers extends Component {
       // email: "",
       // role: "",
       users: [],
+      email: "",
       isSuccess: false,
       isError: false,
       success: "",
@@ -57,10 +58,12 @@ class manageUsers extends Component {
 
 
   sendPasswordReset(email) {
+    console.log(email);
+    this.setState({email: email});
     axios({
       method: "POST",
       url: process.env.REACT_APP_API_ENDPOINT + "/resetpassword/send",
-      data: email,
+      data: this.state,
     }).then((response) => {
         this.setState({isSuccess:true, isError: false, success:"Password reset email sent!"});
     }).catch(error => {
@@ -77,7 +80,7 @@ class manageUsers extends Component {
       console.log(response);
       const allUsers = response.data;
       this.setState({users: allUsers});
-      this.renderTableData();
+      //this.renderTableData();
     })
     .catch((error) => {
       console.log(error);
@@ -101,34 +104,37 @@ class manageUsers extends Component {
 
   renderTableData() {
     console.log("HI!");
-    return this.state.users.map((user) => {
-       const { name, email, role } = user //destructuring
-       console.log(user);
+    return this.state.users.map((user, index) => {
+       const { name, email, disabled, role, created_at, last_signed_in } = user;
+       
+       const rowNum = index + 1;
+       console.log(rowNum);
        return (
-        <tr>
-        <td>{name}</td>
-        <td>{email}</td>
-        <td>{role}</td>
-        <td>
-        <Button
-            variant="primary"
-            size="sm"
-            //type="submit"
-            onClick={() => this.sendPasswordReset(email)}
-          >
-            Reset Password
-          </Button>
-        </td>
-        <td>
-        <Dropdown >
-          <Dropdown.Toggle>
-            <FontAwesomeIcon icon={faEllipsisV} />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item>Disable</Dropdown.Item>
-            <Dropdown.Item>Delete</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <tr key={index}>
+          <td>{rowNum}</td>
+          <td>{name}</td>
+          <td>{email}</td>
+          <td>{role}</td>
+          <td>
+          <Button
+              variant="primary"
+              size="sm"
+              //type="submit"
+              onClick={() => this.sendPasswordReset(email)}
+            >
+              Reset Password
+            </Button>
+          </td>
+          <td>
+          <Dropdown >
+            <Dropdown.Toggle>
+              <FontAwesomeIcon icon={faEllipsisV} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item>Disable</Dropdown.Item>
+              <Dropdown.Item>Delete</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </td>
       </tr>
        )
@@ -183,7 +189,7 @@ class manageUsers extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.getAllUsers.bind(this)}
+                {this.renderTableData()}
               </tbody>
             </Table>
           </Row>
