@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faEllipsisV, } from '@fortawesome/free-solid-svg-icons';
-import { Alert, Button, Col, Container, Dropdown, Form, Row, Table, } from 'react-bootstrap';
+import { Alert, Button, Card, Col, Container, Dropdown, Form, Row, Table, } from 'react-bootstrap';
 
 function ManageUsers(props) {
 
@@ -49,54 +49,132 @@ function ManageUsers(props) {
         });
     }
 
+    function searchUser(event) {
+        var filter = event.target.value.toUpperCase();
+        var table = document.getElementById("table");
+        var tr = table.getElementsByTagName("tr");
+        var td, td1, td2, td3, i;
+
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          td1 = tr[i].getElementsByTagName("td")[1];
+          td2 = tr[i].getElementsByTagName("td")[2];
+          td3 = tr[i].getElementsByTagName("td")[3];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1
+                || td1.innerHTML.toUpperCase().indexOf(filter) > -1
+                || td2.innerHTML.toUpperCase().indexOf(filter) > -1
+                || td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+    }
+
     function renderTableData() {
         return users.map((user, index) => {
 
             const {name, email, disabled, role, created_at, last_signed_in} = user;
             const rowNum = index + 1;
 
-            return (
-                <tr key={index}>
-                    <td>{rowNum}</td>
-                    <td>{name}</td>
-                    <td>{email}</td>
-                    <td>{role}</td>
-                    <td>
-                        <Button
-                            variant="primary"
-                            size="sm"
-                            //type="submit"
-                            onClick={() => sendPasswordReset(email)}>
-                            Reset Password
-                        </Button>
-                    </td>
-                    <td>
-                        <Dropdown>
-                            <Dropdown.Toggle>
-                                <FontAwesomeIcon icon={faEllipsisV}/>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item>Disable</Dropdown.Item>
-                                <Dropdown.Item>Delete</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </td>
-                </tr>
-            );
+            //Checks whether user is disabled and loads the appropriate enable/disable button
+            if(disabled == true){
+                return (
+                    <tr key={index}>
+                        <td>{rowNum}</td>
+                        <td>{name}</td>
+                        <td>{email}</td>
+                        <td>{role}</td>
+                        <td>
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                //type="submit"
+                                onClick={() => sendPasswordReset(email)}>
+                                Reset Password
+                            </Button>
+                        </td>
+                        <td>
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                //type="submit"
+                                //onClick={() => sendPasswordReset(email)}
+                            >
+                                Enable Account
+                            </Button>
+                        </td>
+                        <td>
+                            <Button
+                                variant="danger"
+                                size="sm"
+                                //type="submit"
+                                //onClick={() => sendPasswordReset(email)}
+                            >
+                                Delete Account
+                            </Button>
+                        </td>
+                    </tr>
+                );
+            }
+
+            else{
+                return (
+                    <tr key={index}>
+                        <td>{rowNum}</td>
+                        <td>{name}</td>
+                        <td>{email}</td>
+                        <td>{role}</td>
+                        <td>
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                //type="submit"
+                                onClick={() => sendPasswordReset(email)}>
+                                Reset Password
+                            </Button>
+                        </td>
+                        <td>
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                //type="submit"
+                                //onClick={() => sendPasswordReset(email)}
+                            >
+                                Disable Account
+                            </Button>
+                        </td>
+                        <td>
+                            <Button
+                                variant="danger"
+                                size="sm"
+                                //type="submit"
+                                //onClick={() => sendPasswordReset(email)}
+                            >
+                                Delete Account
+                            </Button>
+                        </td>
+                    </tr>
+                );
+            } 
         });
     }
 
     return (
+        
         <div>
             <Container fluid className="mt-3">
 
-                <Row>
-                    <Col sm={10}>
+                <Row className="justify-content-md-center">
+                    <Col sm={5}>
                         <Form.Group>
                             <Form.Control
                                 type="search"
+                                id="search"
                                 placeholder="🔎 Search for user..."
-                                //   onKeyUp={(event) => this.searchUser(event.target.value)}
+                                onKeyUp={searchUser.bind(this)}
                             />
                         </Form.Group>
                     </Col>
@@ -114,26 +192,28 @@ function ManageUsers(props) {
                 </Row>
 
                 <Row>
-                    <Col sm>
-                        <Alert transition={false} variant="success" show={isSuccess}> {success} </Alert>
-                        <Alert transition={false} variant="danger" show={hasError}> {error} </Alert>
-                    </Col>
-
-                    <Table striped bordered hover>
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Password Reset</th>
-                            <th>Disable or Delete Account</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {renderTableData()}
-                        </tbody>
-                    </Table>
+                    <Card style={{ width: '90%', margin:'auto'}}> 
+                        <Card.Body>
+                            <Alert transition={false} variant="success" show={isSuccess}> {success} </Alert>
+                            <Alert transition={false} variant="danger" show={hasError}> {error} </Alert>
+                            <Table striped bordered hover id="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Password Reset</th>
+                                    <th>Disable / Enable</th>
+                                    <th>Delete Account</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {renderTableData()}
+                                </tbody>
+                            </Table>
+                        </Card.Body>
+                    </Card>
                 </Row>
             </Container>
         </div>
