@@ -16,7 +16,7 @@ import SignInComponent from "./components/signin.component";
 import ContactUs from "./components/contactus.component";
 import CreateAccountComponent from "./components/createaccount.component";
 import ForgotPassword from "./components/forgotpassword.component";
-import manageUsers from "./components/manageUsers";
+import ManageUsers from "./components/manageUsers";
 
 import AppStyles from "./styles/app.module.css";
 
@@ -73,7 +73,7 @@ const App = () => {
                 exact
                 component={ForgotPassword}
               />
-              <PrivateRoute path="/manageUsers" exact component={manageUsers} />
+              <PrivateRoute path="/manageUsers" exact component={ManageUsers} />
             </Switch>
           </main>
         </div>
