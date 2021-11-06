@@ -102,7 +102,7 @@ function ManageUsers(props) {
         .then((response) => {
 
             const index = users.findIndex(u => u.id === id);
-            users.splice(index, index);
+            users.splice(index, 1);
             renderTableData();
 
             setSuccess(`Account ${id} was deleted!`);
@@ -197,17 +197,6 @@ function ManageUsers(props) {
                             />
                         </Form.Group>
                     </Col>
-                    <Form.Group className="SearchUser">
-                        <Col xs={{span: 0.5}}>
-                            <Button
-                                type="submit"
-                                variant="primary"
-                                //   onClick={this.event}
-                            >
-                                Search Users
-                            </Button>
-                        </Col>
-                    </Form.Group>
                 </Row>
 
                 <Row>
