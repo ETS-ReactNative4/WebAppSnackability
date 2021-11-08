@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV, } from '@fortawesome/free-solid-svg-icons';
 import { Alert, Button, Card, Col, Container, Dropdown, Form, Row, Table, } from 'react-bootstrap';
 
-function ManageUsers(props) {
+export function ManageUsers(props) {
 
     const [user, setUser] = useState();
     const [users, setUsers] = useState([]);
@@ -227,5 +227,3 @@ function ManageUsers(props) {
         </div>
     );
 }
-
-export default ManageUsers;

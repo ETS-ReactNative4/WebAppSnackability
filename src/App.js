@@ -10,13 +10,13 @@ import PrivateRoute from "./routes/private-route.component";
 import HomeComponent from "./components/home.component";
 import SnackGraph from "./components/snack-graph.component";
 import SnackUSDAListComponent from "./components/snack-usda-list.component";
-import SnackUSDADetailsComponent from "./components/snack-usda-details.component";
+import { SnackDetailsComponent } from "./components/snack-usda-details.component";
 import SettingsComponent from "./components/settings.component";
 import SignInComponent from "./components/signin.component";
 import ContactUs from "./components/contactus.component";
 import CreateAccountComponent from "./components/createaccount.component";
 import ForgotPassword from "./components/forgotpassword.component";
-import ManageUsers from "./components/manageUsers";
+import { ManageUsers } from "./components/manageUsers";
 
 import AppStyles from "./styles/app.module.css";
 
@@ -42,7 +42,7 @@ const App = () => {
               <PrivateRoute
                 path="/usda/:snack_id"
                 exact
-                component={SnackUSDADetailsComponent}
+                component={SnackDetailsComponent}
               />
               <PrivateRoute path="/snacksgraph" exact component={SnackGraph} />
               <PrivateRoute
