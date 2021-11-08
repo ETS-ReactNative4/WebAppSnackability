@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import {
-  Alert,
   Button,
   Col,
   Form,
-  FormControl,
-  FormLabel,
-  InputGroup,
-  Row,
+
 } from "react-bootstrap";
 
 
@@ -17,8 +13,8 @@ const punctuation = "!@#$%^&*";
 
 
 export default function RandomPassword(props) {
-  const [length, setLength] = useState(10);
-  const [password, setPassword] = useState("");
+  const [length] = useState(10);
+  const [setPassword] = useState("");
 
   const generatePassword = (e) => {
     e.preventDefault();
@@ -52,23 +48,23 @@ export default function RandomPassword(props) {
         return 0.5 - Math.random();
       })
       .join("");
-    setPassword(password.substr(0, length));
+    //setPassword(password.substr(0, length));
 
     props.getPass(password.substr(0, length));
   };
 
 
   return (
-    <Form.Group className="RandomPassword">   
-    
-    <Col xs = {{span: .5}}>
-          <Button 
-              type="submit"
-              variant="primary"
-              onClick={generatePassword}>
-              Generate Random
-          </Button>   
-          </Col>
+    <Form.Group className="RandomPassword">
+
+      <Col xs={{ span: .5 }}>
+        <Button
+          type="submit"
+          variant="primary"
+          onClick={generatePassword}>
+          Generate Random
+        </Button>
+      </Col>
 
     </Form.Group>
   );

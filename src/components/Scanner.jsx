@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Quagga from 'quagga';
-import styles from '../styles/scanner.css';
 
 class Scanner extends Component {
 	constructor(props) {

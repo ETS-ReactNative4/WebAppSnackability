@@ -1,5 +1,4 @@
-import React, { Component, useContext } from "react";
-import SnackDetailsStyles from "../styles/snack-details.module.css";
+import React, { Component } from "react";
 import {
   fetchCSVFiles,
   fetchSnackByIDUSDA,
@@ -15,15 +14,12 @@ import {
   Modal,
   Row,
   Table,
-  OverlayTrigger,
-  Tooltip,
   Alert,
   Spinner,
 } from "react-bootstrap";
 import foodPic from "../images/foodinfo.png";
 
 import { postSnackScore } from "../services/score.service.js";
-import { AuthContext } from "../utils/auth";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -553,7 +549,7 @@ export default class SnackDetailsComponent extends Component {
   }
 
   processScoreFeedBack(score) {
-    var result = void 0;
+    // var result = void 0;
     score = this.state.score.totalScore;
 
     switch (true) {

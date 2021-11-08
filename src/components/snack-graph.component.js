@@ -4,7 +4,6 @@ import { defaults } from 'react-chartjs-2';
 
 
 import { fetSnackScore } from '../services/score.service.js';
-import SnackDetailsStyles from '../styles/graph.css';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 
 defaults.plugins.legend.position = 'top';
