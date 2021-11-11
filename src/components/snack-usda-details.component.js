@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faInfoCircle, faMinus, faTimes, } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faInfoCircle, faMinus, faTimes, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Alert, Button, ButtonGroup, Card, Col, Container, Dropdown, Form, Modal, Row, Spinner, Table } from 'react-bootstrap';
 
 import { calculateSnackScore, postSnackScore } from '../services/score.service.js';
@@ -122,7 +122,7 @@ export function SnackDetailsComponent(props) {
         setIsLoading(true);
         fetchSnackByIDUSDA(props.match.params.snack_id)
             .then((response) => response.data)
-            .then((snack: any) => {
+            .then((snack) => {
                 setSnack(snack);
                 setIsLoading(false);
             })
@@ -264,30 +264,34 @@ export function SnackDetailsComponent(props) {
                                         <th>Total Score</th>
                                         <td colSpan="3">{ score && score.total }</td>
                                     </tr>
+                                    
                                 </tbody>
+
                             </Table>
+                            <p style={{ color: 'grey' }}>
+                                Ingredients: {snack ? snack.ingredients : ''}
+                            </p>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
 
             <br></br>
-
+{/* 
             <Alert variant={'primary'} style={{display: showResults ? '' : 'none'}}>
                 { score && score.nutritionFeedback }
-            </Alert>
+            </Alert> */}
 
-            <Row className="text-center mt-4" style={{ display: showResults ? '' : 'none' }}>
+            <Row className="text-center" style={{ display: showResults ? '' : 'none' }}>
                 <Col>
                     <Button className="m-1" variant="primary" onClick={ () => consumeSnack() }>
-                        Consume 🍴
+                        Consume <FontAwesomeIcon icon={faUtensils} />
                     </Button>
                     <Button className="m-1" variant="secondary" href="/snacks">
                         Return to search
                     </Button>
                 </Col>
             </Row>
-
         </Container>
     );
 }

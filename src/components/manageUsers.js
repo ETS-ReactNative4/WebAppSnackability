@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { faEllipsisV, } from '@fortawesome/free-solid-svg-icons';
 import { Alert, Button, Card, Col, Container, Dropdown, Form, Row, Table, } from 'react-bootstrap';
 
 export function ManageUsers(props) {
@@ -22,7 +19,7 @@ export function ManageUsers(props) {
     function getAllUsers() {
         axios.get(process.env.REACT_APP_API_ENDPOINT + '/users')
              .then(response => response.data)
-             .then((users: any[]) => {
+             .then((users) => {
                  setUsers(users);
                  // renderTableData();
              })

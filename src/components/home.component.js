@@ -11,7 +11,7 @@ export default class HomeComponent extends Component {
           <h1 className="title">Welcome to Snackability</h1>
           <span>
             The goal of Snackability app is to help you identify healthy snacks{" "}
-            <br /> providing a score from 0 (not healthy) to 10 (very healthy)
+            <br /> providing a score from 0 (not healthy) to 12 (very healthy)
             to each snack searched in our app.
           </span>
         </div>
