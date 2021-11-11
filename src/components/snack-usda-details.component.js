@@ -11,7 +11,7 @@ import foodPic from '../images/foodinfo.png';
 function generateDataTable(score) {
 
     function generateIcon(tempScore, maxScore) {
-        if (tempScore === 0) {
+        if (tempScore <= 0) {
             return faTimes;
         } else if (tempScore === maxScore) {
             return faCheck;
@@ -36,7 +36,7 @@ function generateDataTable(score) {
             criteria: 'Total Calories',
             score: score.calories,
             maxscore: '2',
-            lastIcon: <FontAwesomeIcon icon={ generateIcon(score.calorieScore, 2) }/>,
+            lastIcon: <FontAwesomeIcon icon={ generateIcon(score.calories, 2) }/>,
             message: '2 Points if < 200 kcal.',
         },
         {
