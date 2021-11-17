@@ -18,15 +18,13 @@ import CreateAccountComponent from "./components/createaccount.component";
 import ForgotPassword from "./components/forgotpassword.component";
 import { ManageUsers } from "./components/manageUsers";
 
-import AppStyles from "./styles/app.module.css";
-
 const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
           <NavbarComponent/>
-          <main className={AppStyles.main}>
+          <main className=".main">
             <Switch>
               <PublicRoute
                 restricted={false}

@@ -7,6 +7,7 @@ import { getToken } from './utils/auth';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';
+import './styles/app.css';
 
 axios.interceptors.request.use(async config => {
     config.headers['access-token'] = await getToken()
