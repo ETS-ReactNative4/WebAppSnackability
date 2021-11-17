@@ -25,7 +25,7 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <NavbarComponent />
+          <NavbarComponent/>
           <main className={AppStyles.main}>
             <Switch>
               <PublicRoute
