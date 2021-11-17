@@ -65,15 +65,10 @@ export const NavbarComponent = () => {
                     <Nav.Link href="/contactus">
                         <FontAwesomeIcon icon={faAddressBook}/> Contact Us
                     </Nav.Link>
-                    { !currentUser &&
-                    <Nav>
-                        <Nav.Link href="/signin">
-                            <FontAwesomeIcon icon={faSignInAlt}/> Login
-                        </Nav.Link>
-                    </Nav>
-                    }
                 </Nav>
+                
                 { isAdmin &&
+                
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title="Admin">
                         <NavDropdown.Item href={'/createaccount'}>
@@ -87,6 +82,13 @@ export const NavbarComponent = () => {
                             </span>
                         </NavDropdown.Item>
                     </NavDropdown>
+                </Nav>
+                }
+                { !currentUser &&
+                <Nav>
+                    <Nav.Link href="/signin">
+                        <FontAwesomeIcon icon={faSignInAlt}/> Login
+                    </Nav.Link>
                 </Nav>
                 }
                 { currentUser &&
