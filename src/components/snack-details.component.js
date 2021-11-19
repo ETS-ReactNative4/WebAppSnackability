@@ -148,7 +148,7 @@ export function SnackDetailsComponent(props) {
             .then((response) => response.data)
             .then((score) => {
                 props.history.push({
-                    pathname: '/snacksgraph',
+                    pathname: '/snacks-graph',
                 });
             })
             .catch((error) => {
@@ -287,7 +287,7 @@ export function SnackDetailsComponent(props) {
                     <Button className="m-1" variant="primary" onClick={ () => consumeSnack() }>
                         Consume <FontAwesomeIcon icon={faUtensils} />
                     </Button>
-                    <Button className="m-1" variant="secondary" href="/usda">
+                    <Button className="m-1" variant="secondary" href="/snacks">
                         Return to search
                     </Button>
                 </Col>

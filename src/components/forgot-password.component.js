@@ -11,7 +11,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-class  ForgotPassword extends Component {
+export class ForgotPasswordComponent extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -23,7 +23,7 @@ class  ForgotPassword extends Component {
       };
     }
 
-    
+
   onEmailChange(event) {
     this.setState({ email: event.target.value });
   }
@@ -102,5 +102,3 @@ class  ForgotPassword extends Component {
     );
   }
 }
-
-export default ForgotPassword;

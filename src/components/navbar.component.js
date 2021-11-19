@@ -55,21 +55,21 @@ export const NavbarComponent = () => {
                     </Nav.Link>
                     { currentUser &&
                     <>
-                    <Nav.Link as={Link} to="/usda">
+                    <Nav.Link as={Link} to="/snacks">
                         <FontAwesomeIcon icon={faCookie}/> Snacks
                     </Nav.Link>
-                    <Nav.Link as={Link} to="/snacksgraph">
+                    <Nav.Link as={Link} to="/snacks-graph">
                         <FontAwesomeIcon icon={faChartLine}/> Snacks Graph
                     </Nav.Link>
                     </>
                     }
-                    <Nav.Link as={Link} to="/contactus">
+                    <Nav.Link as={Link} to="/contact">
                         <FontAwesomeIcon icon={faAddressBook}/> Contact Us
                     </Nav.Link>
                 </Nav>
                 { !currentUser &&
                 <Nav>
-                    <Nav.Link as={Link} to="/signin">
+                    <Nav.Link as={Link} to="/login">
                         <FontAwesomeIcon icon={faSignInAlt}/> Login
                     </Nav.Link>
                 </Nav>
@@ -77,12 +77,12 @@ export const NavbarComponent = () => {
                 { (currentUser && isAdmin) &&
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title="Admin">
-                        <NavDropdown.Item as={Link} to='/createaccount'>
+                        <NavDropdown.Item as={Link} to='/create-account'>
                             <span>
                                 <FontAwesomeIcon icon={faPlus}/> Create New Account
                             </span>
                         </NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to='/manageUsers'>
+                        <NavDropdown.Item as={Link} to='/users'>
                             <span>
                                 <FontAwesomeIcon icon={faCog}/> Manage Users
                             </span>

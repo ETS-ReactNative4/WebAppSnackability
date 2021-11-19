@@ -11,7 +11,7 @@ import {
     Row,
 } from 'react-bootstrap';
 
-const SigninComponent = ({history}) => {
+const LoginComponent = ({history}) => {
 
     const [error, setError] = useState('');
 
@@ -50,11 +50,11 @@ const SigninComponent = ({history}) => {
                                 <p>
                                     Don't have an Account?{" "}
                                     <Alert.Link href="/contactus">Request Access</Alert.Link>.
-                                </p> 
+                                </p>
                                 <p>
                                     Forgot password?{" "}
                                     <Alert.Link href="/forgotpassword">Reset Password</Alert.Link>.
-                                </p> 
+                                </p>
                             </Form>
                         </Card.Body>
                     </Card>
@@ -65,4 +65,4 @@ const SigninComponent = ({history}) => {
 
 }
 
-export default withRouter(SigninComponent);
+export default withRouter(LoginComponent);

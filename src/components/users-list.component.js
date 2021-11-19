@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Alert, Button, Card, Col, Container, Dropdown, Form, Row, Table, } from 'react-bootstrap';
 
-export function ManageUsers(props) {
+export function UsersListComponent(props) {
 
     const [user, setUser] = useState();
     const [users, setUsers] = useState([]);

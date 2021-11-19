@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Card, Col, Container, Jumbotron, Row } from "react-bootstrap";
 import "../styles/home.css";
 
-export default class HomeComponent extends Component {
+export class HomeComponent extends Component {
   render() {
     return (
       <div>

@@ -7,16 +7,16 @@ import { NavbarComponent } from "./components/navbar.component";
 
 import PublicRoute from "./routes/public-routes.component";
 import PrivateRoute from "./routes/private-route.component";
-import HomeComponent from "./components/home.component";
+import { HomeComponent } from "./components/home.component";
+import { SnackListComponent } from "./components/snack-list.component";
+import { SnackDetailsComponent } from "./components/snack-details.component";
+import { UsersListComponent } from "./components/users-list.component";
+import { SettingsComponent } from "./components/settings.component";
+import { ForgotPasswordComponent } from "./components/forgot-password.component";
+import { CreateAccountComponent } from "./components/create-account.component";
+import { ContactUsComponent } from "./components/contact-us.component";
+import LoginComponent from "./components/login.component";
 import SnackGraph from "./components/snack-graph.component";
-import SnackUSDAListComponent from "./components/snack-usda-list.component";
-import { SnackDetailsComponent } from "./components/snack-usda-details.component";
-import SettingsComponent from "./components/settings.component";
-import SignInComponent from "./components/signin.component";
-import ContactUs from "./components/contactus.component";
-import CreateAccountComponent from "./components/createaccount.component";
-import ForgotPassword from "./components/forgotpassword.component";
-import { ManageUsers } from "./components/manageUsers";
 
 const App = () => {
   return (
@@ -33,16 +33,16 @@ const App = () => {
                 component={HomeComponent}
               />
               <PrivateRoute
-                path="/usda"
+                path="/snacks"
                 exact
-                component={SnackUSDAListComponent}
+                component={SnackListComponent}
               />
               <PrivateRoute
-                path="/usda/:snack_id"
+                path="/snacks/:snack_id"
                 exact
                 component={SnackDetailsComponent}
               />
-              <PrivateRoute path="/snacksgraph" exact component={SnackGraph} />
+              <PrivateRoute path="/snacks-graph" exact component={SnackGraph} />
               <PrivateRoute
                 path="/settings"
                 exact
@@ -50,18 +50,18 @@ const App = () => {
               />
               <PublicRoute
                 restricted={true}
-                path="/signin"
+                path="/login"
                 exact
-                component={SignInComponent}
+                component={LoginComponent}
               />
               <PublicRoute
                 restricted={false}
-                path="/contactus"
+                path="/contact"
                 exact
-                component={ContactUs}
+                component={ContactUsComponent}
               />
               <PrivateRoute
-                path="/createaccount"
+                path="/create-account"
                 exact
                 component={CreateAccountComponent}
               />
@@ -69,9 +69,13 @@ const App = () => {
                 restricted={false}
                 path="/forgotpassword"
                 exact
-                component={ForgotPassword}
+                component={ForgotPasswordComponent}
               />
-              <PrivateRoute path="/manageUsers" exact component={ManageUsers} />
+              <PrivateRoute
+                  path="/users"
+                  exact
+                  component={UsersListComponent}
+              />
             </Switch>
           </main>
         </div>

@@ -11,7 +11,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-class ContactUs extends Component {
+export class ContactUsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,7 +103,7 @@ class ContactUs extends Component {
                         </Form.Group>
                       </Col>
                     </Row>
-                                        
+
                     <Row>
                       <Col>
                         <Form.Group className="mb-3" controlId="email">
@@ -151,5 +151,3 @@ class ContactUs extends Component {
     );
   }
 }
-
-export default ContactUs;

@@ -11,13 +11,13 @@ import Scanner from './Scanner'
 const Snacks = ({snacks}) => (
     <tr>
         <td>
-            <Link to={`/usda/${snacks.fdcId}`}>{snacks.description}</Link><br/>
+            <Link to={`/snacks/${snacks.fdcId}`}>{snacks.description}</Link><br/>
             <span className="text-muted">{snacks.brandOwner}</span>
         </td>
     </tr>
 );
 
-export default class SnackList extends Component {
+export class SnackListComponent extends Component {
 
     constructor(props) {
         super(props);

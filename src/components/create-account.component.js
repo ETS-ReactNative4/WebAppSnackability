@@ -12,7 +12,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-class CreateAccountComponent extends Component {
+export class CreateAccountComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -231,5 +231,3 @@ class CreateAccountComponent extends Component {
     );
   }
 }
-
-export default CreateAccountComponent;
