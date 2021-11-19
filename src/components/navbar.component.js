@@ -18,9 +18,9 @@ import logo from '../images/logo.svg';
 export const NavbarComponent = () => {
 
     const { currentUser } = useContext(AuthContext);
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [ isAdmin, setIsAdmin ] = useState(false);
 
-    if (!!currentUser) {
+    if (currentUser) {
         app
             .auth()
             .currentUser.getIdTokenResult(true)
@@ -65,15 +65,15 @@ export const NavbarComponent = () => {
                     <Nav.Link href="/contactus">
                         <FontAwesomeIcon icon={faAddressBook}/> Contact Us
                     </Nav.Link>
-                    { !currentUser &&
-                    <Nav>
-                        <Nav.Link href="/signin">
-                            <FontAwesomeIcon icon={faSignInAlt}/> Login
-                        </Nav.Link>
-                    </Nav>
-                    }
                 </Nav>
-                { isAdmin &&
+                { !currentUser &&
+                <Nav>
+                    <Nav.Link href="/signin">
+                        <FontAwesomeIcon icon={faSignInAlt}/> Login
+                    </Nav.Link>
+                </Nav>
+                }
+                { (currentUser && isAdmin) &&
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title="Admin">
                         <NavDropdown.Item href={'/createaccount'}>
@@ -94,12 +94,12 @@ export const NavbarComponent = () => {
                     <NavDropdown id="nav-bar-dropdown" title={currentUser.email}>
                         <NavDropdown.Item href={'/settings'}>
                             <span>
-                            <FontAwesomeIcon icon={faCog}/> Settings
+                                <FontAwesomeIcon icon={faCog}/> Settings
                             </span>
                         </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => app.auth().signOut()}>
                             <span>
-                            <FontAwesomeIcon icon={faSignOutAlt}/> Logout
+                                <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                             </span>
                         </NavDropdown.Item>
                     </NavDropdown>
