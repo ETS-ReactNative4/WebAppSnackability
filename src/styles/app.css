@@ -1,5 +1,5 @@
 .nav-bar {
-    position: fixed !important;
+    position: relative !important;
     width: 100%;
     top: 0;
     background: linear-gradient(145deg,#0d47a1,#1976d2);
