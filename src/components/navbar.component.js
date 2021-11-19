@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import logo from '../images/logo.svg';
+import { Link } from 'react-router-dom';
 
 export const NavbarComponent = () => {
 
@@ -49,26 +50,26 @@ export const NavbarComponent = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
 
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">
+                    <Nav.Link as={Link} to="/">
                         <FontAwesomeIcon icon={faHome}/> Home
                     </Nav.Link>
                     { currentUser &&
                     <>
-                    <Nav.Link href="/usda">
+                    <Nav.Link as={Link} to="/usda">
                         <FontAwesomeIcon icon={faCookie}/> Snacks
                     </Nav.Link>
-                    <Nav.Link href="/snacksgraph">
+                    <Nav.Link as={Link} to="/snacksgraph">
                         <FontAwesomeIcon icon={faChartLine}/> Snacks Graph
                     </Nav.Link>
                     </>
                     }
-                    <Nav.Link href="/contactus">
+                    <Nav.Link as={Link} to="/contactus">
                         <FontAwesomeIcon icon={faAddressBook}/> Contact Us
                     </Nav.Link>
                 </Nav>
                 { !currentUser &&
                 <Nav>
-                    <Nav.Link href="/signin">
+                    <Nav.Link as={Link} to="/signin">
                         <FontAwesomeIcon icon={faSignInAlt}/> Login
                     </Nav.Link>
                 </Nav>
@@ -76,12 +77,12 @@ export const NavbarComponent = () => {
                 { (currentUser && isAdmin) &&
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title="Admin">
-                        <NavDropdown.Item href={'/createaccount'}>
+                        <NavDropdown.Item as={Link} to='/createaccount'>
                             <span>
                                 <FontAwesomeIcon icon={faPlus}/> Create New Account
                             </span>
                         </NavDropdown.Item>
-                        <NavDropdown.Item href={'/manageUsers'}>
+                        <NavDropdown.Item as={Link} to='/manageUsers'>
                             <span>
                                 <FontAwesomeIcon icon={faCog}/> Manage Users
                             </span>
@@ -92,7 +93,7 @@ export const NavbarComponent = () => {
                 { currentUser &&
                 <Nav>
                     <NavDropdown id="nav-bar-dropdown" title={currentUser.email}>
-                        <NavDropdown.Item href={'/settings'}>
+                        <NavDropdown.Item as={Link} to='/settings'>
                             <span>
                                 <FontAwesomeIcon icon={faCog}/> Settings
                             </span>
