@@ -264,7 +264,7 @@ export function SnackDetailsComponent(props) {
                                         <th>Total Score</th>
                                         <td colSpan="3">{ score && score.total }</td>
                                     </tr>
-                                    
+
                                 </tbody>
 
                             </Table>
@@ -277,7 +277,7 @@ export function SnackDetailsComponent(props) {
             </Row>
 
             <br></br>
-{/* 
+{/*
             <Alert variant={'primary'} style={{display: showResults ? '' : 'none'}}>
                 { score && score.nutritionFeedback }
             </Alert> */}
@@ -287,7 +287,7 @@ export function SnackDetailsComponent(props) {
                     <Button className="m-1" variant="primary" onClick={ () => consumeSnack() }>
                         Consume <FontAwesomeIcon icon={faUtensils} />
                     </Button>
-                    <Button className="m-1" variant="secondary" href="/snacks">
+                    <Button className="m-1" variant="secondary" href="/usda">
                         Return to search
                     </Button>
                 </Col>
