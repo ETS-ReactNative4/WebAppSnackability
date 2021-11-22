@@ -132,14 +132,17 @@ export function SnackDetailsComponent(props) {
     }
 
     function calculateScore() {
+        setIsLoading(true);
         calculateSnackScore(snack.fdcId, portion, unit)
             .then(response => response.data)
             .then(score => {
                 setScore(score);
                 setShowResults(true);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error(error);
+                setIsLoading(false);
             })
     }
 
