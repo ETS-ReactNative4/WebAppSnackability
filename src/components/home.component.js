@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Card, Col, Container, Jumbotron, Row } from "react-bootstrap";
 import "../styles/home.css";
 
-export default class HomeComponent extends Component {
+export class HomeComponent extends Component {
   render() {
     return (
       <div>
@@ -11,7 +11,7 @@ export default class HomeComponent extends Component {
           <h1 className="title">Welcome to Snackability</h1>
           <span>
             The goal of Snackability app is to help you identify healthy snacks{" "}
-            <br /> providing a score from 0 (not healthy) to 10 (very healthy)
+            <br /> providing a score from 0 (not healthy) to 12 (very healthy)
             to each snack searched in our app.
           </span>
         </div>

@@ -12,7 +12,7 @@ import {
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default class SettingsComponent extends Component {
+export class SettingsComponent extends Component {
   render() {
     return (
       <div>
