@@ -104,7 +104,6 @@ export class CreateAccountComponent extends Component {
         this.resetForm();
       })
       .catch((error) => {
-        console.log(error);
         this.setState({
           isError: true,
           isSuccess: false,

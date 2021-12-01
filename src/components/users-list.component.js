@@ -24,7 +24,7 @@ export function UsersListComponent(props) {
                  // renderTableData();
              })
              .catch((error) => {
-                 console.log(error);
+                 console.error(error);
              });
     }
 
