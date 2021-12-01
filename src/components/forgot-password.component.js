@@ -50,7 +50,6 @@ export class ForgotPasswordComponent extends Component {
         this.setState({isSuccess:true, isError: false, success:"Password reset email sent!"});
         this.resetForm();
     }).catch(error => {
-      console.log(error);
       this.setState({isError:true, isSuccess: false, error: error.response.data.error});
     })
   }
