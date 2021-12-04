@@ -1,0 +1,49 @@
+.
+├── Dockerfile                                      file containing docker setup (won't change)
+├── README.md                                       file containing details of how to setup the project locally
+├── nginx
+│ └── default.conf                                  file containing nginx server default config (won't change)
+├── package-lock.json
+├── package.json                                    file containing all dependencies and project setup
+├── public                                          directory containing production build of the app
+├── src
+│ ├── App.js                                        application initial component
+│ ├── components
+│ │ ├── RandomPassword.jsx                          component that generates a random password
+│ │ ├── Scanner.jsx                                 component for the barcode scanner
+│ │ ├── contact-us.component.js                     component for contact-us page
+│ │ ├── create-account.component.js                 component for create account page
+│ │ ├── forgot-password.component.js                component for forgot password page
+│ │ ├── home.component.js                           component for home page
+│ │ ├── login.component.js                          component for login page
+│ │ ├── navbar.component.js                         navbar component
+│ │ ├── settings.component.js                       component for setting page
+│ │ ├── snack-details.component.js                  component for snack details page
+│ │ ├── snack-graph.component.js                    component for snack graph page
+│ │ ├── snack-list.component.js                     component for snack list page
+│ │ └── users-list.component.js                     component for users list page
+│ ├── images                                        directory containing images used on the project
+│ ├── index.js                                      file that bootstraps the application
+│ ├── routes
+│ │ ├── private-route.component.js                  setup of private routes context
+│ │ └── public-routes.component.js                  setup of public routes context
+│ ├── services
+│ │ ├── score.service.js                            service with calls to the backend related to score
+│ │ └── snack.service.js                            service with calls to the backend related to snacks
+│ ├── styles                                        directory containing styles for each of the components
+│ │ ├── app.css                                     app component css
+│ │ ├── contactus.css                               contact us component css
+│ │ ├── createaccount.css                           create account component css
+│ │ ├── forgotpassword.css                          forgot password component css
+│ │ ├── home.css                                    home component css
+│ │ ├── index.css                                   general css
+│ │ ├── scanner.css                                 scanner component css
+│ │ ├── settings.css                                settings component css
+│ │ ├── snack-details.module.css                    snack details component css
+│ │ └── styles.module.css                           general css
+│ └── utils
+│     ├── auth.js                                   file that manages authentication
+│     ├── debounce.js                               utility function to debounce actions
+└── tree.txt                                        file with project structure information
+
+11 directories, 60 files

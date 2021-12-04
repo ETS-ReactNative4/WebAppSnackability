@@ -6,7 +6,6 @@ import { debounce } from '../utils/debounce';
 
 import { Button, Col, Container, Form, Row, Table, Modal} from 'react-bootstrap';
 import Scanner from './Scanner'
-//import Result from './Result'
 
 const Snacks = ({snacks}) => (
     <tr>
@@ -46,16 +45,12 @@ export class SnackListComponent extends Component {
     }
 
     _onDetected = (result) => {
-        console.log(result);
-        console.log('result.codeResult.code: ' + result.codeResult.code);
-        console.log('this.state.lastBarcode: ' + this.state.lastBarcode);
         this.setState({ modal: false });
         /*if (
             this.state.lastBarcode ||
             result.codeResult.code !== this.state.lastBarcode
         ) {*/
         this.searchForItem(result.codeResult.code);
-        console.log('THE RESULT IS: ' + result.codeResult.code);
         //}
 
         this.setState({

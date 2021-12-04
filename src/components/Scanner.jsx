@@ -59,7 +59,8 @@ class Scanner extends Component {
 			},
 			function (err) {
 				if (err) {
-					return console.log(err);
+					console.error(err);
+					return;
 				}
 				Quagga.start();
 			}
