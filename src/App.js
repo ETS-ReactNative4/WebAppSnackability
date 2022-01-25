@@ -17,13 +17,13 @@ import { CreateAccountComponent } from "./components/create-account.component";
 import { ContactUsComponent } from "./components/contact-us.component";
 import LoginComponent from "./components/login.component";
 import SnackGraph from "./components/snack-graph.component";
-
+// test
 const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <NavbarComponent/>
+          <NavbarComponent />
           <main className=".main">
             <Switch>
               <PublicRoute
@@ -72,9 +72,9 @@ const App = () => {
                 component={ForgotPasswordComponent}
               />
               <PrivateRoute
-                  path="/users"
-                  exact
-                  component={UsersListComponent}
+                path="/users"
+                exact
+                component={UsersListComponent}
               />
             </Switch>
           </main>
