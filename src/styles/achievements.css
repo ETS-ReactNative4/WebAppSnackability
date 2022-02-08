@@ -2,9 +2,14 @@
     transform: translate(0px, -1px);
 }
 
-#achievements img{
+#achievements .achievement-image{
     width: 64px;
     background-color: black;
     padding: 2px;
     margin: 4px;
+}
+
+#achievements p{
+    transform: translate(0px, 20px);
+    margin: 0px;
 }

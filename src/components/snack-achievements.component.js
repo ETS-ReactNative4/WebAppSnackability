@@ -10,15 +10,16 @@ const Achievement = ({ name, image, level, date }) => (
       scope="row"
       className="achievement-title-row d-flex flex-row align-items-center text-center"
     >
-      <img src={image} />
+      <img className="achievement-image" src={image} />
       <div className="achievement-name m-3">{name}</div>
     </th>
-    <td>{level}</td>
-    <td>{date}</td>
+    <td className="achievement-level">
+      <p>{level}</p></td>
+    <td className="achievement-date"><p>{date}</p></td>
   </tr>
 );
 
-function SnackAchievements() {  
+function SnackAchievements() {
   return (
     <Container className="mt-3" id="achievements">
       <Row className="justify-content-md-center m-0">
@@ -35,7 +36,7 @@ function SnackAchievements() {
               </tr>
             </thead>
             <tbody>
-            <Achievement
+              <Achievement
                 name="Red Warrior"
                 image={achievement_red_warrior}
                 level="99"
