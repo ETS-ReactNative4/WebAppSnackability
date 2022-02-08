@@ -17,7 +17,8 @@ import { CreateAccountComponent } from "./components/create-account.component";
 import { ContactUsComponent } from "./components/contact-us.component";
 import LoginComponent from "./components/login.component";
 import SnackGraph from "./components/snack-graph.component";
-// test
+import SnackAchievements from "./components/snack-achievements.component";
+
 const App = () => {
   return (
     <AuthProvider>
@@ -42,7 +43,10 @@ const App = () => {
                 exact
                 component={SnackDetailsComponent}
               />
-              <PrivateRoute path="/snacks-graph" exact component={SnackGraph} />
+              <PrivateRoute path="/snacks-graph">
+                <SnackGraph />
+                <SnackAchievements />
+              </PrivateRoute>
               <PrivateRoute
                 path="/settings"
                 exact

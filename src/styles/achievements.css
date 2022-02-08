@@ -1,0 +1,10 @@
+#achievements .achievement-title-row{
+    transform: translate(0px, -1px);
+}
+
+#achievements img{
+    width: 64px;
+    background-color: black;
+    padding: 2px;
+    margin: 4px;
+}
