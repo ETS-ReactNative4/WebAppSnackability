@@ -2,7 +2,10 @@ import React from "react";
 import { Card, Col, Container, Row, Table } from "react-bootstrap";
 import { defaults } from "react-chartjs-2";
 import "../styles/achievements.css";
-import achievement_red_warrior from "../images/achievements/achievement-red-warrior.png";
+import achievement_red_warrior from "../images/achievements/achievement-red-warrior-3.png";
+import achievement_golden_warrior from "../images/achievements/achievement-golden-warrior.png";
+import achievement_doubleXP_warrior from "../images/achievements/achievement-double-xp-warrior.png";
+
 
 const Achievement = ({ name, image, level, date }) => (
   <tr className="achievement-row">
@@ -44,13 +47,13 @@ function SnackAchievements() {
               />
               <Achievement
                 name="Golden Warrior"
-                image={achievement_red_warrior}
+                image={achievement_golden_warrior}
                 level="26"
                 date="01-25-2022"
               />
               <Achievement
-                name="Elite Warrior"
-                image={achievement_red_warrior}
+                name="Double XP Warrior"
+                image={achievement_doubleXP_warrior}
                 level="12"
                 date="01-28-2022"
               />
