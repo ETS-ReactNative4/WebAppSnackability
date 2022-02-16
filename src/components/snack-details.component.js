@@ -147,7 +147,7 @@ export function SnackDetailsComponent(props) {
     }
 
     function consumeSnack() {
-        postSnackScore(snack.fdcId, score.total)
+        postSnackScore(snack.fdcId, score)
             .then((response) => response.data)
             .then((score) => {
                 props.history.push({
