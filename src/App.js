@@ -24,7 +24,7 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <NavbarComponent/>
+          <NavbarComponent />
           <main className=".main">
             <Switch>
               <PublicRoute
@@ -76,9 +76,9 @@ const App = () => {
                 component={ForgotPasswordComponent}
               />
               <PrivateRoute
-                  path="/users"
-                  exact
-                  component={UsersListComponent}
+                path="/users"
+                exact
+                component={UsersListComponent}
               />
             </Switch>
           </main>
