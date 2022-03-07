@@ -14,6 +14,10 @@ export function fetSnackScore() {
     return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/graph`);
 }
 
+export function fetUserData(){
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/userdata`);
+}
+
 export function calculateSnackScore(snack_id, portion, unit) {
     return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/calculate`, {
         params: {
