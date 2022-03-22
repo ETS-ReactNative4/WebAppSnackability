@@ -7,6 +7,8 @@ import achievement_golden_apples from "../images/achievements/achievement-golden
 import achievement_paleo from "../images/achievements/achievement-paleo.png";
 import achievement_saltbae from "../images/achievements/achievement-saltbae.png";
 import achievement_sugar from "../images/achievements/achievement-sugar.png";
+import achievement_slim_shady from "../images/achievements/achievement-slim-shady.png"
+import achievement_kalorie_killa from "../images/achievements/achievement-kalorie-killa.png"
 import achievement_red_warrior from "../images/achievements/achievement-red-warrior-3.png";
 import achievement_golden_warrior from "../images/achievements/achievement-golden-warrior.png";
 import achievement_doubleXP_warrior from "../images/achievements/achievement-double-xp-warrior.png";
@@ -119,14 +121,14 @@ function SnackAchievements() {
               />
               <Achievement
                 name="Kalorie Killa"
-                image={achievement_golden_warrior}
+                image={achievement_kalorie_killa}
                 desc={"Earn this achievement by eating snacks that are low in calories. Gain one level for every low calorie snack consumed."}
                 level= {kalorieLvl}
                 date="XX-XX-XXXX"
               />
               <Achievement
                 name="Slim Shady"
-                image={achievement_golden_warrior}
+                image={achievement_slim_shady}
                 desc={"Earn this achievement by eating snacks that are low in fat. Gain one level for every low fat snack consumed."}
                 level= {slimLvl}
                 date="XX-XX-XXXX"
