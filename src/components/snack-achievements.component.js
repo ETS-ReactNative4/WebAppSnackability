@@ -20,8 +20,8 @@ const Achievement = ({ name, image, desc, level, date }) => (
     >
       <img className="achievement-image" src={image} />
       <div className="achievement-name m-3">{name}</div>
-      {/* Achievement description template goes here, changes to achievements.css may be necessary. */}
     </th>
+    <div className="achievement-desc m-3">{desc}</div>
     <td className="achievement-level">
       <p>{level}</p>
     </td>
@@ -37,6 +37,9 @@ function SnackAchievements() {
   const [paleoLvl, setPaleoLvl] = useState(0);
   const [saltbaeLvl, setSaltbaeLvl] = useState(0);
   const [sugarLvl, setSugarLvl] = useState(0);
+  const [eliteLvl, setEliteLvl] = useState(0);
+  const [kalorieLvl, setKalLvl] = useState(0);
+  const [slimLvl, setSlimLvl] = useState(0);
 
   const getAchievement = () => {
     fetUserData()
@@ -48,6 +51,9 @@ function SnackAchievements() {
         setPaleoLvl(user_data[0].achievements.paleo);
         setSaltbaeLvl(user_data[0].achievements.saltbae);
         setSugarLvl(user_data[0].achievements.sugar);
+        setEliteLvl(user_data[0].achievements.elitewarrior);
+        setKalLvl(user_data[0].achievements.kalorie);
+        setSlimLvl(user_data[0].achievements.slim);
       });
   };
 
@@ -86,19 +92,43 @@ function SnackAchievements() {
               <Achievement
                 name="Paleo"
                 image={achievement_paleo}
+                desc={"Earn this achievement by eating snacks that are not processed. Earn one level for every snack consumed that is not processed."}
                 level={paleoLvl}
                 date="XX-XX-XXXX"
               />
               <Achievement
                 name="Saltbae"
                 image={achievement_saltbae}
+                desc={"Earn this achievement by eating snacks that are low in sodium. Gain one level for every low sodium snack consumed"}
                 level={saltbaeLvl}
                 date="XX-XX-XXXX"
               />
               <Achievement
                 name="Sugar Fighter"
                 image={achievement_sugar}
+                desc={"Earn this achievement by eating snacks that are low in sugar. Gain one level for every low sugar snack consumed."}
                 level={sugarLvl}
+                date="XX-XX-XXXX"
+              />
+              <Achievement
+                name="Elite Warrior"
+                image={achievement_golden_warrior}
+                desc={"Earn this achievement by collecting 100 golden apples. Gain one level for every 100 golden apples earned."}
+                level= {eliteLvl}
+                date="XX-XX-XXXX"
+              />
+              <Achievement
+                name="Kalorie Killa"
+                image={achievement_golden_warrior}
+                desc={"Earn this achievement by eating snacks that are low in calories. Gain one level for every low calorie snack consumed."}
+                level= {kalorieLvl}
+                date="XX-XX-XXXX"
+              />
+              <Achievement
+                name="Slim Shady"
+                image={achievement_golden_warrior}
+                desc={"Earn this achievement by eating snacks that are low in fat. Gain one level for every low fat snack consumed."}
+                level= {slimLvl}
                 date="XX-XX-XXXX"
               />
               {/* <Achievement
