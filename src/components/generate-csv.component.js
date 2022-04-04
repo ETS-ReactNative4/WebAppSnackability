@@ -8,20 +8,39 @@ import {
 
 const headers = [
     {
-        label: "Name", key: "name"
+        label: "User ID", key: "userid"
     },
     {
-        label: "User ID", key: "userID"
+        label: "Snack Score", key: "scackscore"
     },
     {
-        label: "Label3", key: "label3"
+        label: "Snack ID", key: "snack_id"
     },
     {
-        label: "Label4", key: "label4"
+        label: "Elite Warrior", key: "eliterwarrior"
     },
     {
-        label: "Label5", key: "label5"
-    },    
+        label: "Kalorie Killa", key: "kalorie"
+    },
+    {
+        label: "Paleo", key: "paleo"
+    },
+    {
+        label: "Salt Bae", key: "saltbae"
+    },
+    {
+        label: "Slim Shady", key: "slim"
+    },
+    {
+        label: "Sugar", key: "sugar"
+    },       
+    {
+        label: "Red Apples", key: "redapples"
+    },
+    {
+        label: "Golden Apples", key: "goldenapples"
+    },      
+        
 ]
 
 const sampleData = [
