@@ -18,6 +18,7 @@ import { ContactUsComponent } from "./components/contact-us.component";
 import LoginComponent from "./components/login.component";
 import SnackGraph from "./components/snack-graph.component";
 import SnackAchievements from "./components/snack-achievements.component";
+import GenerateCSVComponent from "./components/generate-csv.component";
 
 const App = () => {
   return (
@@ -47,11 +48,10 @@ const App = () => {
                 <SnackGraph />
                 <SnackAchievements />
               </PrivateRoute>
-              <PrivateRoute
-                path="/settings"
-                exact
-                component={SettingsComponent}
-              />
+              <PrivateRoute path="/settings">
+                <SettingsComponent />
+                <GenerateCSVComponent />
+              </PrivateRoute>
               <PublicRoute
                 restricted={true}
                 path="/login"
