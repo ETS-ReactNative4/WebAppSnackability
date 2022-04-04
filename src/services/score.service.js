@@ -18,6 +18,11 @@ export function fetUserData(){
     return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/userdata`);
 }
 
+// Dummy route
+export function fetAllData(){
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/alldata`);
+}
+
 export function calculateSnackScore(snack_id, portion, unit) {
     return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/score/calculate`, {
         params: {
