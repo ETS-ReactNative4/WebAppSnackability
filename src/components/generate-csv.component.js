@@ -11,7 +11,7 @@ const headers = [
         label: "User ID", key: "userid"
     },
     {
-        label: "Snack Score", key: "scackscore"
+        label: "Snack Score", key: "snackscore"
     },
     {
         label: "Snack ID", key: "snack_id"
