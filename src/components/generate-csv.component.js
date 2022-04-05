@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faFileCsv
 } from "@fortawesome/free-solid-svg-icons";
-import { fetAllData, fetSnackScore, fetUserData } from "../services/score.service.js";
+import { fetCSVGen, fetSnackScore, fetUserData } from "../services/score.service.js";
 
 let headers = [
     {
         label: "User ID", key: "userid"
     },
     {
-        label: "Snack Score", key: "scackscore"
+        label: "Snack Score", key: "snackscore"
     },
     {
         label: "Snack ID", key: "snack_id"
@@ -47,31 +47,36 @@ let headers = [
 function GenerateCSVComponent() {
     const [snackabilityData, setSnackabilityData] = useState([]);
 
-    const getAllUserData = () => {
+    const getCSVGen = () => {
 
         // Makes sure the array is empty before iterating through the data of each user
         setSnackabilityData(snackabilityData => []);
 
-        // Dummy for loop that creates entries in the CSV
-        for (let i = 0; i < 10; ++i) {
+        fetCSVGen()
+      .then((response) => response.data)
+      .then((all_data) => {
+        console.log(all_data);
+        for(let i = 0; i < all_data.length; ++i)
+        {
             setSnackabilityData(snackabilityData => [...snackabilityData, {
-                userid: 9999,
-                snackscore: "00",
-                snack_id: "00000000",
-                elitewarrior: 1,
-                kalorie: 1,
-                paleo: 1,
-                saltbae: 1,
-                slim: 1,
-                sugar: 1,
-                redapples: 1,
-                goldenapples: 1
+                userid: all_data[i].userid,
+                snackscore: all_data[i].snackscore,
+                snack_id: all_data[i].snack_id,
+                elitewarrior: all_data[i].elitewarrior,
+                kalorie: all_data[i].kalorie,
+                paleo: all_data[i].paleo,
+                saltbae: all_data[i].saltbae,
+                slim: all_data[i].slim,
+                sugar: all_data[i].sugar,
+                redapples: all_data[i].redapples,
+                goldenapples: all_data[i].goldenapples,
             }])
         }
+      });
     }
 
     useEffect(() => {
-        getAllUserData();
+        getCSVGen();
     }, []);
 
     return (
