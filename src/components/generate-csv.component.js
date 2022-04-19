@@ -85,13 +85,22 @@ let snackHeaders = [
         label: "User E-mail", key: "useremail"
     },
     {
-        label: "Snack Score", key: "snackscore"
-    },
-    {
         label: "Snack ID", key: "snack_id"
     },
     {
         label: "Snack Name", key: "snack_name"
+    },
+    {
+        label: "Brand Name", key: "brand_name"
+    },
+    {
+        label: "Portion", key: "portion",
+    },
+    {
+        label: "Units", key: "units",
+    },
+    {
+        label: "Snack Score", key: "snack_score"
     },
     {
         label: "Date", key: "date"
@@ -100,37 +109,8 @@ let snackHeaders = [
 
 
 function GenerateCSVComponent() {
-    const [snackabilityData, setSnackabilityData] = useState([]);
     const [userAchievementData, setUserAchievementData] = useState([]);
     const [userSnackData, setUserSnackData] = useState([]);
-
-    const getCSVGen = () => {
-
-        // Makes sure the array is empty before iterating through the data of each user
-        setSnackabilityData(snackabilityData => []);
-
-        fetCSVGen()
-            .then((response) => response.data)
-            .then((all_data) => {
-                console.log(all_data);
-                for (let i = 0; i < all_data.length; ++i) {
-                    var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
-                    setSnackabilityData(snackabilityData => [...snackabilityData, {
-                        userid: all_data[i].userid,
-                        snackscore: all_data[i].snackscore,
-                        snack_id: all_data[i].snack_id,
-                        elitewarrior: all_data[i].elitewarrior,
-                        kalorie: all_data[i].kalorie,
-                        paleo: all_data[i].paleo,
-                        saltbae: all_data[i].saltbae,
-                        slim: all_data[i].slim,
-                        sugar: all_data[i].sugar,
-                        redapples: all_data[i].redapples,
-                        goldenapples: all_data[i].goldenapples,
-                    }])
-                }
-            });
-    }
 
     const genUserAchievementCSV = () => {
 
@@ -173,13 +153,19 @@ function GenerateCSVComponent() {
             .then((all_data) => {
                 console.log(all_data);
                 for (let i = 0; i < all_data.length; ++i) {
+                    if(all_data[i]["brand_name"] != null){
+                        console.log(all_data[i]);
+                    }
                     var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
                     setUserSnackData(userSnackData => [...userSnackData, {
                         userid: all_data[i].userid,
                         useremail: all_data[i].useremail,
-                        snackscore: all_data[i].snackscore,
                         snack_id: all_data[i].snack_id,
-                        snack_name: "None",
+                        snack_name: all_data[i].desc,
+                        brand_name: all_data[i].brand_name,
+                        portion: all_data[i].portion,
+                        units: all_data[i].unit,
+                        snack_score: all_data[i].snackscore,
                         date: s,
                     }])
                 }
@@ -189,7 +175,6 @@ function GenerateCSVComponent() {
 
 
     useEffect(() => {
-        getCSVGen();
         genUserAchievementCSV();
         genUserSnacksCSV();
     }, []);
