@@ -124,6 +124,7 @@ function GenerateCSVComponent() {
                 for (let i = 0; i < all_data.length; ++i) {
                     if(!allUserIDs.includes(all_data[i].userid))
                     {
+                        console.log("Populating achievements CSV...");
                         setUserAchievementData(userAchievementData => [...userAchievementData, {
                             userid: all_data[i].userid,
                             useremail: all_data[i].useremail,
@@ -151,6 +152,7 @@ function GenerateCSVComponent() {
             .then((response) => response.data)
             .then((all_data) => {
                 for (let i = 0; i < all_data.length; ++i) {
+                    console.log("Populating snacks CSV...");
                     var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
                     setUserSnackData(userSnackData => [...userSnackData, {
                         userid: all_data[i].userid,
