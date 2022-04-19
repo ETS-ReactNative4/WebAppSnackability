@@ -133,6 +133,7 @@ export function SnackDetailsComponent(props) {
 
     function calculateScore() {
         setIsLoading(true);
+        console.log(snack);
         calculateSnackScore(snack.fdcId, portion, unit)
             .then(response => response.data)
             .then(score => {
@@ -147,7 +148,7 @@ export function SnackDetailsComponent(props) {
     }
 
     function consumeSnack() {
-        postSnackScore(snack.fdcId, score)
+        postSnackScore(snack.fdcId, score, snack.description, snack.brandName, portion, unit)
             .then((response) => response.data)
             .then((score) => {
                 props.history.push({
