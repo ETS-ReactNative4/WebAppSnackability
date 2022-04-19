@@ -122,8 +122,7 @@ function GenerateCSVComponent() {
             .then((all_data) => {
                 var allUserIDs = [];
                 for (let i = 0; i < all_data.length; ++i) {
-                    if(!allUserIDs.includes(all_data[i].userid))
-                    {
+                    if (!allUserIDs.includes(all_data[i].userid)) {
                         console.log("Populating achievements CSV...");
                         setUserAchievementData(userAchievementData => [...userAchievementData, {
                             userid: all_data[i].userid,
@@ -170,7 +169,13 @@ function GenerateCSVComponent() {
     }
 
 
-
+    /* The settings page doesn't populate the CSVs very consistently, it seems that
+    clicking back to the home page and clicking back to the settings page isthe most
+    consistent method. To check if the CSVs are actually populated, open up the console
+    and a message should appear if it is populated. I am including this comment here
+    because I believe the issue has to do with the useEffect hook, however I could be wrong.
+    (perhaps separating genUserAchievementsCSV() and genUserSnacksCSV() into two separate
+    useEffect() hooks will be better? IDK) */
     useEffect(() => {
         genUserAchievementCSV();
         genUserSnacksCSV();
