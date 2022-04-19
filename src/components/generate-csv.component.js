@@ -124,7 +124,6 @@ function GenerateCSVComponent() {
                 for (let i = 0; i < all_data.length; ++i) {
                     if(!allUserIDs.includes(all_data[i].userid))
                     {
-                        console.log(all_data[i].useremail);
                         setUserAchievementData(userAchievementData => [...userAchievementData, {
                             userid: all_data[i].userid,
                             useremail: all_data[i].useremail,
@@ -151,11 +150,7 @@ function GenerateCSVComponent() {
         fetCSVGen()
             .then((response) => response.data)
             .then((all_data) => {
-                console.log(all_data);
                 for (let i = 0; i < all_data.length; ++i) {
-                    if(all_data[i]["brand_name"] != null){
-                        console.log(all_data[i]);
-                    }
                     var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
                     setUserSnackData(userSnackData => [...userSnackData, {
                         userid: all_data[i].userid,
