@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-export function postSnackScore(snack_id,score) {
+export function postSnackScore(snack_id, score, desc, brandName, brandOwner, portion, unit) {
 
     return axios.post(`${process.env.REACT_APP_API_ENDPOINT}/score/consume`, {
         params: {
             snack_id: snack_id,
             score: score,
+            desc: desc,
+            brandName: brandName,
+            brandOwner: brandOwner,
+            portion: portion,
+            unit: unit
         }
     });
 }

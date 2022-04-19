@@ -44,8 +44,65 @@ let headers = [
 
 ]
 
+let achievementHeaders = [
+    {
+        label: "User ID", key: "userid"
+    },
+    {
+        label: "User E-mail", key: "useremail"
+    },
+    {
+        label: "Elite Warrior", key: "elitewarrior"
+    },
+    {
+        label: "Kalorie Killa", key: "kalorie"
+    },
+    {
+        label: "Paleo", key: "paleo"
+    },
+    {
+        label: "Salt Bae", key: "saltbae"
+    },
+    {
+        label: "Slim Shady", key: "slim"
+    },
+    {
+        label: "Sugar", key: "sugar"
+    },
+    {
+        label: "Red Apples", key: "redapples"
+    },
+    {
+        label: "Golden Apples", key: "goldenapples"
+    },
+]
+
+let snackHeaders = [
+    {
+        label: "User ID", key: "userid"
+    },
+    {
+        label: "User E-mail", key: "useremail"
+    },
+    {
+        label: "Snack Score", key: "snackscore"
+    },
+    {
+        label: "Snack ID", key: "snack_id"
+    },
+    {
+        label: "Snack Name", key: "snack_name"
+    },
+    {
+        label: "Date", key: "date"
+    },
+]
+
+
 function GenerateCSVComponent() {
     const [snackabilityData, setSnackabilityData] = useState([]);
+    const [userAchievementData, setUserAchievementData] = useState([]);
+    const [userSnackData, setUserSnackData] = useState([]);
 
     const getCSVGen = () => {
 
@@ -53,38 +110,101 @@ function GenerateCSVComponent() {
         setSnackabilityData(snackabilityData => []);
 
         fetCSVGen()
-      .then((response) => response.data)
-      .then((all_data) => {
-        console.log(all_data);
-        for(let i = 0; i < all_data.length; ++i)
-        {
-            setSnackabilityData(snackabilityData => [...snackabilityData, {
-                userid: all_data[i].userid,
-                snackscore: all_data[i].snackscore,
-                snack_id: all_data[i].snack_id,
-                elitewarrior: all_data[i].elitewarrior,
-                kalorie: all_data[i].kalorie,
-                paleo: all_data[i].paleo,
-                saltbae: all_data[i].saltbae,
-                slim: all_data[i].slim,
-                sugar: all_data[i].sugar,
-                redapples: all_data[i].redapples,
-                goldenapples: all_data[i].goldenapples,
-            }])
-        }
-      });
+            .then((response) => response.data)
+            .then((all_data) => {
+                console.log(all_data);
+                for (let i = 0; i < all_data.length; ++i) {
+                    var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
+                    setSnackabilityData(snackabilityData => [...snackabilityData, {
+                        userid: all_data[i].userid,
+                        snackscore: all_data[i].snackscore,
+                        snack_id: all_data[i].snack_id,
+                        elitewarrior: all_data[i].elitewarrior,
+                        kalorie: all_data[i].kalorie,
+                        paleo: all_data[i].paleo,
+                        saltbae: all_data[i].saltbae,
+                        slim: all_data[i].slim,
+                        sugar: all_data[i].sugar,
+                        redapples: all_data[i].redapples,
+                        goldenapples: all_data[i].goldenapples,
+                    }])
+                }
+            });
     }
+
+    const genUserAchievementCSV = () => {
+
+        // Makes sure the array is empty before iterating through the data of each user
+        setUserAchievementData(userAchievementData => []);
+
+        fetCSVGen()
+            .then((response) => response.data)
+            .then((all_data) => {
+                var allUserIDs = [];
+                for (let i = 0; i < all_data.length; ++i) {
+                    if(!allUserIDs.includes(all_data[i].userid))
+                    {
+                        console.log(all_data[i].useremail);
+                        setUserAchievementData(userAchievementData => [...userAchievementData, {
+                            userid: all_data[i].userid,
+                            useremail: all_data[i].useremail,
+                            elitewarrior: all_data[i].elitewarrior,
+                            kalorie: all_data[i].kalorie,
+                            paleo: all_data[i].paleo,
+                            saltbae: all_data[i].saltbae,
+                            slim: all_data[i].slim,
+                            sugar: all_data[i].sugar,
+                            redapples: all_data[i].redapples,
+                            goldenapples: all_data[i].goldenapples,
+                        }])
+                        allUserIDs.push(all_data[i].userid);
+                    }
+                }
+            });
+    }
+
+    const genUserSnacksCSV = () => {
+
+        // Makes sure the array is empty before iterating through the data of each user
+        setUserSnackData(userSnackData => []);
+
+        fetCSVGen()
+            .then((response) => response.data)
+            .then((all_data) => {
+                console.log(all_data);
+                for (let i = 0; i < all_data.length; ++i) {
+                    var s = new Date(all_data[i].created_at["_seconds"] * 1000).toLocaleDateString("en-US");
+                    setUserSnackData(userSnackData => [...userSnackData, {
+                        userid: all_data[i].userid,
+                        useremail: all_data[i].useremail,
+                        snackscore: all_data[i].snackscore,
+                        snack_id: all_data[i].snack_id,
+                        snack_name: "None",
+                        date: s,
+                    }])
+                }
+            });
+    }
+
+
 
     useEffect(() => {
         getCSVGen();
+        genUserAchievementCSV();
+        genUserSnacksCSV();
     }, []);
 
     return (
         <div><div className="d-flex justify-content-center mt-5">
-            <CSVLink data={snackabilityData} headers={headers} filename={"SnackabilityData.csv"}><Button variant="primary"><span>
+            <CSVLink data={userAchievementData} headers={achievementHeaders} filename={"Snackability - Achievement Data.csv"}><Button variant="primary"><span>
                 <FontAwesomeIcon icon={faFileCsv} className="mr-2" />
-            </span>Generate CSV</Button></CSVLink>
-        </div></div>
+            </span>Generate Achievements CSV</Button></CSVLink>
+        </div>
+            <div className="d-flex justify-content-center mt-3">
+                <CSVLink data={userSnackData} headers={snackHeaders} filename={"Snackability - Snack Data.csv"}><Button variant="primary"><span>
+                    <FontAwesomeIcon icon={faFileCsv} className="mr-2" />
+                </span>Generate Snack CSV</Button></CSVLink></div>
+        </div>
 
     )
 }
